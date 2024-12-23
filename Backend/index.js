@@ -1,2 +1,2 @@
-console.log("Use");
+console.log("User");
 console.log("MyRNM");
