@@ -1,0 +1,27 @@
+.table {
+  font-size: 0.9rem;
+}
+
+.badge {
+  padding: 0.5rem 0.8rem;
+  font-size: 0.8rem;
+}
+
+.btn-sm {
+  font-size: 0.8rem;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border: none;
+}
+
+.btn-success {
+  background-color: #28a745;
+  border: none;
+}
+
+.btn-success[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

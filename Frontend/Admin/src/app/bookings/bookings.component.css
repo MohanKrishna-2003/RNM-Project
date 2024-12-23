@@ -1,0 +1,17 @@
+.table {
+  font-size: 0.9rem;
+}
+
+.badge {
+  padding: 0.5rem 0.8rem;
+  font-size: 0.8rem;
+}
+
+.btn-sm {
+  font-size: 0.8rem;
+}
+
+.btn-danger[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

@@ -1,0 +1,143 @@
+<app-admin-header></app-admin-header>
+<div class="container-fluid mt-4">
+  <div class="row">
+    <!-- Statistics Summary -->
+    <div class="col-md-3">
+      <div class="card text-white bg-primary mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Total Users</h5>
+          <h2 class="card-text">1200</h2>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card text-white bg-success mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Total Bookings</h5>
+          <h2 class="card-text">580</h2>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card text-white bg-warning mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Active Cars</h5>
+          <h2 class="card-text">75</h2>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card text-white bg-danger mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Pending Requests</h5>
+          <h2 class="card-text">15</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Charts Section -->
+  <div class="row mt-4">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header bg-dark text-white">Bookings by Month</div>
+        <div class="card-body">
+          <img
+            src="https://www.microsoft.com/en-us/microsoft-365/blog/wp-content/uploads/sites/2/2012/06/Excel-charts-11.png"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header bg-dark text-white">Users Growth</div>
+        <div class="card-body">
+          <img
+            width="700PX"
+            src="https://skift.com/wp-content/uploads/2016/11/Screen-Shot-2016-11-28-at-4.44.07-PM-1024x458.png"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- User & Bookings Overview -->
+  <div class="row mt-4">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header bg-dark text-white">User Overview</div>
+        <div class="card-body">
+          <table class="table table-bordered">
+            <thead class="table-light">
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>John Doe</td>
+                <td>john.doeexample.com</td>
+                <td>Active</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Jane Smith</td>
+                <td>jane.smithexample.com</td>
+                <td>Inactive</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Peter Parker</td>
+                <td>peter.parkerexample.com</td>
+                <td>Active</td>
+              </tr>
+            </tbody>
+          </table>
+          <a href="/users">Read more...</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header bg-dark text-white">Bookings Overview</div>
+        <div class="card-body">
+          <table class="table table-bordered">
+            <thead class="table-light">
+              <tr>
+                <th>#</th>
+                <th>User</th>
+                <th>Car</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>John Doe</td>
+                <td>Renault Kwid</td>
+                <td>Completed</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Jane Smith</td>
+                <td>Renault Duster</td>
+                <td>Pending</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Peter Parker</td>
+                <td>Renault Triber</td>
+                <td>Canceled</td>
+              </tr>
+            </tbody>
+          </table>
+          <a href="/bookings">Read more...</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

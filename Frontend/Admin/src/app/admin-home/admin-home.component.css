@@ -1,0 +1,27 @@
+.jumbotron {
+  background-color: #002984;
+  color: white;
+  padding: 2rem 1rem;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.card-text {
+  font-size: 1rem;
+}
+
+.list-group-item {
+  font-size: 1rem;
+}
+
+.card h2 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+a {
+  text-decoration: none;
+}

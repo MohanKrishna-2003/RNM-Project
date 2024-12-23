@@ -1,0 +1,40 @@
+<app-admin-header></app-admin-header>
+<div class="container mt-4">
+  <!-- Page Header -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>User Feedback</h2>
+    <button class="btn btn-primary" (click)="refreshFeedback()">Refresh</button>
+  </div>
+
+  <!-- Feedback Table -->
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th>#</th>
+          <th>User</th>
+          <th>Email</th>
+          <th>Feedback</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let feedback of feedbackList; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ feedback.user }}</td>
+          <td>{{ feedback.email }}</td>
+          <td>{{ feedback.message }}</td>
+
+          <td>
+            <button
+              class="btn btn-sm btn-danger"
+              (click)="deleteFeedback(feedback)"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
