@@ -1,0 +1,124 @@
+.home-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+h1 {
+  font-size: 2.5em;
+  color: #007bff;
+}
+
+p {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  margin: 10px;
+  font-size: 1.1em;
+}
+
+ul li a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+ul li a:hover {
+  text-decoration: underline;
+}
+
+header {
+  background-color: #007bff;
+  color: white;
+  padding: 15px;
+  text-align: center;
+}
+
+header nav ul {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+header nav ul li {
+  list-style: none;
+  margin: 0 15px;
+}
+
+header nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+header nav ul li a:hover {
+  text-decoration: underline;
+}
+/* home.component.css */
+.home-section {
+  position: relative;
+  height: 100vh;
+  background-color: #f8f9fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.car-image {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.home-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.book-slot-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  padding: 15px 30px;
+  font-size: 1.5em;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  animation: moveUpDown 2s infinite;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.book-slot-btn:hover {
+  background-color: #0056b3;
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+@keyframes moveUpDown {
+  0%, 100% {
+    transform: translate(-50%, -50%) translateY(-10px);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateY(10px);
+  }
+}
+
+.content-section {
+  padding: 50px;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.content-section h2 {
+  margin-top: 0;
+}
