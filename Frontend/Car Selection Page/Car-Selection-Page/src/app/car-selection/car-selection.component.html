@@ -1,0 +1,261 @@
+<div class="page-container">
+    <header class="header-section">
+        <h1 class="header-title">Discover Excellence in Cars</h1>
+        <p class="header-subtitle">Driving your dreams forward</p>
+        <img src="/assets/images/home.png" alt="Home Icon" class="home-icon" />
+    </header>
+    <div class="main-body">
+        <div class="left-section">
+            <div class="left-section-content">
+                <div class="question-wrapper">
+                    <img src="/assets/images/newq.avif" alt="Steering Icon" class="question-icon" />
+                    <h2 class="question-text one">What Makes a Car Handle Well?</h2>
+                </div>
+                <div class="answer-wrapper">
+                    <img src="/assets/images/steer1.png" alt="Steering Icon" class="answer-icon" />
+                    <p class="answer-text onea">The steering system is the most crucial component for smooth handling
+                        and turning precision.</p>
+                </div>
+            </div>
+            <div class="left-section-content">
+                <div class="question-wrapper">
+                    <img src="/assets/images/newq.avif" alt="Tyre Icon" class="question-icon" />
+                    <h2 class="question-text two">Why Are Tires Important?</h2>
+                </div>
+                <div class="answer-wrapper">
+                    <img src="/assets/images/newt.webp" alt="Tyre Icon" class="answer-icon" />
+                    <p class="answer-text twoa">Tires provide the necessary grip for traction, ensuring safety and
+                        stability during the drive.</p>
+                </div>
+            </div>
+            <div class="left-section-content">
+                <div class="question-wrapper">
+                    <img src="/assets/images/newq.avif" alt="Engine Icon" class="question-icon" />
+                    <h2 class="question-text three">What Makes a Car Powerful?</h2>
+                </div>
+                <div class="answer-wrapper">
+                    <img src="/assets/images/steer3.png" alt="Engine Icon" class="answer-icon" />
+                    <p class="answer-text threea">The engine’s horsepower and torque deliver the speed and performance
+                        that define power in a car.</p>
+                </div>
+            </div>
+        </div>
+        <div class="right-section">
+            <div class="image-container">
+                <img [src]="staticPics[currentImageIndex]" alt="Static Image" class="animated-image" />
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- <img src="http://localhost:4200/assets/staticPics/img1.avif" alt="Static Image" class="animated-image"> -->
+
+
+
+<div class="brand-section">
+
+    <div class="brand-tabs">
+        <button (click)="toggleFilterSidebar()" class="brand-logo filter">
+            <img src="/assets/images/filter.jpg" alt="Filter" class="filter" />
+        </button>
+
+        <button (click)="displayCars('Renault')" class="brand-logo renault">
+            <img src="/assets/images/renonewlogo.jpg" alt="Renault" class="brand-icon" />
+        </button>
+        <button (click)="displayCars('Nissan')" class="brand-logo nissan">
+            <img src="/assets/images/nissanlogo.png" alt="Nissan" class="brand-icon" />
+        </button>
+        <button (click)="displayCars('Mitsubishi')" class="brand-logo mitsubishi">
+            <img src="/assets/images/newm.webp" alt="Mitsubishi" class="brand-icon" />
+        </button>
+    </div>
+
+    <!-- Sidebar for Filters -->
+    <div class="filter-sidebar" [class.open]="isFilterSidebarOpen">
+        <button class="close-sidebar" (click)="toggleFilterSidebar()">
+            <img src="/assets/images/close.png" alt="Close Filter" class="filter2" />
+        </button>
+        <h2>Choose Your CAR!</h2>
+        <div class="filters">
+            <label>
+                Price Range:
+                <!-- [(ngModel)]="selectedPrice" -->
+                <select (click)="filterCarsByPrice($event)" class="baloo">
+                    <option value="">All</option>
+                    <option value="low">Below ₹10 Lakhs</option>
+                    <option value="mid">₹10-₹20 Lakhs</option>
+                    <option value="high">Above ₹20 Lakhs</option>
+                </select>
+            </label>
+
+            <label>
+                Order By:
+                <!-- hey here onwards I removed the event emitters because it will dynicamlly apply this filter while selecting so we should apply the filters after the user is clicking the apply button - MOHAN -->
+                <!-- (change)="sortCars($event)" -->
+                <select (change)="sortByOrder($event)" class="baloo">
+                    <option value="">None</option>
+                    <option value="maxPrice">Max Price</option>
+                    <option value="minPrice">Min Price</option>
+                    <option value="booking">Availability</option>
+                </select>
+            </label>
+            <label>
+                Rating:
+                <!-- [(ngModel)]="filterByRating"" -->
+                <select (change)="filterByRating($event)" class="baloo">
+                    <option value="">All</option>
+                    <option value="1">1 Star</option>
+                    <option value="2">2 Stars</option>
+                    <option value="3">3 Stars</option>
+                    <option value="4">4 Stars</option>
+                    <option value="5">5 Stars</option>
+                </select>
+            </label>
+            <label>
+                Engine Type:
+                <select (change)="filterByEngine($event)" class="baloo">
+                    <option value="">All</option>
+                    <option value="petrol">Petrol</option>
+                    <option value="diesel">Diesel</option>
+                    <option value="electric">Electric</option>
+                </select>
+            </label>
+            <label>
+                Seater:
+                <select (change)="filterBySeater($event)" class="baloo">
+                    <option value="">All</option>
+                    <option value="4">4-Seater</option>
+                    <option value="5">5-Seater</option>
+                    <option value="7">7-Seater</option>
+                </select>
+            </label>
+            <label>
+                Transmission:
+                <select (change)="filterByTransmission($event)" class="baloo">
+                    <option value="">All</option>
+                    <option value="manual">Manual</option>
+                    <option value="automatic">Automatic</option>
+                </select>
+            </label>
+            <label>
+                Availability:
+                <select (change)="filterByAvailability($event)" class="baloo">
+                    <option value="">All</option>
+                    <option value="in-stock">In Stock</option>
+                    <option value="pre-order">Pre-Order</option>
+                    <option value="discontinued">Discontinued</option>
+                </select>
+            </label>
+            <label>
+                Fuel Efficiency:
+                <select (change)="filterByFuelEfficiency($event)" class="baloo">
+                    <option value="">All</option>
+                    <option value="10">Up to 10 km/l</option>
+                    <option value="15">Up to 15 km/l</option>
+                    <option value="20">Up to 20 km/l</option>
+                    <option value="20+">Above 20 km/l</option>
+                </select>
+            </label>
+            <label>
+                Color:
+                <select (change)="filterByColor($event)" class="baloo">
+                    <option value="">All</option>
+                    <option value="red">Red</option>
+                    <option value="blue">Blue</option>
+                    <option value="black">Black</option>
+                    <option value="white">White</option>
+                    <option value="grey">Grey</option>
+                </select>
+            </label>
+            <label>
+                Drive Type:
+                <select (change)="filterByDriveType($event)" class="baloo">
+                    <option value="">All</option>
+                    <option value="fwd">Front-Wheel Drive</option>
+                    <option value="rwd">Rear-Wheel Drive</option>
+                    <option value="awd">All-Wheel Drive</option>
+                    <option value="4wd">4-Wheel Drive</option>
+                </select>
+            </label>
+            <label>
+                Warranty:
+                <select (change)="filterByWarranty($event)" class="baloo">
+                    <option value="">All</option>
+                    <option value="3">Up to 3 Years</option>
+                    <option value="5">Up to 5 Years</option>
+                    <option value="7">Up to 7 Years</option>
+                    <option value="lifetime">Lifetime</option>
+                </select>
+            </label>
+        </div>
+        <button class="apply-filters baloo" (click)="applyFilters()">
+            Apply!
+        </button>
+
+    </div>
+
+    <div class="gif-container" *ngIf="showGif; else carsDisplay">
+        <img [src]="staticPics[currentImageIndex]" alt="Cycling Image" class="cycling-image" />
+    </div>
+
+    <ng-template #carsDisplay>
+        <div class="cars-display">
+            <div *ngFor="let car of displayedCars" class="car-card animate-on-scroll">
+                <div class="car-image-container">
+                    <img [src]="car.image" alt="{{ car.name }}" class="car-image" />
+                </div>
+                <h3 class="car-name space middle"><img [src]="car.brandIcon" alt="" class="brandimg">{{ car.name }}</h3>
+                <div class="combine">
+                    <div class="vertical-bar"></div>
+                    <h4 class="car-details space">{{ car.details }}</h4>
+                </div>
+                <div class="car-details-container">
+                    <div class="left-side">
+                        <p class="car-release-year car-details space"><strong>Release Year:</strong> {{ car.releaseYear
+                            }}</p>
+                        <p class="car-price car-details space">
+                            <strong>Price:</strong> INR {{ car.price.INR }} / USD {{ car.price.USD }}
+                        </p>
+                        <p class="car-bookings car-details space"><strong>Bookings:</strong> {{ car.bookings }}+</p>
+                        <p class="car-bookings car-details space"><strong>Seater:</strong> {{ car.seater }}</p>
+
+                        <p class="car-bookings car-details space"><strong>Engine Type:</strong> {{ car.engineType }}</p>
+                        <p class="car-bookings car-details space"><strong>Rating:</strong> {{ car.rating }}</p>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="right-side">
+                        <p class="car-bookings car-details space"><strong>Availability:</strong> {{ car.availability }}
+                        </p>
+                        <p class="car-bookings car-details space"><strong>Fuel Efficiency:</strong> Up to {{
+                            car.fuelEfficiency }}km/l</p>
+                        <p class="car-bookings car-details space"><strong>Color:</strong> {{ car.color }}</p>
+                        <p class="car-bookings car-details space"><strong>Drive Type/Mode:</strong> {{ car.driveType }}
+                        </p>
+                        <p class="car-bookings car-details space"><strong>Transmission:</strong> {{ car.transmission }}
+                        </p>
+                        <p class="car-bookings car-details space"><strong>Warranty:</strong> {{ car.warranty }} Years
+                        </p>
+                    </div>
+                </div>
+                <div class="extra-features car-details space">
+                    <strong class="extra-features-title">Extra Features:</strong>
+                    <ul>
+                        <li *ngFor="let feature of car.extraFeatures">
+                            <img src="/assets/images/ver.png" alt="Verified" class="verified-icon" />
+                            {{ feature }}
+                        </li>
+                    </ul>
+                </div>
+                <button class="book-slot-btn">
+                    <img [src]="'/assets/images/bkslot.png'" alt="Book Slot" class="slot-icon" />
+                    Book Slot
+                </button>
+            </div>
+        </div>
+
+    </ng-template>
+
+
+
+
+</div>
