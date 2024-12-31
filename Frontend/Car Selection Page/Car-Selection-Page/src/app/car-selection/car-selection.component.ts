@@ -9,6 +9,7 @@ import carsData from '../../assets/cars.json'; import { CommonModule } from '@an
   templateUrl: './car-selection.component.html',
   styleUrls: ['./car-selection.component.css']
 })
+
 export class CarSelectionComponent implements OnInit {
 
   staticPics: string[] = [
@@ -18,7 +19,6 @@ export class CarSelectionComponent implements OnInit {
     'assets/carImages/renault-fluence.webp',
   ];
 
-
   currentImageIndex: number = 0;
   showFilters: boolean = false;
   displayedCars: any[] = [];
@@ -26,6 +26,7 @@ export class CarSelectionComponent implements OnInit {
   showGif: boolean = true;
   gifPath: string = 'assets/gifs/loading.gif';
   selectedBrand: string = 'Renault';  
+  isBookingClicked: boolean = false;
   constructor() { }
 
   ngOnInit(): void {
@@ -72,8 +73,6 @@ export class CarSelectionComponent implements OnInit {
     });
   }
 
-
-
   isFilterSidebarOpen: boolean = false;
   selectedPrice: string = '';
   sortBy: string = '';
@@ -83,6 +82,10 @@ export class CarSelectionComponent implements OnInit {
     this.isFilterSidebarOpen = !this.isFilterSidebarOpen;
   }
 
+  toggleBooking(){
+    this.isBookingClicked = !this.isBookingClicked;
+
+  }
   applyFilters(): void {
     //   this.toggleFilterSidebar()
     //   console.log(this.selectedPrice)
@@ -136,8 +139,9 @@ export class CarSelectionComponent implements OnInit {
     return parseFloat(numericPrice) || 0;
   }
 
-
-
+confirm(){
+  alert("Your booking slot is confirmed... please await further instructions.....");
+}
   sortByOrder(event: Event): void {
     const sortBy = (event.target as HTMLSelectElement).value;
     if (sortBy == 'maxPrice') {
@@ -249,8 +253,4 @@ export class CarSelectionComponent implements OnInit {
     }
     this.showGif = false;
   }
-
-
-
-
 }

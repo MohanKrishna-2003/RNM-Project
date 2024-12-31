@@ -76,7 +76,7 @@
 <!-- <img src="http://localhost:4200/assets/staticPics/img1.avif" alt="Static Image" class="animated-image"> -->
 
 <div class="brand-section" id="brand-section">
-  <br>
+  <br />
   <div class="brand-tabs">
     <button (click)="toggleFilterSidebar()" class="brand-logo filter">
       <img src="/assets/images/filter.jpg" alt="Filter" class="filter" />
@@ -280,6 +280,50 @@
     <button class="apply-filters baloo" (click)="applyFilters()">Apply!</button>
   </div>
 
+  <!-- Sidebar for test slot -->
+  @if (isBookingClicked){
+
+  <div class="form-for-booking">
+    <section class="form-section">
+      <button class="close-sidebar" (click)="toggleBooking()">
+        <img
+          src="/assets/images/close.png"
+          alt="Close Filter"
+          class="filter2"
+        />
+      </button>
+      <h2>Book Your Test Drive Slot</h2>
+      <form id="slot-booking-form">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" placeholder="Enter your name" required />
+        <label for="phone">Phone Number</label>
+        <input
+          type="tel"
+          id="phone"
+          placeholder="Enter your phone number"
+          required
+        />
+        <label for="email">Email Address</label>
+        <input
+          type="email"
+          id="email"
+          placeholder="Enter your email"
+          required
+        />
+        <label for="preferred-date">Preferred Date</label>
+        <input type="date" id="preferred-date" required />
+        <label for="time-slot">Preferred Time Slot</label>
+        <select id="time-slot" required>
+          <option value="" disabled selected>Select a time slot</option>
+          <option value="morning">Morning (9:00 AM - 12:00 PM)</option>
+          <option value="afternoon">Afternoon (12:00 PM - 3:00 PM)</option>
+          <option value="evening">Evening (3:00 PM - 6:00 PM)</option>
+        </select>
+        <button type="submit" class="submit-btn" (click)="confirm()">Book Slot!</button>
+      </form>
+    </section>
+  </div>
+  }
   <div class="gif-container" *ngIf="showGif; else carsDisplay">
     <!-- <img [src]="staticPics[currentImageIndex]" alt="Cycling Image" class="cycling-image" /> -->
     <h1>SELECT A CAR TO PROCEED WITH YOUR BOOKINGS.....</h1>
@@ -357,7 +401,7 @@
             </li>
           </ul>
         </div>
-        <button class="book-slot-btn">
+        <button class="book-slot-btn" (click)="toggleBooking()">
           <img
             [src]="'/assets/images/bkslot.png'"
             alt="Book Slot"
