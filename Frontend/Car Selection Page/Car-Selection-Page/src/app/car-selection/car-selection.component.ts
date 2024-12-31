@@ -12,18 +12,10 @@ import carsData from '../../assets/cars.json'; import { CommonModule } from '@an
 export class CarSelectionComponent implements OnInit {
 
   staticPics: string[] = [
-    'assets/images/dis1.avif',
-    'assets/staticPics/img2.avif',
-    'assets/images/dis2.avif',
-    'assets/staticPics/img4.avif',
-    'assets/staticPics/img5.avif',
-    'assets/staticPics/img6.avif',
-    'assets/staticPics/img7.avif',
-    'assets/staticPics/img8.avif',
-    'assets/images/dis3.avif',
-    'assets/images/dis2.avif',
-    'assets/images/dis4.avif',
-    'assets/images/dis5.avif',
+    'assets/carImages/renault-koleos.jpg',
+    'assets/carImages/renault-arkana.webp',
+    'assets/carImages/renault-zoe.jpg',
+    'assets/carImages/renault-fluence.webp',
   ];
 
 
@@ -33,7 +25,7 @@ export class CarSelectionComponent implements OnInit {
   cars: any[] = [];
   showGif: boolean = true;
   gifPath: string = 'assets/gifs/loading.gif';
-
+  selectedBrand: string = 'Renault';  
   constructor() { }
 
   ngOnInit(): void {
@@ -41,6 +33,7 @@ export class CarSelectionComponent implements OnInit {
     this.displayedCars = [...this.cars];
     this.startImageCycle();
     this.handleScroll();
+    this.displayCars('Renault')
   }
 
   displayCars(brand: string): void {
@@ -57,7 +50,7 @@ export class CarSelectionComponent implements OnInit {
   startImageCycle(): void {
     setInterval(() => {
       this.currentImageIndex = (this.currentImageIndex + 1) % this.staticPics.length;
-    }, 5000);
+    }, 2000);
   }
 
   @HostListener('window:scroll', ['$event'])
