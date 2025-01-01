@@ -246,7 +246,7 @@
     "brand": "Renault",
     "brandIcon": "/assets/images/renocaricon.jpg",
     "name": "Renault Logan",
-    "image": "/assets/carImages/renault-logan.jpg",
+    "image": "/assets/carImages/renault-logan3.jpg",
     "price": {
       "INR": "₹10 Lakhs",
       "USD": "$13,000"
@@ -327,8 +327,8 @@
     "brand": "Nissan",
     "brandIcon": "/assets/images/ok1.png",
     "name": "Nissan Altima",
-    "image": "/assets/carImages/nissan-altima.webp",
-    "price": {
+    "image": "/assets/carImages/nissan-altima2.jpg",
+    "price": {  
       "INR": "₹20 Lakhs",
       "USD": "$26,000"
     },
@@ -354,7 +354,7 @@
     "brand": "Nissan",
     "brandIcon": "/assets/images/ok1.png",
     "name": "Nissan Juke",
-    "image": "/assets/carImages/nissan-juke.jpg",
+    "image": "/assets/carImages/nissan-juke3.avif",
     "price": {
       "INR": "₹12 Lakhs",
       "USD": "$16,000"
@@ -435,7 +435,7 @@
     "brand": "Nissan",
     "brandIcon": "/assets/images/ok1.png",
     "name": "Nissan Rogue",
-    "image": "/assets/carImages/nissan-rogue.jpg",
+    "image": "/assets/carImages/nissan-rogue2.jpg",
     "price": {
       "INR": "₹26 Lakhs",
       "USD": "$35,000"
@@ -489,7 +489,7 @@
     "brand": "Nissan",
     "brandIcon": "/assets/images/ok1.png",
     "name": "Nissan Pathfinder",
-    "image": "/assets/carImages/nissan-pathfinder.jpg",
+    "image": "/assets/carImages/nissan-pathfinder2.jpg",
     "price": {
       "INR": "₹28 Lakhs",
       "USD": "$37,000"
@@ -543,7 +543,7 @@
     "brand": "Nissan",
     "brandIcon": "/assets/images/ok1.png",
     "name": "Nissan Titan",
-    "image": "/assets/carImages/nissan-titan.jpg",
+    "image": "/assets/carImages/nissan-titan2.jpg",
     "price": {
       "INR": "₹35 Lakhs",
       "USD": "$46,000"
@@ -570,7 +570,7 @@
     "brand": "Nissan",
     "brandIcon": "/assets/images/ok1.png",
     "name": "Nissan Qashqai",
-    "image": "/assets/carImages/nissan-qashqai.jpg",
+    "image": "/assets/carImages/nissan-qashqai2.jpg",
     "price": {
       "INR": "₹18 Lakhs",
       "USD": "$24,000"
@@ -597,7 +597,7 @@
     "brand": "Nissan",
     "brandIcon": "/assets/images/ok1.png",
     "name": "Nissan 370Z",
-    "image": "/assets/carImages/nissan-370z.jpg",
+    "image": "/assets/carImages/nissan-370z2.webp",
     "price": {
       "INR": "₹45 Lakhs",
       "USD": "$60,000"
@@ -624,7 +624,7 @@
     "brand": "Nissan",
     "brandIcon": "/assets/images/ok1.png",
     "name": "Nissan GT-R",
-    "image": "/assets/carImages/nissan-gtr.jpg",
+    "image": "/assets/carImages/nissan-gtr3.jpg",
     "price": {
       "INR": "₹1.5 Crore",
       "USD": "$130,000"
@@ -813,7 +813,7 @@
     "brand": "Mitsubishi",
     "brandIcon": "/assets/images/mistcarlogo.png",
     "name": "Mitsubishi Galant",
-    "image": "/assets/carImages/mitsubishi-galant.jpg",
+    "image": "/assets/carImages/mitsubishi-galant2.jpg",
     "price": {
       "INR": "₹22 Lakhs",
       "USD": "$28,000"
@@ -867,7 +867,7 @@
     "brand": "Mitsubishi",
     "brandIcon": "/assets/images/mistcarlogo.png",
     "name": "Mitsubishi Outlander PHEV",
-    "image": "/assets/carImages/mitsubishi-outlander-phev.jpg",
+    "image": "/assets/carImages/mitsubishi-outlander-phev2.jpg",
     "price": {
       "INR": "₹45 Lakhs",
       "USD": "$58,000"
@@ -894,7 +894,7 @@
     "brand": "Mitsubishi",
     "brandIcon": "/assets/images/mistcarlogo.png",
     "name": "Mitsubishi L200",
-    "image": "/assets/carImages/mitsubishi-l200.jpg",
+    "image": "/assets/carImages/mitsubishi-l2002.webp",
     "price": {
       "INR": "₹28 Lakhs",
       "USD": "$36,000"
@@ -948,7 +948,7 @@
     "brand": "Mitsubishi",
     "brandIcon": "/assets/images/mistcarlogo.png",
     "name": "Mitsubishi Mirage G4",
-    "image": "/assets/carImages/mitsubishi-mirage-g4.jpg",
+    "image": "/assets/carImages/mitsubishi-mirage-g42.jpg",
     "price": {
       "INR": "₹12 Lakhs",
       "USD": "$16,000"
@@ -975,7 +975,7 @@
     "brand": "Mitsubishi",
     "brandIcon": "/assets/images/mistcarlogo.png",
     "name": "Mitsubishi 3000GT",
-    "image": "/assets/carImages/mitsubishi-3000gt.jpg",
+    "image": "/assets/carImages/mitsubishi-3000gt2.jpg",
     "price": {
       "INR": "₹50 Lakhs",
       "USD": "$65,000"
