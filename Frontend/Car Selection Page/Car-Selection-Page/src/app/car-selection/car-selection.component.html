@@ -1,4 +1,4 @@
-<div class="page-container">
+<div class="page-container"  [class.shifted]="isFilterSidebarOpen">
 
 
   <header class="header-section">
@@ -6,21 +6,6 @@
     <p class="header-subtitle">Driving your dreams forward</p>
     <img src="/assets/images/home.png" alt="Home Icon" class="home-icon" />
   </header>
-  <!-- <div class="header" id="header" [ngClass]="status ? '' : 'body-pd'">
-    <div class="header_toggle" (click)="clickEvent()"> <i class='bx bx-menu' id="header-toggle" [ngClass]="status ? '' : 'bx-x'"></i> </div>
-    <div class="header_img"> <img src="https://i.imgur.com/hczKIze.jpg" alt=""> </div>
-</div>
-<div class="l-navbar" id="nav-bar" [ngClass]="status ? '' : 'show'">
-    <nav class="nav">
-        <div> <a href="#" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span class="nav_logo-name">BBBootstrap</span> </a>
-            <div class="nav_list"> <a href="#" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Dashboard</span> </a> <a href="#" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Users</span> </a> <a href="#" class="nav_link"> <i class='bx bx-message-square-detail nav_icon'></i> <span class="nav_name">Messages</span> </a> <a href="#" class="nav_link"> <i class='bx bx-bookmark nav_icon'></i> <span class="nav_name">Bookmark</span> </a> <a href="#" class="nav_link"> <i class='bx bx-folder nav_icon'></i> <span class="nav_name">Files</span> </a> <a href="#" class="nav_link"> <i class='bx bx-bar-chart-alt-2 nav_icon'></i> <span class="nav_name">Stats</span> </a> </div>
-        </div> <a href="#" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span> </a>
-    </nav>
-</div>
-Container Main start
-<div class="height-100 bg-light">
-    <h4>Main Components</h4>
-</div> -->
 
   <div class="main-body">
     <div class="left-section">
@@ -92,7 +77,131 @@ Container Main start
 </div>
 <!-- <img src="http://localhost:4200/assets/staticPics/img1.avif" alt="Static Image" class="animated-image"> -->
 
-<div class="brand-section" id="brand-section">
+
+ <!-- Sidebar for Filters -->
+ <div class="container">
+ <div class="filter-sidebar" [class.open]="isFilterSidebarOpen">
+  <button class="close-sidebar" (click)="toggleFilterSidebar()">
+    <img src="/assets/images/close.png" alt="Close Filter" class="filter2" />
+  </button>
+  <h2 style="color:black">Choose Your CAR!</h2>
+  <div class="filters">
+    <label>
+      Price Range:
+      <!-- [(ngModel)]="selectedPrice" -->
+      <select (click)="filterCarsByPrice($event)" class="baloo">
+        <option value="">All</option>
+        <option value="low">Below ₹10 Lakhs</option>
+        <option value="mid">₹10-₹20 Lakhs</option>
+        <option value="high">Above ₹20 Lakhs</option>
+      </select>
+    </label>
+
+    <label>
+      Order By:
+      <!-- hey here onwards I removed the event emitters because it will dynicamlly apply this filter while selecting so we should apply the filters after the user is clicking the apply button - MOHAN -->
+      <!-- (change)="sortCars($event)" -->
+      <select (change)="sortByOrder($event)" class="baloo">
+        <option value="">None</option>
+        <option value="maxPrice">Max Price</option>
+        <option value="minPrice">Min Price</option>
+        <option value="booking">Availability</option>
+      </select>
+    </label>
+    <label>
+      Rating:
+      <!-- [(ngModel)]="filterByRating"" -->
+      <select (change)="filterByRating($event)" class="baloo">
+        <option value="">All</option>
+        <option value="1">1 Star</option>
+        <option value="2">2 Stars</option>
+        <option value="3">3 Stars</option>
+        <option value="4">4 Stars</option>
+        <option value="5">5 Stars</option>
+      </select>
+    </label>
+    <label>
+      Engine Type:
+      <select (change)="filterByEngine($event)" class="baloo">
+        <option value="">All</option>
+        <option value="petrol">Petrol</option>
+        <option value="diesel">Diesel</option>
+        <option value="electric">Electric</option>
+      </select>
+    </label>
+    <label>
+      Seater:
+      <select (change)="filterBySeater($event)" class="baloo">
+        <option value="">All</option>
+        <option value="4">4-Seater</option>
+        <option value="5">5-Seater</option>
+        <option value="7">7-Seater</option>
+      </select>
+    </label>
+    <label>
+      Transmission:
+      <select (change)="filterByTransmission($event)" class="baloo">
+        <option value="">All</option>
+        <option value="manual">Manual</option>
+        <option value="automatic">Automatic</option>
+      </select>
+    </label>
+    <label>
+      Availability:
+      <select (change)="filterByAvailability($event)" class="baloo">
+        <option value="">All</option>
+        <option value="in-stock">In Stock</option>
+        <option value="pre-order">Pre-Order</option>
+        <option value="discontinued">Discontinued</option>
+      </select>
+    </label>
+    <label>
+      Fuel Efficiency:
+      <select (change)="filterByFuelEfficiency($event)" class="baloo">
+        <option value="">All</option>
+        <option value="10">Up to 10 km/l</option>
+        <option value="15">Up to 15 km/l</option>
+        <option value="20">Up to 20 km/l</option>
+        <option value="20+">Above 20 km/l</option>
+      </select>
+    </label>
+    <label>
+      Color:
+      <select (change)="filterByColor($event)" class="baloo">
+        <option value="">All</option>
+        <option value="red">Red</option>
+        <option value="blue">Blue</option>
+        <option value="black">Black</option>
+        <option value="white">White</option>
+        <option value="grey">Grey</option>
+      </select>
+    </label>
+    <label>
+      Drive Type:
+      <select (change)="filterByDriveType($event)" class="baloo">
+        <option value="">All</option>
+        <option value="fwd">Front-Wheel Drive</option>
+        <option value="rwd">Rear-Wheel Drive</option>
+        <option value="awd">All-Wheel Drive</option>
+        <option value="4wd">4-Wheel Drive</option>
+      </select>
+    </label>
+    <label>
+      Warranty:
+      <select (change)="filterByWarranty($event)" class="baloo">
+        <option value="">All</option>
+        <option value="3">Up to 3 Years</option>
+        <option value="5">Up to 5 Years</option>
+        <option value="7">Up to 7 Years</option>
+        <option value="lifetime">Lifetime</option>
+      </select>
+    </label>
+  </div>
+  <button class="apply-filters baloo" (click)="applyFilters()">Apply!</button>
+</div>
+</div>
+
+<div class="brand-section" id="brand-section" [class.shifted]="isFilterSidebarOpen"  >
   <br />
   <div class="brand-tabs">
     <button (click)="toggleFilterSidebar()" class="brand-logo filter">
@@ -176,126 +285,7 @@ Container Main start
     </div>
   </div>
 
-  <!-- Sidebar for Filters -->
-  <div class="filter-sidebar" [class.open]="isFilterSidebarOpen">
-    <button class="close-sidebar" (click)="toggleFilterSidebar()">
-      <img src="/assets/images/close.png" alt="Close Filter" class="filter2" />
-    </button>
-    <h2>Choose Your CAR!</h2>
-    <div class="filters">
-      <label>
-        Price Range:
-        <!-- [(ngModel)]="selectedPrice" -->
-        <select (click)="filterCarsByPrice($event)" class="baloo">
-          <option value="">All</option>
-          <option value="low">Below ₹10 Lakhs</option>
-          <option value="mid">₹10-₹20 Lakhs</option>
-          <option value="high">Above ₹20 Lakhs</option>
-        </select>
-      </label>
-
-      <label>
-        Order By:
-        <!-- hey here onwards I removed the event emitters because it will dynicamlly apply this filter while selecting so we should apply the filters after the user is clicking the apply button - MOHAN -->
-        <!-- (change)="sortCars($event)" -->
-        <select (change)="sortByOrder($event)" class="baloo">
-          <option value="">None</option>
-          <option value="maxPrice">Max Price</option>
-          <option value="minPrice">Min Price</option>
-          <option value="booking">Availability</option>
-        </select>
-      </label>
-      <label>
-        Rating:
-        <!-- [(ngModel)]="filterByRating"" -->
-        <select (change)="filterByRating($event)" class="baloo">
-          <option value="">All</option>
-          <option value="1">1 Star</option>
-          <option value="2">2 Stars</option>
-          <option value="3">3 Stars</option>
-          <option value="4">4 Stars</option>
-          <option value="5">5 Stars</option>
-        </select>
-      </label>
-      <label>
-        Engine Type:
-        <select (change)="filterByEngine($event)" class="baloo">
-          <option value="">All</option>
-          <option value="petrol">Petrol</option>
-          <option value="diesel">Diesel</option>
-          <option value="electric">Electric</option>
-        </select>
-      </label>
-      <label>
-        Seater:
-        <select (change)="filterBySeater($event)" class="baloo">
-          <option value="">All</option>
-          <option value="4">4-Seater</option>
-          <option value="5">5-Seater</option>
-          <option value="7">7-Seater</option>
-        </select>
-      </label>
-      <label>
-        Transmission:
-        <select (change)="filterByTransmission($event)" class="baloo">
-          <option value="">All</option>
-          <option value="manual">Manual</option>
-          <option value="automatic">Automatic</option>
-        </select>
-      </label>
-      <label>
-        Availability:
-        <select (change)="filterByAvailability($event)" class="baloo">
-          <option value="">All</option>
-          <option value="in-stock">In Stock</option>
-          <option value="pre-order">Pre-Order</option>
-          <option value="discontinued">Discontinued</option>
-        </select>
-      </label>
-      <label>
-        Fuel Efficiency:
-        <select (change)="filterByFuelEfficiency($event)" class="baloo">
-          <option value="">All</option>
-          <option value="10">Up to 10 km/l</option>
-          <option value="15">Up to 15 km/l</option>
-          <option value="20">Up to 20 km/l</option>
-          <option value="20+">Above 20 km/l</option>
-        </select>
-      </label>
-      <label>
-        Color:
-        <select (change)="filterByColor($event)" class="baloo">
-          <option value="">All</option>
-          <option value="red">Red</option>
-          <option value="blue">Blue</option>
-          <option value="black">Black</option>
-          <option value="white">White</option>
-          <option value="grey">Grey</option>
-        </select>
-      </label>
-      <label>
-        Drive Type:
-        <select (change)="filterByDriveType($event)" class="baloo">
-          <option value="">All</option>
-          <option value="fwd">Front-Wheel Drive</option>
-          <option value="rwd">Rear-Wheel Drive</option>
-          <option value="awd">All-Wheel Drive</option>
-          <option value="4wd">4-Wheel Drive</option>
-        </select>
-      </label>
-      <label>
-        Warranty:
-        <select (change)="filterByWarranty($event)" class="baloo">
-          <option value="">All</option>
-          <option value="3">Up to 3 Years</option>
-          <option value="5">Up to 5 Years</option>
-          <option value="7">Up to 7 Years</option>
-          <option value="lifetime">Lifetime</option>
-        </select>
-      </label>
-    </div>
-    <button class="apply-filters baloo" (click)="applyFilters()">Apply!</button>
-  </div>
+ 
 
   <!-- Sidebar for test slot -->
   @if (isBookingClicked){

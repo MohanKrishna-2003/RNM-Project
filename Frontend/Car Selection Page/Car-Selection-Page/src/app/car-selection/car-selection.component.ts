@@ -1,6 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import carsData from '../../assets/cars.json'; import { CommonModule } from '@angular/common';
+import carsData from '../../assets/cars.json';
+ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-car-selection',

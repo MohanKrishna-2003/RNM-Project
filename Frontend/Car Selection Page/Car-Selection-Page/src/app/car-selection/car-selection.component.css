@@ -975,19 +975,9 @@
   }
 }
 
-.custom-radio {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-}
-
-.form-check input:checked {
-  border: 15px solid grey;
-}
 
 .form-check input {
-  width: 200px;
-  padding: 0px;
+  display: none;
 }
 
 .form-section {
@@ -1060,3 +1050,94 @@ button.submit-btn:hover {
     width: 100%;
     animation: fadeIn 0.3s ease-out; 
   } */
+
+ 
+/* Basic reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Container to hold both sidebar and main content */
+.container {
+  display: flex;
+  transition: margin-left 0.3s ease-in-out;
+}
+
+/* Sidebar */
+.filter-sidebar {
+  width: 250px;
+  background-color: #333;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: -250px; /* Initially hidden */
+  height: 100%;
+  transition: left 0.3s ease-in-out;
+  padding-top: 60px; /* Space for content */
+  z-index: 999;
+}
+
+.filter-sidebar.open {
+  left: 0; /* Sidebar will slide in */
+}
+
+.filter-sidebar ul {
+  list-style: none;
+}
+
+.filter-sidebar ul li {
+  padding: 15px;
+  text-align: center;
+}
+
+.filter-sidebar ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.filter-sidebar .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #3f3f3f;
+  border: none;
+ 
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Main Content */
+.brand-section, .page-container {
+  flex-grow: 1;
+  padding: 20px;
+  transition: margin-left 0.3s ease-in-out;
+}
+
+/* When sidebar is open, shift the main content */
+.brand-section.shifted, .page-container.shifted {
+  margin-left: 250px; /* Shift by the width of the sidebar */
+}
+
+/* For mobile responsiveness, you can make the sidebar smaller or hide it */
+@media (max-width: 768px) {
+  .filter-sidebar {
+    width: 200px;
+  }
+
+  .brand-section.shifted, .page-container.shifted {
+    margin-left: 200px;
+  }
+}
+
+/* .menu-btn {
+  font-size: 30px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: black;
+  padding: 10px;
+} */
+
+
