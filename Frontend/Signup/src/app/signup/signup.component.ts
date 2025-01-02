@@ -66,7 +66,6 @@ export class SignupComponent {
       this.http.post('http://localhost:8080/addUserData', signUpData).subscribe(res => {
         console.log(res);
         alert("SUCCESSSS");
-
       });
     } else if (this.loginForm.valid) {
       const loginData = this.loginForm.value;
