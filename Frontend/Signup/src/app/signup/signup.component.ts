@@ -36,15 +36,17 @@ export class SignupComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required]]
-    }, { validators: this.passwordMatchValidator });
+     }
+    // , { validators: this.passwordMatchValidator }
+    );
   }
 
   // Password matching validator for sign-up
-  passwordMatchValidator(group: FormGroup): any {
-    const password = group.get('password')?.value;
-    const confirmPassword = group.get('confirmPassword')?.value;
-    return password && confirmPassword && password === confirmPassword ? null : { match: true };
-  }
+  // passwordMatchValidator(group: FormGroup): any {
+  //   const password = group.get('password')?.value;
+  //   const confirmPassword = group.get('confirmPassword')?.value;
+  //   return password && confirmPassword && password === confirmPassword ? null : { match: true };
+  // }
 
 
   // Clear form fields
@@ -58,15 +60,18 @@ export class SignupComponent {
 
   // Submit form based on the current form type (login or sign-up)
   submit(): void {
-    if (this.isSignUp && this.signUpForm.valid) {
+    if (this.signUpForm.valid) {
       const signUpData = this.signUpForm.value;
+      console.log(signUpData);
       this.http.post('http://localhost:8080/addUserData', signUpData).subscribe(res => {
         console.log(res);
         alert("SUCCESSSS");
 
       });
-    } else if (!this.isSignUp && this.loginForm.valid) {
+    } else if (this.loginForm.valid) {
       const loginData = this.loginForm.value;
+      console.log(loginData);
+
       this.http.post('http://localhost:8080/login', loginData).subscribe(res => {
         console.log(res);
         alert("SUCCESSSS");
@@ -76,6 +81,10 @@ export class SignupComponent {
         alert("Invalid email or password");
         
       });
+    }
+
+    else if(!this.signUpForm.valid){
+      alert("INVALID SIGN UP");
     }
   }
 

@@ -12,7 +12,7 @@
       >Sign Up</label
     >
     <div class="login-form">
-      <form [formGroup]="loginForm" (ngSubmit)="submit()">
+      <form [formGroup]="loginForm" >
         <div class="form-group">
           <div class="sign-in-htm">
             <div class="group">
@@ -66,7 +66,6 @@
                 class="button"
                 [disabled]="loginForm.invalid"
                 value="Sign In"
-                onclick="submit()"
               />
             </div>
             <div class="hr"></div>
@@ -166,13 +165,10 @@
               </div>
             </div>
             <div class="group">
-              <input
-                type="submit"
-                class="button"
-                [disabled]="signUpForm.invalid"
-                value="Sign Up"
-                onclick="submit()"
-              />
+              <button
+              class="button"
+               (click)="submit()"
+              >Sign Up</button>
             </div>
             <div class="hr"></div>
             <div class="foot-lnk">
