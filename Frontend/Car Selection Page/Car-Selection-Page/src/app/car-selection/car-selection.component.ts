@@ -253,4 +253,10 @@ confirm(){
     }
     this.showGif = false;
   }
+
+  status: boolean = true;
+clickEvent(){
+    this.status = !this.status;       
+}
+
 }

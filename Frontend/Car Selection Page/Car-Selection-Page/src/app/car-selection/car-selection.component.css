@@ -990,68 +990,68 @@
   padding: 0px;
 }
 
-
 .form-section {
-    padding: 30px 15px;
-    text-align: center;
-    background: white;
-    margin: 20px 15px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px 15px;
+  text-align: center;
+  background: white;
+  margin: 20px 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .form-section h2 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    color: #004d99;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #004d99;
 }
 
 form {
-    max-width: 600px;
-    margin: 0 auto;
-    text-align: left;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
 }
 
-input, select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 0.9rem;
+input,
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 0.9rem;
 }
 
 button.submit-btn {
-    background: #004d99;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    width: 100%;
-    transition: background 0.3s;
+  background: #004d99;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.3s;
 }
 
 button.submit-btn:hover {
-    background: #003366;
+  background: #003366;
 }
 
 .form-for-booking {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent dark background */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-  }
-  
-  /* The popup form container */
-  /* .form-section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent dark background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+/* The popup form container */
+/* .form-section {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
