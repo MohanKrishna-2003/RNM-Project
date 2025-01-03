@@ -1,8 +1,10 @@
 package com.example.Signup.controllers;
 
 import com.example.Signup.Entity.Users;
+import com.example.Signup.response.GeneralResponse;
 import com.example.Signup.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.nio.file.Path;
@@ -27,11 +29,28 @@ public class UserController {
         return foundUsers;
     }
 
+
     @PostMapping("/addUserData")
-    public Users addUserData(@RequestBody Users users) {
-
-        return userService.addUserData(users);
+    public ResponseEntity<?> addUserData(@RequestBody Users users){
+        try{
+            userService.addUserData(users);
+            return ResponseEntity.ok(new GeneralResponse("Successfully Posting"));
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
+        }
     }
-
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
