@@ -25,3 +25,9 @@
 a {
   text-decoration: none;
 }
+#home {
+  margin-left: 250px; /* Adjust based on the width of the navbar */
+  width: calc(100% - 250px); /* Make the dashboard take the rest of the available space */
+  padding: 20px;
+  box-sizing: border-box;
+}

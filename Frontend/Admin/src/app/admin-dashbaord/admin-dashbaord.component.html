@@ -1,143 +1,156 @@
 <app-admin-header></app-admin-header>
-<div class="container-fluid mt-4">
-  <div class="row">
-    <!-- Statistics Summary -->
-    <div class="col-md-3">
-      <div class="card text-white bg-primary mb-3">
-        <div class="card-body">
-          <h5 class="card-title">Total Users</h5>
-          <h2 class="card-text">1200</h2>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="card text-white bg-success mb-3">
-        <div class="card-body">
-          <h5 class="card-title">Total Bookings</h5>
-          <h2 class="card-text">580</h2>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="card text-white bg-warning mb-3">
-        <div class="card-body">
-          <h5 class="card-title">Active Cars</h5>
-          <h2 class="card-text">75</h2>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="card text-white bg-danger mb-3">
-        <div class="card-body">
-          <h5 class="card-title">Pending Requests</h5>
-          <h2 class="card-text">15</h2>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- Charts Section -->
-  <div class="row mt-4">
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-header bg-dark text-white">Bookings by Month</div>
-        <div class="card-body">
-          <img
-            src="https://www.microsoft.com/en-us/microsoft-365/blog/wp-content/uploads/sites/2/2012/06/Excel-charts-11.png"
-          />
+<section class="section">
+  <div class="container-fluid">
+    <!-- ========== title-wrapper start ========== -->
+    <div class="title-wrapper pt-30">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <div class="title">
+            <h2>MyRNM Dashboard</h2>
+          </div>
+        </div>
+        <!-- end col -->
+        <div class="col-md-6">
+          <div class="breadcrumb-wrapper">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="#0">MyRNM</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Dashboard
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+        <!-- end col -->
+      </div>
+      <!-- end row -->
+    </div>
+    <!-- ========== title-wrapper end ========== -->
+    <div class="row">
+      <div class="col-xl-3 col-lg-4 col-sm-6">
+        <div class="icon-card mb-30">
+          <div class="icon purple">
+            <i class="bi bi-person-fill"></i>
+          </div>
+          <div class="content">
+            <h6 class="mb-10">New Users</h6>
+            <h3 class="text-bold mb-10">34567</h3>
+            <p class="text-sm text-success">
+              +2.00%
+              <span class="text-gray">(30 days)</span>
+            </p>
+          </div>
+        </div>
+        <!-- End Icon Cart -->
+      </div>
+      <!-- End Col -->
+      <div class="col-xl-3 col-lg-4 col-sm-6">
+        <div class="icon-card mb-30">
+          <div class="icon success">
+            <i class="bi bi-currency-dollar"></i>
+          </div>
+          <div class="content">
+            <h6 class="mb-10">Total Income</h6>
+            <h3 class="text-bold mb-10">$74,567</h3>
+            <p class="text-sm text-success">
+              <i class="lni lni-arrow-up"></i> +5.45%
+              <span class="text-gray">Increased</span>
+            </p>
+          </div>
+        </div>
+        <!-- End Icon Cart -->
+      </div>
+      <!-- End Col -->
+      <div class="col-xl-3 col-lg-4 col-sm-6">
+        <div class="icon-card mb-30">
+          <div class="icon primary">
+            <i class="bi bi-building-fill"></i>
+          </div>
+          <div class="content">
+            <h6 class="mb-10">Total Showrooms</h6>
+            <h3 class="text-bold mb-10">15</h3>
+            <p class="text-sm text-success">
+              <i class="lni lni-arrow-down"></i> 2.00%
+              <span class="text-gray">Increase</span>
+            </p>
+          </div>
+        </div>
+        <!-- End Icon Cart -->
+      </div>
+      <!-- End Col -->
+      <div class="col-xl-3 col-lg-4 col-sm-6">
+        <div class="icon-card mb-30">
+          <div class="icon orange">
+            <i class="bi bi-car-front-fill"></i>
+          </div>
+          <div class="content">
+            <h6 class="mb-10">Total Car Models</h6>
+            <h3 class="text-bold mb-10">50</h3>
+            <p class="text-sm text-success">
+              +5.00%
+              <span class="text-gray"> Increase</span>
+            </p>
+          </div>
+        </div>
+        <!-- End Icon Cart -->
+      </div>
+      <!-- End Col -->
+    </div>
+    <!-- End Row -->
+    <div class="row">
+     <!-- <section class="section">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-7">
+        <div class="card-style mb-30">
+          <div class="title d-flex flex-wrap justify-content-between">
+            <div class="left">
+              <h6 class="text-medium mb-10">User Growth (Bookings)</h6>
+            </div>
+          </div>
+          <div class="chart">
+            <ngx-charts-bar-vertical
+              [view]="barChartOptions.view"
+              [scheme]="barChartOptions.colorScheme"
+              [results]="userGrowthData"
+              [xAxis]="barChartOptions.showXAxis"
+              [yAxis]="barChartOptions.showYAxis"
+              [legend]="barChartOptions.showLegend"
+              [xAxisLabel]="barChartOptions.xAxisLabel"
+              [yAxisLabel]="barChartOptions.yAxisLabel">
+            </ngx-charts-bar-vertical>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-header bg-dark text-white">Users Growth</div>
-        <div class="card-body">
-          <img
-            width="700PX"
-            src="https://skift.com/wp-content/uploads/2016/11/Screen-Shot-2016-11-28-at-4.44.07-PM-1024x458.png"
-          />
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- User & Bookings Overview -->
-  <div class="row mt-4">
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-header bg-dark text-white">User Overview</div>
-        <div class="card-body">
-          <table class="table table-bordered">
-            <thead class="table-light">
-              <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>John Doe</td>
-                <td>john.doeexample.com</td>
-                <td>Active</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Jane Smith</td>
-                <td>jane.smithexample.com</td>
-                <td>Inactive</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Peter Parker</td>
-                <td>peter.parkerexample.com</td>
-                <td>Active</td>
-              </tr>
-            </tbody>
-          </table>
-          <a href="/users">Read more...</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-header bg-dark text-white">Bookings Overview</div>
-        <div class="card-body">
-          <table class="table table-bordered">
-            <thead class="table-light">
-              <tr>
-                <th>#</th>
-                <th>User</th>
-                <th>Car</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>John Doe</td>
-                <td>Renault Kwid</td>
-                <td>Completed</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Jane Smith</td>
-                <td>Renault Duster</td>
-                <td>Pending</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Peter Parker</td>
-                <td>Renault Triber</td>
-                <td>Canceled</td>
-              </tr>
-            </tbody>
-          </table>
-          <a href="/bookings">Read more...</a>
+      <div class="col-lg-5">
+        <div class="card-style mb-30">
+          <div class="title d-flex flex-wrap align-items-center justify-content-between">
+            <div class="left">
+              <h6 class="text-medium mb-30">Income Trends</h6>
+            </div>
+          </div>
+          <div class="chart">
+            <ngx-charts-line-chart
+              [view]="lineChartOptions.view"
+              [scheme]="lineChartOptions.colorScheme"
+              [results]="incomeData"
+              [xAxis]="lineChartOptions.showXAxis"
+              [yAxis]="lineChartOptions.showYAxis"
+              [legend]="lineChartOptions.showLegend"
+              [xAxisLabel]="lineChartOptions.xAxisLabel"
+              [yAxisLabel]="lineChartOptions.yAxisLabel">
+            </ngx-charts-line-chart>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section> -->
+    </div>
+  </div>
+</section>

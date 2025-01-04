@@ -1,27 +1,30 @@
 <app-admin-header></app-admin-header>
-<div class="container mt-4">
+
+<div class="container mt-4" id="book">
   <!-- Page Header -->
-  <div class="d-flex justify-content-between align-items-center mb-3">
+  <div class="d-flex justify-content-between align-items-center mb-4">
     <h2>Bookings</h2>
-    <button class="btn btn-primary">Add New Booking</button>
+    <button class="btn btn-primary btn-lg">Add New Booking</button>
   </div>
 
   <!-- Search Bar -->
-  <div class="input-group mb-3">
+  <div class="input-group mb-4">
     <input
       type="text"
-      class="form-control"
+      class="form-control search-input"
       placeholder="Search bookings..."
       [(ngModel)]="searchTerm"
       (input)="filterBookings()"
     />
-    <button class="btn btn-outline-secondary" type="button">Search</button>
+    <button class="btn btn-outline-primary" type="button">
+      <i class="fas fa-search"></i> Search
+    </button>
   </div>
 
   <!-- Bookings Table -->
   <div class="table-responsive">
-    <table class="table table-striped">
-      <thead class="table-dark">
+    <table class="table table-striped table-hover">
+      <thead class="table-light">
         <tr>
           <th>#</th>
           <th>Car</th>
@@ -41,27 +44,27 @@
             <span
               class="badge"
               [ngClass]="{
-                'bg-success': booking.status === 'Confirmed',
-                'bg-danger': booking.status === 'Cancelled',
-                'bg-warning': booking.status === 'Pending'
+                'bg-primary': booking.status === 'Confirmed',
+                'bg-secondary': booking.status === 'Cancelled',
+                'bg-dark': booking.status === 'Pending'
               }"
             >
               {{ booking.status }}
             </span>
           </td>
-          <td>
+          <td class="action-buttons">
             <button
               class="btn btn-sm btn-info me-2"
               (click)="viewDetails(booking)"
             >
-              Details
+              <i class="fas fa-eye icon-small"></i> Details
             </button>
             <button
-              class="btn btn-sm btn-danger"
+              class="btn btn-sm btn-dark"
               (click)="cancelBooking(booking)"
               [disabled]="booking.status === 'Cancelled'"
             >
-              Cancel
+              <i class="fas fa-times-circle icon-small"></i> Cancel
             </button>
           </td>
         </tr>
@@ -69,3 +72,4 @@
     </table>
   </div>
 </div>
+
