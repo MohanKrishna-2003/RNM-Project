@@ -268,4 +268,25 @@ export class CarSelectionComponent implements OnInit {
     this.status = !this.status;
   }
 
+  currentStep: number = 1; // Keeps track of the current step in the form
+
+  nextStep(): void {
+    if (this.currentStep < 3) {
+      this.currentStep++; // Move to the next step
+    } 
+    else {
+      this.confirm1(); 
+    }
+  }
+
+  goBack(): void {
+    if (this.currentStep > 1) {
+      this.currentStep--; // Move to the previous step
+    }
+  }
+
+  confirm1(): void {
+    alert('Form Submitted!');
+  }
+ 
 }
