@@ -30,7 +30,7 @@
     "brand": "Renault",
     "brandIcon": "/assets/images/renocaricon.jpg",
     "name": "Renault Clio",
-    "image": "/assets/carImages/renault-clio.jpg",
+    "image": "/assets/carImages/renault-clio2.jpg",
     "price": {
       "INR": "₹8 Lakhs",
       "USD": "$11,000"
@@ -57,7 +57,7 @@
     "brand": "Renault",
     "brandIcon": "/assets/images/renocaricon.jpg",
     "name": "Renault Captur",
-    "image": "/assets/carImages/renault-captur.jpg",
+    "image": "/assets/carImages/renault-captur2.jpg",
     "price": {
       "INR": "₹14 Lakhs",
       "USD": "$18,500"
@@ -84,7 +84,7 @@
     "brand": "Renault",
     "brandIcon": "/assets/images/renocaricon.jpg",
     "name": "Renault Megane",
-    "image": "/assets/carImages/renault-megane.jpg",
+    "image": "/assets/carImages/renault-megane2.webp",
     "price": {
       "INR": "₹16 Lakhs",
       "USD": "$21,000"
@@ -111,7 +111,7 @@
     "brand": "Renault",
     "brandIcon": "/assets/images/renocaricon.jpg",
     "name": "Renault Twingo",
-    "image": "/assets/carImages/renault-twingo.jpg",
+    "image": "/assets/carImages/renault-twingo2.jpg",
     "price": {
       "INR": "₹6 Lakhs",
       "USD": "$8,000"
@@ -165,7 +165,7 @@
     "brand": "Renault",
     "brandIcon": "/assets/images/renocaricon.jpg",
     "name": "Renault Espace",
-    "image": "/assets/carImages/renault-espace.webp",
+    "image": "/assets/carImages/renault-espace2.jpg",
     "price": {
       "INR": "₹25 Lakhs",
       "USD": "$33,000"
@@ -273,7 +273,7 @@
     "brand": "Renault",
     "brandIcon": "/assets/images/renocaricon.jpg",
     "name": "Renault Sandero",
-    "image": "/assets/carImages/renault-sandero.jpg",
+    "image": "/assets/carImages/renault-sandero2.jpg",
     "price": {
       "INR": "₹7 Lakhs",
       "USD": "$9,000"
