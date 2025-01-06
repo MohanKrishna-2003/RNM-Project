@@ -49,9 +49,11 @@ export class LoginComponent {
 //   }
 // }
 submit(){
-  if(this.loginForm.valid){
+  // if(this.loginForm.valid){
     const email = this.loginForm.get('email')?.value;
+    console.log(email);
     const password = this.loginForm.get('password')?.value;
+    console.log(password);
     const params = new HttpParams()
     .set('email', email)
     .set('password', password);
@@ -65,7 +67,7 @@ submit(){
       
     })
  
-  }
+  // }
 }
 }
 

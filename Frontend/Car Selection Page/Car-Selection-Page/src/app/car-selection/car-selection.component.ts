@@ -1,7 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import carsData from '../../assets/cars.json';
- import { CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-car-selection',
@@ -26,8 +26,10 @@ export class CarSelectionComponent implements OnInit {
   cars: any[] = [];
   showGif: boolean = true;
   gifPath: string = 'assets/gifs/loading.gif';
-  selectedBrand: string = 'Renault';  
+  selectedBrand: string = 'Renault';
   isBookingClicked: boolean = false;
+  selectedCar: any = null;
+  // showBox : boolean = false;
   constructor() { }
 
   ngOnInit(): void {
@@ -83,9 +85,15 @@ export class CarSelectionComponent implements OnInit {
     this.isFilterSidebarOpen = !this.isFilterSidebarOpen;
   }
 
-  toggleBooking(){
+  toggleBooking(carName: String) {
     this.isBookingClicked = !this.isBookingClicked;
+    this.selectedCar = carsData.find(car => car.name == carName);
+    console.log(this.selectedCar);
 
+  }
+
+  closeForm(){
+    this.isBookingClicked = !this.isBookingClicked;
   }
   applyFilters(): void {
     //   this.toggleFilterSidebar()
@@ -140,9 +148,9 @@ export class CarSelectionComponent implements OnInit {
     return parseFloat(numericPrice) || 0;
   }
 
-confirm(){
-  alert("Your booking slot is confirmed... please await further instructions.....");
-}
+  confirm() {
+    alert("Your booking slot is confirmed... please await further instructions.....");
+  }
   sortByOrder(event: Event): void {
     const sortBy = (event.target as HTMLSelectElement).value;
     if (sortBy == 'maxPrice') {
@@ -256,8 +264,29 @@ confirm(){
   }
 
   status: boolean = true;
-clickEvent(){
-    this.status = !this.status;       
-}
+  clickEvent() {
+    this.status = !this.status;
+  }
 
+  currentStep: number = 1; // Keeps track of the current step in the form
+
+  nextStep(): void {
+    if (this.currentStep < 3) {
+      this.currentStep++; // Move to the next step
+    } 
+    else {
+      this.confirm1(); 
+    }
+  }
+
+  goBack(): void {
+    if (this.currentStep > 1) {
+      this.currentStep--; // Move to the previous step
+    }
+  }
+
+  confirm1(): void {
+    alert('Form Submitted!');
+  }
+ 
 }

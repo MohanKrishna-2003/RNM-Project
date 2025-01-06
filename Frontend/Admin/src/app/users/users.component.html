@@ -1,12 +1,12 @@
 <app-admin-header></app-admin-header>
-<div class="container mt-4">
+<div class="container mt-4" id="users">
   <!-- Page Header -->
   <div class="d-flex justify-content-between align-items-center mb-3">
-    <h2>Users </h2>
+    <h2 class="page-title">Users</h2>
   </div>
 
   <!-- Search Bar -->
-  <div class="input-group mb-3">
+  <div class="input-group mb-4 search-bar">
     <input
       type="text"
       class="form-control"
@@ -14,18 +14,18 @@
       [(ngModel)]="searchTerm"
       (input)="filterUsers()"
     />
-    <button class="btn btn-outline-secondary" type="button">Search</button>
+    <button class="btn btn-primary" type="button">Search</button>
   </div>
 
   <!-- Users Table -->
   <div class="table-responsive">
-    <table class="table table-striped">
+    <table class="table table-hover table-striped">
       <thead class="table-dark">
         <tr>
           <th>#</th>
           <th>Name</th>
           <th>Email</th>
-          <th>Status</th>
+          <th>Address</th> <!-- New Address Column -->
         </tr>
       </thead>
       <tbody>
@@ -33,17 +33,7 @@
           <td>{{ i + 1 }}</td>
           <td>{{ user.name }}</td>
           <td>{{ user.email }}</td>
-          <td>
-            <span
-              class="badge"
-              [ngClass]="{
-                'bg-success': user.status === 'Active',
-                'bg-danger': user.status === 'Inactive'
-              }"
-            >
-              {{ user.status }}
-            </span>
-          </td>
+          <td>{{ user.address }}</td> <!-- Address Data -->
         </tr>
       </tbody>
     </table>

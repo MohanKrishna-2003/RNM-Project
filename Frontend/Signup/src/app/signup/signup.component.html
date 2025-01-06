@@ -1,5 +1,111 @@
 <div class="login-wrap">
   <div class="login-html">
+<<<<<<< HEAD
+    <input id="tab-1" type="radio" name="tab" class="sign-in" checked /><label for="tab-1" class="tab">Sign In</label>
+    <input id="tab-2" type="radio" name="tab" class="sign-up" /><label for="tab-2" class="tab">Sign Up</label>
+    <div class="login-form">
+      <form [formGroup]="loginForm">
+        <div class="form-group">
+          <div class="sign-in-htm">
+            <div class="group">
+              <label for="email" class="label">Email</label>
+              <input type="email" class="input" formControlName="email" placeholder="Enter your email" />
+              <div *ngIf="
+                  loginForm.get('email')?.touched &&
+                  loginForm.get('email')?.invalid
+                " class="text-danger">
+                <div *ngIf="loginForm.get('email')?.hasError('required')">
+                  Email is required
+                </div>
+                <div *ngIf="loginForm.get('email')?.hasError('email')">
+                  Please enter a valid email address
+                </div>
+              </div>
+            </div>
+            <div class="group">
+              <label for="pass" class="label">Password</label>
+              <input type="password" class="input" formControlName="password" placeholder="Enter your password" />
+              <div *ngIf="
+                  loginForm.get('password')?.touched &&
+                  loginForm.get('password')?.invalid
+                " class="text-danger">
+                <div *ngIf="loginForm.get('password')?.hasError('required')">
+                  Password is required
+                </div>
+              </div>
+            </div>
+
+            <div class="group">
+              <input type="submit" class="button" [disabled]="loginForm.invalid" value="Sign In" />
+            </div>
+            <div class="hr"></div>
+            <div class="foot-lnk">
+              <a>
+                <input id="tab-2" type="radio" name="tab" class="sign-up" /><label for="tab-2">New user ?</label></a>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <form [formGroup]="signUpForm" (ngSubmit)="submit()">
+        <div class="form-group">
+          <div class="sign-up-htm">
+            <div class="group">
+              <label for="user" class="label">Username</label>
+              <input type="text" class="input" formControlName="name" placeholder="Enter your name" />
+              <div *ngIf="
+                  signUpForm.get('name')?.touched &&
+                  signUpForm.get('name')?.invalid
+                " class="text-danger">
+                <div *ngIf="signUpForm.get('name')?.hasError('required')">
+                  Name is required
+                </div>
+                <div *ngIf="signUpForm.get('name')?.hasError('maxlength')">
+                  Name cannot be longer than 20 characters
+                </div>
+                <div *ngIf="signUpForm.get('name')?.hasError('pattern')">
+                  Name can only contain letters, spaces, or hyphens
+                </div>
+              </div>
+            </div>
+            <div class="group">
+              <label for="pass" class="label">Password</label>
+              <input type="password" class="input" formControlName="password" placeholder="Enter your password" />
+              <div *ngIf="
+                  loginForm.get('password')?.touched &&
+                  loginForm.get('password')?.invalid
+                " class="text-danger">
+                <div *ngIf="loginForm.get('password')?.hasError('required')">
+                  Password is required
+                </div>
+              </div>
+            </div>
+            <div class="group">
+              <label for="pass" class="label">Repeat Password</label>
+              <input id="pass" type="password" class="input" data-type="password" />
+            </div>
+            <div class="group">
+              <label for="pass" class="label">Email Address</label>
+              <input type="email" class="input" formControlName="email" placeholder="Enter your email" />
+              <div *ngIf="
+                  signUpForm.get('email')?.touched &&
+                  signUpForm.get('email')?.invalid
+                " class="text-danger">
+                <div *ngIf="signUpForm.get('email')?.hasError('required')">
+                  Email is required
+                </div>
+                <div *ngIf="signUpForm.get('email')?.hasError('email')">
+                  Invalid email format
+                </div>
+              </div>
+            </div>
+            <div class="group">
+              <button class="button" (click)="submit()">Sign Up</button>
+            </div>
+            <div class="hr"></div>
+            <div class="foot-lnk">
+              <label for="tab-1">Already Member?</label>
+=======
     <!-- Toggle between Sign Up and Sign In -->
     <input id="tab-1" type="radio" name="tab" class="sign-in" [checked]="!isSignUp" (change)="toggleForm()">
     <label for="tab-1" class="tab">Sign In</label>
@@ -26,6 +132,7 @@
             <input type="password" class="input" formControlName="password" placeholder="Enter your password">
             <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid" class="text-danger">
               <div *ngIf="loginForm.get('password')?.hasError('required')">Password is required</div>
+>>>>>>> e2170c388d290be7f8a42b35fcf2cda81c311ecd
             </div>
           </div>
 
@@ -84,3 +191,78 @@
     </div>
   </div>
 </div>
+<<<<<<< HEAD
+
+
+
+
+<!-- Optional: You can add icons using FontAwesome for visual enhancement -->
+<!-- <i class="fa fa-check-circle" aria-hidden="true"></i> -->
+<!-- <div class="container d-flex justify-content-center align-items-center h-100">
+    <div class="card" style="width: 100%; max-width: 300px;">
+      <div class="card-body">
+        <h2 class="card-title text-center mb-4">Sign Up</h2>
+        <form [formGroup]="signupForm">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" formControlName="name" placeholder="Enter your name">
+            
+              <div *ngIf="signupForm.controls['name'].touched && signupForm.controls['name'].invalid" class="text-danger">
+                <div *ngIf="signupForm.controls['name'].errors?.['required']">Name is requires</div>
+                <div *ngIf="signupForm.controls['name'].errors?.['maxlength']">Should be less than 20</div>
+                <div *ngIf="signupForm.controls['name'].errors?.['pattern']">invalid characters</div>
+              </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" formControlName="email" placeholder="Enter your email">
+            <div *ngIf="signupForm.controls['email'].touched && signupForm.controls['email'].invalid" class="text-danger">
+              <div *ngIf="signupForm.controls['email'].errors?.['required']">Email is Reqiured</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" formControlName="password" placeholder="Enter your password">
+            <div *ngIf="signupForm.controls['password'].touched && signupForm.controls['password'].invalid" class="text-danger">
+              <div *ngIf="signupForm.controls['password'].errors?.['required']">Password is Required</div>
+              <div *ngIf="signupForm.controls['password'].errors?.['maxlength']">Should be less than 8</div>
+            </div>
+          </div>
+          <div style="float: right;">
+            <button type="submit" class="btn btn-primary btn-block mt-3 m-2" style="background-color: #8347ad;" (click)="clear()">Clear</button>
+            <button type="submit" class="btn btn-primary btn-block mt-3" (click)="submit()" [disabled]="signupForm.invalid">Register</button>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div> -->
+
+<!-- <div class="container">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-lg-4 rounded-top wrapper">
+        <form [formGroup] = "signupForm" (ngSubmit)="submit()">
+          <h2 class="text-center pt-3">Register</h2>
+          <div class="form-group mt-3 mb-3">
+            <div class="input-group mb-3">
+              <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+              <input type="text" class="form-control" formControlName="name" placeholder="Enter your Name">
+            </div>
+            <div *ngIf="signupForm.controls['name'].touched && signupForm.controls['name'].invalid" class="text-danger">
+              <div *ngIf="signupForm.controls['name'].errors?.['required']">Name is required</div>
+              <div *ngIf="signupForm.controls['name'].errors?.['maxlength']">Should be less then 20</div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+   </div> -->
+
+<!-- <div *ngIf="signupForm.get('username')?.touched && signupForm.get('username')?.invalid">
+                <div *ngIf="signupForm.get('username')?.hasError('required')">Username is required</div>
+                <div *ngIf="signupForm.get('username')?.hasError('minlength')">Username must be at least 4 characters long</div>
+                <div *ngIf="signupForm.get('username')?.hasError('maxlength')">Username cannot exceed 15 characters</div>
+                <div *ngIf="signupForm.get('username')?.hasError('pattern')">Username must contain only letters and spaces</div>
+              </div> -->
+=======
+>>>>>>> e2170c388d290be7f8a42b35fcf2cda81c311ecd
