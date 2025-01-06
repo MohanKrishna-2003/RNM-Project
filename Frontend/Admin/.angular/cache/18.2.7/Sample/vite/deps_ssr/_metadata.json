@@ -1,49 +1,49 @@
 {
-  "hash": "21df1644",
-  "configHash": "1079e043",
-  "lockfileHash": "97c9baed",
-  "browserHash": "15f01210",
+  "hash": "7a96e349",
+  "configHash": "092af83e",
+  "lockfileHash": "ea29917a",
+  "browserHash": "c1566a07",
   "optimized": {
     "@angular/common": {
       "src": "../../../../../../node_modules/@angular/common/fesm2022/common.mjs",
       "file": "@angular_common.js",
-      "fileHash": "c50863fb",
+      "fileHash": "f85687d2",
       "needsInterop": false
     },
     "@angular/core": {
       "src": "../../../../../../node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-      "fileHash": "1238c907",
+      "fileHash": "831dfd12",
       "needsInterop": false
     },
     "@angular/forms": {
       "src": "../../../../../../node_modules/@angular/forms/fesm2022/forms.mjs",
       "file": "@angular_forms.js",
-      "fileHash": "688b6990",
+      "fileHash": "bc1b7f76",
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-      "fileHash": "65cabcc4",
+      "fileHash": "723e2944",
       "needsInterop": false
     },
     "@angular/platform-server": {
       "src": "../../../../../../node_modules/@angular/platform-server/fesm2022/platform-server.mjs",
       "file": "@angular_platform-server.js",
-      "fileHash": "641294f0",
+      "fileHash": "fb36e6ef",
       "needsInterop": false
     },
     "@angular/router": {
       "src": "../../../../../../node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
-      "fileHash": "17194938",
+      "fileHash": "a18f88e2",
       "needsInterop": false
     },
     "chart.js": {
-      "src": "../../../../../../node_modules/chart.js/dist/chart.js",
+      "src": "../../../../../../../../../node_modules/chart.js/dist/chart.js",
       "file": "chart__js.js",
-      "fileHash": "a654aeaf",
+      "fileHash": "f0162988",
       "needsInterop": false
     }
   },
