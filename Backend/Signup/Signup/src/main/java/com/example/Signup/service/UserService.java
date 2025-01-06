@@ -21,6 +21,6 @@ public class UserService {
 
     public Users loginByPost(String email , String password) throws Exception {
        Optional<Users> users = userRepo.login(email,password);
-        return users.orElseThrow();
+        return users.orElseThrow(() -> new RuntimeException("Invalid email or password"));
     }
 }
