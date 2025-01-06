@@ -19,13 +19,14 @@ public class UserController {
     UserService userService;
 
     @PostMapping("/loginByPost")
-    public Users loginByPost(@RequestBody HashMap<String, String> login) throws Exception {
-        Users foundUsers = userService.loginByPost(login.get("email"), login.get("password"));
-        if (Objects.isNull(foundUsers)) {
-            throw new Exception("Invalid email or password");
+    public ResponseEntity<?> loginByPost(@RequestBody HashMap<String, String> login) throws Exception {
+        try{
+            Users foundUsers = userService.loginByPost(login.get("email"), login.get("password"));
+            return ResponseEntity.ok(foundUsers);
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
         }
-        System.out.println(foundUsers);
-        return foundUsers;
     }
 
 
