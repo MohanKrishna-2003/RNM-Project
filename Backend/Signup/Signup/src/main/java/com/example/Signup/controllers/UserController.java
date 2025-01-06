@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 @RequestMapping(path="userlogin")
 @RestController
@@ -20,9 +21,9 @@ public class UserController {
     UserService userService;
 
     @PostMapping("/loginByPost")
-    public List<Users> loginByPost(@RequestBody HashMap<String, String> login) throws Exception {
-        List<Users> foundUsers = userService.loginByPost(login.get("email"), login.get("password"));
-        if (foundUsers.isEmpty()) {
+    public Users loginByPost(@RequestBody HashMap<String, String> login) throws Exception {
+        Users foundUsers = userService.loginByPost(login.get("email"), login.get("password"));
+        if (Objects.isNull(foundUsers)) {
             throw new Exception("Invalid email or password");
         }
         System.out.println(foundUsers);
