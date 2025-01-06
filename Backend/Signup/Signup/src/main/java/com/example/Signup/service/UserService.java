@@ -14,13 +14,14 @@ public class UserService {
 
     @Autowired
     UserRepo userRepo;
+
     public Users addUserData(Users users) {
         return userRepo.save(users);
     }
 
 
-    public Users loginByPost(String email , String password) throws Exception {
-       Optional<Users> users = userRepo.login(email,password);
+    public Users loginByPost(String email, String password) throws Exception {
+        Optional<Users> users = userRepo.login(email, password);
         return users.orElseThrow(() -> new RuntimeException("Invalid email or password"));
     }
 }

@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
-@RequestMapping(path="userlogin")
+@RequestMapping(path = "userlogin")
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
@@ -32,11 +32,11 @@ public class UserController {
 
 
     @PostMapping("/addUserData")
-    public ResponseEntity<?> addUserData(@RequestBody Users users){
-        try{
+    public ResponseEntity<?> addUserData(@RequestBody Users users) {
+        try {
             userService.addUserData(users);
             return ResponseEntity.ok(new GeneralResponse("Successfully Posting"));
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
         }
