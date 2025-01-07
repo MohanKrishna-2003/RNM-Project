@@ -21,7 +21,7 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<?> loginByPost(@RequestBody HashMap<String, String> login) throws Exception {
         try{
-            Users foundUsers = userService.loginByPost(login.get("email"), login.get("password"));
+            Users foundUsers = userService.loginByPost(login.get("email") , login.get("password"));
             return ResponseEntity.ok(foundUsers);
         }catch (Exception e){
             e.printStackTrace();
