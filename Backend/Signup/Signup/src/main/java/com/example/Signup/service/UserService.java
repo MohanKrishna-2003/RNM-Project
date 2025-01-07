@@ -15,7 +15,7 @@ public class UserService {
 
     public Users addingUserData(Users users) {
         //checking if the user is already present or not
-        Optional<Users> existingUser = userRepo.findByEmail(users.getEmail());
+        Optional <Users> existingUser = userRepo.findByEmail(users.getEmail());
         if (existingUser.isPresent()) {
             throw new RuntimeException("Email has been already registered");
         }

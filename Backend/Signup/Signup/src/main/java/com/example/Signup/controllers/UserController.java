@@ -34,6 +34,7 @@ public class UserController {
     public ResponseEntity<?> addUserData(@RequestBody Users users) {
         try {
             userService.addingUserData(users);
+
             return ResponseEntity.ok(new GeneralResponse("Successfully Registered"));
         } catch (Exception e) {
             e.printStackTrace();

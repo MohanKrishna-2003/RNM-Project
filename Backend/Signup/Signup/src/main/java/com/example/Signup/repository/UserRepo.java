@@ -13,6 +13,6 @@ public interface UserRepo extends JpaRepository<Users, Integer> {
     Optional<Users> login(String email, String password);
 
 
-    Optional<Users> findByEmail(String email); //customMethod
+    Optional <Users> findByEmail(String email); //customMethod
 }
 
