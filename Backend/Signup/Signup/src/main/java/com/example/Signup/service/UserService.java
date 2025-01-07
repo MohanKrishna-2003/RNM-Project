@@ -13,7 +13,12 @@ public class UserService {
     @Autowired
     UserRepo userRepo;
 
-    public Users addUserData(Users users) {
+    public Users addingUserData(Users users) {
+
+        Optional<Users> existingUser = userRepo.findByEmail(users.getEmail());
+        if (existingUser.isPresent()) {
+            throw new RuntimeException("Email is already registered");
+        }
         return userRepo.save(users);
     }
 

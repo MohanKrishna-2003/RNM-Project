@@ -12,7 +12,7 @@ import java.util.Objects;
 
 @RequestMapping(path = "userlogin")
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 public class UserController {
 
     @Autowired
@@ -33,7 +33,7 @@ public class UserController {
     @PostMapping("/addUserData")
     public ResponseEntity<?> addUserData(@RequestBody Users users) {
         try {
-            userService.addUserData(users);
+            userService.addingUserData(users);
             return ResponseEntity.ok(new GeneralResponse("Successfully Posting"));
         } catch (Exception e) {
             e.printStackTrace();
