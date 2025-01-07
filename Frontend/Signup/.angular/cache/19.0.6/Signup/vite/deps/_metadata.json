@@ -1,49 +1,49 @@
 {
-  "hash": "ee86ab29",
-  "configHash": "8657d4c8",
+  "hash": "a6dd687a",
+  "configHash": "b59cead4",
   "lockfileHash": "f1340d85",
-  "browserHash": "b5565d71",
+  "browserHash": "cf5ffd1c",
   "optimized": {
     "@angular/common": {
       "src": "../../../../../../node_modules/@angular/common/fesm2022/common.mjs",
       "file": "@angular_common.js",
-      "fileHash": "07b1dc97",
+      "fileHash": "87ca0dbc",
       "needsInterop": false
     },
     "@angular/common/http": {
       "src": "../../../../../../node_modules/@angular/common/fesm2022/http.mjs",
       "file": "@angular_common_http.js",
-      "fileHash": "9bb08189",
+      "fileHash": "bac9261d",
       "needsInterop": false
     },
     "@angular/core": {
       "src": "../../../../../../node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-      "fileHash": "0c5b3039",
+      "fileHash": "00ac5604",
       "needsInterop": false
     },
     "@angular/forms": {
       "src": "../../../../../../node_modules/@angular/forms/fesm2022/forms.mjs",
       "file": "@angular_forms.js",
-      "fileHash": "81560782",
+      "fileHash": "7b0ba462",
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-      "fileHash": "fbbd17e1",
+      "fileHash": "a598fe71",
       "needsInterop": false
     },
     "@angular/platform-browser/animations/async": {
       "src": "../../../../../../node_modules/@angular/platform-browser/fesm2022/animations/async.mjs",
       "file": "@angular_platform-browser_animations_async.js",
-      "fileHash": "bc596a50",
+      "fileHash": "97f0e0a4",
       "needsInterop": false
     },
     "@angular/router": {
       "src": "../../../../../../node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
-      "fileHash": "f87eceb2",
+      "fileHash": "b59da487",
       "needsInterop": false
     }
   },
