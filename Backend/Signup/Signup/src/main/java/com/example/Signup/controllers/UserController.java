@@ -18,7 +18,7 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @PostMapping("/loginByPost")
+    @PostMapping("/login")
     public ResponseEntity<?> loginByPost(@RequestBody HashMap<String, String> login) throws Exception {
         try{
             Users foundUsers = userService.loginByPost(login.get("email"), login.get("password"));
