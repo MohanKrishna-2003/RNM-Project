@@ -9,6 +9,7 @@ import { ContactComponent } from './contact/contact.component';
 import { ServiceComponent } from './service/service.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { LocationComponent } from './location/location.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -17,5 +18,6 @@ export const routes: Routes = [
   {path:'service',component:ServiceComponent},
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
+  {path:'location',component:LocationComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
