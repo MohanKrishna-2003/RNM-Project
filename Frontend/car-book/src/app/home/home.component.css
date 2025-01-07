@@ -122,3 +122,334 @@ header nav ul li a:hover {
 .content-section h2 {
   margin-top: 0;
 }
+
+/* General Contact Styles */
+.contact-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to right, #3498db, #9b59b6);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Contact Header */
+.contact-header h2 {
+  font-size: 40px;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.contact-header p {
+  color: #f8f9fa;
+  font-size: 18px;
+  letter-spacing: 0.5px;
+}
+
+/* Contact Info Cards */
+.contact-info {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 50px;
+  z-index: 1;
+}
+
+.contact-card {
+  background: rgba(255, 255, 255, 0.15); /* Glassmorphism */
+  border-radius: 15px;
+  padding: 30px;
+  width: 250px;
+  text-align: center;
+  backdrop-filter: blur(10px); /* Glass effect */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: white;
+}
+
+.contact-card:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.contact-card i {
+  font-size: 40px;
+  margin-bottom: 15px;
+  transition: color 0.3s ease;
+}
+
+.contact-card i:hover {
+  color: #3498db;
+}
+
+.contact-card h4 {
+  font-size: 20px;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.contact-card p {
+  font-size: 16px;
+  color: #f1f1f1;
+}
+
+/* Social Media Section */
+.social-media {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.social-media h3 {
+  font-size: 30px;
+  color: #fff;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+}
+
+.social-links {
+  margin-bottom: 30px;
+}
+
+.social-btn {
+  font-size: 30px;
+  margin: 0 15px;
+  padding: 18px;
+  border-radius: 50%;
+  background-color: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.social-btn:hover {
+  transform: scale(1.2);
+  background-color: #fff;
+  color: #3498db;
+  border-color: #3498db;
+}
+
+.social-btn.btn-facebook {
+  border-color: #3b5998;
+}
+
+.social-btn.btn-instagram {
+  border-color: #e4405f;
+}
+
+.social-btn.btn-twitter {
+  border-color: #1da1f2;
+}
+
+.social-btn.btn-linkedin {
+  border-color: #0077b5;
+}
+
+/* Live Chat Button */
+.btn-chat {
+  background-color: #27ae60;
+  padding: 15px 35px;
+  color: white;
+  font-size: 18px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-chat:hover {
+  background-color: #2ecc71;
+  transform: translateY(-5px);
+}
+
+.btn-chat i {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.btn-chat::after {
+  content: "💬";
+  position: absolute;
+  top: 50%;
+  right: -15px;
+  font-size: 24px;
+  transform: translateY(-50%);
+}
+
+/* Floating Animated Background */
+.contact-container::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+  transform-origin: center;
+  z-index: -1;
+}
+
+@keyframes float {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .contact-info {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-card {
+    width: 90%;
+    margin-bottom: 20px;
+  }
+
+  .social-btn {
+    font-size: 30px;
+    padding: 18px;
+  }
+}
+/* Service Component Styles */
+.service-container {
+  margin-top: 40px;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Service Card Styles */
+.service-card {
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.service-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.service-icon {
+  font-size: 48px;
+  color: #3498db;
+  margin-bottom: 15px;
+}
+
+.service-card .card-body {
+  padding: 20px;
+}
+
+.service-card .card-title {
+  font-size: 22px;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.service-card .card-text {
+  font-size: 16px;
+  color: #7f8c8d;
+}
+
+/* Testimonial Section Styles */
+.testimonial-section {
+  background-color: #f8f9fa;
+  padding: 60px 0;
+}
+
+.testimonial-section h3 {
+  font-size: 32px;
+  color: #2c3e50;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+.testimonial-carousel {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+.testimonial-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 300px;
+  padding: 30px;
+  text-align: center;
+  position: relative;
+  max-width: 100%;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.testimonial-quote {
+  font-size: 18px;
+  color: #555;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.testimonial-quote i {
+  color: #3498db;
+}
+
+.testimonial-author p {
+  font-size: 18px;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-top: 20px;
+}
+
+.star-rating {
+  font-size: 20px;
+  color: #f39c12;
+}
+
+.testimonial-card i {
+  font-size: 20px;
+}
+
+/* Hide the overflow and allow scroll */
+.testimonial-carousel {
+  display: flex;
+  overflow-x: scroll;
+  gap: 20px;
+  scroll-snap-type: x mandatory;
+}
+
+.testimonial-card {
+  scroll-snap-align: center;
+}
+
+/* Style for mobile devices */
+@media (max-width: 768px) {
+  .testimonial-carousel {
+    gap: 15px;
+  }
+
+  .testimonial-card {
+    width: 250px;
+    padding: 20px;
+  }
+}
