@@ -18,21 +18,24 @@ export class UsersComponent implements OnInit {
     ngOnInit(): void {
       // Mock data for users
       this.users = [
-        { name: 'John Doe', email: 'john.doe@example.com', status: 'Active' },
-        { name: 'Jane Smith', email: 'jane.smith@example.com', status: 'Inactive' },
-        { name: 'Peter Parker', email: 'peter.parker@example.com', status: 'Active' },
-        { name: 'Mary Jane', email: 'mary.jane@example.com', status: 'Inactive' },
-        { name: 'John Doe', email: 'john.doe@example.com', status: 'Active' },
-        { name: 'Jane Smith', email: 'jane.smith@example.com', status: 'Inactive' },
-        { name: 'Peter Parker', email: 'peter.parker@example.com', status: 'Active' },
-        { name: 'Mary Jane', email: 'mary.jane@example.com', status: 'Inactive' },      { name: 'John Doe', email: 'john.doe@example.com', status: 'Active' },
-        { name: 'Jane Smith', email: 'jane.smith@example.com', status: 'Inactive' },
-        { name: 'Peter Parker', email: 'peter.parker@example.com', status: 'Active' },
-        { name: 'Mary Jane', email: 'mary.jane@example.com', status: 'Inactive' },      { name: 'John Doe', email: 'john.doe@example.com', status: 'Active' },
-        { name: 'Jane Smith', email: 'jane.smith@example.com', status: 'Inactive' },
-        { name: 'Peter Parker', email: 'peter.parker@example.com', status: 'Active' },
-        { name: 'Mary Jane', email: 'mary.jane@example.com', status: 'Inactive' },
+        { name: 'John Doe', email: 'john.doe@example.com', address: '123 Main St, Springfield' },
+        { name: 'Jane Smith', email: 'jane.smith@example.com', address: '456 Oak St, Springfield' },
+        { name: 'Peter Parker', email: 'peter.parker@example.com', address: '789 Pine St, Queens' },
+        { name: 'Mary Jane', email: 'mary.jane@example.com', address: '101 Maple St, Queens' },
+        { name: 'John Doe', email: 'john.doe@example.com', address: '123 Main St, Springfield' },
+        { name: 'Jane Smith', email: 'jane.smith@example.com', address: '456 Oak St, Springfield' },
+        { name: 'Peter Parker', email: 'peter.parker@example.com', address: '789 Pine St, Queens' },
+        { name: 'Mary Jane', email: 'mary.jane@example.com', address: '101 Maple St, Queens' },
+        { name: 'John Doe', email: 'john.doe@example.com', address: '123 Main St, Springfield' },
+        { name: 'Jane Smith', email: 'jane.smith@example.com', address: '456 Oak St, Springfield' },
+        { name: 'Peter Parker', email: 'peter.parker@example.com', address: '789 Pine St, Queens' },
+        { name: 'Mary Jane', email: 'mary.jane@example.com', address: '101 Maple St, Queens' },
+        { name: 'John Doe', email: 'john.doe@example.com', address: '123 Main St, Springfield' },
+        { name: 'Jane Smith', email: 'jane.smith@example.com', address: '456 Oak St, Springfield' },
+        { name: 'Peter Parker', email: 'peter.parker@example.com', address: '789 Pine St, Queens' },
+        { name: 'Mary Jane', email: 'mary.jane@example.com', address: '101 Maple St, Queens' }
       ];
+      
       this.filteredUsers = [...this.users];
     }
   
