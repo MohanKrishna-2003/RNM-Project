@@ -9,6 +9,7 @@ import lombok.Data;
 @Data
 @Table(name="usertable")
 public class Users {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
