@@ -1,13 +1,29 @@
 package com.example.Signup.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+
+import java.util.Date;
 
 @Entity
 @Table(name = "Feedback")
 public class Feedback {
+
+    @Id
     Integer user_id;
     String user_name, feedback;
+    Date feedback_date;
+
+    public Date getFeedback_date() {
+        return feedback_date;
+    }
+
+    public void setFeedback_date(Date feedback_date) {
+        this.feedback_date = feedback_date;
+    }
 
     public Integer getUser_id() {
         return user_id;

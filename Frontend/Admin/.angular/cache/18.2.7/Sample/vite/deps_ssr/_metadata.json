@@ -1,64 +1,73 @@
 {
-  "hash": "7a96e349",
-  "configHash": "092af83e",
+  "hash": "f26b825e",
+  "configHash": "b9fd1bf6",
   "lockfileHash": "ea29917a",
-  "browserHash": "c1566a07",
+  "browserHash": "62504095",
   "optimized": {
     "@angular/common": {
       "src": "../../../../../../node_modules/@angular/common/fesm2022/common.mjs",
       "file": "@angular_common.js",
-      "fileHash": "ea353164",
+      "fileHash": "61cf0e96",
+      "needsInterop": false
+    },
+    "@angular/common/http": {
+      "src": "../../../../../../node_modules/@angular/common/fesm2022/http.mjs",
+      "file": "@angular_common_http.js",
+      "fileHash": "3e777f27",
       "needsInterop": false
     },
     "@angular/core": {
       "src": "../../../../../../node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-      "fileHash": "357b3dba",
+      "fileHash": "1349a160",
       "needsInterop": false
     },
     "@angular/forms": {
       "src": "../../../../../../node_modules/@angular/forms/fesm2022/forms.mjs",
       "file": "@angular_forms.js",
-      "fileHash": "324e2cf2",
+      "fileHash": "a9f56e35",
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-      "fileHash": "360e717f",
+      "fileHash": "62d57f25",
       "needsInterop": false
     },
     "@angular/platform-server": {
       "src": "../../../../../../node_modules/@angular/platform-server/fesm2022/platform-server.mjs",
       "file": "@angular_platform-server.js",
-      "fileHash": "8f35fe05",
+      "fileHash": "f53aafbf",
       "needsInterop": false
     },
     "@angular/router": {
       "src": "../../../../../../node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
-      "fileHash": "9ae31038",
+      "fileHash": "fad190ab",
       "needsInterop": false
     },
     "chart.js": {
       "src": "../../../../../../../../../node_modules/chart.js/dist/chart.js",
       "file": "chart__js.js",
-      "fileHash": "4cba86c9",
+      "fileHash": "bc66f64a",
       "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-SRVKYX7I": {
-      "file": "chunk-SRVKYX7I.js"
+    "xhr2-ISERFGGE": {
+      "file": "xhr2-ISERFGGE.js"
+    },
+    "chunk-PBSPOI3C": {
+      "file": "chunk-PBSPOI3C.js"
+    },
+    "chunk-MJCIUX4X": {
+      "file": "chunk-MJCIUX4X.js"
     },
     "chunk-EAFGYYQ3": {
       "file": "chunk-EAFGYYQ3.js"
     },
     "chunk-YDN5P6SV": {
       "file": "chunk-YDN5P6SV.js"
-    },
-    "xhr2-ISERFGGE": {
-      "file": "xhr2-ISERFGGE.js"
     },
     "chunk-NQ4HTGF6": {
       "file": "chunk-NQ4HTGF6.js"
