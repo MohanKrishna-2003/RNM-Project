@@ -18,7 +18,7 @@ export class UserFeedbackComponent implements OnInit {
     feedbackList: Array<any> = [];
   constructor(private http: HttpClient){}
     ngOnInit(): void {
-      this.http.get<Feedback[]>("http://localhost:8085/feedback/feedbackchart").subscribe({
+      this.http.get<Feedback[]>("http://localhost:8080/feedback/feedbackchart").subscribe({
         next: (res) => {
           console.log(res);
           this.feedbackList = res;

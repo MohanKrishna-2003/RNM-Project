@@ -26,7 +26,7 @@ export class UsersComponent implements OnInit {
 
    }
    ngOnInit(): void {
-    this.http.get<User[]>("http://localhost:8085/user/userdata").subscribe({
+    this.http.get<User[]>("http://localhost:8080/user/userdata").subscribe({
       next: (res) => {
         console.log(res);
         this.users = res;
