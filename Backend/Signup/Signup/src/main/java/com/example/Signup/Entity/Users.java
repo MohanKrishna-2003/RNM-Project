@@ -18,11 +18,17 @@ public class Users {
     @Column(name="user_id")
     private Integer id;
     @Column(name="user_name")
+
+    @Column(name="name")
     private String name;
     @Column(name="user_email")
     private String email;
+
     @Column(name="password")
     private String password;
+
+    @Column(name="mobile")
+    private Long mobile;
 
     @Column(name="user_address")
     private String address;

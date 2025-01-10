@@ -7,8 +7,8 @@
       <form [formGroup]="loginForm" (ngSubmit)="submit()">
 
         <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" class="form-control" formControlName="email" placeholder="Enter your email">
+          <label for="email">Email or Mobile Number</label>
+          <input type="email" class="form-control" formControlName="email" placeholder="Enter your email or Mobile Number ">
           <div *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid" class="text-danger">
             <div *ngIf="loginForm.get('email')?.hasError('required')">Email is required</div>
             <div *ngIf="loginForm.get('email')?.hasError('email')">Please enter a valid email address</div>

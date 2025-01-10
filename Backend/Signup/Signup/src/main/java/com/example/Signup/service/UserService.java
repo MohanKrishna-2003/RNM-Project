@@ -15,7 +15,12 @@ public class UserService {
     @Autowired
     UserRepo userRepo;
 
-    public Users addUserData(Users users) {
+    public Users addingUserData(Users users) {
+        //checking if the user is already present or not if it is not it throws an error
+        Optional <Users> existingUser = userRepo.findByEmail(users.getEmail());
+        if (existingUser.isPresent()) {
+            throw new RuntimeException("Email has been already registered");
+        }
         return userRepo.save(users);
     }
 
@@ -39,4 +44,8 @@ public class UserService {
     }
 
 
+
+    public List<Users> getAllTheUserList() throws Exception {
+        return userRepo.findAll();
+    }
 }

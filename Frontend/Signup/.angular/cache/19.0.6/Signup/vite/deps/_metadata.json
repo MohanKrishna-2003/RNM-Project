@@ -1,49 +1,49 @@
 {
-  "hash": "1d846025",
-  "configHash": "332cccc0",
-  "lockfileHash": "f1340d85",
-  "browserHash": "cbcd125f",
+  "hash": "fbf98538",
+  "configHash": "b59cead4",
+  "lockfileHash": "21a73532",
+  "browserHash": "cbc8dbea",
   "optimized": {
     "@angular/common": {
       "src": "../../../../../../node_modules/@angular/common/fesm2022/common.mjs",
       "file": "@angular_common.js",
-      "fileHash": "7db46873",
+      "fileHash": "eb539a8e",
       "needsInterop": false
     },
     "@angular/common/http": {
       "src": "../../../../../../node_modules/@angular/common/fesm2022/http.mjs",
       "file": "@angular_common_http.js",
-      "fileHash": "c89c7799",
+      "fileHash": "f73285be",
       "needsInterop": false
     },
     "@angular/core": {
       "src": "../../../../../../node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-      "fileHash": "7bbaa498",
+      "fileHash": "30891ba4",
       "needsInterop": false
     },
     "@angular/forms": {
       "src": "../../../../../../node_modules/@angular/forms/fesm2022/forms.mjs",
       "file": "@angular_forms.js",
-      "fileHash": "90c02a48",
+      "fileHash": "4dff9d95",
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-      "fileHash": "a4fb3b28",
+      "fileHash": "51229202",
       "needsInterop": false
     },
     "@angular/platform-browser/animations/async": {
       "src": "../../../../../../node_modules/@angular/platform-browser/fesm2022/animations/async.mjs",
       "file": "@angular_platform-browser_animations_async.js",
-      "fileHash": "af7ed9ba",
+      "fileHash": "dcf43ee8",
       "needsInterop": false
     },
     "@angular/router": {
       "src": "../../../../../../node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
-      "fileHash": "81b48307",
+      "fileHash": "b8bb36b2",
       "needsInterop": false
     }
   },

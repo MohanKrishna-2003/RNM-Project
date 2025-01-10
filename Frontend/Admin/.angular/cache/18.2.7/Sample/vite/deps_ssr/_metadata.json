@@ -47,7 +47,7 @@
       "needsInterop": false
     },
     "chart.js": {
-      "src": "../../../../../../../../../node_modules/chart.js/dist/chart.js",
+      "src": "../../../../../../node_modules/chart.js/dist/chart.js",
       "file": "chart__js.js",
       "fileHash": "bc66f64a",
       "needsInterop": false
