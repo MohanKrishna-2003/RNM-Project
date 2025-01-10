@@ -1,6 +1,7 @@
 package com.example.Signup.repository;
 
 import com.example.Signup.Entity.Users;
+import org.apache.catalina.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -14,5 +15,7 @@ public interface UserRepo extends JpaRepository<Users, Integer> {
 
 
     Optional <Users> findByEmail(String email);  //customMethod
+
+//    Optional<Users> findByEmailOrPhone(String email , Long mobile);
 }
 

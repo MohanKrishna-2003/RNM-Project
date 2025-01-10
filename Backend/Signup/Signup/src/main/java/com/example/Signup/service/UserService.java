@@ -5,6 +5,7 @@ import com.example.Signup.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -26,5 +27,9 @@ public class UserService {
     public Users loginByPost(String email, String password) throws Exception {
         Optional<Users> users = userRepo.login(email, password);
         return users.orElseThrow(() -> new RuntimeException("Invalid email or password"));
+    }
+
+    public List<Users> getAllTheUserList() throws Exception {
+        return userRepo.findAll();
     }
 }

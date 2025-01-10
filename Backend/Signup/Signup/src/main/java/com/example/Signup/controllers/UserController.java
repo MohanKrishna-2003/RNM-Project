@@ -8,11 +8,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 @RequestMapping(path = "userlogin")
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:4200/")
 public class UserController {
 
     @Autowired
@@ -38,6 +39,17 @@ public class UserController {
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
+        }
+    }
+    //Admin work
+    @GetMapping("/getAllTheUserList")
+    public ResponseEntity<?> getAllTheUserList(){
+        try{
+            List<Users> list = userService.getAllTheUserList();
+            return ResponseEntity.ok(list);
+        }catch(Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(new GeneralResponse("Error in Fetching Data"));
         }
     }
 }

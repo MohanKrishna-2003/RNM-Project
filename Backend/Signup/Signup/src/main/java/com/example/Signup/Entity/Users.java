@@ -12,15 +12,23 @@ public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @Column(name="name")
     private String name;
+
     @Column(name="email")
     private String email;
+
     @Column(name="password")
     private String password;
 
+    @Column(name="mobile")
+    private Long mobile;
+
     @Column(name="address")
     private String address;
+
+    @OneToMany
 
     public Integer getId() {
         return id;
@@ -60,5 +68,13 @@ public class Users {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Long getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(Long mobile) {
+        this.mobile = mobile;
     }
 }
