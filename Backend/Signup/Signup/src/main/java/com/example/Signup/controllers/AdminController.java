@@ -1,6 +1,7 @@
 package com.example.Signup.controllers;
 
 import com.example.Signup.response.GeneralResponse;
+import com.example.Signup.service.AdminService;
 import com.example.Signup.service.FeedbackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,24 +16,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class AdminController {
 
     @Autowired
-    FeedbackService feedbackService;
+    AdminService adminService;
 
-    @GetMapping("/feedbackchart")
-    public ResponseEntity<?> feedbackchardata(){
-        try {
-            return  ResponseEntity.ok(feedbackService.getFeedbacks());
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(new GeneralResponse("HIIII"));
-        }
+@GetMapping("/details")
+public ResponseEntity<?> admindetails(){
+    try {
+        return  ResponseEntity.ok(adminService.getAdminDetails());
+    } catch (Exception e) {
+        return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
     }
-    @GetMapping("/feedbackcount")
-    public ResponseEntity<?> feedbackcount(){
-        try {
-            return  ResponseEntity.ok(feedbackService.getMonthlyFeedbackSummary());
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(new GeneralResponse("HIIII"));
-        }
-    }
+}
 
 
 }

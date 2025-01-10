@@ -30,7 +30,7 @@ this.chart2= new Chart('Chart2',this.config2);
 this.chart3= new Chart('Chart3',this.config3);
 this.chart4= new Chart('Chart4',this.config4);
 
-    this.http.get('http://localhost:8085/admin/feedbackcount').subscribe(res => {
+    this.http.get('http://localhost:8085/feedback/feedbackcount').subscribe(res => {
       console.log(res);
       this.feedbackData=res;
       console.log(this.chart4data);

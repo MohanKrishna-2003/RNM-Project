@@ -14,7 +14,7 @@
       [(ngModel)]="searchTerm"
       (input)="filterUsers()"
     />
-    <button class="btn btn-primary" type="button">Search</button>
+    <button class="btn btn-primary" type="button" (click)="filterUsers()">Search</button>
   </div>
 
   <!-- Users Table -->
@@ -25,15 +25,19 @@
           <th>#</th>
           <th>Name</th>
           <th>Email</th>
-          <th>Address</th> <!-- New Address Column -->
+          <th>Address</th>
+          <th>Mobile</th> <!-- New Address Column -->
+          <!-- New Address Column -->
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let user of filteredUsers; let i = index">
           <td>{{ i + 1 }}</td>
-          <td>{{ user.name }}</td>
-          <td>{{ user.email }}</td>
-          <td>{{ user.address }}</td> <!-- Address Data -->
+          <td>{{ user.userName }}</td>
+          <td>{{ user.userEmail }}</td>
+          <td>{{ user.userAddress }}</td>
+          <td>{{ user.userMobile }}</td> <!-- Address Data -->
+          <!-- Address Data -->
         </tr>
       </tbody>
     </table>

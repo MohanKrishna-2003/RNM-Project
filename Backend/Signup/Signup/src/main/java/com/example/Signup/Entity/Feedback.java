@@ -12,11 +12,29 @@ import java.util.Date;
 @Table(name = "Feedback")
 public class Feedback {
 
+    public Integer getFeedback_id() {
+        return feedback_id;
+    }
+
+    public void setFeedback_id(Integer feedback_id) {
+        this.feedback_id = feedback_id;
+    }
+
     @Id
+    Integer feedback_id;
     Integer user_id;
     String user_name, feedback;
     Date feedback_date;
 
+    public String getUser_email() {
+        return user_email;
+    }
+
+    public void setUser_email(String user_email) {
+        this.user_email = user_email;
+    }
+
+    String user_email;
     public Date getFeedback_date() {
         return feedback_date;
     }

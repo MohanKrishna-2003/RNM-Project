@@ -35,28 +35,27 @@
               <div class="d-flex align-items-center mb-30">
                 
                 <div class="profile-meta ml-3">
-                  <h5 class="text-bold text-dark mb-10">John Doe</h5>
-                  <p class="text-sm text-gray">Web & UI/UX Design</p>
+                <h5 class="text-bold text-dark mb-10">{{admin[0].name}}</h5>
+                  <p class="text-sm text-gray">{{admin[0].mail}}</p>
                 </div>
               </div>
               
               <!-- Displaying the additional details: Company, Bio, Address -->
               <div class="input-style-1">
                 <label>Company</label>
-                <p>UI Deck</p>
+                <p>{{admin[0].company}}</p>
               </div>
               
               <div class="input-style-1">
                 <label>Address</label>
-                <p>123 Street Name, New York</p>
+                <p>{{admin[0].address}}</p>
               </div>
       
             
               <div class="input-style-1">
                 <label>Bio</label>
                 <p>
-                  Crafted for – Business, Startup, SaaS, Apps, Event, Software, Agency, Resume and Portfolio. All Landing Pages come with clean design and responsive layout. Also packed with all essential sections, elements, and features you need to launch.
-                </p>
+{{admin[0].bio}}                </p>
               </div>
             </div>
           </div>
@@ -78,32 +77,32 @@
           <div class="col-12">
             <div class="input-style-1">
               <label>Full Name</label>
-              <input type="text" placeholder="Full Name" value="John Doe" />
+              <input type="text" placeholder="Full Name" [value]="admin[0].name" />
             </div>
           </div>
           <div class="col-12">
             <div class="input-style-1">
               <label>Email</label>
-              <input type="email" placeholder="Email" value="admin@example.com" />
+              <input type="email" placeholder="Email" [value]="admin[0].mail" />
             </div>
           </div>
           <div class="col-12">
             <div class="input-style-1">
               <label>Company</label>
-              <input type="text" placeholder="Company" value="UI Deck" />
+              <input type="text" placeholder="Company" [value]="admin[0].company" />
             </div>
           </div>
           <div class="col-12">
             <div class="input-style-1">
               <label>Address</label>
-              <input type="text" placeholder="Address" value="123 Street Name" />
+              <input type="text" placeholder="Address" [value]="admin[0].address"/>
             </div>
           </div>
      
           <div class="col-12">
             <div class="input-style-1">
               <label>About Me</label>
-              <textarea placeholder="Type here" rows="6">Crafted for – Business, Startup, SaaS, Apps, Event, Software, Agency, Resume and Portfolio.</textarea>
+              <textarea placeholder="Type here" rows="6">{{admin[0].bio}}</textarea>
             </div>
           </div>
           <div class="col-12">

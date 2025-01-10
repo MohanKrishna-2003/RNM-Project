@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.Objects;
 
-@RequestMapping(path = "userlogin")
+@RequestMapping(path = "user")
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
@@ -37,6 +37,15 @@ public class UserController {
             return ResponseEntity.ok(new GeneralResponse("Successfully Posting"));
         } catch (Exception e) {
             e.printStackTrace();
+            return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
+        }
+    }
+
+    @GetMapping("/userdata")
+    public ResponseEntity<?> getUserData() {
+        try {
+            return ResponseEntity.ok(userService.getAllUsers());
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
         }
     }

@@ -10,12 +10,12 @@
     <div *ngFor="let feedback of feedbackList" class="single-notification">
       <div class="notification">
         <div class="image info-bg" id ="bgimg">
-          <span>{{ feedback.user.charAt(0) }}</span> <!-- First letter of user -->
+          <span>{{ feedback.user_name.charAt(0) }}</span> <!-- First letter of user -->
         </div>
         <a href="#0" class="content">
-          <h6>{{ feedback.user }}</h6>
-          <p class="text-sm text-gray">{{ feedback.message }}</p>
-          <span class="text-sm text-medium text-gray">{{ feedback.email }}</span>
+          <h6>{{ feedback.user_name }}</h6>
+          <p class="text-sm text-gray">{{ feedback.feedback }}</p>
+          <span class="text-sm text-medium text-gray">{{ feedback.user_email }}</span>
         </a>
       </div>
       <div class="action">
