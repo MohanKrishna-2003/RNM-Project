@@ -50,7 +50,7 @@ export class UsersComponent implements OnInit {
       });
     }
     getAllTheUserList(): Observable<any> {
-      return this.http.get('http://localhost:8089/userlogin/getAllTheUserList'); 
+      return this.http.get('http://localhost:8080/user/userdata'); 
     }
 
     filterUsers() {

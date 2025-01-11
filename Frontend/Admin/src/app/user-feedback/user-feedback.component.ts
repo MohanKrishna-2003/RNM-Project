@@ -27,119 +27,9 @@ export class UserFeedbackComponent implements OnInit {
           console.error('Error fetching users:', err);
         }
       });
-      this.loadFeedback();
     }
   
-    loadFeedback() {
-      // Mock data for feedback responses
-      // this.feedbackList = [
-      //   {
-      //     user: 'John Doe',
-      //     email: 'john.doe@example.com',
-      //     message: 'Great platform! Really enjoyed the booking experience.',
-      //     status: 'Pending',
-      //   },
-      //   {
-      //     user: 'Jane Smith',
-      //     email: 'jane.smith@example.com',
-      //     message: 'Couldn’t find a convenient test drive slot. Please improve.',
-      //     status: 'Resolved',
-      //   },
-      //   {
-      //     user: 'Alice Brown',
-      //     email: 'alice.brown@example.com',
-      //     message: 'The UI is very user-friendly and easy to navigate.',
-      //     status: 'Pending',
-      //   },
-      //   {
-      //     user: 'John Doe',
-      //     email: 'john.doe@example.com',
-      //     message: 'Great platform! Really enjoyed the booking experience.',
-      //     status: 'Pending',
-      //   },
-      //   {
-      //     user: 'Jane Smith',
-      //     email: 'jane.smith@example.com',
-      //     message: 'Couldn’t find a convenient test drive slot. Please improve.',
-      //     status: 'Resolved',
-      //   },
-      //   {
-      //     user: 'Alice Brown',
-      //     email: 'alice.brown@example.com',
-      //     message: 'The UI is very user-friendly and easy to navigate.',
-      //     status: 'Pending',
-      //   },
-      //   {
-      //     user: 'John Doe',
-      //     email: 'john.doe@example.com',
-      //     message: 'Great platform! Really enjoyed the booking experience.',
-      //     status: 'Pending',
-      //   },
-      //   {
-      //     user: 'Jane Smith',
-      //     email: 'jane.smith@example.com',
-      //     message: 'Couldn’t find a convenient test drive slot. Please improve.',
-      //     status: 'Resolved',
-      //   },
-      //   {
-      //     user: 'Alice Brown',
-      //     email: 'alice.brown@example.com',
-      //     message: 'The UI is very user-friendly and easy to navigate.',
-      //     status: 'Pending',
-      //   },{
-      //     user: 'John Doe',
-      //     email: 'john.doe@example.com',
-      //     message: 'Great platform! Really enjoyed the booking experience.',
-      //     status: 'Pending',
-      //   },
-      //   {
-      //     user: 'Jane Smith',
-      //     email: 'jane.smith@example.com',
-      //     message: 'Couldn’t find a convenient test drive slot. Please improve.',
-      //     status: 'Resolved',
-      //   },
-      //   {
-      //     user: 'Alice Brown',
-      //     email: 'alice.brown@example.com',
-      //     message: 'The UI is very user-friendly and easy to navigate.',
-      //     status: 'Pending',
-      //   },{
-      //     user: 'John Doe',
-      //     email: 'john.doe@example.com',
-      //     message: 'Great platform! Really enjoyed the booking experience.',
-      //     status: 'Pending',
-      //   },
-      //   {
-      //     user: 'Jane Smith',
-      //     email: 'jane.smith@example.com',
-      //     message: 'Couldn’t find a convenient test drive slot. Please improve.',
-      //     status: 'Resolved',
-      //   },
-      //   {
-      //     user: 'Alice Brown',
-      //     email: 'alice.brown@example.com',
-      //     message: 'The UI is very user-friendly and easy to navigate.',
-      //     status: 'Pending',
-      //   },{
-      //     user: 'John Doe',
-      //     email: 'john.doe@example.com',
-      //     message: 'Great platform! Really enjoyed the booking experience.',
-      //     status: 'Pending',
-      //   },
-      //   {
-      //     user: 'Jane Smith',
-      //     email: 'jane.smith@example.com',
-      //     message: 'Couldn’t find a convenient test drive slot. Please improve.',
-      //     status: 'Resolved',
-      //   },
-      //   {
-      //     user: 'Alice Brown',
-      //     email: 'alice.brown@example.com',
-      //     message: 'The UI is very user-friendly and easy to navigate.',
-      //     status: 'Pending',
-      //   },
-      // ];
-    }
+
   
   
   
@@ -149,9 +39,9 @@ export class UserFeedbackComponent implements OnInit {
       }
     }
   
-    refreshFeedback() {
-      alert('Refreshing feedback...');
-      this.loadFeedback();
+    getBackgroundClass(index: number): string {
+      const classes = ['orange-bg', 'green-bg', 'blue-bg', 'yellow-bg'];
+      return classes[index % classes.length];
     }
   }
   
