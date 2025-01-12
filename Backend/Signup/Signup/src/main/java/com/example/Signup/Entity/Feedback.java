@@ -4,8 +4,10 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table(name="feedback")
@@ -26,12 +28,14 @@ public class Feedback {
     @Column(name="feedback")
     private String feedback;
 
-    @Column(name="feedback_date")
-    private String feedback_date;
+//    @Column(name="feedback_date")
+//    private String feedback_date;
 
     @Column(name="user_email")
     private String user_email;
 
-
+    @CreationTimestamp
+    @Column(name = "feedback_date", nullable = false, updatable = false)
+    private Date feedback_date;
 
 }
