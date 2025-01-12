@@ -1,10 +1,11 @@
 package com.example.Signup.Entity;
 
 import jakarta.persistence.*;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
 
 @Entity
 @Table(name="feedback")
@@ -28,7 +29,7 @@ public class Feedback {
     @Column(name="feedback_date")
     private String feedback_date;
 
-    @Column(name="user_id")
+    @Column(name="user_email")
     private String user_email;
 
 

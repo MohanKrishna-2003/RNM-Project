@@ -1,5 +1,6 @@
 package com.example.Signup.controllers;
 
+import com.example.Signup.Entity.Feedback;
 import com.example.Signup.Entity.Users;
 import com.example.Signup.response.GeneralResponse;
 import com.example.Signup.service.UserService;
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 @RequestMapping(path = "userlogin")
 @RestController
@@ -50,6 +50,25 @@ public class UserController {
         }catch(Exception e){
             e.printStackTrace();
             return ResponseEntity.badRequest().body(new GeneralResponse("Error in Fetching Data"));
+        }
+    }
+    @GetMapping("/getAllFeedback")
+    public ResponseEntity<?> getAllFeedback(){
+        try{
+            List<Users> list = userService.getAllFeedback();
+            return ResponseEntity.ok(list);
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
+        }
+    }
+    @PostMapping("/postFeedback")
+    public ResponseEntity<?> postFeedback(@RequestBody Feedback feedback){
+        try{
+            userService.postingFeedback(feedback);
+            return ResponseEntity.ok(new GeneralResponse("Successfully posting Feedback"));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
         }
     }
 }
