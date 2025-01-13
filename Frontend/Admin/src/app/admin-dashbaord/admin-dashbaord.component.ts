@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AdminHeaderComponent } from '../admin-header/admin-header.component';
 import {Chart, registerables} from 'chart.js';
 import { HttpClient } from '@angular/common/http';
+import { log } from 'node:console';
 
 Chart.register(...registerables);
 
@@ -24,6 +25,7 @@ export interface FeedbackData {
 export class AdminDashbaordComponent implements OnInit {
 constructor(private http: HttpClient){
 }
+totalusers:any;
  ngOnInit(): void {
 this.chart= new Chart('Chart1', this.config);
 this.chart2= new Chart('Chart2',this.config2);
@@ -35,11 +37,14 @@ this.chart4= new Chart('Chart4',this.config4);
       this.feedbackData=res;
       console.log(this.chart4data);
     });
-
+    this.http.get('http://localhost:8080/user/totaluser').subscribe(res => {
+      console.log(res);
+      this.totalusers=res;
+      console.log(this.totalusers);
+    });
     this.processFeedbackData();
     this.calculateSum();
 
-    
   } 
   feedbackData: any 
   months: string[] = [
@@ -77,7 +82,9 @@ this.chart4= new Chart('Chart4',this.config4);
 
   calculateSum() {
     this.totalpositive = this.positiveCounts.reduce((sum, current) => sum + current, 0);
-    this.totalnegative=this.negativeCounts.reduce((sum, current) => sum + current, 0)
+    this.totalnegative=this.negativeCounts.reduce((sum, current) => sum + current, 0);
+    this.usersatisfaction = ((this.totalpositive)*100/(this.totalnegative+this.totalpositive)).toFixed(2);;
+    console.log(this.usersatisfaction);
   }
  
 
@@ -88,7 +95,7 @@ chart3:any;
 chart4:any;
 chart4data:any;
 chardata1:any =[600, 800, 750, 880, 940, 880, 900, 770, 920]
-
+usersatisfaction : any;
  public config: any = {
     type: "line",
     data: {
@@ -378,4 +385,6 @@ chardata1:any =[600, 800, 750, 880, 940, 880, 900, 770, 920]
     //   },
     // },
   };
+
+
 }

@@ -50,6 +50,15 @@ public class UserController {
             return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
         }
     }
+
+    @GetMapping("/totaluser")
+    public ResponseEntity<?> getTotalUser() {
+        try {
+            return ResponseEntity.ok(userService.totalUsers());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
+        }
+    }
 }
 
 

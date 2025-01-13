@@ -38,6 +38,8 @@ public class UserService {
                 .map(user -> new UserDTO(user.getId(), user.getName(), user.getEmail(), user.getMobile(), user.getAddress()))
                 .collect(Collectors.toList());
     }
-
+    public Integer totalUsers(){
+        return userRepo.totalUsers();
+    }
 
 }

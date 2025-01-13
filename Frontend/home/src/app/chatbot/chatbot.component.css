@@ -1,0 +1,126 @@
+.chatbot-container {
+  width: 100%;
+  max-width: 600px;
+  position: fixed;
+  bottom: 80px;  /* Place chatbot above the arrow button */
+  right: 20px;   /* Align the chatbot to the right */
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  z-index: 1000;
+}
+
+.chat-window {
+  display: flex;
+  flex-direction: column;
+}
+
+.messages {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.chat-message {
+  margin-bottom: 15px;
+}
+
+.message-bot, .message-user {
+  padding: 10px;
+  border-radius: 8px;
+  margin: 5px 0;
+}
+
+.message-bot {
+  background-color: #f1f1f1;
+  color: #333;
+}
+
+.message-user {
+  background-color: #4CAF50;
+  color: white;
+  text-align: right;
+}
+
+.typing-indicator {
+  margin-top: 5px;
+  font-size: 20px;
+}
+
+.typing-indicator span {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 3px;
+  background-color: #bbb;
+  border-radius: 50%;
+  animation: typing 0.7s infinite alternate;
+}
+
+.typing-indicator span:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typing {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.input-container input {
+  width: 85%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.input-container button {
+  margin-left: 10px;
+  padding: 10px 15px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.input-container button:hover {
+  background-color: #45a049;
+}
+
+.quick-replies {
+  margin-top: 10px;
+}
+
+.quick-replies button {
+  padding: 8px 12px;
+  margin-right: 5px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.quick-replies button:hover {
+  background-color: #45a049;
+}
