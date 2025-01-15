@@ -5,13 +5,14 @@ import { BookingComponent } from "../booking/booking.component";
 import { ServiceListComponent } from "../service-list/service-list.component";
 import { FooterComponent } from "../footer/footer.component";
 import { ContactComponent } from "../contact/contact.component";
+import { FeedbackComponent } from '../feedback/feedback.component';
 
 @Component({
   selector: 'app-home',
   standalone:true,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  imports: [HeaderComponent, BookingComponent, ServiceListComponent, FooterComponent, ContactComponent]
+  imports: [HeaderComponent, BookingComponent, ServiceListComponent, FooterComponent, ContactComponent,FeedbackComponent]
 })
 export class HomeComponent implements AfterViewInit {
   @ViewChild('carouselExample', { static: false }) carousel!: ElementRef;
