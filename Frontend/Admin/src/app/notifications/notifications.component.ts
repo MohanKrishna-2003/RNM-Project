@@ -25,7 +25,7 @@ export class NotificationsComponent implements OnInit {
   ngOnInit(): void {
     this.fetchNews();
   }
-  private API_URL = 'https://newsapi.org/v2/everything?q=Renault+Nissan+&language=en&sortBy=publishedAt&apiKey=03236fd20cc54cabac03280adfa33aaa';
+  private API_URL = 'https://newsapi.org/v2/everything?q=Renault+Nissan+Mitsubishi&language=en&sortBy=publishedAt&apiKey=03236fd20cc54cabac03280adfa33aaa';
   fetchAPI(): Observable<any> {
     return this.http.get<any>(this.API_URL);
   }

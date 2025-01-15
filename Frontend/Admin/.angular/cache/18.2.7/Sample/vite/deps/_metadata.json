@@ -1,55 +1,55 @@
 {
-  "hash": "56c9db68",
+  "hash": "05c93cbc",
   "configHash": "28b8928a",
-  "lockfileHash": "b25425af",
-  "browserHash": "23e7b6f5",
+  "lockfileHash": "73718717",
+  "browserHash": "71394eee",
   "optimized": {
     "@angular/common": {
       "src": "../../../../../../node_modules/@angular/common/fesm2022/common.mjs",
       "file": "@angular_common.js",
-      "fileHash": "85252143",
+      "fileHash": "7b3058f3",
       "needsInterop": false
     },
     "@angular/common/http": {
       "src": "../../../../../../node_modules/@angular/common/fesm2022/http.mjs",
       "file": "@angular_common_http.js",
-      "fileHash": "d38e8b65",
+      "fileHash": "bee666e5",
       "needsInterop": false
     },
     "@angular/core": {
       "src": "../../../../../../node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-      "fileHash": "43a28bde",
+      "fileHash": "693f5aab",
       "needsInterop": false
     },
     "@angular/forms": {
       "src": "../../../../../../node_modules/@angular/forms/fesm2022/forms.mjs",
       "file": "@angular_forms.js",
-      "fileHash": "18cf941f",
+      "fileHash": "e3d2d0c3",
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-      "fileHash": "d899023b",
+      "fileHash": "50e28158",
       "needsInterop": false
     },
     "@angular/router": {
       "src": "../../../../../../node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
-      "fileHash": "643669d5",
+      "fileHash": "72fcd1cd",
       "needsInterop": false
     },
     "chart.js": {
       "src": "../../../../../../node_modules/chart.js/dist/chart.js",
       "file": "chart__js.js",
-      "fileHash": "b89a5a63",
+      "fileHash": "5f32ee4a",
       "needsInterop": false
     },
     "leaflet": {
       "src": "../../../../../../node_modules/leaflet/dist/leaflet-src.js",
       "file": "leaflet.js",
-      "fileHash": "4a4daee5",
+      "fileHash": "d32fc7db",
       "needsInterop": true
     }
   },

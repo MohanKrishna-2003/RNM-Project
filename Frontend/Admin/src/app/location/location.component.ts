@@ -41,39 +41,40 @@ export class LocationComponent implements AfterViewInit {
       icon: 'https://img.icons8.com/color/48/000000/wrench.png' // Wrench icon
     },
   ];
-
+ 
   private map: any;
-
+ 
   ngAfterViewInit(): void {
-    this.initMap();
+    // this.initMap();
   }
-
-  private initMap(): void {
-    // this.map = L.map('map').setView([13.0827, 80.2707], 12); // Initial map center and zoom
-
-    // Tile layer for the map (OpenStreetMap)
-    // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    //   attribution: '&copy; OpenStreetMap contributors',
-    // }).addTo(this.map);
-
-    // Add markers with popups for each shop
-    // this.shops.forEach((shop) => {
-    //   const marker = L.marker([shop.lat, shop.lng])
-    //     .addTo(this.map)
-    //     .bindPopup(`
-    //       <b>${shop.name}</b><br>
-    //       ${shop.address}
-    //     `);
-
-    //   // Custom icons for the markers
-    //   marker.setIcon(
-    //     L.icon({
-    //       iconUrl: shop.icon, // Custom icon for each shop
-    //       iconSize: [30, 30], // Icon size
-    //       iconAnchor: [15, 30], // Anchor position
-    //       popupAnchor: [0, -30], // Popup position
-    //     })
-    //   );
-    // });
-  }
+ 
+  // private initMap(): void {
+  //   this.map = L.map('map').setView([13.0827, 80.2707], 12); // Initial map center and zoom
+ 
+  //   // Tile layer for the map (OpenStreetMap)
+  //   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  //     attribution: '&copy; OpenStreetMap contributors',
+  //   }).addTo(this.map);
+ 
+  //   // Add markers with popups for each shop
+  //   this.shops.forEach((shop) => {
+  //     const marker = L.marker([shop.lat, shop.lng])
+  //       .addTo(this.map)
+  //       .bindPopup(`
+  //         <b>${shop.name}</b><br>
+  //         ${shop.address}
+  //       `);
+ 
+  //     // Custom icons for the markers
+  //     marker.setIcon(
+  //       L.icon({
+  //         iconUrl: shop.icon, // Custom icon for each shop
+  //         iconSize: [30, 30], // Icon size
+  //         iconAnchor: [15, 30], // Anchor position
+  //         popupAnchor: [0, -30], // Popup position
+  //       })
+  //     );
+  //   });
+  // }
 }
+ 
