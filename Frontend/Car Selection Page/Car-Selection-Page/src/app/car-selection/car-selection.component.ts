@@ -2,11 +2,14 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import carsData from '../../assets/cars.json';
 import { CommonModule } from '@angular/common';
+import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-car-selection',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, HttpClientModule],
   templateUrl: './car-selection.component.html',
   styleUrls: ['./car-selection.component.css']
 })
@@ -30,7 +33,7 @@ export class CarSelectionComponent implements OnInit {
   isBookingClicked: boolean = false;
   selectedCar: any = null;
   // showBox : boolean = false;
-  constructor() { }
+  // constructor() { }
 
   ngOnInit(): void {
     this.cars = carsData;
@@ -92,7 +95,7 @@ export class CarSelectionComponent implements OnInit {
 
   }
 
-  closeForm(){
+  closeForm() {
     this.isBookingClicked = !this.isBookingClicked;
   }
   applyFilters(): void {
@@ -263,6 +266,9 @@ export class CarSelectionComponent implements OnInit {
     this.showGif = false;
   }
 
+
+
+
   status: boolean = true;
   clickEvent() {
     this.status = !this.status;
@@ -270,23 +276,130 @@ export class CarSelectionComponent implements OnInit {
 
   currentStep: number = 1; // Keeps track of the current step in the form
 
+
+  // saving the form to backend! - mohan.
+
+  formData = {
+    name: '',                   // string
+    phone: '',                  // string
+    email: '',                  // string
+    address: '',                // string
+    preferredDate: new Date(),  // Date object
+    timeSlot: '',               // string
+    showroomLocation: '',       // string
+    confirmation: false         // boolean
+  };
+
+  private apiUrl = 'http://localhost:8080/slot-bookings';
+
+  constructor(private http: HttpClient) {
+    // this.showSuccessDialog();
+    // this.showFailureDialog();
+
+    // so here, If we want to display some of the dates as blocked we want to again use here flatpickr library.
+    // so yar, if you think it's needed that much we will udpate this further okay :-)
+    const today = new Date();
+    this.todayDate = today.toISOString().split('T')[0];
+  }
+
   nextStep(): void {
     if (this.currentStep < 3) {
-      this.currentStep++; // Move to the next step
-    } 
-    else {
-      this.confirm1(); 
+      this.currentStep++;
+    } else {
+      this.submitForm();
     }
   }
 
   goBack(): void {
     if (this.currentStep > 1) {
-      this.currentStep--; // Move to the previous step
+      this.currentStep--;
     }
   }
 
-  confirm1(): void {
-    alert('Form Submitted!');
+  submitForm(): void {
+    const formattedDate = this.formData.preferredDate ? this.formData.preferredDate.toISOString() : '';
+    const formDataToSend = {
+      ...this.formData,
+      preferredDate: formattedDate,
+      selectedCarDetails: this.selectedCar
+    };
+
+    console.log(formDataToSend);  // Checking the data being sent to the backend
+
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    this.http.post(this.apiUrl, formDataToSend, { headers }).subscribe(
+      (response) => {
+        // console.log("Success: ", response);
+        // alert("Slot Booked Successfully!");
+        this.showSuccessDialog();
+      },
+      (error) => {
+        // console.log("Error: ", error);
+        // alert("Failed to book a slot! Please, try again later.");
+        this.showFailureDialog();
+      }
+    );
   }
- 
+
+  todayDate: String;
+
+
+  confirmBooking(): void {
+    this.formData.confirmation = true;
+    this.submitForm();
+  }
+
+  notAgreed(): void {
+    this.formData.confirmation = false;
+    this.submitForm();
+  }
+
+
+  isStepValid(): boolean {
+    switch (this.currentStep) {
+      case 1:
+        return !!this.formData.name && !!this.formData.phone && !!this.formData.email;
+      case 2:
+        return !!this.formData.preferredDate && !!this.formData.timeSlot && !!this.formData.showroomLocation;
+      case 3:
+        return true;
+      default:
+        return false;
+    }
+  }
+
+  showSuccessDialog(): void {
+    this.closeForm();
+    Swal.fire({
+      title: '🎉 Slot Booked Successfully!',
+      text: 'Your test drive slot has been booked. We will send a confirmation receipt to your registered email!',
+      imageUrl: 'assets/images/success.gif',
+      imageWidth: 400,
+      imageHeight: 300,
+      confirmButtonText: 'OK',
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+      }
+    });
+  }
+  showFailureDialog(): void {
+    this.closeForm();
+    Swal.fire({
+      title: '❌ Slot Booking Failed!',
+      text: 'There was an issue booking your test drive slot. Please try again later.',
+      imageUrl: 'assets/images/fail.gif',
+      imageWidth: 400,
+      imageHeight: 300,
+      confirmButtonText: 'Try Again',
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+      }
+    });
+  }
 }
