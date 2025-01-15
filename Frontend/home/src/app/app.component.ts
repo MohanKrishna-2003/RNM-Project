@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { NavigationEnd, Router, RouterModule, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from "./header/header.component";
 import { HomeComponent } from "./home/home.component";
@@ -7,25 +7,43 @@ import { ServiceListComponent } from "./service-list/service-list.component";
 import { BookingComponent } from "./booking/booking.component";
 import { FooterComponent } from "./footer/footer.component";
 import { ContactComponent } from "./contact/contact.component";
+import { ChatbotComponent } from "./chatbot/chatbot.component";
 
 @Component({
   selector: 'app-root',
   standalone:true,
-  imports: [HeaderComponent, CommonModule, RouterModule, FooterComponent, ServiceListComponent, HomeComponent, BookingComponent],
+  imports: [HeaderComponent, CommonModule, RouterModule, FooterComponent, ServiceListComponent, HomeComponent, BookingComponent, ContactComponent, ChatbotComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  showServiceList: boolean = false;
-  showContact: boolean = false;
+  // Variable to control visibility of chatbot
+  isChatbotVisible: boolean = false;
 
-  constructor(private router: Router) {
-    // Listen for route changes and set the flags accordingly
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        this.showServiceList = event.url.includes('/service');
-        this.showContact = event.url.includes('/contact');
-      }
+  // Scroll to top function
+  scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
     });
+  }
+
+  // Show the button when scrolling down
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll(): void {
+    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+    if (scrollToTopBtn) {
+      // Show button if the scroll position is more than 200px
+      if (window.scrollY > 200) {
+        scrollToTopBtn.classList.add('show-scroll-btn');
+      } else {
+        scrollToTopBtn.classList.remove('show-scroll-btn');
+      }
+    }
+  }
+
+  // Toggle the visibility of the chatbot
+  toggleChatbot(): void {
+    this.isChatbotVisible = !this.isChatbotVisible;
   }
 }

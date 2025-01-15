@@ -12,6 +12,7 @@ import { Routes } from '@angular/router';
 // import { Parent1Component } from './parent1/parent1.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { SigninComponent } from './signin/signin.component';
 
 export const routes: Routes = [
     {path:'',component:SignupComponent},
@@ -26,5 +27,6 @@ export const routes: Routes = [
     // {path:"parent",component:ParentComponent},
     // {path:"parent1",component:Parent1Component},
     {path:"signup",component:SignupComponent},
-    {path:"login",component:LoginComponent}
+    {path:"login",component:LoginComponent},
+    {path:"signin",component:SigninComponent}
 ];

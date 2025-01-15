@@ -1,17 +1,20 @@
+<app-header></app-header>
 
-<!-- location.component.html -->
 <div class="container">
-  <h2>Our Location</h2>
-  <div class="col-md-6">
-    <div class="map-container mb-4">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.837947118949!2d-122.41941508468145!3d37.77492977975827!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80858064e2b44b2f%3A0x7e0b7a97edca99d8!2sRenault%20Nissan!5e0!3m2!1sen!2sin!4v1673408498776!5m2!1sen!2sin"
-        width="100%"
-        height="300"
-        style="border:0;"
-        allowfullscreen=""
-        loading="lazy">
-      </iframe>
-    </div>
+  <div class="map-container">
+    <div id="map" style="height: 400px;"></div>
+  </div>
+
+  <div class="shop-list">
+    <h3>Our Car Shops</h3>
+    <ul>
+      <li *ngFor="let shop of shops; let i = index">
+        <!-- Custom icons for each shop -->
+        <img [src]="shop.icon" alt="Shop Icon" />
+        <span class="shop-name">{{ shop.name }}</span> -
+        <span class="shop-address">{{ shop.address }}</span>
+      </li>
+    </ul>
   </div>
 </div>
+
