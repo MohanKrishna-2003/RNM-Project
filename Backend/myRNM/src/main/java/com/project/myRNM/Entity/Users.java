@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
 
 
 @Entity
@@ -29,5 +30,8 @@ public class Users {
 
     @Column(name="user_mobile")
     private String mobile;
+
+    @Column(name="registration_date")
+    private Date registration_date;
 
 }

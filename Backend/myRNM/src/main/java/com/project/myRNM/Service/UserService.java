@@ -1,11 +1,14 @@
 package com.project.myRNM.Service;
 
+import com.project.myRNM.DTOs.MonthlyUserCount;
 import com.project.myRNM.DTOs.UserDTO;
 import com.project.myRNM.Entity.Users;
 import com.project.myRNM.Repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -42,4 +45,17 @@ public class UserService {
         return userRepo.totalUsers();
     }
 
+    public List<MonthlyUserCount> getMonthlyUserCounts() {
+        List<Object[]> results = userRepo.findMonthlyUserCounts();
+        List<MonthlyUserCount> monthlyCounts = new ArrayList<>();
+
+        // Map results from Object[] to MonthlyUserCount DTO
+        for (Object[] result : results) {
+            String month = (String) result[0];  // The first element is the month
+            Integer totalUsers = (Integer) result[1];  // The second element is the user count
+            monthlyCounts.add(new MonthlyUserCount(month, totalUsers));
+        }
+
+        return monthlyCounts;
+    }
 }

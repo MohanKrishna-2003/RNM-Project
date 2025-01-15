@@ -59,6 +59,15 @@ public class UserController {
             return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
         }
     }
+
+    @GetMapping("/userMonthlyCount")
+    public ResponseEntity<?> getMonthlyUserCount() {
+        try {
+            return ResponseEntity.ok(userService.getMonthlyUserCounts());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
+        }
+    }
 }
 
 
