@@ -8,11 +8,7 @@ import {
   isPlatformServer,
   parseCookieValue,
   setRootDomAdapter
-<<<<<<<< HEAD:Frontend/car-book/.angular/cache/19.0.5/car-book/vite/deps_ssr/chunk-6S3VGHBK.js
-} from "./chunk-FXCKPLS3.js";
-========
-} from "./chunk-MCO6UI4J.js";
->>>>>>>> f2ac65f4b7d918fb402144fb2282bfa5130c9e32:Frontend/Admin/.angular/cache/18.2.7/Sample/vite/deps/chunk-65RCXNHE.js
+} from "./chunk-JNOTUU73.js";
 import {
   APP_BOOTSTRAP_LISTENER,
   APP_ID,
@@ -48,10 +44,6 @@ import {
   ViewEncapsulation,
   XSS_SECURITY_URL,
   ZONELESS_ENABLED,
-  __async,
-  __objRest,
-  __spreadProps,
-  __spreadValues,
   _global,
   _sanitizeHtml,
   _sanitizeUrl,
@@ -91,18 +83,13 @@ import {
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
   ɵɵinject
-<<<<<<<< HEAD:Frontend/car-book/.angular/cache/19.0.5/car-book/vite/deps_ssr/chunk-6S3VGHBK.js
-} from "./chunk-DHLVHDDN.js";
+} from "./chunk-UXGX2JQG.js";
 import {
   __async,
   __objRest,
   __spreadProps,
-  __spreadValues,
-  __toESM
-} from "./chunk-YHCV7DAQ.js";
-========
-} from "./chunk-RXLE57JX.js";
->>>>>>>> f2ac65f4b7d918fb402144fb2282bfa5130c9e32:Frontend/Admin/.angular/cache/18.2.7/Sample/vite/deps/chunk-65RCXNHE.js
+  __spreadValues
+} from "./chunk-CX3I3NQG.js";
 
 // node_modules/@angular/common/fesm2022/http.mjs
 var HttpHandler = class {
@@ -4261,13 +4248,9 @@ function provideClientHydration(...features) {
   }
   return makeEnvironmentProviders([typeof ngDevMode !== "undefined" && ngDevMode ? provideZoneJsCompatibilityDetector() : [], withDomHydration(), featuresKind.has(HydrationFeatureKind.NoHttpTransferCache) || hasHttpTransferCacheOptions ? [] : withHttpTransferCache({}), providers]);
 }
-var VERSION = new Version("19.0.4");
+var VERSION = new Version("19.0.5");
 
 export {
-<<<<<<<< HEAD:Frontend/car-book/.angular/cache/19.0.5/car-book/vite/deps_ssr/chunk-6S3VGHBK.js
-  HTTP_ROOT_INTERCEPTOR_FNS,
-========
->>>>>>>> f2ac65f4b7d918fb402144fb2282bfa5130c9e32:Frontend/Admin/.angular/cache/18.2.7/Sample/vite/deps/chunk-65RCXNHE.js
   BrowserDomAdapter,
   BrowserGetTestability,
   EVENT_MANAGER_PLUGINS,
@@ -4310,20 +4293,16 @@ export {
 
 @angular/common/fesm2022/http.mjs:
   (**
-   * @license Angular v19.0.4
+   * @license Angular v19.0.5
    * (c) 2010-2024 Google LLC. https://angular.io/
    * License: MIT
    *)
 
 @angular/platform-browser/fesm2022/platform-browser.mjs:
   (**
-   * @license Angular v19.0.4
+   * @license Angular v19.0.5
    * (c) 2010-2024 Google LLC. https://angular.io/
    * License: MIT
    *)
 */
-<<<<<<<< HEAD:Frontend/car-book/.angular/cache/19.0.5/car-book/vite/deps_ssr/chunk-6S3VGHBK.js
-//# sourceMappingURL=chunk-6S3VGHBK.js.map
-========
-//# sourceMappingURL=chunk-65RCXNHE.js.map
->>>>>>>> f2ac65f4b7d918fb402144fb2282bfa5130c9e32:Frontend/Admin/.angular/cache/18.2.7/Sample/vite/deps/chunk-65RCXNHE.js
+//# sourceMappingURL=chunk-D3ZMNBCF.js.map
