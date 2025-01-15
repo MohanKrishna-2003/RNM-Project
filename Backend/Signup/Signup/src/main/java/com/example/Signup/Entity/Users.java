@@ -17,19 +17,19 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "name")
+    @Column(name = "user_name")
     private String name;
 
-    @Column(name = "email")
+    @Column(name = "user_email")
     private String email;
 
-    @Column(name = "password")
+    @Column(name = "user_password")
     private String password;
 
-    @Column(name = "mobile")
+    @Column(name = "user_mobile")
     private Long mobile;
 
-    @Column(name = "address")
+    @Column(name = "user_address")
     private String address;
 
     @CreationTimestamp
