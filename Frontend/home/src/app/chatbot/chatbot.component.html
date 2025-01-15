@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 <div class="chatbot-container">
+=======
+<!-- Chatbot Container -->
+<div *ngIf="isChatVisible" class="chatbot-container">
+  <!-- Close Button -->
+  <button class="close-btn" (click)="toggleChatVisibility()">×</button>
+
+>>>>>>> f2ac65f4b7d918fb402144fb2282bfa5130c9e32
   <div class="chat-window">
     <div class="messages" id="messages">
       <div *ngFor="let message of chatMessages" class="chat-message">
@@ -30,3 +38,11 @@
     </button>
   </div>
 </div>
+<<<<<<< HEAD
+=======
+
+<!-- Chatbot Icon (only visible when chatbot is closed) -->
+<div *ngIf="!isChatVisible" class="chatbot-icon" (click)="toggleChatVisibility()">
+  💬 <!-- This is a simple chat bubble icon -->
+</div>
+>>>>>>> f2ac65f4b7d918fb402144fb2282bfa5130c9e32

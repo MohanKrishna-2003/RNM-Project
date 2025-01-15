@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -6,6 +7,16 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-chatbot',
   standalone:true,
   imports: [CommonModule,FormsModule],
+=======
+import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'app-chatbot',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+>>>>>>> f2ac65f4b7d918fb402144fb2282bfa5130c9e32
   templateUrl: './chatbot.component.html',
   styleUrl: './chatbot.component.css'
 })
@@ -13,8 +24,14 @@ export class ChatbotComponent implements OnInit {
   chatMessages: { type: string, text: string, isTyping?: boolean }[] = [];
   userInput: string = '';
   quickReplies: string[] = ['What is your name?', 'Tell me about your services', 'How can I contact you?'];
+<<<<<<< HEAD
 
   constructor() { }
+=======
+  isChatVisible: boolean = true; // To toggle visibility of the chatbot
+
+  constructor() {}
+>>>>>>> f2ac65f4b7d918fb402144fb2282bfa5130c9e32
 
   ngOnInit(): void {
     this.greetUser();
@@ -76,6 +93,13 @@ export class ChatbotComponent implements OnInit {
     }, 1000);
   }
 
+<<<<<<< HEAD
+=======
+  toggleChatVisibility(): void {
+    this.isChatVisible = !this.isChatVisible;
+  }
+
+>>>>>>> f2ac65f4b7d918fb402144fb2282bfa5130c9e32
   scrollToBottom(): void {
     const messageContainer = document.getElementById('messages');
     if (messageContainer) {

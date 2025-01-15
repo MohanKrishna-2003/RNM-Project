@@ -1,49 +1,84 @@
 {
+<<<<<<< HEAD
   "hash": "d39ccd20",
   "configHash": "b45cfa09",
   "lockfileHash": "f0a36b75",
   "browserHash": "d87a1b63",
+=======
+  "hash": "3fa8fa3b",
+  "configHash": "e254e59e",
+  "lockfileHash": "f0a36b75",
+  "browserHash": "07cf0608",
+>>>>>>> f2ac65f4b7d918fb402144fb2282bfa5130c9e32
   "optimized": {
     "@angular/common": {
       "src": "../../../../../../node_modules/@angular/common/fesm2022/common.mjs",
       "file": "@angular_common.js",
+<<<<<<< HEAD
       "fileHash": "e3d0bf7b",
+=======
+      "fileHash": "c7768eea",
+>>>>>>> f2ac65f4b7d918fb402144fb2282bfa5130c9e32
       "needsInterop": false
     },
     "@angular/core": {
       "src": "../../../../../../node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
+<<<<<<< HEAD
       "fileHash": "d9682851",
+=======
+      "fileHash": "fc5272c9",
+>>>>>>> f2ac65f4b7d918fb402144fb2282bfa5130c9e32
       "needsInterop": false
     },
     "@angular/forms": {
       "src": "../../../../../../node_modules/@angular/forms/fesm2022/forms.mjs",
       "file": "@angular_forms.js",
+<<<<<<< HEAD
       "fileHash": "e70e09d6",
+=======
+      "fileHash": "541c92d6",
+>>>>>>> f2ac65f4b7d918fb402144fb2282bfa5130c9e32
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
+<<<<<<< HEAD
       "fileHash": "b68cc35f",
+=======
+      "fileHash": "b56a0277",
+>>>>>>> f2ac65f4b7d918fb402144fb2282bfa5130c9e32
       "needsInterop": false
     },
     "@angular/router": {
       "src": "../../../../../../node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
+<<<<<<< HEAD
       "fileHash": "5568f593",
+=======
+      "fileHash": "e1e609be",
+>>>>>>> f2ac65f4b7d918fb402144fb2282bfa5130c9e32
       "needsInterop": false
     },
     "bootstrap": {
       "src": "../../../../../../node_modules/bootstrap/dist/js/bootstrap.esm.js",
       "file": "bootstrap.js",
+<<<<<<< HEAD
       "fileHash": "1d21dfae",
+=======
+      "fileHash": "2bffa33a",
+>>>>>>> f2ac65f4b7d918fb402144fb2282bfa5130c9e32
       "needsInterop": false
     },
     "leaflet": {
       "src": "../../../../../../node_modules/leaflet/dist/leaflet-src.js",
       "file": "leaflet.js",
+<<<<<<< HEAD
       "fileHash": "9fe3fd44",
+=======
+      "fileHash": "a08890de",
+>>>>>>> f2ac65f4b7d918fb402144fb2282bfa5130c9e32
       "needsInterop": true
     }
   },

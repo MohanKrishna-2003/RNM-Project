@@ -16,20 +16,14 @@ public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    @Column(name = "user_name")
+    @Column(name="name")
     private String name;
-
-    @Column(name = "user_email")
+    @Column(name="email")
     private String email;
-
-    @Column(name = "user_password")
+    @Column(name="password")
     private String password;
 
-    @Column(name = "user_mobile")
-    private Long mobile;
-
-    @Column(name = "user_address")
+    @Column(name="address")
     private String address;
 
     @CreationTimestamp
@@ -38,9 +32,32 @@ public class Users {
 
     @OneToMany
 
-    public Integer getId() {
-        return id;
-    }
+    @CreationTimestamp
+    @Column(name = "registration_date", nullable = false, updatable = false)
+    private Date registrationDate; // This field will store the registration date and time
+
+    @OneToMany
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private List<Feedback> feedbacks;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    public Integer getId() {
+//        return id;
+//    }
 
     public void setId(Integer id) {
         this.id = id;
@@ -76,13 +93,5 @@ public class Users {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public Long getMobile() {
-        return mobile;
-    }
-
-    public void setMobile(Long mobile) {
-        this.mobile = mobile;
     }
 }
