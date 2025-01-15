@@ -45,6 +45,12 @@
       "file": "leaflet.js",
       "fileHash": "a08890de",
       "needsInterop": true
+    },
+    "@angular/common/http": {
+      "src": "../../../../../../node_modules/@angular/common/fesm2022/http.mjs",
+      "file": "@angular_common_http.js",
+      "fileHash": "d61bd265",
+      "needsInterop": false
     }
   },
   "chunks": {
