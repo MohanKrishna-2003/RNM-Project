@@ -1543,6 +1543,73 @@ button.submit-btn:hover {
   cursor: pointer;
 }
 
+
 .formbold-btn:hover {
   box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Responsive Styles for All Devices */
+@media (max-width: 768px) {
+  .formbold-form-wrapper {
+    padding: 10px;
+    margin: 0 auto;
+  }
+
+  .formbold-input-flex {
+    flex-direction: column;
+  }
+
+  .formbold-form-input {
+    width: 100%;
+  }
+
+  .formbold-btn {
+    width: 100%;
+  }
+}
+
+/* Form Step Visibility */
+.formbold-form-step-1,
+.formbold-form-step-2,
+.formbold-form-step-3 {
+  display: none;
+}
+
+.formbold-form-step-1.active,
+.formbold-form-step-2.active,
+.formbold-form-step-3.active {
+  display: block;
+}
+
+/* Button Disabled State */
+button:disabled {
+  background-color: #dcdcdc;
+  cursor: not-allowed;
+}
+
+/* Animation for Form Close */
+@keyframes slideOut {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.formbold-form-wrapper {
+  animation: slideFromBottom 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+}
+
+@keyframes slideFromBottom {
+  0% {
+    transform: translateY(80%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.test-drive-dialog.show {
+  animation: slideUp 1s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
