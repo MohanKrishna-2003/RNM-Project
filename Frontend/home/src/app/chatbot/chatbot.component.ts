@@ -7,13 +7,13 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './chatbot.component.html',
-  styleUrl: './chatbot.component.css'
+  styleUrls: ['./chatbot.component.css']
 })
 export class ChatbotComponent implements OnInit {
   chatMessages: { type: string, text: string, isTyping?: boolean }[] = [];
   userInput: string = '';
   quickReplies: string[] = ['What is your name?', 'Tell me about your services', 'How can I contact you?'];
-  isChatVisible: boolean = true; // To toggle visibility of the chatbot
+  isChatVisible: boolean = false;  // Initially hidden
 
   constructor() {}
 
@@ -78,7 +78,7 @@ export class ChatbotComponent implements OnInit {
   }
 
   toggleChatVisibility(): void {
-    this.isChatVisible = !this.isChatVisible;
+    this.isChatVisible = !this.isChatVisible;  // Toggles the visibility
   }
 
   scrollToBottom(): void {

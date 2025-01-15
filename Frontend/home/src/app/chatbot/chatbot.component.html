@@ -1,3 +1,9 @@
+<!-- Chatbot Icon Container -->
+<div *ngIf="!isChatVisible" class="chatbot-icon-container" (click)="toggleChatVisibility()">
+  <!-- Chatbot Icon (Bubble) -->
+  <div class="chatbot-icon">💬</div> <!-- Chat bubble text as the icon -->
+</div>
+
 <!-- Chatbot Container -->
 <div *ngIf="isChatVisible" class="chatbot-container">
   <!-- Close Button -->
@@ -33,9 +39,4 @@
       {{ reply }}
     </button>
   </div>
-</div>
-
-<!-- Chatbot Icon (only visible when chatbot is closed) -->
-<div *ngIf="!isChatVisible" class="chatbot-icon" (click)="toggleChatVisibility()">
-  💬 <!-- This is a simple chat bubble icon -->
 </div>
