@@ -9,6 +9,7 @@ import { FooterComponent } from "./footer/footer.component";
 import { ContactComponent } from "./contact/contact.component";
 import { ChatbotComponent } from "./chatbot/chatbot.component";
 
+
 @Component({
   selector: 'app-root',
   standalone:true,
@@ -17,6 +18,9 @@ import { ChatbotComponent } from "./chatbot/chatbot.component";
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+  title(title: any) {
+    throw new Error('Method not implemented.');
+  }
   // Variable to control visibility of chatbot
   isChatbotVisible: boolean = false;
 

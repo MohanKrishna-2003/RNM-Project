@@ -1,0 +1,60 @@
+<div class="container-fluid d-flex justify-content-center align-items-center vh-100">
+  <div class="main">
+    <div class="row w-100">
+      <div class="col-12 col-sm-5 col-md-5 d-flex justify-content-center align-items-center">
+        <div class="image mt-5"> 
+          <img src="https://static.vecteezy.com/system/resources/previews/016/389/997/non_2x/online-customer-feedback-and-survey-free-png.png" alt="img" width="100%" class="img-fluid">
+        </div>
+      </div>
+      <div class="col-12 col-sm-1 col-md-1 d-flex justify-content-center align-items-stretch">
+        <div class="vertical-line"></div>
+      </div>
+      <div class="col-12 col-sm-6 col-md-6 mt-5">
+        <div class="card-body mt-4 w-75">
+          <div class="card-title text-center mb-4">
+            <i class="fas fa-comment-dots fa-3x" style="color: #8347ad;"></i>
+            <h2 class="text-center mb-4">We Value Your Feedback</h2>
+          </div>
+          <form [formGroup]="feedbackForm" (ngSubmit)="submit()">
+            <!-- Name Field -->
+            <div class="input-field">
+              <div class="form-group">
+                <input type="text" class="form-control" formControlName="name" placeholder="Enter your name" required>
+                <div *ngIf="feedbackForm.get('name')?.touched && feedbackForm.get('name')?.invalid" class="text-danger">
+                  <div *ngIf="feedbackForm.get('name')?.hasError('required')">Name is required</div>
+                </div>
+              </div>
+
+              <!-- Email Field -->
+              <div class="form-group">
+                <input type="email" class="form-control mt-3" formControlName="email" placeholder="Enter your email" required>
+                <div *ngIf="feedbackForm.get('email')?.touched && feedbackForm.get('email')?.invalid" class="text-danger">
+                  <div *ngIf="feedbackForm.get('email')?.hasError('required')">Email is required</div>
+                  <div *ngIf="feedbackForm.get('email')?.hasError('email')">Please enter a valid email address</div>
+                </div>
+              </div>
+
+              <!-- Feedback Message Field -->
+              <div class="form-group">
+                <textarea class="form-control mt-3" formControlName="feedback" placeholder="Enter your feedback" rows="4" required></textarea>
+                <div *ngIf="feedbackForm.get('feedback')?.touched && feedbackForm.get('feedback')?.invalid" class="text-danger">
+                  <div *ngIf="feedbackForm.get('feedback')?.hasError('required')">Feedback is required</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div>
+              <button type="submit" class="btn btn-primary btn-block mt-3" [disabled]="feedbackForm.invalid">Submit Feedback</button>
+            </div>
+          </form>
+
+          <!-- Optional link -->
+          <!-- <div class="text-center mt-3 m-2">
+            <p>Need help? <a href="/contact" style="color: #8347ad;">Contact us</a></p>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
