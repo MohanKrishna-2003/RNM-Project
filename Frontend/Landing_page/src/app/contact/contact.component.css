@@ -255,3 +255,84 @@ h1 {
 #logos img:hover {
   transform: scale(1.1); /* Slight zoom effect on hover */
 }
+
+
+/* Styling the feedback container */
+.feedback {
+  border: 1px solid #ddd; /* Light border color */
+  border-radius: 10px; /* Round the corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  background-color: #f9f9f9; /* Light background */
+  padding: 30px; /* Padding inside the container */
+}
+
+/* Styling the feedback form card body */
+.feedback .card-body {
+  background-color: #fff; /* White background for the form */
+  border-radius: 10px; /* Rounded corners for the card */
+  padding: 30px; /* Padding inside the form card */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Slight shadow for depth */
+}
+
+/* Title of the form */
+.feedback .card-title {
+  color: #8347ad; /* Stylish purple color */
+  font-size: 28px; /* Adjust the font size */
+  font-weight: 600; /* Bold title */
+  margin-bottom: 20px; /* Margin below the title */
+}
+
+/* Submit button styling */
+.feedback .btn-primary {
+  background-color: #8347ad; /* Purple color */
+  border-color: #8347ad; /* Same purple color */
+  font-size: 16px; /* Font size of the button */
+  padding: 12px; /* Padding inside the button */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.feedback .btn-primary:hover {
+  background-color: #6f2fa0; /* Darker purple on hover */
+  border-color: #6f2fa0; /* Darker purple on hover */
+}
+
+/* Input fields and textarea */
+.feedback .form-control {
+  border-radius: 5px; /* Rounded corners for form inputs */
+  padding: 12px; /* Padding inside input fields */
+  border: 1px solid #ddd; /* Light border color */
+  font-size: 16px; /* Font size for text */
+}
+
+/* Focus effect on input fields */
+.feedback .form-control:focus {
+  border-color: #8347ad; /* Purple border on focus */
+  box-shadow: 0 0 5px rgba(131, 71, 173, 0.5); /* Soft purple glow */
+}
+
+/* Styling for error messages */
+.feedback .text-danger {
+  font-size: 12px;
+  color: #e74c3c; /* Red color for error messages */
+}
+
+/* Responsive design for small devices */
+@media (max-width: 768px) {
+  .feedback {
+    padding: 20px; /* Reduce padding on small screens */
+  }
+
+  .feedback .card-body {
+    padding: 20px; /* Reduce padding for the form card */
+  }
+
+  .feedback .btn-primary {
+    padding: 10px; /* Reduce padding for the button */
+  }
+
+  .feedback .form-control {
+    padding: 10px; /* Reduce padding for input fields */
+  }
+}
+

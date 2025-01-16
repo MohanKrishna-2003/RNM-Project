@@ -1,0 +1,136 @@
+.main {
+  /* border: 2px solid rgb(18, 16, 16); */
+  height: 90vh; 
+  display: flex;
+  flex-wrap: wrap; 
+  background: #f4f9fd;
+  overflow: hidden;
+  border-radius: 25px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); 
+  transition: transform 0.3s ease-in-out; 
+}
+
+.main:hover {
+  transform: scale(1.02); 
+}
+
+.card {
+  margin-top: 60px;
+  border: 1px solid black;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  border-radius: 15px; 
+  max-width: 500px;
+}
+
+.image {
+  margin-top: 9%;
+  margin-left: 10px;
+  border-radius: 15px;
+  transition: transform 0.3s ease-in-out;
+}
+
+
+input {
+  border-radius: 15px;
+  width: 75%; 
+  padding: 12px 15px;
+  border: 1px solid #ccc; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+input:focus {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); 
+  border-color: #8347ad; 
+}
+
+button {
+  border-radius: 15px;
+  width: 65%; 
+  margin-left: 80px;
+  background-color: #8347ad; 
+  color: white; 
+  padding: 12px;
+  border: none; 
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: #6a2f99; 
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25); 
+}
+
+.input-field {
+  margin-left: 80px;
+}
+
+/* .vertical-line {
+  height: 100%;
+  width: 2px;
+  background: #f4f9fd;
+  margin-top: 0;
+  margin-bottom: 0;
+} */
+
+.col-md-1, .col-md-6, .col-md-5 {
+  background: #f4f9fd;
+}
+
+.col-md-1 {
+  padding-left: 0;
+  padding-right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  height: 100%;
+}
+
+.col-md-6 {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.col-md-5 {
+  background-color: white;
+}
+
+.image img {
+  width: 100%;
+  height: auto;
+  border-radius: 15px; 
+}
+
+.text-center {
+  font-size: 14px;
+  font-family: 'Arial', sans-serif;
+  color: #6c757d;
+}
+.card-title h2 {
+  font-size: 2rem; 
+  font-weight: bold;
+  color: #8347ad;
+}
+
+@media (max-width: 768px) {
+  .col-12 {
+    width: 100% !important; 
+  }
+
+  .main {
+    flex-direction: column; 
+    height: auto; 
+  }
+
+  .vertical-line {
+    width: 100%; 
+    height: 2px;
+    background: #8347ad;
+  }
+
+  .col-md-6 {
+    margin-top: 30px;
+  }
+}
+
