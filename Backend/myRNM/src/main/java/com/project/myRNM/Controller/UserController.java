@@ -60,6 +60,15 @@ public class UserController {
         }
     }
 
+    @GetMapping("/last30")
+    public ResponseEntity<?> last30() {
+        try {
+            return ResponseEntity.ok(userService.last30users());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
+        }
+    }
+
     @GetMapping("/userMonthlyCount")
     public ResponseEntity<?> getMonthlyUserCount() {
         try {

@@ -56,6 +56,10 @@ mingo@gmail.com	Donquixote Donflamingo	6435468733	Dressroza	2025-01-13	evening	c
 -- Name: slot_bookings slot_bookings_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
+
+
+
+
 ALTER TABLE ONLY public.slot_bookings
     ADD CONSTRAINT slot_bookings_pkey PRIMARY KEY (email);
 

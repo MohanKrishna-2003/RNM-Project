@@ -1,6 +1,8 @@
 package com.project.myRNM.Controller;
 
+import com.project.myRNM.DTOs.BrandCountDTO;
 import com.project.myRNM.Entity.SlotBooking;
+import com.project.myRNM.Response.GeneralResponse;
 import com.project.myRNM.Service.SlotBookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,29 +21,48 @@ public class SlotBookingController {
     private SlotBookingService slotBookingService;
 
     @PostMapping
-    public ResponseEntity<?> createBooking(@RequestBody @Validated SlotBooking slotBooking){
+    public ResponseEntity<?> createBooking(@RequestBody @Validated SlotBooking slotBooking) {
         SlotBooking savedBooking = slotBookingService.saveSlotBooking(slotBooking);
         return ResponseEntity.ok(savedBooking);
     }
 
     @GetMapping
-    public ResponseEntity<?> getAllBookings(){
+    public ResponseEntity<?> getAllBookings() {
         List<SlotBooking> bookings = slotBookingService.getAllBookings();
         return ResponseEntity.ok(bookings);
     }
 
     @GetMapping("/{email}")
-    public ResponseEntity<?> getBookingsByEmail(@PathVariable String email){
+    public ResponseEntity<?> getBookingsByEmail(@PathVariable String email) {
         SlotBooking booking = slotBookingService.getBookingByEmail(email);
-        if(booking == null){
+        if (booking == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(booking);
     }
 
     @DeleteMapping("/{email}")
-    public ResponseEntity<?> deleteBooking(@PathVariable String email){
+    public ResponseEntity<?> deleteBooking(@PathVariable String email) {
         slotBookingService.deleteBooking(email);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/userMonthlyCount")
+    public ResponseEntity<?> getMonthlyUserCount() {
+        try {
+            return ResponseEntity.ok(slotBookingService.getMonthlyUserCounts());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
+        }
+    }
+
+    @GetMapping("/brandCount")
+    public ResponseEntity<?> getUserCountByBrand() {
+        try {
+            return ResponseEntity.ok(slotBookingService.getCountByBrand());
+
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
+        }
     }
 }
