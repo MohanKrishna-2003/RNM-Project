@@ -1,0 +1,45 @@
+<div class="container-fluid d-flex justify-content-center align-items-center vh-100">
+  <div class="main">
+    <div class="row w-100">
+      <div class="col-12 col-sm-5 col-md-5">
+        <div class="image">
+          <img src="loginimg.jpg" alt="img" width="100%" class="image">
+        </div>
+      </div>
+      <div class="col-12 col-sm-1 col-md-1 d-flex justify-content-center align-items-stretch">
+        <div class="vertical-line"></div>
+      </div>
+      <div class="col-12 col-sm-6 col-md-6 mt-5">
+        <div class="card-body mt-4">
+          <div class="card-title text-center mb-4">
+            <i class="fas fa-sign-in-alt fa-3x" style="color: #8347ad;"></i>
+            <h2 class="text-center mb-4">Login</h2>
+          </div>
+          <form [formGroup]="loginForm" (ngSubmit)="submit()">
+            <div class="input-field">
+              <div class="form-group">
+                <input type="email" class="form-control" formControlName="email" placeholder="Enter your email">
+                <div *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid" class="text-danger">
+                  <div *ngIf="loginForm.get('email')?.hasError('required')">Email is required</div>
+                  <div *ngIf="loginForm.get('email')?.hasError('email')">Please enter a valid email address</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control mt-3" formControlName="password" placeholder="Enter your password" required>
+                <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid" class="text-danger">
+                  <div *ngIf="loginForm.get('password')?.hasError('required')">Password is required</div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <button type="submit" class="btn btn-primary btn-block mt-3" [disabled]="loginForm.invalid">Submit</button>
+            </div>
+          </form>
+          <div class="text-center mt-3 m-2">
+            <p>Don't have an account? <a href="/signup" style="color: #8347ad;">Register</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

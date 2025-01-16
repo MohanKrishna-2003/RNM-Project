@@ -2,6 +2,7 @@
 
 <div class="container">
   <div class="map-container">
+    <!-- Map container with id 'map' -->
     <div id="map" style="height: 400px;"></div>
   </div>
 
@@ -9,12 +10,10 @@
     <h3>Our Car Shops</h3>
     <ul>
       <li *ngFor="let shop of shops; let i = index">
-        <!-- Custom icons for each shop -->
-        <img [src]="shop.icon" alt="Shop Icon" />
+        <img [src]="shop.icon" alt="Shop Icon" width="30" height="30"/>
         <span class="shop-name">{{ shop.name }}</span> -
         <span class="shop-address">{{ shop.address }}</span>
       </li>
     </ul>
   </div>
 </div>
-

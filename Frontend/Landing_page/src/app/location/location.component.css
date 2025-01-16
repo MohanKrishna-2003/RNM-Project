@@ -108,3 +108,19 @@
     text-align: center;
   }
 }
+#map {
+  height: 100%;
+  width: 100%;
+}
+
+.shop-list {
+  margin-top: 20px;
+}
+
+.shop-name {
+  font-weight: bold;
+}
+
+.shop-address {
+  color: grey;
+}
