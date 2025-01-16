@@ -1,12 +1,14 @@
 package com.project.myRNM.Service;
 
 
+import com.project.myRNM.DTOs.UserSlotCount;
 import com.project.myRNM.Entity.SlotBooking;
 import com.project.myRNM.Repository.SlotBookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -38,6 +40,35 @@ public class SlotBookingService {
     }
 
 
+//    public List<UserSlotCount> getMonthlyUserCounts() {
+//        List<Object[]> results = slotBookingRepository.findMonthlyBookingCounts();
+//        List<UserSlotCount> monthlyCounts = new ArrayList<>();
+//
+//        // Map results from Object[] to MonthlyUserCount DTO
+//        for (Object[] result : results) {
+//            String month = (String) result[0];  // The first element is the month
+//            Long totalUsers = (Long) result[1];  // The second element is the user count
+//            monthlyCounts.add(new UserSlotCount(month, totalUsers));
+//        }
+//
+//        return monthlyCounts;
+//    }
+
+    public List<UserSlotCount> getMonthlyUserCounts() {
+        List<Object[]> results = slotBookingRepository.findMonthlyBookingCountsByBrand();
+        List<UserSlotCount> monthlyCounts = new ArrayList<>();
+
+        // Map results from Object[] to MonthlyUserCount DTO
+        for (Object[] result : results) {
+            String month = (String) result[0];  // The first element is the month
+            String brands = (String) result[1];
+            Long totalUsers = (Long) result[2];
+// The second element is the user count
+            monthlyCounts.add(new UserSlotCount(month, brands, totalUsers));
+        }
+
+        return monthlyCounts;
+    }
 
 
 }

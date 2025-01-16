@@ -2,7 +2,7 @@ package com.project.myRNM.DTOs;
 
 public class MonthlyUserCount {
     String month;
-    Integer count;
+    Long count;
 
     public MonthlyUserCount() {
     }
@@ -11,7 +11,7 @@ public class MonthlyUserCount {
         return month;
     }
 
-    public MonthlyUserCount(String month, Integer count) {
+    public MonthlyUserCount(String month, Long count) {
         this.month = month;
         this.count = count;
     }
@@ -20,11 +20,11 @@ public class MonthlyUserCount {
         this.month = month;
     }
 
-    public Integer getCount() {
+    public Long getCount() {
         return count;
     }
 
-    public void setCount(Integer count) {
+    public void setCount(Long count) {
         this.count = count;
     }
 }

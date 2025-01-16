@@ -1,6 +1,7 @@
 package com.project.myRNM.Controller;
 
 import com.project.myRNM.Entity.SlotBooking;
+import com.project.myRNM.Response.GeneralResponse;
 import com.project.myRNM.Service.SlotBookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -44,4 +45,15 @@ public class SlotBookingController {
         slotBookingService.deleteBooking(email);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/userMonthlyCount")
+    public ResponseEntity<?> getMonthlyUserCount() {
+        try {
+            return ResponseEntity.ok(slotBookingService.getMonthlyUserCounts());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
+        }
+    }
+
+
 }

@@ -7,6 +7,7 @@ import com.project.myRNM.Repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -44,6 +45,10 @@ public class UserService {
     public Integer totalUsers(){
         return userRepo.totalUsers();
     }
+    public Long last30users(){
+        LocalDate thirtyDaysAgo = LocalDate.now().minusDays(30);
+        Long count = userRepo.countUsersRegisteredInLast30Days(thirtyDaysAgo);
+    return count;}
 
     public List<MonthlyUserCount> getMonthlyUserCounts() {
         List<Object[]> results = userRepo.findMonthlyUserCounts();
@@ -52,10 +57,12 @@ public class UserService {
         // Map results from Object[] to MonthlyUserCount DTO
         for (Object[] result : results) {
             String month = (String) result[0];  // The first element is the month
-            Integer totalUsers = (Integer) result[1];  // The second element is the user count
+            Long totalUsers = (Long) result[1];  // The second element is the user count
             monthlyCounts.add(new MonthlyUserCount(month, totalUsers));
         }
 
         return monthlyCounts;
     }
+
+
 }

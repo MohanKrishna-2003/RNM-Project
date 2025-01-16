@@ -28,6 +28,7 @@ public class SlotBooking {
     private String name;
     private String phone;
     private String address;
+    private String status;
 
     @Column(name = "preferred_date")
     private LocalDate preferredDate;
@@ -46,4 +47,7 @@ public class SlotBooking {
     @Column(name = "selected_car_details")
 //    @JsonProperty("selectedCarDetails")
     private String selectedCarDetails;
+
+    @Column(name = "brand")
+    private String brand;
 }

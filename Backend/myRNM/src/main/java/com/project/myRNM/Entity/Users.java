@@ -1,23 +1,23 @@
 package com.project.myRNM.Entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name="userdetails")
 public class Users {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="user_id")
-    private Integer id;
+    private Long id;
     @Column(name="user_name")
     private String name;
     @Column(name="user_email")
@@ -32,6 +32,6 @@ public class Users {
     private String mobile;
 
     @Column(name="registration_date")
-    private Date registration_date;
+    private LocalDate registration_date;
 
 }
