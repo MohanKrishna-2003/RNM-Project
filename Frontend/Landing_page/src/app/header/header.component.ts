@@ -1,7 +1,7 @@
 
 import { AfterViewInit, Component } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Import CommonModule for *ngIf and other common directives
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
+  constructor(private router:Router){}
   isMapVisible = false; // Variable to control the visibility of the map
 
   toggleMap() {
@@ -26,15 +27,15 @@ export class HeaderComponent {
 
   // Function to handle Login
   onLogin() {
+    this.router.navigateByUrl("/login")
     console.log('Redirect to Login page');
-    // You can navigate to a login page using the Angular router
-    // this.router.navigate(['/login']);
+    
   }
 
   // Function to handle Sign Up
   onSignup() {
+    this.router.navigateByUrl("/signup")
     console.log('Redirect to Signup page');
-    // You can navigate to a signup page using the Angular router
-    // this.router.navigate(['/signup']);
+    
   }
 }
