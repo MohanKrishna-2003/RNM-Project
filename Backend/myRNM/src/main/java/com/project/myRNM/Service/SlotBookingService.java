@@ -55,16 +55,15 @@ public class SlotBookingService {
 //    }
 
     public List<UserSlotCount> getMonthlyUserCounts() {
-        List<Object[]> results = slotBookingRepository.findMonthlyBookingCountsByBrand();
+        List<Object[]> results = slotBookingRepository.findMonthlyBookingCountsByMonthName();
         List<UserSlotCount> monthlyCounts = new ArrayList<>();
 
         // Map results from Object[] to MonthlyUserCount DTO
         for (Object[] result : results) {
             String month = (String) result[0];  // The first element is the month
-            String brands = (String) result[1];
-            Long totalUsers = (Long) result[2];
+            Long totalUsers = (Long) result[1];
 // The second element is the user count
-            monthlyCounts.add(new UserSlotCount(month, brands, totalUsers));
+            monthlyCounts.add(new UserSlotCount(month, totalUsers));
         }
 
         return monthlyCounts;

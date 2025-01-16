@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class UserSlotCount {
 
     String month;
-    String brand;
+//    String brand;
     Long count;
 
 }

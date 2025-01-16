@@ -1,110 +1,112 @@
-  .search-input {
-    padding: 10px;
-    border-radius: 0.5rem;
-    border: 1px solid #c7d9e7;
-  }
+.search-input {
+  padding: 10px;
+  border-radius: 0.5rem;
+  border: 1px solid #c7d9e7;
+}
 
-  .btn-lg {
-    font-size: 1rem;
-    padding: 10px 20px;
-    border-radius: 0.5rem;
-    background-color: #007bff;
-    color: white;
-  }
+.btn-lg {
+  font-size: 1rem;
+  padding: 10px 20px;
+  border-radius: 0.5rem;
+  background-color: #007bff;
+  color: white;
+}
 
-  .btn-outline-primary {
-    border-color: #007bff;
-    color: #007bff;
-  }
+.btn-outline-primary {
+  border-color: #007bff;
+  color: #007bff;
+}
 
-  .btn-outline-primary:hover {
-    background-color: #007bff;
-    color: white;
-  }
+.btn-outline-primary:hover {
+  background-color: #007bff;
+  color: white;
+}
 
-  .table th,
-  .table td {
-    vertical-align: middle;
-    padding: 0.4rem;
-    text-align: center;
-  }
+.table th,
+.table td {
+  vertical-align: middle;
+  padding: 0.4rem;
+  text-align: center;
+}
 
-  .table-hover tbody tr:hover {
-    background-color: #f2f9ff;
-  }
+.table-hover tbody tr:hover {
+  background-color: #f2f9ff;
+}
 
-  .badge {
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
-  }
+.badge {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+}
 
-  .action-buttons {
-    text-align: center;
-  }
+.action-buttons {
+  text-align: center;
+}
 
-  .action-buttons button {
-    padding: 0.6rem 1.2rem;
-    font-size: 0.9rem;
-    border-radius: 0.5rem;
-    transition: all 0.3s ease;
-  }
+.action-buttons button {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
 
-  .action-buttons button i.icon-small {
-    font-size: 1rem;
-    margin-right: 8px;
-  }
+.action-buttons button i.icon-small {
+  font-size: 1rem;
+  margin-right: 8px;
+}
 
-  .action-buttons button:hover {
-    transform: scale(1.05);
-  }
+.action-buttons button:hover {
+  transform: scale(1.05);
+}
 
-  .input-group button i {
-    font-size: 1.25rem;
-  }
+.input-group button i {
+  font-size: 1.25rem;
+}
 
-  .btn-info {
-    background-color: #5bc0de;
-    border-color: #5bc0de;
-  }
+.btn-info {
+  background-color: #5bc0de;
+  border-color: #5bc0de;
+}
 
-  .btn-info:hover {
-    background-color: #31a2c1;
-    border-color: #31a2c1;
-  }
+.btn-info:hover {
+  background-color: #31a2c1;
+  border-color: #31a2c1;
+}
 
-  .btn-dark {
-    background-color: #343a40;
-    border-color: #343a40;
-  }
+.btn-dark {
+  background-color: #343a40;
+  border-color: #343a40;
+}
 
-  .btn-dark:hover {
-    background-color: #23272b;
-    border-color: #23272b;
-  }
+.btn-dark:hover {
+  background-color: #23272b;
+  border-color: #23272b;
+}
 
-  .table-light {
-    background-color: #f8f9fa;
-  }
+.table-light {
+  background-color: #f8f9fa;
+}
 
-  .badge.bg-primary {
-    background-color: #007bff;
-  }
+.badge.bg-primary {
+  background-color: #007bff;
+}
 
-  .badge.bg-secondary {
-    background-color: #6c757d;
-  }
+.badge.bg-secondary {
+  background-color: #6c757d;
+}
 
-  .badge.bg-dark {
-    background-color: #343a40;
-  }
+.badge.bg-dark {
+  background-color: #343a40;
+}
 
-  .btn-dark,
-  .btn-info {
-    font-weight: 600;
-  }
+.btn-dark,
+.btn-info {
+  font-weight: 600;
+}
 #book {
   margin-left: 250px; /* Adjust based on the width of the navbar */
-  width: calc(100% - 250px); /* Make the dashboard take the rest of the available space */
+  width: calc(
+    100% - 250px
+  ); /* Make the dashboard take the rest of the available space */
   padding: 20px;
   box-sizing: border-box;
 }
