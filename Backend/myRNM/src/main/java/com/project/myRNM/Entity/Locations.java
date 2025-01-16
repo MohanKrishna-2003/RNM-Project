@@ -1,4 +1,4 @@
-package com.example.car.model;
+package com.project.myRNM.Entity;
 
 import jakarta.persistence.*;
 

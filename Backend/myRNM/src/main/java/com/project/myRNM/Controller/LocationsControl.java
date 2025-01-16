@@ -1,6 +1,6 @@
-package com.example.car.controller;
+package com.project.myRNM.Controller;
 
-import com.example.car.service.LocationsService;
+import com.project.myRNM.Service.LocationsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

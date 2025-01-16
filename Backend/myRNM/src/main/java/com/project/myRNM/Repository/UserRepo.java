@@ -23,9 +23,11 @@ public interface UserRepo extends JpaRepository<Users, Integer> {
 //    List<Object[]> getUsers();
 
     @Query(value = "SELECT TO_CHAR(u.registration_date, 'FMMonth') AS month, COUNT(u) AS total_users " +
-            "FROM userdetails u " +
-            "GROUP BY TO_CHAR(u.registration_date, 'FMMonth') " +
-            "ORDER BY TO_DATE(TO_CHAR(u.registration_date, 'FMMonth'), 'Month')")
+            "FROM Users u " +
+            "GROUP BY TO_CHAR(u.registration_date, 'FMMonth'), EXTRACT(MONTH FROM u.registration_date) " +
+            "ORDER BY EXTRACT(MONTH FROM u.registration_date)")
     List<Object[]> findMonthlyUserCounts();
+
+
 }
 
