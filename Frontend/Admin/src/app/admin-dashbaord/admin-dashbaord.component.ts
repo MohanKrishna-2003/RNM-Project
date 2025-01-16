@@ -196,143 +196,29 @@ export class AdminDashbaordComponent implements OnInit {
 
   // =========== chart three start
   public config3: any = {
-    type: 'line',
+    type: 'pie', // Pie chart type
     data: {
-      labels: [
-        'Jan',
-        'Feb',
-        'Mar',
-        'Apr',
-        'May',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-        'Oct',
-        'Nov',
-        'Dec',
-      ],
+      labels: ['Renault', 'Nissan', 'Mitsubishi'], // Labels
       datasets: [
         {
-          label: 'Renault',
-          backgroundColor: 'transparent',
-          borderColor: '#365CF5',
-          data: [80, 120, 110, 100, 130, 150, 115, 145, 140, 130, 160, 210],
-          pointBackgroundColor: 'transparent',
-          pointHoverBackgroundColor: '#365CF5',
-          pointBorderColor: 'transparent',
-          pointHoverBorderColor: '#365CF5',
-          pointHoverBorderWidth: 3,
-          pointBorderWidth: 5,
-          pointRadius: 5,
-          pointHoverRadius: 8,
-          fill: false,
-          tension: 0.4,
-        },
-        {
-          label: 'Nissan',
-          backgroundColor: 'transparent',
-          borderColor: '#9b51e0',
-          data: [120, 160, 150, 140, 165, 210, 135, 155, 170, 140, 130, 200],
-          pointBackgroundColor: 'transparent',
-          pointHoverBackgroundColor: '#9b51e0',
-          pointBorderColor: 'transparent',
-          pointHoverBorderColor: '#9b51e0',
-          pointHoverBorderWidth: 3,
-          pointBorderWidth: 5,
-          pointRadius: 5,
-          pointHoverRadius: 8,
-          fill: false,
-          tension: 0.4,
-        },
-        {
-          label: 'Mitsubishi',
-          backgroundColor: 'transparent',
-          borderColor: '#9b51e0',
-          data: [120, 160, 150, 140, 165, 210, 135, 155, 170, 140, 130, 200],
-          pointBackgroundColor: 'transparent',
-          pointHoverBackgroundColor: '#9b51e0',
-          pointBorderColor: 'transparent',
-          pointHoverBorderColor: '#9b51e0',
-          pointHoverBorderWidth: 3,
-          pointBorderWidth: 5,
-          pointRadius: 5,
-          pointHoverRadius: 8,
-          fill: false,
-          tension: 0.4,
+          label: 'Car Bookings',
+          data: [50, 30, 20], // Sample data
+          backgroundColor: ['#365CF5', '#9b51e0', '#4CAF50'],
+          hoverBackgroundColor: ['#2A46B1', '#7F37A8', '#388E3C'],
+          borderWidth: 5,
+          borderColor: '#ffffff',
         },
       ],
     },
     options: {
-      plugins: {
-        tooltip: {
-          intersect: false,
-          backgroundColor: '#fbfbfb',
-          titleColor: '#8F92A1',
-          bodyColor: '#272727',
-          titleFont: {
-            size: 16,
-            family: 'Plus Jakarta Sans',
-            weight: '400',
-          },
-          bodyFont: {
-            family: 'Plus Jakarta Sans',
-            size: 16,
-          },
-          multiKeyBackground: 'transparent',
-          displayColors: false,
-          padding: {
-            x: 30,
-            y: 15,
-          },
-          borderColor: 'rgba(143, 146, 161, .1)',
-          borderWidth: 1,
-          enabled: true,
-        },
-        title: {
-          display: false,
-        },
-        legend: {
-          display: false,
-        },
-      },
-      layout: {
-        padding: {
-          top: 0,
-        },
-      },
-      responsive: true,
-      // maintainAspectRatio: false,
-      legend: {
-        display: false,
-      },
-      scales: {
-        y: {
-          grid: {
-            display: false,
-            drawTicks: false,
-            drawBorder: false,
-          },
-          ticks: {
-            padding: 35,
-          },
-          max: 350,
-          min: 50,
-        },
-        x: {
-          grid: {
-            drawBorder: false,
-            color: 'rgba(143, 146, 161, .1)',
-            drawTicks: false,
-            zeroLineColor: 'rgba(143, 146, 161, .1)',
-          },
-          ticks: {
-            padding: 20,
-          },
-        },
-      },
+      responsive: false, // Responsive chart
+      maintainAspectRatio: false, // Allow resizing
+     
     },
   };
+  
+  
+  
   // =========== chart three end
 
   // ================== chart four start

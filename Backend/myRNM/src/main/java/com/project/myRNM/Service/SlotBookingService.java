@@ -1,6 +1,7 @@
 package com.project.myRNM.Service;
 
 
+import com.project.myRNM.DTOs.BrandCountDTO;
 import com.project.myRNM.DTOs.UserSlotCount;
 import com.project.myRNM.Entity.SlotBooking;
 import com.project.myRNM.Repository.SlotBookingRepository;
@@ -68,6 +69,20 @@ public class SlotBookingService {
 
         return monthlyCounts;
     }
+    public List<BrandCountDTO> getCountByBrand() {
+        List<Object[]> queryResult = slotBookingRepository.findCountByBrand();
 
+        // Mapping the result from Object[] to BrandCountDTO
+        List<BrandCountDTO> result = new ArrayList<>();
+
+        for (Object[] row : queryResult) {
+            String brand = (String) row[0]; // brand name (Renault, Nissan, Mitsubishi)
+            Long totalUsers = (Long) row[1]; // count of users for the brand
+
+            result.add(new BrandCountDTO(brand, totalUsers));
+        }
+
+        return result;
+    }
 
 }

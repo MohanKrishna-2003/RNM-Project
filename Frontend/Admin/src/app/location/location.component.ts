@@ -58,14 +58,15 @@ export class LocationComponent implements OnInit {
         <b>${shop.name}</b><br>
         ${shop.address}
       `);
-
-      // You can add custom icons if needed
-      // marker.setIcon(L.icon({
-      //   iconUrl: shop.icon,
-      //   iconSize: [30, 30],
-      //   iconAnchor: [15, 30],
-      //   popupAnchor: [0, -30],
-      // }));
+    
+      // Set the correct icon for each shop
+      marker.setIcon(L.icon({
+        iconUrl: shop.icon,  // Use shop.icon for each shop
+        iconSize: [30, 30],
+        iconAnchor: [15, 30],
+        popupAnchor: [0, -30],
+      }));
     });
+    
   }
 }

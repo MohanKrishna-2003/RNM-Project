@@ -1,6 +1,7 @@
 package com.project.myRNM.Repository;
 
 
+import com.project.myRNM.DTOs.BrandCountDTO;
 import com.project.myRNM.Entity.SlotBooking;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -46,6 +47,11 @@ public interface SlotBookingRepository extends JpaRepository<SlotBooking, String
     List<Object[]> findMonthlyBookingCountsByMonthName();
 
 
+    @Query(value = "SELECT s.brand, COUNT(s) " +
+            "FROM slot_bookings s " +
+            "WHERE s.brand IN ('Renault', 'Nissan', 'Mitsubishi') " +
+            "GROUP BY s.brand", nativeQuery = true)
+    List<Object[]> findCountByBrand();
 
 
 
