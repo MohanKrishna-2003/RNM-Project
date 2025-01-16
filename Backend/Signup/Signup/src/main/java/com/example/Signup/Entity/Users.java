@@ -16,21 +16,21 @@ public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    @Column(name = "user_name")
+    @Column(name="name")
     private String name;
-
-    @Column(name = "user_email")
+    @Column(name="email")
     private String email;
-
-    @Column(name = "user_password")
+    @Column(name="password")
     private String password;
 
-    @Column(name = "user_mobile")
-    private Long mobile;
-
-    @Column(name = "user_address")
+    @Column(name="address")
     private String address;
+
+    @CreationTimestamp
+    @Column(name = "registration_date", nullable = false, updatable = false)
+    private Date registrationDate; // This field will store the registration date and time
+
+    @OneToMany
 
     @CreationTimestamp
     @Column(name = "registration_date", nullable = false, updatable = false)
@@ -53,4 +53,66 @@ public class Users {
 
 
 
+
+
+//    public Integer getId() {
+//        return id;
+//    }
+
+
+
+
+
+
+//    public void setId(Integer id) {
+//        this.id = id;
+//    }
+//
+//    public String getName() {
+//        return name;
+//    }
+//
+//    public void setName(String name) {
+//        this.name = name;
+//    }
+//
+//    public String getEmail() {
+//        return email;
+//    }
+//
+//    public void setEmail(String email) {
+//        this.email = email;
+//    }
+//
+//    public String getPassword() {
+//        return password;
+//    }
+//
+//    public void setPassword(String password) {
+//        this.password = password;
+//    }
+//
+//    public String getAddress() {
+//        return address;
+//    }
+//
+//    public void setAddress(String address) {
+//        this.address = address;
+//    }
+//
+//    public Long getMobile() {
+//        return mobile;
+//    }
+//
+//    public void setMobile(Long mobile) {
+//        this.mobile = mobile;
+//    }
+//
+//    public List<Feedback> getFeedbacks() {
+//        return feedbacks;
+//    }
+//
+//    public void setFeedbacks(List<Feedback> feedbacks) {
+//        this.feedbacks = feedbacks;
+//    }
 

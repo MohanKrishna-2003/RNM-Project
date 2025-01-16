@@ -1,8 +1,19 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AdminHeaderComponent } from '../admin-header/admin-header.component';
 import {Chart, registerables} from 'chart.js';
+import { HttpClient } from '@angular/common/http';
+import { log } from 'node:console';
 
 Chart.register(...registerables);
+
+export interface FeedbackData {
+  [month: string]: {
+    positive?: number;
+    negative?: number;
+    neutral?: number;
+  };
+}
+
 @Component({
   selector: 'app-admin-dashbaord',
   standalone: true,
@@ -12,20 +23,79 @@ Chart.register(...registerables);
 })
 
 export class AdminDashbaordComponent implements OnInit {
-
-
+constructor(private http: HttpClient){
+}
+totalusers:any;
  ngOnInit(): void {
 this.chart= new Chart('Chart1', this.config);
 this.chart2= new Chart('Chart2',this.config2);
 this.chart3= new Chart('Chart3',this.config3);
 this.chart4= new Chart('Chart4',this.config4);
 
-}
+    this.http.get('http://localhost:8080/feedback/feedbackcount').subscribe(res => {
+      console.log(res);
+      this.feedbackData=res;
+      console.log(this.chart4data);
+    });
+    this.http.get('http://localhost:8080/user/totaluser').subscribe(res => {
+      console.log(res);
+      this.totalusers=res;
+      console.log(this.totalusers);
+    });
+    this.processFeedbackData();
+    this.calculateSum();
+
+  } 
+  feedbackData: any 
+  months: string[] = [
+    "January", "February", "March", "April", "May", "June", "July", "August", 
+    "September", "October", "November", "December"
+  ];
+  positiveCounts: number[] = [];
+  negativeCounts: number[] = [];
+  totalpositive =0;
+  totalnegative=0
+
+
+  processFeedbackData(): void {
+    // Iterate through each month and check if feedback data exists for it
+    for (let i = 0; i < this.months.length; i++) {
+      let month = this.months[i] + ' 2024'; // Add year to month for matching
+
+      // Initialize counts with 0 if no data is found for the month
+      let positive = 0;
+      let negative = 0;
+      let neutral = 0;
+
+      // Check if data exists for this month and update the counts accordingly
+      if (this.feedbackData[month]) {
+        positive = this.feedbackData[month].positive || 0;
+        negative = this.feedbackData[month].negative || 0;
+      }
+
+      // Push the counts into the arrays
+      this.positiveCounts.push(positive);
+      this.negativeCounts.push(negative);
+    }
+
+  }
+
+  calculateSum() {
+    this.totalpositive = this.positiveCounts.reduce((sum, current) => sum + current, 0);
+    this.totalnegative=this.negativeCounts.reduce((sum, current) => sum + current, 0);
+    this.usersatisfaction = ((this.totalpositive)*100/(this.totalnegative+this.totalpositive)).toFixed(2);;
+    console.log(this.usersatisfaction);
+  }
+ 
+
+
 chart:any;
 chart2:any;
 chart3:any;
 chart4:any;
-
+chart4data:any;
+chardata1:any =[600, 800, 750, 880, 940, 880, 900, 770, 920]
+usersatisfaction : any;
  public config: any = {
     type: "line",
     data: {
@@ -39,18 +109,15 @@ chart4:any;
         "Jul",
         "Aug",
         "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
+      
       ],
       datasets: [
         {
           label: "Increase in Website Usage (Number of Users)",
           backgroundColor: "#365CF5",
           borderColor: "#365CF5",
-          data: [
-            600, 800, 750, 880, 940, 880, 900, 770, 920, 890, 976, 1100,
-          ],
+          data: this.chardata1
+          ,
           pointBackgroundColor: "transparent",
           pointHoverBackgroundColor: "#365CF5",
           pointBorderColor: "transparent",
@@ -151,23 +218,7 @@ chart4:any;
           pointHoverRadius: 8,
           fill: false,
           tension: 0.4,
-        },
-        {
-          label: "Order",
-          backgroundColor: "transparent",
-          borderColor: "#f2994a",
-          data: [180, 110, 140, 135, 100, 90, 145, 115, 100, 110, 115, 150],
-          pointBackgroundColor: "transparent",
-          pointHoverBackgroundColor: "#f2994a",
-          pointBorderColor: "transparent",
-          pointHoverBorderColor: "#f2994a",
-          pointHoverBorderWidth: 3,
-          pointBorderWidth: 5,
-          pointRadius: 5,
-          pointHoverRadius: 8,
-          fill: false,
-          tension: 0.4,
-        },
+        }
       ],
     },
     options: {
@@ -246,90 +297,94 @@ chart4:any;
   public config4 :any= {
     type: "bar",
     data: {
-      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+      // labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+      labels: this.months,
+
       datasets: [
         {
-          label: "",
+          label: "Positive Feedback",
           backgroundColor: "#365CF5",
           borderColor: "transparent",
           borderRadius: 20,
           borderWidth: 5,
           barThickness: 20,
           maxBarThickness: 20,
-          data: [600, 700, 1000, 700, 650, 800],
+          data: this.positiveCounts,
         },
         {
-          label: "",
+          label: "Negative Feedback",
           backgroundColor: "#d50100",
           borderColor: "transparent",
           borderRadius: 20,
           borderWidth: 5,
           barThickness: 20,
           maxBarThickness: 20,
-          data: [690, 740, 720, 1120, 876, 900],
+          data: this.negativeCounts,
         },
       ],
     },
-    options: {
-      plugins: {
-        tooltip: {
-          backgroundColor: "#F3F6F8",
-          titleColor: "#8F92A1",
-          titleFontSize: 12,
-          bodyColor: "#171717",
-          bodyFont: {
-            weight: "bold",
-            size: 16,
-          },
-          multiKeyBackground: "transparent",
-          displayColors: false,
-          padding: {
-            x: 30,
-            y: 10,
-          },
-          bodyAlign: "center",
-          titleAlign: "center",
-          enabled: true,
-        },
-        legend: {
-          display: false,
-        },
-      },
-      layout: {
-        padding: {
-          top: 0,
-        },
-      },
-      responsive: true,
-      // maintainAspectRatio: false,
-      title: {
-        display: false,
-      },
-      scales: {
-        y: {
-          grid: {
-            display: false,
-            drawTicks: false,
-            drawBorder: false,
-          },
-          ticks: {
-            padding: 35,
-            max: 1200,
-            min: 0,
-          },
-        },
-        x: {
-          grid: {
-            display: false,
-            drawBorder: false,
-            color: "rgba(143, 146, 161, .1)",
-            zeroLineColor: "rgba(143, 146, 161, .1)",
-          },
-          ticks: {
-            padding: 20,
-          },
-        },
-      },
-    },
+    // options: {
+    //   plugins: {
+    //     tooltip: {
+    //       backgroundColor: "#F3F6F8",
+    //       titleColor: "#8F92A1",
+    //       titleFontSize: 12,
+    //       bodyColor: "#171717",
+    //       bodyFont: {
+    //         weight: "bold",
+    //         size: 16,
+    //       },
+    //       multiKeyBackground: "transparent",
+    //       displayColors: false,
+    //       padding: {
+    //         x: 30,
+    //         y: 10,
+    //       },
+    //       bodyAlign: "center",
+    //       titleAlign: "center",
+    //       enabled: true,
+    //     },
+    //     legend: {
+    //       display: false,
+    //     },
+    //   },
+    //   layout: {
+    //     padding: {
+    //       top: 0,
+    //     },
+    //   },
+    //   responsive: true,
+    //   // maintainAspectRatio: false,
+    //   title: {
+    //     display: false,
+    //   },
+    //   scales: {
+    //     y: {
+    //       grid: {
+    //         display: false,
+    //         drawTicks: false,
+    //         drawBorder: false,
+    //       },
+    //       ticks: {
+    //         padding: 35,
+    //         max: 1200,
+    //         min: 0,
+    //       },
+    //     },
+    //     x: {
+    //       grid: {
+    //         display: false,
+    //         drawBorder: false,
+    //         color: "rgba(143, 146, 161, .1)",
+    //         zeroLineColor: "rgba(143, 146, 161, .1)",
+    //       },
+    //       ticks: {
+    //         padding: 20,
+    //       },
+    //     },
+    //   },
+    // },
   };
+
+
 }

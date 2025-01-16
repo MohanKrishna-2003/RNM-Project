@@ -1,0 +1,35 @@
+/* Home section styling */
+.home {
+  padding: 0;
+  background-color: #f7f7f7;
+  text-align: center;
+}
+
+/* Carousel items (images) styling */
+.carousel-item img {
+  height: 600px; /* Set fixed height for carousel images */
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.5s ease-in-out; /* Smooth slide effect */
+}
+
+/* Custom horizontal slide animation */
+@keyframes slideLeft {
+  0% {
+    transform: translateX(100%); /* Starts off to the right */
+  }
+  100% {
+    transform: translateX(0); /* Ends at the normal position */
+  }
+}
+
+/* Apply the horizontal slide animation to the carousel items */
+.carousel-item-next, .carousel-item-prev, .carousel-item.active {
+  animation: slideLeft 1s ease-out forwards;
+}
+
+/* Carousel Controls Styling */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: black; /* Ensures the icons are visible */
+}

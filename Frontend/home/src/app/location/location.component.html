@@ -1,0 +1,21 @@
+<app-header></app-header>
+<br><br><br><br><br>
+<div class="container">
+  <div class="map-container">
+    <div id="map" style="height: 100%;"></div>
+  </div>
+
+  <div class="shop-list">
+    <h3>Our Car Shops</h3>
+    <ul>
+      <li *ngFor="let shop of shops; let i = index">
+        <!-- Custom icons for each shop -->
+        <img [src]="shop.icon" alt="Shop Icon" />
+        <span class="shop-name">{{ shop.name }}</span> -
+        <span class="shop-address">{{ shop.address }}</span>
+      </li>
+    </ul>
+  </div>
+  <br><br><br>
+</div>
+
