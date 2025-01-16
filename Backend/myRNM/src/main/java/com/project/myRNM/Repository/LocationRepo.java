@@ -1,6 +1,6 @@
-package com.example.car.repo;
+package com.project.myRNM.Repository;
 
-import com.example.car.model.Locations;
+import com.project.myRNM.Entity.Locations;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

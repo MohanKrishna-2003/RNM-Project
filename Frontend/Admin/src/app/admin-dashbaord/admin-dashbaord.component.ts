@@ -183,7 +183,7 @@ export class AdminDashbaordComponent implements OnInit {
       labels: this.slotmonths,
       datasets: [
         {
-          label: 'Revenue (Dollars) ',
+          label: 'Users (Number) ',
           backgroundColor: '#365CF5',
           borderRadius: 30,
           barThickness: 6,
