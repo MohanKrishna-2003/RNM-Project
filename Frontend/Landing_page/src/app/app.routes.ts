@@ -6,6 +6,8 @@ import { HomeComponent } from './home/home.component';
 import { LocationComponent } from './location/location.component';
 import { ContactComponent } from './contact/contact.component';
 import { BookingComponent } from './booking/booking.component';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 export const routes: Routes = [
   // { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -17,6 +19,8 @@ export const routes: Routes = [
   // { path: 'service', component: ServiceListComponent },  // Same here for service route
   // { path: 'contact', component: ContactComponent },  // This will display the Contact component for '/contact'
   { path: 'location', component: LocationComponent } ,
-  { path: '',component:HomeComponent }
+  { path: '',component:HomeComponent },
+  {path:'login',component:LoginComponent},
+  {path:'signup',component:SignupComponent}
   // { path: 'booking', component: BookingComponent }
 ];

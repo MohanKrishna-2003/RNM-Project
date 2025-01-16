@@ -8,11 +8,12 @@ import { BookingComponent } from "./booking/booking.component";
 import { FooterComponent } from "./footer/footer.component";
 import { ContactComponent } from "./contact/contact.component";
 import { ChatbotComponent } from "./chatbot/chatbot.component";
+import { LoginComponent } from './login/login.component';
 
 @Component({
   selector: 'app-root',
   standalone:true,
-  imports: [HeaderComponent, CommonModule, RouterModule, FooterComponent, ServiceListComponent, HomeComponent, BookingComponent, ContactComponent, ChatbotComponent],
+  imports: [HeaderComponent, CommonModule, RouterModule, FooterComponent, ServiceListComponent, HomeComponent, BookingComponent, ContactComponent, ChatbotComponent,LoginComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
