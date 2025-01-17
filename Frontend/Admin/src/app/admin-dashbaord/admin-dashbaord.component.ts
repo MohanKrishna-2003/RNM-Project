@@ -31,6 +31,9 @@ export class AdminDashbaordComponent implements OnInit {
   slotmonths: any =[];
   slotcounts: any =[];
   last30:any;
+  brandsdata:any;
+  brands: any=[];
+  bcounts:any=[];
   ngOnInit(): void {
     this.chart = new Chart('Chart1', this.config);
     this.chart2 = new Chart('Chart2', this.config2);
@@ -54,6 +57,20 @@ export class AdminDashbaordComponent implements OnInit {
       console.log(res);
       this.last30 = res;
     });
+
+    this.http.get('http://localhost:8080/slot-bookings/brandCount').subscribe((res) => {
+      console.log(res);
+      this.brandsdata = res;
+      for (let i = 0; i < this.brandsdata.length; i++) {
+        this.brands.push(this.brandsdata[i].brand);  // Push the month to the months array
+        this.bcounts.push(this.brandsdata[i].totalUsers);
+        console.log(this.brands[i]);
+          // Push the count to the counts array
+    }
+    // console.log(this.brandsdata);
+
+    });
+    
     this.http
       .get('http://localhost:8080/user/userMonthlyCount')
       .subscribe((res) => {
@@ -88,6 +105,7 @@ export class AdminDashbaordComponent implements OnInit {
     this.processFeedbackData();
     this.calculateSum();
   }
+
   feedbackData: any;
   months: string[] = [
     'January',
@@ -198,11 +216,11 @@ export class AdminDashbaordComponent implements OnInit {
   public config3: any = {
     type: 'pie', // Pie chart type
     data: {
-      labels: ['Renault', 'Nissan', 'Mitsubishi'], // Labels
+      labels: ["tghvjh","jhnkj"], // Labels
       datasets: [
         {
           label: 'Car Bookings',
-          data: [50, 30, 20], // Sample data
+          data: [10,20], // Sample data
           backgroundColor: ['#365CF5', '#9b51e0', '#4CAF50'],
           hoverBackgroundColor: ['#2A46B1', '#7F37A8', '#388E3C'],
           borderWidth: 5,
