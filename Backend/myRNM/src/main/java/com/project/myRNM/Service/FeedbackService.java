@@ -88,5 +88,13 @@ public class FeedbackService {
                 default: return "Invalid Month";
             }
         }
+
+    public Feedback postingFeedback(Feedback feedback) throws Exception{
+        try{
+            return feedbackRepo.save(feedback);
+        } catch (Exception e) {
+            throw new RuntimeException("Error in Posting Feedback");
+        }
+    }
     }
 

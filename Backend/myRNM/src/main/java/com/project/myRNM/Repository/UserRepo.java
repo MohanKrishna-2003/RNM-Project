@@ -34,6 +34,7 @@ public interface UserRepo extends JpaRepository<Users, Long> {
             "ORDER BY EXTRACT(MONTH FROM u.registration_date)")
     List<Object[]> findMonthlyUserCounts();
 
+    Optional <Users> findByEmail(String email);  //customMethod
 
 }
 

@@ -16,4 +16,7 @@ public class LocationsService {
         return locationRepo.findAll();
 
     }
+    public Integer showroomcount(){
+        return locationRepo.totalshowrooms();
+    }
 }

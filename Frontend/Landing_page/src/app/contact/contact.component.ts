@@ -30,7 +30,7 @@ export class ContactComponent {
       const data =this.feedbackForm.value;
       console.log(data);
       
-      this.http.post("http://localhost:8085/userlogin/postFeedback",data).subscribe({
+      this.http.post("http://localhost:8080/feedback/postFeedback",data).subscribe({
         next:(res)=>{
           console.log(res);
           
