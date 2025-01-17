@@ -36,6 +36,44 @@ export class ContactComponent implements OnInit {
       user_id: [1, Validators.required] // Assuming user_id is 1 for now, adjust as needed
     });
   }
+  ngOnInit(): void {
+    // Get the user details from localStorage
+    const name = localStorage.getItem("username");
+    const email = localStorage.getItem("useremail");
+
+    // Set the form controls with the retrieved values
+    if (name) {
+      this.feedbackForm.patchValue({
+        user_name: name
+      });
+    }
+
+    if (email) {
+      this.feedbackForm.patchValue({
+        user_email: email
+      });
+    }
+  }
+
+  checkLogin() {
+    let status = localStorage.getItem("login");
+    if (!status) {
+      console.log(status);
+      alert("Please login to submit feedback.");
+      this.feedbackForm.reset();
+      return;
+    }
+  }
+
+  submit(){
+      // let status = localStorage.getItem("login");
+      // if(status != "1"){
+      //   alert("Pls login");
+      //   return;
+      // }
+
+    if(this.feedbackForm.valid){
+      const data =this.feedbackForm.value;
 
   ngOnInit(): void {
     this.fetchNews();  // Fetch news articles on initialization
@@ -105,22 +143,45 @@ export class ContactComponent implements OnInit {
       const data = this.feedbackForm.value;
       console.log(data);
 
-      this.http.post("http://localhost:8085/userlogin/postFeedback", data).subscribe({
-        next: (res) => {
+      this.http.post("http://localhost:8085/userlogin/postFeedback",data).subscribe({
+        next:(res)=>{
           console.log(res);
-        },
-        error: (err) => {
+
+        },error:(err)=>{
           console.log(err);
+
         }
-      });
-    } else {
-      alert("Please fill in all required fields.");
+      })
     }
+
+  }
+  onsubmit(){
+    console.log('Form submitted:',this.contact);
+    //add form submitted logic here(e.g.,HTTP request)
   }
 
-  // Handle form submit action (another way if needed)
-  onsubmit(): void {
-    console.log('Form submitted:', this.contact);
-    // Add any additional logic for form submission if necessary
-  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// checkLogin() {
+//   let status = localStorage.getItem("login");
+//   if (!status) {
+//     console.log(status);
+
+//     alert("Please login to submit feedback.");
+//     this.feedbackForm.reset();
+//     return;
+//   }
+// }

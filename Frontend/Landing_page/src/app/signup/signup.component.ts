@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup, Validators, ReactiveFormsModule, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -15,7 +16,7 @@ export class SignupComponent {
   errorMsg="";
   signupForm: FormGroup;
 
-  constructor(private http: HttpClient, private fb: FormBuilder) {
+  constructor(private http: HttpClient, private fb: FormBuilder,private router:Router) {
     this.signupForm = this.fb.group({
       name: ['', [Validators.required, Validators.maxLength(20), Validators.minLength(3), Validators.pattern('^[A-Za-z\\s-]+$')]],
       email: ['', [Validators.required]],
@@ -37,16 +38,11 @@ export class SignupComponent {
     if (this.signupForm.valid) {
       const data = this.signupForm.value;
       console.log(data);
-
-      // this.http.post('http://localhost:8089/userlogin/addUserData', data).subscribe((res) => {
-      //   console.log(res);
-      // });
-
       this.http.post('http://localhost:8085/userlogin/addUserData', data).subscribe(
         {
           next:(res)=>{
               console.log(res);
-              
+              this.router.navigateByUrl("/login");
           },error:(err)=>{
               console.log(err);
               this.errorMsg = err.error['message'];
