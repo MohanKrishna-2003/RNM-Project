@@ -1,42 +1,27 @@
-<!-- Chatbot Icon Container -->
-<div *ngIf="!isChatVisible" class="chatbot-icon-container" (click)="toggleChatVisibility()">
-  <!-- Chatbot Icon (Bubble) -->
-  <div class="chatbot-icon">💬</div> <!-- Chat bubble text as the icon -->
+<div class="chatbot-icon" (click)="toggleChat()">
+  <div class="chatbot-icon-img">
+    <img src="bot.png" alt="Chatbot Icon">
+  </div>
 </div>
 
-<!-- Chatbot Container -->
-<div *ngIf="isChatVisible" class="chatbot-container">
-  <!-- Close Button -->
-  <button class="close-btn" (click)="toggleChatVisibility()">×</button>
-
-  <div class="chat-window">
-    <div class="messages" id="messages">
-      <div *ngFor="let message of chatMessages" class="chat-message">
-        <div *ngIf="message.type === 'bot'">
-          <div class="message-bot">{{ message.text }}</div>
-          <!-- Typing indicator -->
-          <div *ngIf="message.isTyping" class="typing-indicator">
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-          </div>
-        </div>
-        <div *ngIf="message.type === 'user'">
-          <div class="message-user">{{ message.text }}</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="input-container">
-      <input [(ngModel)]="userInput" (keyup.enter)="sendMessage()" placeholder="Type a message">
-      <button (click)="sendMessage()">Send</button>
-    </div>
+<!-- Chat Container (appears when chat is open) -->
+<div class="chat-container" [ngClass]="{ 'open': isChatOpen }">
+  <div class="chat-header">
+    <button class="close-btn" (click)="toggleChat()">✖</button>
+    <h3>MyRnm Chatbot</h3>
   </div>
 
-  <!-- Quick Replies -->
-  <div *ngIf="quickReplies.length > 0" class="quick-replies">
-    <button *ngFor="let reply of quickReplies" (click)="quickReply(reply)">
-      {{ reply }}
-    </button>
+  <div class="chat-window">
+    <!-- Displaying messages -->
+    <div *ngFor="let message of messages" class="message" [ngClass]="{ 'from-user': message.sender === 'user', 'from-bot': message.sender === 'bot' }">
+      <div class="message-text">{{ message.text }}</div>
+    </div>
+
+    <!-- Show options as buttons for the user to select -->
+    <div *ngIf="isChatOpen" class="button-container">
+      <button *ngFor="let option of options" (click)="onOptionSelected(option)" id="btn-style">
+        {{ option }}
+      </button>
+    </div>
   </div>
 </div>
