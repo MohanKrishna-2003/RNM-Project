@@ -25,18 +25,54 @@ export class ContactComponent {
       user_id: [1, Validators.required]
     });
   }
+  ngOnInit(): void {
+    // Get the user details from localStorage
+    const name = localStorage.getItem("username");
+    const email = localStorage.getItem("useremail");
+
+    // Set the form controls with the retrieved values
+    if (name) {
+      this.feedbackForm.patchValue({
+        user_name: name
+      });
+    }
+
+    if (email) {
+      this.feedbackForm.patchValue({
+        user_email: email
+      });
+    }
+  }
+
+  checkLogin() {
+    let status = localStorage.getItem("login");
+    if (!status) {
+      console.log(status);
+      alert("Please login to submit feedback.");
+      this.feedbackForm.reset();
+      return;
+    }
+  }
+
   submit(){
+      // let status = localStorage.getItem("login");
+      // if(status != "1"){
+      //   alert("Pls login");
+      //   return;
+      // }
+
     if(this.feedbackForm.valid){
       const data =this.feedbackForm.value;
       console.log(data);
+      data.user_id = localStorage.getItem("id");
       
       this.http.post("http://localhost:8085/userlogin/postFeedback",data).subscribe({
         next:(res)=>{
           console.log(res);
-          
+          this.feedbackForm.reset();
         },error:(err)=>{
           console.log(err);
-          
+          this.feedbackForm.reset();
         }
       })
     }
@@ -48,3 +84,27 @@ export class ContactComponent {
   }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// checkLogin() {
+//   let status = localStorage.getItem("login");
+//   if (!status) {
+//     console.log(status);
+    
+//     alert("Please login to submit feedback.");
+//     this.feedbackForm.reset();  
+//     return;
+//   }
+// }
