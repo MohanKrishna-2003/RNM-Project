@@ -26,7 +26,7 @@ export class LoginComponent {
     const email = this.loginForm.get('email')?.value;
     const password = this.loginForm.get('password')?.value;
     const data = { email, password };  
-    this.http.post("http://localhost:8085/userlogin/login", data).subscribe(
+    this.http.post("http://localhost:8080/user/loginByPost", data).subscribe(
       (res: any) => {
         console.log(res);
         console.log("Login success");
