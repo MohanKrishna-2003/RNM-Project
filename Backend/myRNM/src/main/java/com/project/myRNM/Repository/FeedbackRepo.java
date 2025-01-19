@@ -13,7 +13,10 @@ import java.util.Optional;
 public interface FeedbackRepo extends JpaRepository<Feedback, Integer> {
     // Query to fetch feedbacks with their month and year
     @Query("SELECT f.feedback_date, f.feedback FROM Feedback f ")
-    List<Object[]> findFeedbacks(); 
+    List<Object[]> findFeedbacks();
+
+   @Query("SELECT f FROM Feedback f ORDER BY feedback_date DESC")
+    List<Feedback> findsortFeedback();
 }
 
 

@@ -33,9 +33,9 @@ export class AdminDashbaordComponent implements OnInit {
   last30: any;
   brandsdata: any;
   brands: any = [];
-  bcounts: any = [];
   showroomcount: any;
   config3: any;
+  bcounts: number[]=[];
   ngOnInit(): void {
     this.chart = new Chart('Chart1', this.config);
     this.chart2 = new Chart('Chart2', this.config2);
@@ -46,7 +46,6 @@ export class AdminDashbaordComponent implements OnInit {
       .subscribe((res) => {
         console.log(res);
         this.feedbackData = res;
-        console.log(this.chart4data);
       });
     this.http.get('http://localhost:8080/user/totaluser').subscribe((res) => {
       console.log(res);
@@ -132,7 +131,7 @@ export class AdminDashbaordComponent implements OnInit {
     this.calculateSum();
   }
 
-  feedbackData: any;
+  feedbackData: any=[];
   months: string[] = [
     'January',
     'February',
