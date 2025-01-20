@@ -1,137 +1,191 @@
+<div class="container-fluid feedback d-flex justify-content-center align-items-center vh-100">
+  <div class="main">
+    <div class="row w-100">
+      <!-- Image Column -->
+      <div class="col-12 col-sm-5 col-md-5 d-flex justify-content-center align-items-center">
+        <div class="image mt-5">
+          <img src="https://static.vecteezy.com/system/resources/previews/016/389/997/non_2x/online-customer-feedback-and-survey-free-png.png" alt="img" width="100%" class="img-fluid">
+        </div>
+      </div>
+
+      <!-- Feedback Form Column -->
+      <div class="col-12 col-sm-6 col-md-6 mt-5">
+        <div class="card-body mt-4 w-100">
+          <div class="card-title text-center mb-4">
+            <i class="fas fa-comment-dots fa-3x" style="color: #8347ad;"></i>
+            <h2 class="text-center mb-4">We Value Your Feedback</h2>
+          </div>
+          <form [formGroup]="feedbackForm" (ngSubmit)="submit()">
+            <!-- Name Field -->
+            <div class="form-group mb-3">
+              <input type="text" class="form-control" formControlName="user_name" placeholder="Enter your name" required>
+              <div *ngIf="feedbackForm.get('name')?.touched && feedbackForm.get('name')?.invalid" class="text-danger">
+                <div *ngIf="feedbackForm.get('name')?.hasError('required')">Name is required</div>
+              </div>
+            </div>
+
+            <!-- Email Field -->
+            <div class="form-group mb-3">
+              <input type="email" class="form-control" formControlName="user_email" placeholder="Enter your email" required>
+              <div *ngIf="feedbackForm.get('email')?.touched && feedbackForm.get('email')?.invalid" class="text-danger">
+                <div *ngIf="feedbackForm.get('email')?.hasError('required')">Email is required</div>
+                <div *ngIf="feedbackForm.get('email')?.hasError('email')">Please enter a valid email address</div>
+              </div>
+            </div>
+
+            <!-- Feedback Message Field -->
+            <div class="form-group mb-3">
+              <textarea class="form-control" formControlName="feedback" placeholder="Enter your feedback" rows="4" required></textarea>
+              <div *ngIf="feedbackForm.get('feedback')?.touched && feedbackForm.get('feedback')?.invalid" class="text-danger">
+                <div *ngIf="feedbackForm.get('feedback')?.hasError('required')">Feedback is required</div>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary w-100 mt-3" [disabled]="feedbackForm.invalid">Submit Feedback</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- News Section -->
+<div class="container">
+  <!-- Title Section -->
+  <div class="text-center">
+    <h1 class="news-heading">Notifications - Latest News</h1>
+    <p class="lead">Stay updated with the latest news about Renault, Nissan, and Mitsubishi.</p>
+  </div>
+
+  <!-- News articles section -->
+  <div id="newsCards" class="row">
+    <!-- Loop through the articles and display them -->
+    <div *ngFor="let article of articles.slice(0, currentIndex)" class="col-lg-12 col-md-8 col-lg-12 lg-12">
+      <div class="card news-card">
+        <img
+          [src]="article.urlToImage || DEFAULT_IMAGE"
+          class="card-img-top"
+          alt="{{ article.title }}"
+          (error)="article.urlToImage = DEFAULT_IMAGE"
+        />
+        <div class="card-body">
+          <h5 class="news-card-title">{{ article.title }}</h5>
+          <p class="news-card-description">
+            {{ article.description || 'No description available.' }}
+          </p>
+          <p class="news-author">Author: {{ article.author || 'Unknown' }}</p>
+          <a [href]="article.url" target="_blank" class="btn read-more-btn">Read More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading Spinner while fetching more articles -->
+  <div *ngIf="loading" id="loadingSpinner" class="spinner-border text-primary" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+
+  <!-- Load More Button -->
+  <div *ngIf="!loading && currentIndex < articles.length">
+    <button id="loadMoreBtn" class="btn btn-primary" (click)="loadMore()">
+      Load More
+    </button>
+  </div>
+</div>
+
+
+
+
+
 <section id="contact" class="bg-image" style="background-image: url('/image.png')">
   <!-- Overlay for better contrast -->
   <div class="overlay"></div>
 
   <div class="container py-5">
-    <div class="row" >
+    <div class="row">
       <!-- Left Column (Contact Information) -->
-      <div class="col-md-6 text-white">
+      <div class="col-md-6 text-white mb-4">
         <h2 class="display-4">Contact Us</h2>
         <p class="lead">We're here to help! Whether you have questions or feedback, feel free to reach out to us.</p>
-        <br>
         <ul class="list-unstyled">
           <li class="mb-3">
             <i class="fas fa-phone fa-2x"></i> &nbsp;&nbsp;
             <strong>Phone:</strong> <a href="tel:+1234567890" class="text-white">+1 234 567 890</a>
-          </li><br>
+          </li>
           <li class="mb-3">
             <i class="fas fa-envelope fa-2x"></i> &nbsp;&nbsp;
-            <strong>Email:</strong> <a href="mailto:infomyrnm.com" class="text-white">infomyrnm.com</a>
-          </li><br>
+            <strong>Email:</strong> <a href="mailto:info@myrn.com" class="text-white">infomyrn.com</a>
+          </li>
           <li class="mb-3">
             <i class="fas fa-map-marker-alt fa-2x"></i> &nbsp;&nbsp;
             <strong>Address:</strong> Ascendas IT Park, Mahindra World City SEZ, Chengalpattu, Tamil Nadu 603002
           </li>
         </ul>
-
       </div>
 
       <!-- Right Column (Contact Form) -->
       <div class="col-md-6">
-        <div class="card p-4" style="background-color: #cecece;">
+        <div class="card p-4" style="background-color: #ececec;">
           <h3 class="card-title mb-4">Send us a Message</h3>
-          <form class="needs-validation"  >
+          <form [formGroup]="feedbackForm" (ngSubmit)="submit()">
             <!-- Email Input -->
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" name="email" placeholder="Enter a valid email address" required>
-              <div class="invalid-feedback">Please provide a valid email address.</div>
+              <input type="email" class="form-control" id="email" formControlName="user_email" placeholder="Enter a valid email address" required>
+              <div *ngIf="feedbackForm.get('user_email')?.touched && feedbackForm.get('user_email')?.invalid" class="text-danger">
+                <div *ngIf="feedbackForm.get('user_email')?.hasError('required')">Email is required</div>
+                <div *ngIf="feedbackForm.get('user_email')?.hasError('email')">Please provide a valid email address.</div>
+              </div>
             </div>
 
             <!-- Name Input -->
             <div class="mb-3">
               <label for="name" class="form-label">Name</label>
-              <input type="text" class="form-control" id="name" name="name" placeholder="Enter your Name" required>
-              <div class="invalid-feedback">Please provide your name.</div>
+              <input type="text" class="form-control" id="name" formControlName="user_name" placeholder="Enter your name" required>
+              <div *ngIf="feedbackForm.get('user_name')?.touched && feedbackForm.get('user_name')?.invalid" class="text-danger">
+                <div *ngIf="feedbackForm.get('user_name')?.hasError('required')">Name is required</div>
+              </div>
             </div>
-
-
 
             <!-- Message Textarea -->
             <div class="mb-3">
               <label for="message" class="form-label">Message</label>
-              <textarea class="form-control" id="message" name="message" rows="4" placeholder="Enter your message" required></textarea>
-              <div class="invalid-feedback">Please enter your message.</div>
+              <textarea class="form-control" id="message" formControlName="feedback" rows="4" placeholder="Enter your message" required></textarea>
+              <div *ngIf="feedbackForm.get('feedback')?.touched && feedbackForm.get('feedback')?.invalid" class="text-danger">
+                <div *ngIf="feedbackForm.get('feedback')?.hasError('required')">Message is required</div>
+              </div>
             </div>
 
             <!-- Submit Button -->
-            <button type="submit" class="btn btn-primary w-100">Submit</button>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary w-100 mt-3" [disabled]="feedbackForm.invalid">Submit Feedback</button>
+            </div>
           </form>
         </div>
       </div>
     </div>
   </div>
 </section>
-<section id="logos" class="logos-section py-6">
+
+<!-- Logos Section -->
+<section id="logos" class="logos-section py-6" style="background-color: #f9f9f9;">
   <div class="container text-center">
-    <!-- <h3 class="mb-4">Our Partners</h3> -->
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-4 mb-4">
         <img src="renault..png" alt="Logo 1" class="img-fluid" style="max-height: 200px;">
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4 mb-4">
         <img src="nissan.png" alt="Logo 2" class="img-fluid" style="max-height: 200px;">
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4 mb-4">
         <img src="mitsubishi.png" alt="Logo 3" class="img-fluid" style="max-height: 200px;">
       </div>
     </div>
   </div>
 </section>
 
-
-
-
- <div class="container-fluid feedback d-flex justify-content-center align-items-center vh-100">
-  <div class="main">
-    <div class="row w-100">
-      <!-- Image Column -->
-      <div class="col-12 col-sm-5 col-md-5 d-flex justify-content-center align-items-center">
-        <div class="image mt-5"> 
-          <img src="https://static.vecteezy.com/system/resources/previews/016/389/997/non_2x/online-customer-feedback-and-survey-free-png.png" alt="img" width="100%" class="img-fluid">
-        </div>
-      </div>
-
-      <!-- Feedback Form Column -->
-<div class="col-12 col-sm-6 col-md-6 mt-5">
-  <div class="card-body mt-4 w-100">
-    <div class="card-title text-center mb-4">
-      <i class="fas fa-comment-dots fa-3x" style="color: #8347ad;"></i>
-      <h2 class="text-center mb-4">We Value Your Feedback</h2>
-    </div>
-    <form [formGroup]="feedbackForm" (ngSubmit)="submit()">
-      <!-- Name Field -->
-      <div class="form-group mb-3">
-        <input type="text" class="form-control" formControlName="user_name" placeholder="Enter your name" required
-               (input)="checkLogin()">
-        <div *ngIf="feedbackForm.get('user_name')?.touched && feedbackForm.get('user_name')?.invalid" class="text-danger">
-          <div *ngIf="feedbackForm.get('user_name')?.hasError('required')">Name is required</div>
-        </div>
-      </div>
-
-      <!-- Email Field -->
-      <div class="form-group mb-3">
-        <input type="email" class="form-control" formControlName="user_email" placeholder="Enter your email" required
-               (input)="checkLogin()">
-        <div *ngIf="feedbackForm.get('user_email')?.touched && feedbackForm.get('user_email')?.invalid" class="text-danger">
-          <div *ngIf="feedbackForm.get('user_email')?.hasError('required')">Email is required</div>
-          <div *ngIf="feedbackForm.get('user_email')?.hasError('email')">Please enter a valid email address</div>
-        </div>
-      </div>
-
-      <!-- Feedback Message Field -->
-      <div class="form-group mb-3">
-        <textarea class="form-control" formControlName="feedback" placeholder="Enter your feedback" rows="4" required
-                  (input)="checkLogin()"></textarea>
-        <div *ngIf="feedbackForm.get('feedback')?.touched && feedbackForm.get('feedback')?.invalid" class="text-danger">
-          <div *ngIf="feedbackForm.get('feedback')?.hasError('required')">Feedback is required</div>
-        </div>
-      </div>
-
-      <!-- Submit Button -->
-      <div class="text-center">
-        <button type="submit" class="btn btn-primary w-100 mt-3" [disabled]="feedbackForm.invalid">Submit Feedback</button>
-      </div>
-    </form>
-  </div>
-</div>

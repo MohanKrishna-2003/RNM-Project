@@ -7,9 +7,9 @@
 
 /* Carousel items (images) styling */
 .carousel-item img {
-  height: 600px; /* Set fixed height for carousel images */
+  height: 85vh; /* Set fixed height for carousel images */
   object-fit: cover;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   transition: transform 0.5s ease-in-out; /* Smooth slide effect */
 }
 
