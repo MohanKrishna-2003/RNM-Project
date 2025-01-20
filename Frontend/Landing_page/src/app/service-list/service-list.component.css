@@ -1,0 +1,150 @@
+/* Service Section */
+.service-container {
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
+  padding-top: 1px; /* Reduce the padding top */
+  padding-bottom: 1px; /* Reduce the padding bottom */
+}
+
+/* Service Title */
+.service-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+/* Service Content */
+.service-content p {
+  font-size: 18px;
+  color: #7f8c8d;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 15px; /* Ensure content is properly aligned */
+}
+
+/* Service Image */
+.service-image img {
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-height: 350px; /* Adjust image size */
+  width: 100%; /* Ensure the image is fluid */
+  object-fit: cover; /* Ensure the image does not stretch */
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Larger Image for the second service */
+.larger-image {
+  max-height: 250px; /* Adjust the larger image size */
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Hover effect for the image */
+.service-image img:hover {
+  transform: scale(1.05); /* Zoom effect on hover */
+}
+
+/* Flexbox Layout for alternating sides */
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Spread items evenly */
+  margin-bottom: 30px; /* Adjust space between rows */
+}
+
+/* Ensure content is spaced properly */
+.col-md-5 {
+  padding: 0 5px; /* Reduce padding between columns */
+}
+
+/* Service on the right for the second image */
+/* .col-md-5:last-child {
+  display: flex;
+  justify-content: flex-end;
+} */
+
+/* Add a margin to the second service content (move it to the right) */
+.service-content-right {
+  margin-left: 40px; /* Move content to the right */
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .service-title {
+    font-size: 22px;
+  }
+
+  .service-content p {
+    font-size: 16px;
+  }
+
+  .service-image img {
+    max-height: 300px; /* Adjust image size for mobile devices */
+  }
+
+  /* Larger image in mobile view too for second service */
+  .larger-image {
+    max-height: 400px;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  min-height: 300px;
+  max-height: 400px;
+  background-color: #fff;
+  overflow: hidden;
+  padding: 10px;
+  justify-content: space-between;
+  border-radius: 8px; 
+  transition: all 0.3s ease; 
+}
+.card:hover {
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+  background-color: #f9f9f9;
+}
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  height: 100%;
+}
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #333; 
+}
+.card-text {
+  font-size: 1rem;
+  color: #555;
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.owl-carousel .item {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+}
+.owl-nav button {
+  background-color: #f0f0f0;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.owl-nav button:hover {
+  background-color: #e0e0e0;
+}

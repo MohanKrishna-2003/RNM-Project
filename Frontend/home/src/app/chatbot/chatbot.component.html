@@ -1,0 +1,42 @@
+<!-- Chatbot Icon Container -->
+<div *ngIf="!isChatVisible" class="chatbot-icon-container" (click)="toggleChatVisibility()">
+  <!-- Chatbot Icon (Bubble) -->
+  <div class="chatbot-icon">💬</div> <!-- Chat bubble text as the icon -->
+</div>
+
+<!-- Chatbot Container -->
+<div *ngIf="isChatVisible" class="chatbot-container">
+  <!-- Close Button -->
+  <button class="close-btn" (click)="toggleChatVisibility()">×</button>
+
+  <div class="chat-window">
+    <div class="messages" id="messages">
+      <div *ngFor="let message of chatMessages" class="chat-message">
+        <div *ngIf="message.type === 'bot'">
+          <div class="message-bot">{{ message.text }}</div>
+          <!-- Typing indicator -->
+          <div *ngIf="message.isTyping" class="typing-indicator">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </div>
+        <div *ngIf="message.type === 'user'">
+          <div class="message-user">{{ message.text }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-container">
+      <input [(ngModel)]="userInput" (keyup.enter)="sendMessage()" placeholder="Type a message">
+      <button (click)="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <!-- Quick Replies -->
+  <div *ngIf="quickReplies.length > 0" class="quick-replies">
+    <button *ngFor="let reply of quickReplies" (click)="quickReply(reply)">
+      {{ reply }}
+    </button>
+  </div>
+</div>

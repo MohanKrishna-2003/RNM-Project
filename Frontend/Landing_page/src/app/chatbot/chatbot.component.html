@@ -1,0 +1,27 @@
+<div class="chatbot-icon" (click)="toggleChat()">
+  <div class="chatbot-icon-img">
+    <img src="bot.png" alt="Chatbot Icon">
+  </div>
+</div>
+
+<!-- Chat Container (appears when chat is open) -->
+<div class="chat-container" [ngClass]="{ 'open': isChatOpen }">
+  <div class="chat-header">
+    <button class="close-btn" (click)="toggleChat()">✖</button>
+    <h3>MyRnm Chatbot</h3>
+  </div>
+
+  <div class="chat-window">
+    <!-- Displaying messages -->
+    <div *ngFor="let message of messages" class="message" [ngClass]="{ 'from-user': message.sender === 'user', 'from-bot': message.sender === 'bot' }">
+      <div class="message-text">{{ message.text }}</div>
+    </div>
+
+    <!-- Show options as buttons for the user to select -->
+    <div *ngIf="isChatOpen" class="button-container">
+      <button *ngFor="let option of options" (click)="onOptionSelected(option)" id="btn-style">
+        {{ option }}
+      </button>
+    </div>
+  </div>
+</div>

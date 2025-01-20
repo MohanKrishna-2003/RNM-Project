@@ -1,0 +1,463 @@
+/* General Styling */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4; /* Light background */
+}
+
+/* Contact Section */
+#contact {
+  position: relative;
+  padding: 60px 20px;
+  background-color: #fff; /* Light background for the section */
+  animation: fadeInUp 1s ease-out;
+}
+
+.contact-container {
+  position: relative;
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #f9f9f9; /* Light background */
+  border-radius: 15px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for a clean look */
+  background-attachment: fixed;
+  background-position: center;
+  /* background-repeat: no-repeat; */
+  /* background-size: cover; */
+  transition: transform 0.5s ease;
+}
+
+.contact-container:hover {
+  transform: scale(1.02); /* Slight zoom effect on hover */
+}
+
+/* Heading Styling */
+h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 30px;
+  animation: fadeInDown 1s ease-out;
+}
+
+/* Contact Info Styling */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: fadeInUp 1.5s ease-out;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+}
+
+.contact-item:nth-child(1) {
+  animation-delay: 0.3s;
+}
+.contact-item:nth-child(2) {
+  animation-delay: 0.6s;
+}
+.contact-item:nth-child(3) {
+  animation-delay: 0.9s;
+}
+
+.contact-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-icon {
+  color: #007bff; /* Blue icon */
+  margin-right: 15px;
+  font-size: 1.8rem;
+  transition: color 0.3s ease;
+}
+
+.contact-item:hover .contact-icon {
+  color: #ff9900; /* Yellow on hover */
+}
+
+.contact-item h3 {
+  margin: 0;
+  color: #333;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.contact-item p a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.contact-item p a:hover {
+  color: #ff9900;
+  text-decoration: underline;
+}
+
+/* Contact Form Styling */
+.contact-form {
+  background-color: #690606;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.3s ease;
+  animation: fadeInUp 2s ease-out;
+}
+
+.contact-form input,
+.contact-form textarea {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 12px;
+  font-size: 1rem;
+  margin-bottom: 15px;
+  width: 100%;
+  background-color: #f9f9f9;
+  color: #333;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.7);
+}
+
+.contact-form button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 20px;
+  width: 100%;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.contact-form button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.contact-form button:active {
+  background-color: #003f7f;
+}
+
+/* Hover Effects for Form Buttons and Links */
+.contact-form button:hover,
+.contact-item p a:hover {
+  transform: scale(1.1);
+}
+
+.contact-item p a {
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .contact-container {
+    padding: 30px 20px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .contact-info {
+    gap: 15px;
+  }
+
+  .contact-item h3 {
+    font-size: 1.1rem;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+
+  .contact-form button {
+    font-size: 1rem;
+    padding: 10px;
+  }
+}
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Logos Section */
+#logos {
+  background-color:white; /* Light background for the logos section */
+  padding: 50px 20px;
+}
+
+#logos img {
+  max-height: 400%; /* Increase the max-height to make logos bigger */
+  width: auto; /* Maintain aspect ratio */
+  transition: transform 0.3s ease;
+}
+
+#logos img:hover {
+  transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+/* Feedback Section */
+.feedback {
+  border: 1px solid #ddd; /* Light border color */
+  border-radius: 10px; /* Round the corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  background-color: #f9f9f9; /* Light background */
+  padding: 30px; /* Padding inside the container */
+}
+
+.feedback .card-body {
+  background-color: #fff; /* White background for the form */
+  border-radius: 10px; /* Rounded corners for the card */
+  padding: 30px; /* Padding inside the form card */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Slight shadow for depth */
+}
+
+.feedback .card-title {
+  color: #8347ad; /* Stylish purple color */
+  font-size: 28px; /* Adjust the font size */
+  font-weight: 600; /* Bold title */
+  margin-bottom: 20px; /* Margin below the title */
+}
+
+.feedback .btn-primary {
+  background-color: #8347ad; /* Purple color */
+  border-color: #8347ad; /* Same purple color */
+  font-size: 16px; /* Font size of the button */
+  padding: 12px; /* Padding inside the button */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.feedback .btn-primary:hover {
+  background-color: #6f2fa0; /* Darker purple on hover */
+  border-color: #6f2fa0; /* Darker purple on hover */
+}
+
+.feedback .form-control {
+  border-radius: 5px; /* Rounded corners for form inputs */
+  padding: 12px; /* Padding inside input fields */
+  border: 1px solid #ddd; /* Light border color */
+  font-size: 16px; /* Font size for text */
+}
+
+.feedback .form-control:focus {
+  border-color: #8347ad; /* Purple border on focus */
+  box-shadow: 0 0 5px rgba(131, 71, 173, 0.5); /* Soft purple glow */
+}
+
+.feedback .text-danger {
+  font-size: 12px;
+  color: #e74c3c; /* Red color for error messages */
+}
+
+/* Responsive Design for Feedback Section */
+@media (max-width: 768px) {
+  .feedback {
+    padding: 20px; /* Reduce padding on small screens */
+  }
+
+  .feedback .card-body {
+    padding: 20px; /* Reduce padding for the form card */
+  }
+
+  .feedback .btn-primary {
+    padding: 10px; /* Reduce padding for the button */
+  }
+
+  .feedback .form-control {
+    padding: 10px; /* Reduce padding for input fields */
+  }
+}
+/* News Section */
+#newsCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); /* Smaller minimum width for better responsiveness */
+  gap: 20px;
+  margin-top: 30px;
+  padding: 0 15px;
+}
+
+/* Individual news card styling */
+.news-card {
+  background-color: #fff; /* White background for the card */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  overflow: hidden; /* Prevents content overflow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hover effects */
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Allow the card to grow depending on its content */
+}
+
+/* Hover effect on cards */
+.news-card:hover {
+  transform: translateY(-5px); /* Slight lift on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Increased shadow on hover */
+}
+
+/* Image in news card */
+.news-card img {
+  width: 100%;
+  height: 200px; /* Fixed height for image */
+  object-fit: cover; /* Ensures the image covers the area */
+  border-bottom: 1px solid #ddd; /* Border separating image from text */
+}
+
+/* Title for each news card */
+.news-card-title {
+  font-size: 1.1rem; /* Adjust font size for better balance */
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 8px;
+  color: #333;
+  padding: 0 10px;
+}
+
+/* Description styling */
+.news-card-description {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 8px;
+  overflow: hidden; /* Hide overflow text */
+  text-overflow: ellipsis; /* Add ellipsis for overflowing text */
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Limit to 3 lines */
+  -webkit-box-orient: vertical;
+  padding: 0 10px;
+}
+
+/* Author styling */
+.news-author {
+  font-size: 0.85rem;
+  color: #777;
+  margin-bottom: 8px;
+  padding: 0 10px;
+}
+
+/* Read more button styling */
+.read-more-btn {
+  font-size: 0.9rem;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 10px;
+}
+
+.read-more-btn:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
+/* Load More Button */
+#loadMoreBtn {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 30px;
+  transition: background-color 0.3s ease;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#loadMoreBtn:hover {
+  background-color: #218838; /* Darker shade on hover */
+}
+
+#loadMoreBtn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Responsive Design for News Cards */
+@media (max-width: 768px) {
+  .news-card {
+    width: 100%; /* Full width for each card on small screens */
+    aspect-ratio: unset; /* Remove aspect ratio for smaller screens */
+  }
+
+  .news-card img {
+    height: 150px; /* Adjust image height for smaller screens */
+  }
+
+  .news-card-title {
+    font-size: 1.1rem; /* Slightly smaller font for titles */
+  }
+
+  .news-card-description {
+    font-size: 0.9rem; /* Smaller font for description */
+  }
+
+  .read-more-btn {
+    width: 100%; /* Make the button full-width on small screens */
+  }
+}

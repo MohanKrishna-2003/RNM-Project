@@ -1,0 +1,122 @@
+/* Chatbot icon styles */
+.chatbot-icon {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  cursor: pointer;
+  z-index: 1001; /* Ensure the icon is above other elements but below the chat container */
+  width: 70px;  /* Set width of the container */
+  height: 70px;  /* Set height of the container */
+  border-radius: 50%;  /* Makes the container round */
+  overflow: hidden;  /* Ensure the image fits inside the circle */
+  background-color: #007bff; /* Optional background color if image is not loaded */
+}
+
+.chatbot-icon-img {
+  display: block; /* Ensures no extra space is around the image */
+  pointer-events: auto;
+  width: 100%;  /* Ensure image fills the container */
+  height: 100%;  /* Ensure image fills the container */
+}
+
+.chatbot-icon img {
+  width: 100%;  /* Image fills the container */
+  height: 100%;  /* Image fills the container */
+  object-fit: cover;  /* Ensures the image covers the circle without distortion */
+}
+
+/* Close button style */
+.close-btn {
+  position: absolute;
+  top: 10px; /* Adjust the position to the top-right corner */
+  right: 10px;
+  font-size: 18px;
+  background: transparent;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+}
+
+/* Chat container (chat window) */
+.chat-container {
+  position: fixed;
+  bottom: 120px; /* Adjust to place the container above the chatbot icon */
+  right: 20px;
+  max-width: 400px;
+  width: 100%;
+  margin: 0;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  z-index: 1002; /* Ensure the chat container is above the chatbot icon */
+  display: none; /* Initially hidden */
+  flex-direction: column;
+  height: 400px;
+}
+
+.chat-container.open {
+  display: flex; /* Show the chat container when open */
+}
+
+/* Chat window for messages */
+.chat-window {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-bottom: 10px;
+  padding-right: 10px; /* Optional: For spacing in case of long messages */
+}
+
+/* Individual message styling */
+.message {
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  max-width: 80%;
+  clear: both;
+  word-wrap: break-word;
+}
+
+/* User messages style */
+.from-user {
+  background-color: #e1ffc7;
+  align-self: flex-end;
+  border-radius: 5px 5px 0 5px; /* Slightly rounded corners for user messages */
+}
+
+/* Bot messages style */
+.from-bot {
+  background-color: #f1f1f1;
+  align-self: flex-start;
+  border-radius: 5px 5px 5px 0; /* Slightly rounded corners for bot messages */
+}
+
+/* Button container (for options) */
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 10px; /* Optional: Add some margin above the buttons */
+}
+
+/* Style for buttons */
+#btn-style {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+/* Hover effect for buttons */
+#btn-style:hover {
+  background-color: #0056b3;
+}
+
+#btn-style:focus {
+  outline: none; /* Optional: Remove outline on focus */
+}
