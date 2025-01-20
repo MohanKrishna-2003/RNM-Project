@@ -1,55 +1,55 @@
 {
-  "hash": "7c327eb0",
-  "configHash": "c7fbc97d",
-  "lockfileHash": "73718717",
-  "browserHash": "4318b2f5",
+  "hash": "01ba7104",
+  "configHash": "e9a64455",
+  "lockfileHash": "701beff3",
+  "browserHash": "ed06036f",
   "optimized": {
     "@angular/common": {
       "src": "../../../../../../node_modules/@angular/common/fesm2022/common.mjs",
       "file": "@angular_common.js",
-      "fileHash": "47d8e355",
+      "fileHash": "ef8dfe9a",
       "needsInterop": false
     },
     "@angular/common/http": {
       "src": "../../../../../../node_modules/@angular/common/fesm2022/http.mjs",
       "file": "@angular_common_http.js",
-      "fileHash": "cc9d8f3b",
+      "fileHash": "a19687b4",
       "needsInterop": false
     },
     "@angular/core": {
       "src": "../../../../../../node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-      "fileHash": "eef30164",
+      "fileHash": "aeff369f",
       "needsInterop": false
     },
     "@angular/forms": {
       "src": "../../../../../../node_modules/@angular/forms/fesm2022/forms.mjs",
       "file": "@angular_forms.js",
-      "fileHash": "3b9e7332",
+      "fileHash": "7cff7022",
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-      "fileHash": "dde2f688",
+      "fileHash": "85919edb",
       "needsInterop": false
     },
     "@angular/platform-server": {
       "src": "../../../../../../node_modules/@angular/platform-server/fesm2022/platform-server.mjs",
       "file": "@angular_platform-server.js",
-      "fileHash": "5b269c21",
+      "fileHash": "3f9da70c",
       "needsInterop": false
     },
     "@angular/router": {
       "src": "../../../../../../node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
-      "fileHash": "fee73c1c",
+      "fileHash": "f0d31ba3",
       "needsInterop": false
     },
     "chart.js": {
       "src": "../../../../../../node_modules/chart.js/dist/chart.js",
       "file": "chart__js.js",
-      "fileHash": "dcd2b012",
+      "fileHash": "8d8cee83",
       "needsInterop": false
     },
     "leaflet": {

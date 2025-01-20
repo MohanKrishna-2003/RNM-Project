@@ -29,8 +29,14 @@ export class LoginComponent {
     this.http.post("http://localhost:8085/userlogin/login", data).subscribe(
       (res: any) => {
         console.log(res);
+        localStorage.setItem("login",res.email);
+        localStorage.setItem("id",res.id);
+        localStorage.setItem("username",res.name);
+        localStorage.setItem("useremail",res.email);
+        // localStorage.removeItem("login");
+        // localStorage.clear(); 
         console.log("Login success");
-        this.route.navigateByUrl("home"); 
+        this.route.navigateByUrl(""); 
       },
       (error) => {
         console.log("Login failed:", error);
