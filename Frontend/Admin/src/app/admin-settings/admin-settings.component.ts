@@ -58,17 +58,25 @@ onSubmit() {
   this.updateProfile(profileData).subscribe(
     (response) => {
       console.log('Profile updated successfully', response);
-      // alert("SUCCESSFULLY UPDATED!");
+      // SweetAlert1 Success
       swal({
         title: "Success!",
         text: "Admin details have been successfully updated.",
         icon: "success",
+      }).then(() => {
+        window.location.reload();
       });
     },
     (error) => {
       console.error('There was an error updating the profile', error);
+      swal({
+        title: "Error!",
+        text: "There was an error updating the profile.",
+        icon: "error",
+      });
     }
   );
+  
 }
 
 reloadPage(): void {

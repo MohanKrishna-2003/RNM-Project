@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "@angular/animations": "^19.0.6",
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
     "sweetalert": "^2.1.2",
     "sweetalert2": "^11.15.10"
   }

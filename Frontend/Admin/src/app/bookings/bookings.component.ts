@@ -3,7 +3,7 @@ import { AdminHeaderComponent } from '../admin-header/admin-header.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-
+import Swal from 'sweetalert2';
 interface Booking {
   name: string;
   selectedCarDetails: string;
@@ -62,22 +62,33 @@ export class BookingsComponent implements OnInit {
   }
 
   viewDetails(booking: Booking): void {
-    alert(`Details for booking: 
-      User Name : ${booking.name} 
-      Car: ${booking.selectedCarDetails} 
-      Date: ${booking.preferredDate} 
-      Status : ${booking.status} 
-      User Phone : ${booking.phone} 
-      Email: ${booking.email} 
-      Address: ${booking.address} 
-      Timeslot: ${booking.timeslot} 
-      Showroom Location : ${booking.showroomLocation} 
-      Booking Timestamp: ${booking.bookingTimeStamp}`);
-  }
+    Swal.fire({
+      title: 'Details for booking',
+      html: `
+        <strong>User Name:</strong> ${booking.name} <br>
+        <strong>Car:</strong> ${booking.selectedCarDetails} <br>
+        <strong>Date:</strong> ${booking.preferredDate} <br>
+        <strong>Status:</strong> ${booking.status} <br>
+        <strong>User Phone:</strong> ${booking.phone} <br>
+        <strong>Email:</strong> ${booking.email} <br>
+        <strong>Address:</strong> ${booking.address} <br>
+        <strong>Timeslot:</strong> ${booking.timeslot} <br>
+        <strong>Showroom Location:</strong> ${booking.showroomLocation} <br>
+        <strong>Booking Timestamp:</strong> ${booking.bookingTimeStamp}
+      `,
+      icon: 'info',  // You can customize the icon
+      confirmButtonText: 'Close'  // Customize the button text
+    });}
 
   cancelBooking(booking: Booking): void {
     if (confirm(`Are you sure you want to cancel this booking?`)) {
       booking.status = 'Cancelled';
     }
   }
+
+  approveBooking(booking: Booking): void {
+    booking.status = 'Confirmed';
+    console.log('Approved booking:', booking);
+  }
+  
 }
