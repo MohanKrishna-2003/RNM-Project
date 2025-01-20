@@ -10,55 +10,52 @@ import { Observable } from 'rxjs';
   standalone: true,
   imports: [AdminHeaderComponent, CommonModule, FormsModule],
   templateUrl: './users.component.html',
-  styleUrl: './users.component.css'
+  styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-    searchTerm: string = '';
-    users: Array<any> = [];
-    filteredUsers: Array<any> = [];
-    constructor(private http:HttpClient){}
-    // ngOnInit(): void {
-    //   // Mock data for users
-    //   this.users = [
-    //     { name: 'John Doe', email: 'john.doe@example.com', address: '123 Main St, Springfield' },
-    //     { name: 'Jane Smith', email: 'jane.smith@example.com', address: '456 Oak St, Springfield' },
-    //     { name: 'Peter Parker', email: 'peter.parker@example.com', address: '789 Pine St, Queens' },
-    //     { name: 'Mary Jane', email: 'mary.jane@example.com', address: '101 Maple St, Queens' },
-    //     { name: 'John Doe', email: 'john.doe@example.com', address: '123 Main St, Springfield' },
-    //     { name: 'Jane Smith', email: 'jane.smith@example.com', address: '456 Oak St, Springfield' },
-    //     { name: 'Peter Parker', email: 'peter.parker@example.com', address: '789 Pine St, Queens' },
-    //     { name: 'Mary Jane', email: 'mary.jane@example.com', address: '101 Maple St, Queens' },
-    //     { name: 'John Doe', email: 'john.doe@example.com', address: '123 Main St, Springfield' },
-    //     { name: 'Jane Smith', email: 'jane.smith@example.com', address: '456 Oak St, Springfield' },
-    //     { name: 'Peter Parker', email: 'peter.parker@example.com', address: '789 Pine St, Queens' },
-    //     { name: 'Mary Jane', email: 'mary.jane@example.com', address: '101 Maple St, Queens' },
-    //     { name: 'John Doe', email: 'john.doe@example.com', address: '123 Main St, Springfield' },
-    //     { name: 'Jane Smith', email: 'jane.smith@example.com', address: '456 Oak St, Springfield' },
-    //     { name: 'Peter Parker', email: 'peter.parker@example.com', address: '789 Pine St, Queens' },
-    //     { name: 'Mary Jane', email: 'mary.jane@example.com', address: '101 Maple St, Queens' }
-    //   ];
-      
-    //   this.filteredUsers = [...this.users];
-    // }
-  
-    
-    ngOnInit(): void {
-      
-      this.getAllTheUserList().subscribe((data: any) => {
-        this.users = data; 
-        this.filteredUsers = [...this.users];
-      });
-    }
-    getAllTheUserList(): Observable<any> {
-      return this.http.get('http://localhost:8080/user/userdata'); 
-    }
+  searchTerm: string = '';
+  users: Array<any> = [];
+  filteredUsers: Array<any> = [];
+  pageSize: number = 10;  // Number of users per page
+  page: number = 0;       // Current page index
 
-    filterUsers() {
-      this.filteredUsers = this.users.filter((user) =>
-        user.name.toLowerCase().includes(this.searchTerm.toLowerCase())
-      );
-    }
-   
+  constructor(private http: HttpClient) {}
+
+  ngOnInit(): void {
+    // Get the data when component initializes
+    this.getAllTheUserList().subscribe((data: any) => {
+      this.users = data;
+      this.filteredUsers = this.users.slice(0, this.pageSize); // Initially load the first 10 users
+    });
   }
-  
 
+  getAllTheUserList(): Observable<any> {
+    return this.http.get('http://localhost:8080/user/userdata');
+  }
+
+  // Filter users based on the search term
+  filterUsers() {
+    if (this.searchTerm.trim() === '') {
+      // If no search term, reset filtered users to all users
+      this.filteredUsers = this.users.slice(0, (this.page + 1) * this.pageSize);
+    } else {
+      // If there is a search term, filter based on that
+      const filtered = this.users.filter((user) =>
+        user.userName.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
+      this.filteredUsers = filtered.slice(0, (this.page + 1) * this.pageSize);
+    }
+  }
+
+  // Load more users (pagination logic)
+  loadMore() {
+    this.page++; // Increase the page index
+    const startIndex = this.page * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    
+    // Load more users if available
+    if (startIndex < this.users.length) {
+      this.filteredUsers = [...this.filteredUsers, ...this.users.slice(startIndex, endIndex)];
+    }
+  }
+}

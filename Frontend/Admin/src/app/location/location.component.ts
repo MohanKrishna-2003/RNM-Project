@@ -30,7 +30,7 @@ export class LocationComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.http.get<Shop[]>('http://localhost:8080/locations').subscribe((res) => {
+    this.http.get<Shop[]>('http://localhost:8080/showrooms/locations').subscribe((res) => {
       console.log(res);
       this.shops = res;
 

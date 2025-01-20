@@ -1,13 +1,11 @@
 package com.project.myRNM.Controller;
 
+import com.project.myRNM.Entity.Feedback;
 import com.project.myRNM.Response.GeneralResponse;
 import com.project.myRNM.Service.FeedbackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/feedback")
@@ -28,6 +26,16 @@ public class FeedbackController {
     public ResponseEntity<?> feedbackcount(){
         try {
             return  ResponseEntity.ok(feedbackService.getMonthlyFeedbackSummary());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
+        }
+    }
+
+    @PostMapping("/postFeedback")
+    public ResponseEntity<?> postFeedback(@RequestBody Feedback feedback){
+        try{
+            feedbackService.postingFeedback(feedback);
+            return ResponseEntity.ok(new GeneralResponse("Successfully posting Feedback"));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
         }

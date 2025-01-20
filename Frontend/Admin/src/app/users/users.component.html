@@ -7,7 +7,7 @@
   </div>
 
   <!-- Search Bar -->
-  <!-- <div class="input-group mb-4 search-bar">
+  <div class="input-group mb-4 search-bar">
     <input
       type="text"
       class="form-control"
@@ -16,7 +16,7 @@
       (input)="filterUsers()"
     />
     <button class="btn btn-primary" type="button" (click)="filterUsers()">Search</button>
-  </div> -->
+  </div>
 
   <!-- Users Table -->
   <div class="table-responsive">
@@ -27,8 +27,7 @@
           <th>Name</th>
           <th>Email</th>
           <th>Address</th>
-          <th>Mobile</th> <!-- New Address Column -->
-          <!-- New Address Column -->
+          <th>Mobile</th>
         </tr>
       </thead>
       <tbody>
@@ -37,10 +36,14 @@
           <td>{{ user.userName }}</td>
           <td>{{ user.userEmail }}</td>
           <td>{{ user.userAddress }}</td>
-          <td>{{ user.userMobile }}</td> <!-- Address Data -->
-          <!-- Address Data -->
+          <td>{{ user.userMobile }}</td>
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <!-- Load More Button -->
+  <div class="d-flex justify-content-center mt-4">
+    <button *ngIf="filteredUsers.length < users.length" class="btn btn-primary" (click)="loadMore()">Load More</button>
   </div>
 </div>

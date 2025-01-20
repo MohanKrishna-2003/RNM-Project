@@ -1,69 +1,41 @@
 package com.project.myRNM.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIncludeProperties;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
 
 @Entity
-@Table(name = "Feedback")
+@Table(name="feedback")
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class Feedback {
-
-    public Integer getFeedback_id() {
-        return feedback_id;
-    }
-
-    public void setFeedback_id(Integer feedback_id) {
-        this.feedback_id = feedback_id;
-    }
-
     @Id
-    Integer feedback_id;
-    Integer user_id;
-    String user_name, feedback;
-    Date feedback_date;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer feedback_id;
 
-    public String getUser_email() {
-        return user_email;
-    }
+    @Column(name="user_id")
+    private Integer user_id;
 
-    public void setUser_email(String user_email) {
-        this.user_email = user_email;
-    }
+    @Column(name="user_name")
+    private String user_name;
 
-    String user_email;
-    public Date getFeedback_date() {
-        return feedback_date;
-    }
+    @Column(name="feedback")
+    private String feedback;
 
-    public void setFeedback_date(Date feedback_date) {
-        this.feedback_date = feedback_date;
-    }
+//    @Column(name="feedback_date")
+//    private String feedback_date;
 
-    public Integer getUser_id() {
-        return user_id;
-    }
+    @Column(name="user_email")
+    private String user_email;
 
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
-    }
+    @CreationTimestamp
+    @Column(name = "feedback_date", nullable = false, updatable = false)
+    private Date feedback_date;
 
-    public String getUser_name() {
-        return user_name;
-    }
-
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
-    }
-
-    public String getFeedback() {
-        return feedback;
-    }
-
-    public void setFeedback(String feedback) {
-        this.feedback = feedback;
-    }
 }

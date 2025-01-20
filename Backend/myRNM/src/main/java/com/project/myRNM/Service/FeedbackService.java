@@ -17,7 +17,7 @@ public class FeedbackService {
 
     public List<Feedback> getFeedbacks() throws Exception {
         try{
-            List<Feedback> feedbackList = feedbackRepo.findAll();
+            List<Feedback> feedbackList = feedbackRepo.findsortFeedback();
             return feedbackList;
         }
      catch (Exception e){
@@ -62,15 +62,23 @@ public class FeedbackService {
 
         // Method to categorize feedbacks as positive, negative, or neutral
         private String categorizeFeedback(String feedback) {
-            if (feedback.equals("Excellent") || feedback.equals("Very nice")) {
+            // Convert to lowercase for consistent comparison
+            String feedbackLower = feedback.toLowerCase();
+
+            // Check for positive keywords
+            if (feedbackLower.contains("excellent") || feedbackLower.contains("nice") || feedbackLower.contains("good")) {
                 return "positive";
-            } else if (feedback.equals("Very bad") || feedback.equals("Average")) {
+            }
+            // Check for negative keywords
+            else if (feedbackLower.contains("bad") || feedbackLower.contains("average")) {
                 return "negative";
             }
+            // Default to neutral if no match is found
             return "neutral";
         }
 
-        // Method to convert month number to month name
+
+    // Method to convert month number to month name
         private String getMonthName(String monthNumber) {
             switch (monthNumber) {
                 case "01": return "January";
@@ -88,5 +96,13 @@ public class FeedbackService {
                 default: return "Invalid Month";
             }
         }
+
+    public Feedback postingFeedback(Feedback feedback) throws Exception{
+        try{
+            return feedbackRepo.save(feedback);
+        } catch (Exception e) {
+            throw new RuntimeException("Error in Posting Feedback");
+        }
+    }
     }
 

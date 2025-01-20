@@ -27,14 +27,18 @@ export class AdminDashbaordComponent implements OnInit {
   usermonthly: any;
   months1: any = [];
   counts: any = [];
-  slotusermonthly:any;
-  slotmonths: any =[];
-  slotcounts: any =[];
-  last30:any;
+  slotusermonthly: any;
+  slotmonths: any = [];
+  slotcounts: any = [];
+  last30: any;
+  brandsdata: any;
+  brands: any = [];
+  showroomcount: any;
+  config3: any;
+  bcounts: number[]=[];
   ngOnInit(): void {
     this.chart = new Chart('Chart1', this.config);
     this.chart2 = new Chart('Chart2', this.config2);
-    this.chart3 = new Chart('Chart3', this.config3);
     this.chart4 = new Chart('Chart4', this.config4);
 
     this.http
@@ -42,18 +46,58 @@ export class AdminDashbaordComponent implements OnInit {
       .subscribe((res) => {
         console.log(res);
         this.feedbackData = res;
-        console.log(this.chart4data);
       });
     this.http.get('http://localhost:8080/user/totaluser').subscribe((res) => {
       console.log(res);
       this.totalusers = res;
       console.log(this.totalusers);
     });
-
+    this.http
+      .get('http://localhost:8080/showrooms/showroomcount')
+      .subscribe((res) => {
+        console.log(res);
+        this.showroomcount = res;
+      });
     this.http.get('http://localhost:8080/user/last30').subscribe((res) => {
       console.log(res);
       this.last30 = res;
     });
+    this.http
+      .get('http://localhost:8080/slot-bookings/brandCount')
+      .subscribe((res) => {
+        console.log(res);
+        this.brandsdata = res;
+        for (let i = 0; i < this.brandsdata.length; i++) {
+          this.brands.push(this.brandsdata[i].brand); // Push the month to the months array
+          this.bcounts.push(this.brandsdata[i].totalUsers);
+          // Push the count to the counts array
+        }
+        console.log('DATA COUNTS: ', this.bcounts);
+        console.log('DATA BRANDS: ', this.brands);
+        console.log(this.bcounts[0], this.bcounts[1], this.bcounts[2]);
+        this.config3 = {
+          type: 'pie', // Pie chart type
+          data: {
+            labels: ['Renault', 'Nissan', 'Mitsubishi'], // Labels
+            datasets: [
+              {
+                label: 'Car Bookings',
+                data: [this.bcounts[0], this.bcounts[1], this.bcounts[2]], // Sample data
+                backgroundColor: ['#365CF5', '#9b51e0', '#4CAF50'],
+                hoverBackgroundColor: ['#2A46B1', '#7F37A8', '#388E3C'],
+                borderWidth: 5,
+                borderColor: '#ffffff',
+              },
+            ],
+          },
+          options: {
+            responsive: false, // Responsive chart
+            maintainAspectRatio: false, // Allow resizing
+          },
+        };
+        this.chart3 = new Chart('Chart3', this.config3);
+      });
+
     this.http
       .get('http://localhost:8080/user/userMonthlyCount')
       .subscribe((res) => {
@@ -64,13 +108,12 @@ export class AdminDashbaordComponent implements OnInit {
         this.usermonthly = res;
 
         for (let i = 0; i < this.usermonthly.length; i++) {
-          this.months1.push(this.usermonthly[i].month);  // Push the month to the months array
-          this.counts.push(this.usermonthly[i].count);  // Push the count to the counts array
-      }
-        
+          this.months1.push(this.usermonthly[i].month); // Push the month to the months array
+          this.counts.push(this.usermonthly[i].count); // Push the count to the counts array
+        }
       });
 
-      this.http
+    this.http
       .get('http://localhost:8080/slot-bookings/userMonthlyCount')
       .subscribe((res) => {
         console.log('DATAAAAAAAAAAA');
@@ -80,15 +123,15 @@ export class AdminDashbaordComponent implements OnInit {
         this.slotusermonthly = res;
 
         for (let i = 0; i < this.slotusermonthly.length; i++) {
-          this.slotmonths.push(this.slotusermonthly[i].month);  // Push the month to the months array
-          this.slotcounts.push(this.slotusermonthly[i].count);  // Push the count to the counts array
-      }
-        
+          this.slotmonths.push(this.slotusermonthly[i].month); // Push the month to the months array
+          this.slotcounts.push(this.slotusermonthly[i].count); // Push the count to the counts array
+        }
       });
     this.processFeedbackData();
     this.calculateSum();
   }
-  feedbackData: any;
+
+  feedbackData: any=[];
   months: string[] = [
     'January',
     'February',
@@ -145,6 +188,26 @@ export class AdminDashbaordComponent implements OnInit {
     ).toFixed(2);
     console.log(this.usersatisfaction);
   }
+  // public config3: any = {
+  //   type: 'pie', // Pie chart type
+  //   data: {
+  //     labels: ['Renault', 'Nissan', 'Mitsubishi'], // Labels
+  //     datasets: [
+  //       {
+  //         label: 'Car Bookings',
+  //         data: [7, 2, 3], // Sample data
+  //         backgroundColor: ['#365CF5', '#9b51e0', '#4CAF50'],
+  //         hoverBackgroundColor: ['#2A46B1', '#7F37A8', '#388E3C'],
+  //         borderWidth: 5,
+  //         borderColor: '#ffffff',
+  //       },
+  //     ],
+  //   },
+  //   options: {
+  //     responsive: false, // Responsive chart
+  //     maintainAspectRatio: false, // Allow resizing
+  //   },
+  // };
 
   chart: any;
   chart2: any;
@@ -194,31 +257,30 @@ export class AdminDashbaordComponent implements OnInit {
     },
   };
 
+  // console.log();
+
   // =========== chart three start
-  public config3: any = {
-    type: 'pie', // Pie chart type
-    data: {
-      labels: ['Renault', 'Nissan', 'Mitsubishi'], // Labels
-      datasets: [
-        {
-          label: 'Car Bookings',
-          data: [50, 30, 20], // Sample data
-          backgroundColor: ['#365CF5', '#9b51e0', '#4CAF50'],
-          hoverBackgroundColor: ['#2A46B1', '#7F37A8', '#388E3C'],
-          borderWidth: 5,
-          borderColor: '#ffffff',
-        },
-      ],
-    },
-    options: {
-      responsive: false, // Responsive chart
-      maintainAspectRatio: false, // Allow resizing
-     
-    },
-  };
-  
-  
-  
+  // public config3: any = {
+  //   type: 'pie', // Pie chart type
+  //   data: {
+  //     labels: ['Renault', 'Nissan', 'Mitsubishi'], // Labels
+  //     datasets: [
+  //       {
+  //         label: 'Car Bookings',
+  //         data: [1, 2, 3], // Sample data
+  //         backgroundColor: ['#365CF5', '#9b51e0', '#4CAF50'],
+  //         hoverBackgroundColor: ['#2A46B1', '#7F37A8', '#388E3C'],
+  //         borderWidth: 5,
+  //         borderColor: '#ffffff',
+  //       },
+  //     ],
+  //   },
+  //   options: {
+  //     responsive: false, // Responsive chart
+  //     maintainAspectRatio: false, // Allow resizing
+  //   },
+  // };
+
   // =========== chart three end
 
   // ================== chart four start
