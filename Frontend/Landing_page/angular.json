@@ -24,7 +24,8 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              },
+              "src/assets"
             ],
             "styles": [
               "src/styles.css",
@@ -103,10 +104,6 @@
     }
   },
   "cli": {
-<<<<<<< HEAD
     "analytics": false
-=======
-    "analytics": "5756bfdf-5023-404c-aa82-323fb8f99a2e"
->>>>>>>>> Temporary merge branch 2
   }
 }
