@@ -26,7 +26,7 @@ public class Users {
 
     @CreationTimestamp
     @Column(name = "registration_date", nullable = false, updatable = false)
-    private Date registrationDate; // This field will store the registration date and time
+    private Date registration_date;
 
     @OneToMany
 

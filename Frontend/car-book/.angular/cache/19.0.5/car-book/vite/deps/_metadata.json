@@ -1,98 +1,54 @@
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 3e3d3b00ca15546051fc2afa9c513187a6ae2657
+<<<<<<<<< Temporary merge branch 1
   "hash": "cc44ac7e",
   "configHash": "c9cca9a8",
   "lockfileHash": "6290ad2b",
   "browserHash": "351a3297",
-<<<<<<< HEAD
-=======
-=======
->>>>>>> f2ac65f4b7d918fb402144fb2282bfa5130c9e32
+=========
   "hash": "3faf05d2",
   "configHash": "1bb9c9fb",
   "lockfileHash": "a67e0eed",
   "browserHash": "6310708a",
-<<<<<<< HEAD
->>>>>>> fd7a5f0ba14b81295861d9fdf58d505957763574
-=======
->>>>>>> f2ac65f4b7d918fb402144fb2282bfa5130c9e32
-=======
->>>>>>> 3e3d3b00ca15546051fc2afa9c513187a6ae2657
+>>>>>>>>> Temporary merge branch 2
   "optimized": {
     "@angular/common": {
       "src": "../../../../../../node_modules/@angular/common/fesm2022/common.mjs",
       "file": "@angular_common.js",
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+<<<<<<<<< Temporary merge branch 1
       "fileHash": "98c68d05",
-=======
+=========
       "fileHash": "eb9ddaf3",
->>>>>>> fd7a5f0ba14b81295861d9fdf58d505957763574
-=======
-      "fileHash": "eb9ddaf3",
->>>>>>> f2ac65f4b7d918fb402144fb2282bfa5130c9e32
-=======
-      "fileHash": "98c68d05",
->>>>>>> 3e3d3b00ca15546051fc2afa9c513187a6ae2657
+>>>>>>>>> Temporary merge branch 2
       "needsInterop": false
     },
     "@angular/core": {
       "src": "../../../../../../node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+<<<<<<<<< Temporary merge branch 1
       "fileHash": "9462322a",
-=======
+=========
       "fileHash": "a34e503e",
->>>>>>> fd7a5f0ba14b81295861d9fdf58d505957763574
-=======
-      "fileHash": "a34e503e",
->>>>>>> f2ac65f4b7d918fb402144fb2282bfa5130c9e32
-=======
-      "fileHash": "9462322a",
->>>>>>> 3e3d3b00ca15546051fc2afa9c513187a6ae2657
+>>>>>>>>> Temporary merge branch 2
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+<<<<<<<<< Temporary merge branch 1
       "fileHash": "38c31c6d",
-=======
+=========
       "fileHash": "b01796d6",
->>>>>>> fd7a5f0ba14b81295861d9fdf58d505957763574
-=======
-      "fileHash": "b01796d6",
->>>>>>> f2ac65f4b7d918fb402144fb2282bfa5130c9e32
-=======
-      "fileHash": "38c31c6d",
->>>>>>> 3e3d3b00ca15546051fc2afa9c513187a6ae2657
+>>>>>>>>> Temporary merge branch 2
       "needsInterop": false
     },
     "@angular/router": {
       "src": "../../../../../../node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+<<<<<<<<< Temporary merge branch 1
       "fileHash": "8f7d2376",
-=======
+=========
       "fileHash": "a6f4ae4e",
->>>>>>> fd7a5f0ba14b81295861d9fdf58d505957763574
-=======
-      "fileHash": "a6f4ae4e",
->>>>>>> f2ac65f4b7d918fb402144fb2282bfa5130c9e32
-=======
-      "fileHash": "8f7d2376",
->>>>>>> 3e3d3b00ca15546051fc2afa9c513187a6ae2657
+>>>>>>>>> Temporary merge branch 2
       "needsInterop": false
     }
   },
