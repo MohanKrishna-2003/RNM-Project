@@ -3,6 +3,8 @@ import { AdminHeaderComponent } from '../admin-header/admin-header.component';
 import { Chart, registerables } from 'chart.js';
 import { HttpClient } from '@angular/common/http';
 import { log } from 'node:console';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 Chart.register(...registerables);
 
@@ -17,7 +19,7 @@ export interface FeedbackData {
 @Component({
   selector: 'app-admin-dashbaord',
   standalone: true,
-  imports: [AdminHeaderComponent],
+  imports: [AdminHeaderComponent, FormsModule],
   templateUrl: './admin-dashbaord.component.html',
   styleUrl: './admin-dashbaord.component.css',
 })
@@ -193,18 +195,25 @@ export class AdminDashbaordComponent implements OnInit {
   negativeCounts: number[] = [];
   totalpositive = 0;
   totalnegative = 0;
-
+  selectedYear: String="y2024";
   processFeedbackData(): void {
+    console.log("INSIDE PROCESS FEEDBACKS");
+    
     // Iterate through each month and check if feedback data exists for it
     for (let i = 0; i < this.months.length; i++) {
-      let month = this.months[i] + ' 2024'; // Add year to month for matching
-
-      // Initialize counts with 0 if no data is found for the month
+      
+      let month: string;  
+//not working
+if (this.selectedYear.includes("y2025")) {
+  month = this.months[i] + ' 2025'; 
+  console.log(this.selectedYear);
+} else {
+  console.log(this.selectedYear);
+  month = this.months[i] + ' 2024';  
+}
       let positive = 0;
       let negative = 0;
-      let neutral = 0;
 
-      // Check if data exists for this month and update the counts accordingly
       if (this.feedbackData[month]) {
         positive = this.feedbackData[month].positive || 0;
         negative = this.feedbackData[month].negative || 0;
