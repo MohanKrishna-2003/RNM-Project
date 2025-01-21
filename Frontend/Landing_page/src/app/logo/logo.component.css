@@ -1,0 +1,15 @@
+/* Logos Section */
+#logos {
+  background-color:white; /* Light background for the logos section */
+  padding: 30px 20px;
+}
+
+#logos img {
+  max-height: 400%; /* Increase the max-height to make logos bigger */
+  width: auto; /* Maintain aspect ratio */
+  transition: transform 0.3s ease;
+}
+
+#logos img:hover {
+  transform: scale(1.1); /* Slight zoom effect on hover */
+}

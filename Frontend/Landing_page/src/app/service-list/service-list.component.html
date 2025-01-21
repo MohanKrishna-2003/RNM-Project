@@ -2,18 +2,16 @@
   <div class="container py-3">
     <h2 class="text-center mb-5">Our Services</h2>
 
-    <!-- Service Items Loop -->
     <div *ngFor="let service of services; let i = index" class="row align-items-center mb-5">
 
-      <!-- Service Image on the left for the first and third items -->
       <div class="col-md-5" *ngIf="i % 2 === 0">
         <div class="service-image">
           <img [src]="service.image" [alt]="service.title" class="img-fluid rounded"
-               [ngClass]="{'larger-image': i === 1}" /> <!-- Apply larger image class for second service -->
+               [ngClass]="{'larger-image': i === 1}" />
         </div>
       </div>
 
-      <!-- Service Content on the right for the first and third items -->
+
       <div class="col-md-5" *ngIf="i % 2 === 0">
         <div class="service-content">
           <h4 class="service-title">{{ service.title }}</h4>
@@ -21,7 +19,6 @@
         </div>
       </div>
 
-      <!-- Content on the left for the second item -->
       <div class="col-md-5" *ngIf="i % 2 !== 0">
         <div class="service-content service-content-right">
           <h4 class="service-title">{{ service.title }}</h4>
@@ -29,11 +26,10 @@
         </div>
       </div>
 
-      <!-- Image on the right for the second item -->
       <div class="col-md-5" *ngIf="i % 2 !== 0">
         <div class="service-image">
           <img [src]="service.image" [alt]="service.title" class="img-fluid rounded"
-               [ngClass]="{'larger-image': i === 1}" /> <!-- Apply larger image class for second service -->
+               [ngClass]="{'larger-image': i === 1}" />
         </div>
       </div>
 
@@ -41,12 +37,7 @@
   </div>
 </div>
 
-
-
-
-
-
-<div class="container py-5">
+<!-- <div class="container py-5">
   <h2 class="text-center mb-5">What Our Customers Say</h2>
   <div id="customer-carousel" class="owl-carousel owl-theme">
     <div class="item" *ngFor="let testimonial of testimonials">
@@ -58,5 +49,5 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 

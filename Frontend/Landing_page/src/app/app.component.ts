@@ -19,9 +19,6 @@ import { LoginComponent } from './login/login.component';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  // Variable to control visibility of chatbot
-  isChatbotVisible: boolean = false;
-
   // Scroll to top function
   scrollToTop() {
     window.scrollTo({
@@ -42,10 +39,5 @@ export class AppComponent {
         scrollToTopBtn.classList.remove('show-scroll-btn');
       }
     }
-  }
-
-  // Toggle the visibility of the chatbot
-  toggleChatbot(): void {
-    this.isChatbotVisible = !this.isChatbotVisible;
   }
 }

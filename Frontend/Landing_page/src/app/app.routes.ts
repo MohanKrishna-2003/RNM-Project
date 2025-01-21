@@ -17,10 +17,10 @@ export const routes: Routes = [
   // {path:'home',component:HomeComponent},
   // { path: '', component: ServiceListComponent },  // This will display ServiceList on the home route
   // { path: 'service', component: ServiceListComponent },  // Same here for service route
-  // { path: 'contact', component: ContactComponent },  // This will display the Contact component for '/contact'
+  { path: 'contact', component: ContactComponent },  // This will display the Contact component for '/contact'
   { path: 'location', component: LocationComponent } ,
   { path: '',component:HomeComponent },
   {path:'login',component:LoginComponent},
-  {path:'signup',component:SignupComponent}
-  // { path: 'booking', component: BookingComponent }
+  {path:'signup',component:SignupComponent},
+  { path: 'booking', component: BookingComponent }
 ];
