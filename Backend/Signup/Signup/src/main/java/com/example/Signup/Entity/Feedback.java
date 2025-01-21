@@ -32,6 +32,9 @@ public class Feedback {
     @Column(name="user_email")
     private String user_email;
 
+    @Column(name="users_ratings")
+    private Integer users_ratings;
+
     @CreationTimestamp
     @Column(name = "feedback_date", nullable = false, updatable = false)
     private Date feedback_date;

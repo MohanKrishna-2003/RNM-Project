@@ -38,9 +38,10 @@ export class ContactComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fetchNews();  // Fetch news articles on initialization
+    this.fetchNews(); 
+    
   }
-
+ 
   // News API URL
   private API_URL = 'https://newsapi.org/v2/everything?q=Renault+Nissan+Mitsubishi&language=en&sortBy=publishedAt&apiKey=03236fd20cc54cabac03280adfa33aaa';
 
@@ -96,7 +97,7 @@ export class ContactComponent implements OnInit {
   // Submit the feedback form data to the API
   submit(): void {
     const status = localStorage.getItem("login"); // Check login status
-    if (status !== "1") {
+    if (!status) {
       alert("Please login to submit feedback");
       return; // Don't proceed if the user is not logged in
     }

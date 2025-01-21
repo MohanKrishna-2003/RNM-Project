@@ -1,6 +1,7 @@
 // service-list.component.ts
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FeedbackComponent } from '../feedback/feedback.component';
 declare var $: any;
 
 @Component({
@@ -8,7 +9,7 @@ declare var $: any;
   standalone:true,
   templateUrl: './service-list.component.html',
   styleUrls: ['./service-list.component.css'],
-  imports: [CommonModule]
+  imports: [CommonModule,FeedbackComponent]
 })
 export class ServiceListComponent {
   services = [

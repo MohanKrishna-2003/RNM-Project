@@ -1,1 +1,74 @@
-<p>feedback works!</p>
+<div class="container py-5">
+    <h2 class="text-center mb-5">What Our Customers Say</h2>
+    <div id="customer-carousel" class="owl-carousel owl-theme">
+      <div class="item" *ngFor="let testimonial of testimonials">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ testimonial.name }}</h5>
+            <p class="card-text mt-5">{{ testimonial.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container-fluid feedback d-flex justify-content-center align-items-center ">
+    <div class="main">
+      <div class="row w-100">
+        <div class="col-12 col-sm-6 col-md-6 d-flex justify-content-center align-items-center">
+          <div class="image mt-5">
+            <img src="https://static.vecteezy.com/system/resources/previews/016/389/997/non_2x/online-customer-feedback-and-survey-free-png.png" alt="Feedback Image" width="100%" class="img-fluid">
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-6 mt-5">
+          <div class="card-body mt-4 w-100">
+            <div class="card-title text-center mb-2">
+              <i class="fas fa-comment-dots fa-3x" style="color: #8347ad;"></i>
+              <h2 class="text-center mb-4">We Value Your Feedback</h2>
+            </div>
+            <form [formGroup]="feedbackForm" (ngSubmit)="submit()">
+              <div class="form-group mb-3">
+                <input type="text" class="form-control" formControlName="user_name" placeholder="Enter your name" (input)="checkLogin()" required>
+                <div *ngIf="feedbackForm.get('user_name')?.touched && feedbackForm.get('user_name')?.invalid" class="text-danger">
+                  <div *ngIf="feedbackForm.get('user_name')?.hasError('required')">Name is required</div>
+                </div>
+              </div>
+              <div class="form-group mb-3">
+                <input type="email" class="form-control" formControlName="user_email" placeholder="Enter your email" (input)="checkLogin()" required>
+                <div *ngIf="feedbackForm.get('user_email')?.touched && feedbackForm.get('user_email')?.invalid" class="text-danger">
+                  <div *ngIf="feedbackForm.get('user_email')?.hasError('required')">Email is required</div>
+                  <div *ngIf="feedbackForm.get('user_email')?.hasError('email')">Please enter a valid email address</div>
+                </div>
+              </div>
+              <div class="form-group mb-3">
+                <textarea class="form-control" formControlName="feedback" placeholder="Enter your feedback" (input)="checkLogin()" rows="4" required></textarea>
+                <div *ngIf="feedbackForm.get('feedback')?.touched && feedbackForm.get('feedback')?.invalid" class="text-danger">
+                  <div *ngIf="feedbackForm.get('feedback')?.hasError('required')">Feedback is required</div>
+                </div>
+              </div>
+
+              
+            <div class="rating-container text-center mt-4">
+                <span class="rating" data-value="5" title="Excellent" (click)="selectRating(5)" (input)="checkLogin()">😍</span>
+                <span class="rating" data-value="4" title="Good" (click)="selectRating(4)">😊</span>
+                <span class="rating" data-value="3" title="Okay" (click)="selectRating(3)">😐</span>
+                <span class="rating" data-value="2" title="Bad" (click)="selectRating(2)">😟</span>
+                <span class="rating" data-value="1" title="Very Bad" (click)="selectRating(1)">😡</span>
+            </div>
+
+            <!-- Dynamic Message Based on Rating -->
+            <div *ngIf="selectedRatingMessage" class="text-center mt-3">
+                <p>{{ selectedRatingMessage }}</p>
+            </div>
+
+           
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary w-100 mt-3" [disabled]="!feedbackForm.valid">Submit Feedback</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
