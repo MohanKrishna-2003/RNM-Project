@@ -26,7 +26,6 @@ ngOnInit(): void {
       console.log(res);
       this.admin = res;
       
-      // Initialize form after receiving the response
       this.profileForm = this.fb.group({
         name: [this.admin[0]?.name || '', [Validators.required, Validators.minLength(3)]],
         email: [this.admin[0]?.mail || '', [Validators.required, Validators.email]],
@@ -39,6 +38,7 @@ ngOnInit(): void {
       console.error('Error fetching admin details:', error);
     }
   );
+  localStorage.setItem("admin",this.admin[0].name);
 }
 
 formshow = false;
