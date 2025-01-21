@@ -6,13 +6,14 @@ declare var $: any;
 
 @Component({
   selector: 'app-feedback',
+  standalone:true,
   imports: [ReactiveFormsModule , FormsModule, CommonModule],
   templateUrl: './feedback.component.html',
   styleUrls: ['./feedback.component.css']
 })
 export class FeedbackComponent {
   feedbackForm: FormGroup;
-  selectedRatingMessage: string | null = null;  
+  selectedRatingMessage: string | null = null;
 
   constructor(private http: HttpClient, private fb: FormBuilder) {
     this.feedbackForm = this.fb.group({
@@ -20,7 +21,7 @@ export class FeedbackComponent {
       user_email: ['', [Validators.required, Validators.email]],
       feedback: ['', Validators.required],
       user_id: [1, Validators.required],
-      users_ratings: ['', Validators.required] 
+      users_ratings: ['', Validators.required]
     });
   }
 
@@ -66,7 +67,7 @@ export class FeedbackComponent {
         this.selectedRatingMessage = "Thank you! We're thrilled you had an excellent experience! 🎉";
         break;
       default:
-        this.selectedRatingMessage = null;  
+        this.selectedRatingMessage = null;
     }
   }
 
@@ -81,20 +82,18 @@ export class FeedbackComponent {
 
   submit() {
     console.log(this.feedbackForm);
-    
     if (this.feedbackForm.valid) {
       const data = this.feedbackForm.value;
       data.user_id = localStorage.getItem("id");
       console.log(data);
-      
       this.http.post("http://localhost:8085/userlogin/postFeedback", data).subscribe({
         next: (res) => {
           console.log(res);
           // this.feedbackForm.clearAsyncValidators
 
           // this.feedbackForm.reset();
-          // console.log(this.feedbackForm);
-            this.feedbackForm.get('feedback').reset()
+          console.log(this.feedbackForm);
+            // this.feedbackForm.get('feedback').reset()
         },
         error: (err) => {
           console.log(err);
@@ -136,3 +135,4 @@ export class FeedbackComponent {
     });
   }
 }
+

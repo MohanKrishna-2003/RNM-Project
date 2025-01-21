@@ -1,28 +1,40 @@
-/* Chatbot icon styles */
 .chatbot-icon {
   position: fixed;
   bottom: 100px;
   right: 20px;
   cursor: pointer;
-  z-index: 1001; /* Ensure the icon is above other elements but below the chat container */
-  width: 70px;  /* Set width of the container */
-  height: 70px;  /* Set height of the container */
-  border-radius: 50%;  /* Makes the container round */
-  overflow: hidden;  /* Ensure the image fits inside the circle */
-  background-color: #007bff; /* Optional background color if image is not loaded */
+  z-index: 1001; /* Ensure the button is above other elements but below the chat container */
+  width: 50px;  /* Set width of the container to a smaller size */
+  height: 50px;  /* Set height of the container to a smaller size */
+  background-color: white;  /* White background for the icon */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow to the icon */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px; /* Rounded corners for the box (you can adjust or remove if you want sharp corners) */
 }
 
-.chatbot-icon-img {
-  display: block; /* Ensures no extra space is around the image */
-  pointer-events: auto;
-  width: 100%;  /* Ensure image fills the container */
-  height: 100%;  /* Ensure image fills the container */
+.css-15q8v64.e13411jb0 {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px; /* Optional: To make the button corners match the box */
 }
 
-.chatbot-icon img {
-  width: 100%;  /* Image fills the container */
-  height: 100%;  /* Image fills the container */
-  object-fit: cover;  /* Ensures the image covers the circle without distortion */
+.css-15q8v64.e13411jb0 svg {
+  width: 24px;  /* Smaller size for the SVG icon */
+  height: 24px; /* Smaller size for the SVG icon */
+  fill: #007bff;  /* Blue color for the SVG icon */
+}
+
+.css-15q8v64.e13411jb0:hover svg {
+  fill: #0056b3;  /* Darker blue on hover */
 }
 
 /* Close button style */

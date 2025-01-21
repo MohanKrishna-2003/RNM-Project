@@ -18,7 +18,7 @@ export class ChatbotComponent {
     'Learn About Cars',
     'Book a Test Drive',
     'Customer Reviews/Testimonial',
-    'Contact Us',
+    'feedback',
     'Locations',
     'Goodbye!',
   ];
@@ -45,12 +45,12 @@ export class ChatbotComponent {
     this.messages.push({ sender: 'user', text: option });
 
     if (option === 'Learn About Cars') {
-      this.messages.push({ sender: 'bot', text: this.carDetails || 'No car information available.' });
+      this.router.navigate(['/booking']);
     } else if (option === 'Book a Test Drive') {
       this.router.navigate(['/booking']); // Navigate to the booking page
       this.messages.push({ sender: 'bot', text: 'Redirecting to the booking page.' });
-    } else if (option === 'Contact Us') {
-      this.router.navigate(['/contact']); // Navigate to the contact page
+    } else if (option === 'feedback') {
+      this.router.navigate(['/feedback']);
       this.messages.push({ sender: 'bot', text: 'Redirecting to the contact page.' });
     } else if (option === 'Locations') {
       this.router.navigate(['/location']); // Navigate to the locations page
