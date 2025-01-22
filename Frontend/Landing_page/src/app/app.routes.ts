@@ -8,6 +8,8 @@ import { ContactComponent } from './contact/contact.component';
 import { BookingComponent } from './booking/booking.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { NewsComponent } from './news/news.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 
 export const routes: Routes = [
   // { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -22,5 +24,7 @@ export const routes: Routes = [
   { path: '',component:HomeComponent },
   {path:'login',component:LoginComponent},
   {path:'signup',component:SignupComponent},
-  { path: 'booking', component: BookingComponent }
+  { path: 'booking', component: BookingComponent },
+  {path:'news',component:NewsComponent},
+  {path:'feedback',component:FeedbackComponent}
 ];
