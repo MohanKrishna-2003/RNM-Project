@@ -1,0 +1,19 @@
+#newsCards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); /* Smaller minimum width for better responsiveness */
+    gap: 20px;
+    margin-top: 30px;
+    padding: 0 15px;
+  }
+   
+  /* Individual news card styling */
+  .news-card {
+    background-color: #fff; /* White background for the card */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    overflow: hidden; /* Prevents content overflow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hover effects */
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Allow the card to grow depending on its content */
+  }

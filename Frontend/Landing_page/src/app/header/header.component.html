@@ -16,8 +16,8 @@
         <i class="fas fa-location-pin"></i> Location
       </a>
 
-      @if (name=="") {
-<div>
+      <!-- @if (name=="") { -->
+     <div>
       <!-- Profile Button with Click Event to Toggle Box -->
       <span class="user-profile" (click)="toggleProfileBox()">
         <i class="fas fa-user"></i> Profile
@@ -31,25 +31,9 @@
         <button (click)="onSignup()">Sign Up</button>
       </div>
     </div>
-  }
+  <!-- } -->
 
-    @if (name!="") {
-    <div>
-      <!-- Profile Button with Click Event to Toggle Box -->
-      <span class="user-profile" (click)="toggleProfileBox()">
-        <i class="fas fa-user"></i>
-         {{name}}
-        <!-- <h1>{{name}}</h1> -->
-      </span>
-
-      <!-- Profile Box (Login/Signup Box) -->
-      <div *ngIf="isProfileBoxVisible" class="profile-box">
-        <div class="profile-arrow"></div>  <!--Arrow pointing to profile -->
-         <h4>Login to your RNM Account</h4>
-        <button (click)="Onlogout()">Logout</button>
-        </div>
-    </div>
-  }
+  
 </div>
 </div>
   <!-- Horizontal Divider Line Below -->

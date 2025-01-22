@@ -1,11 +1,9 @@
-/* Home section styling */
 .home {
   padding: 0;
   background-color: #f7f7f7;
   text-align: center;
 }
 
-/* Carousel items (images) styling */
 .carousel-item img {
   height: 85vh; /* Set fixed height for carousel images */
   object-fit: cover;
@@ -33,3 +31,43 @@
 .carousel-control-next-icon {
   background-color: black; /* Ensures the icons are visible */
 }
+
+
+.home {
+  position: relative;
+  width: 100%;
+  height: 80vh; /* Full screen height */
+  margin: 0; /* Remove any margin that might add white space */
+  padding: 0; /* Remove any padding */
+  overflow: hidden; /* Hide overflow to ensure the video fits */
+}
+ 
+/* Make the video container responsive and reduce height */
+.video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* Make the video take up the full height of the home section */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Hide overflow to ensure the video fills the container */
+}
+ 
+.video-container video {
+  object-fit: cover; /* Ensures the video fills the container without distortion */
+  width: 100%;
+  height: 110%; /* Ensures the video takes up the full height */
+  max-width: 100%;
+  max-height: 100%;
+}
+ 
+/* Ensure that the next components follow immediately */
+app-booking,
+app-service-list,
+app-contact {
+  margin-top: 0; /* Make sure there's no space above the components */
+  padding-top: 0; /* Remove any padding that could cause space */
+}
+ 

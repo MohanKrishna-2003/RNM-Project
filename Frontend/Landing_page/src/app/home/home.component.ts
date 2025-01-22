@@ -9,25 +9,26 @@ import { ChatbotComponent } from '../chatbot/chatbot.component';
 import { H1Component } from "../h1/h1.component";
 import { FeedbackComponent } from '../feedback/feedback.component';
 import { TestimonialComponent } from '../testimonial/testimonial.component';
+import { NewsComponent } from '../news/news.component';
 
 @Component({
   selector: 'app-home',
   standalone:true,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  imports: [HeaderComponent,FeedbackComponent, BookingComponent,TestimonialComponent, ServiceListComponent, FooterComponent, ContactComponent, ChatbotComponent, H1Component]
+  imports: [HeaderComponent,FeedbackComponent, BookingComponent,TestimonialComponent, ServiceListComponent, FooterComponent, ContactComponent, ChatbotComponent, H1Component,NewsComponent]
 })
 export class HomeComponent implements AfterViewInit {
   @ViewChild('carouselExample', { static: false }) carousel!: ElementRef;
   @ViewChild(ChatbotComponent) chatbotComponent!: ChatbotComponent;
-
+ 
   ngAfterViewInit() {
     // Initialize the Bootstrap carousel programmatically with custom options
     const carousel = new bootstrap.Carousel(this.carousel.nativeElement, {
       interval: 3000, // Set custom interval (3 seconds)
       ride: 'carousel', // Enable auto-cycling
     });
-
+ 
     // Trigger chatbot response based on carousel change
     this.carousel.nativeElement.addEventListener('slide.bs.carousel', (event: any) => {
       // For example, you can show the car details when the carousel changes
@@ -35,7 +36,7 @@ export class HomeComponent implements AfterViewInit {
       this.chatbotComponent.setCarDetails(carDetails);
     });
   }
-
+ 
   // Get car details based on the current carousel item
   getCarDetails(event: any): string {
     const carouselIndex = event.to; // The index of the active carousel item
@@ -50,7 +51,7 @@ export class HomeComponent implements AfterViewInit {
         return '';
     }
   }
-
+ 
   // Trigger booking details in the chatbot (e.g., when the user asks about booking)
   onBookingQuery(): void {
     const bookingDetails = 'You can book your services directly through our website or app.';

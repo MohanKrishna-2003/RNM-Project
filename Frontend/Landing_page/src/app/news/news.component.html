@@ -1,1 +1,38 @@
-<p>news works!</p>
+<div class="container mb-3" id="news">
+    <div class="text-center">
+      <h1 class="news-heading">Notifications - Latest News</h1>
+      <p class="lead">Stay updated with the latest news about Renault, Nissan, and Mitsubishi.</p>
+    </div>
+   
+    <div id="newsCards" class="row">
+      <div *ngFor="let article of articles.slice(0, currentIndex)" class="col-lg-12 col-md-8 col-lg-12 lg-12">
+        <div class="card news-card">
+          <img
+            [src]="article.urlToImage || DEFAULT_IMAGE"
+            class="card-img-top"
+            alt="{{ article.title }}"
+            (error)="article.urlToImage = DEFAULT_IMAGE"
+          />
+          <div class="card-body">
+            <h5 class="news-card-title">{{ article.title }}</h5>
+            <p class="news-card-description">
+              {{ article.description || 'No description available.' }}
+            </p>
+            <p class="news-author">Author: {{ article.author || 'Unknown' }}</p>
+            <a [href]="article.url" target="_blank" class="btn read-more-btn">Read More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+   
+    <div *ngIf="loading" id="loadingSpinner" class="spinner-border text-primary" role="status">
+      <span class="sr-only" style="text-align: center;">Loading...</span>
+    </div>
+   
+    <div *ngIf="!loading && currentIndex < articles.length">
+      <button id="loadMoreBtn" class="btn btn-primary mt-3" (click)="loadMore()">
+        Load More
+      </button>
+      <br>
+    </div>
+  </div>

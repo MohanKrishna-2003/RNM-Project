@@ -19,7 +19,7 @@ export class TestimonialComponent implements OnInit{
   ngOnInit(): void {
     this.http.get("http://localhost:8085/userlogin/getUsersFeedback").subscribe((res: any) => {
       console.log(res);
-      this.testimonials = res.slice(0, 10);  // Limit to 10 testimonials
+      this.testimonials = res.slice(0, 10);  //10 testimonials
       console.log(this.testimonials);
     });
   }

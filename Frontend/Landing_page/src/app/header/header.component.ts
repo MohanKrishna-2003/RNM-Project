@@ -16,6 +16,8 @@ export class HeaderComponent implements OnInit {
   constructor(private router: Router) {}
   ngOnInit(): void {
     this.name = localStorage.getItem("useremail") || "";
+    console.log(this.name);
+    
   }
 
   // Variable to toggle the visibility of the profile box
@@ -42,9 +44,9 @@ export class HeaderComponent implements OnInit {
   }
   Onlogout(){
     // localStorage.removeItem("useremail");  
-localStorage.clear();
-this.name="";
-window.location.reload()
+    localStorage.clear();
+    this.name="";
+    window.location.reload()
   
 }
 }
