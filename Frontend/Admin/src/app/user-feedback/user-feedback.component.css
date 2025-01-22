@@ -256,7 +256,6 @@ h6,
 }
 .single-notification .notification .content {
   display: block;
-  max-width: 800px;
 }
 .single-notification .notification .content h6 {
   margin-bottom: 15px;
