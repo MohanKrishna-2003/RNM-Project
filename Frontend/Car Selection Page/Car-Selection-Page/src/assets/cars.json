@@ -4,10 +4,7 @@
     "brandIcon": "/assets/images/renocaricon.jpg",
     "name": "Renault Koleos",
     "image": "/assets/carImages/renault-koleos.jpg",
-    "price": {
-      "INR": "₹22 Lakhs",
-      "USD": "$30,000"
-    },
+    "price": "₹22 Lakhs",
     "releaseYear": 2023,
     "bookings": 120,
     "extraFeatures": [
@@ -31,10 +28,7 @@
     "brandIcon": "/assets/images/renocaricon.jpg",
     "name": "Renault Clio",
     "image": "/assets/carImages/renault-clio2.jpg",
-    "price": {
-      "INR": "₹8 Lakhs",
-      "USD": "$11,000"
-    },
+    "price": "₹8 Lakhs",
     "releaseYear": 2023,
     "bookings": 200,
     "extraFeatures": [
@@ -58,10 +52,7 @@
     "brandIcon": "/assets/images/renocaricon.jpg",
     "name": "Renault Captur",
     "image": "/assets/carImages/renault-captur2.jpg",
-    "price": {
-      "INR": "₹14 Lakhs",
-      "USD": "$18,500"
-    },
+    "price": "₹14 Lakhs",
     "releaseYear": 2023,
     "bookings": 150,
     "extraFeatures": [
@@ -85,10 +76,7 @@
     "brandIcon": "/assets/images/renocaricon.jpg",
     "name": "Renault Megane",
     "image": "/assets/carImages/renault-megane2.webp",
-    "price": {
-      "INR": "₹16 Lakhs",
-      "USD": "$21,000"
-    },
+    "price": "₹16 Lakhs",
     "releaseYear": 2023,
     "bookings": 100,
     "extraFeatures": [
@@ -112,10 +100,7 @@
     "brandIcon": "/assets/images/renocaricon.jpg",
     "name": "Renault Twingo",
     "image": "/assets/carImages/renault-twingo2.jpg",
-    "price": {
-      "INR": "₹6 Lakhs",
-      "USD": "$8,000"
-    },
+    "price": "₹6 Lakhs",
     "releaseYear": 2023,
     "bookings": 180,
     "extraFeatures": [
@@ -139,10 +124,7 @@
     "brandIcon": "/assets/images/renocaricon.jpg",
     "name": "Renault Zoe",
     "image": "/assets/carImages/renault-zoe.jpg",
-    "price": {
-      "INR": "₹15 Lakhs",
-      "USD": "$19,500"
-    },
+    "price": "₹15 Lakhs",
     "releaseYear": 2023,
     "bookings": 80,
     "extraFeatures": [
@@ -166,10 +148,7 @@
     "brandIcon": "/assets/images/renocaricon.jpg",
     "name": "Renault Espace",
     "image": "/assets/carImages/renault-espace2.jpg",
-    "price": {
-      "INR": "₹25 Lakhs",
-      "USD": "$33,000"
-    },
+    "price": "₹25 Lakhs",
     "releaseYear": 2023,
     "bookings": 40,
     "extraFeatures": [
@@ -193,10 +172,7 @@
     "brandIcon": "/assets/images/renocaricon.jpg",
     "name": "Renault Kadjar",
     "image": "/assets/carImages/renault-kadjar.jpg",
-    "price": {
-      "INR": "₹18 Lakhs",
-      "USD": "$24,000"
-    },
+    "price": "₹18 Lakhs",
     "releaseYear": 2023,
     "bookings": 110,
     "extraFeatures": [
@@ -220,10 +196,7 @@
     "brandIcon": "/assets/images/renocaricon.jpg",
     "name": "Renault Arkana",
     "image": "/assets/carImages/renault-arkana.webp",
-    "price": {
-      "INR": "₹22 Lakhs",
-      "USD": "$30,000"
-    },
+    "price": "₹22 Lakhs",
     "releaseYear": 2023,
     "bookings": 130,
     "extraFeatures": [
@@ -247,10 +220,7 @@
     "brandIcon": "/assets/images/renocaricon.jpg",
     "name": "Renault Logan",
     "image": "/assets/carImages/renault-logan3.jpg",
-    "price": {
-      "INR": "₹10 Lakhs",
-      "USD": "$13,000"
-    },
+    "price": "₹10 Lakhs",
     "releaseYear": 2023,
     "bookings": 90,
     "extraFeatures": [
@@ -274,10 +244,7 @@
     "brandIcon": "/assets/images/renocaricon.jpg",
     "name": "Renault Sandero",
     "image": "/assets/carImages/renault-sandero2.jpg",
-    "price": {
-      "INR": "₹7 Lakhs",
-      "USD": "$9,000"
-    },
+    "price": "₹7 Lakhs",
     "releaseYear": 2023,
     "bookings": 170,
     "extraFeatures": [
@@ -301,10 +268,7 @@
     "brandIcon": "/assets/images/renocaricon.jpg",
     "name": "Renault Fluence",
     "image": "/assets/carImages/renault-fluence.webp",
-    "price": {
-      "INR": "₹14 Lakhs",
-      "USD": "$18,500"
-    },
+    "price": "₹14 Lakhs",
     "releaseYear": 2023,
     "bookings": 75,
     "extraFeatures": [
@@ -328,10 +292,7 @@
     "brandIcon": "/assets/images/ok1.png",
     "name": "Nissan Altima",
     "image": "/assets/carImages/nissan-altima2.jpg",
-    "price": {  
-      "INR": "₹20 Lakhs",
-      "USD": "$26,000"
-    },
+    "price": "₹20 Lakhs",
     "releaseYear": 2023,
     "bookings": 150,
     "extraFeatures": [
@@ -355,10 +316,7 @@
     "brandIcon": "/assets/images/ok1.png",
     "name": "Nissan Juke",
     "image": "/assets/carImages/nissan-juke3.avif",
-    "price": {
-      "INR": "₹12 Lakhs",
-      "USD": "$16,000"
-    },
+    "price": "₹12 Lakhs",
     "releaseYear": 2023,
     "bookings": 200,
     "extraFeatures": [
@@ -382,10 +340,7 @@
     "brandIcon": "/assets/images/ok1.png",
     "name": "Nissan Sentra",
     "image": "/assets/carImages/nissan-sentra.jpg",
-    "price": {
-      "INR": "₹10 Lakhs",
-      "USD": "$13,000"
-    },
+    "price": "₹10 Lakhs",
     "releaseYear": 2023,
     "bookings": 180,
     "extraFeatures": [
@@ -409,10 +364,7 @@
     "brandIcon": "/assets/images/ok1.png",
     "name": "Nissan Leaf",
     "image": "/assets/carImages/nissan-leaf.jpg",
-    "price": {
-      "INR": "₹22 Lakhs",
-      "USD": "$30,000"
-    },
+    "price": "₹22 Lakhs",
     "releaseYear": 2023,
     "bookings": 120,
     "extraFeatures": [
@@ -436,10 +388,7 @@
     "brandIcon": "/assets/images/ok1.png",
     "name": "Nissan Rogue",
     "image": "/assets/carImages/nissan-rogue2.jpg",
-    "price": {
-      "INR": "₹26 Lakhs",
-      "USD": "$35,000"
-    },
+    "price": "₹26 Lakhs",
     "releaseYear": 2023,
     "bookings": 130,
     "extraFeatures": [
@@ -463,10 +412,7 @@
     "brandIcon": "/assets/images/ok1.png",
     "name": "Nissan Murano",
     "image": "/assets/carImages/nissan-murano.avif",
-    "price": {
-      "INR": "₹32 Lakhs",
-      "USD": "$43,000"
-    },
+    "price": "₹32 Lakhs",
     "releaseYear": 2023,
     "bookings": 100,
     "extraFeatures": [
@@ -490,10 +436,7 @@
     "brandIcon": "/assets/images/ok1.png",
     "name": "Nissan Pathfinder",
     "image": "/assets/carImages/nissan-pathfinder2.jpg",
-    "price": {
-      "INR": "₹28 Lakhs",
-      "USD": "$37,000"
-    },
+    "price": "₹28 Lakhs",
     "releaseYear": 2023,
     "bookings": 90,
     "extraFeatures": [
@@ -517,10 +460,7 @@
     "brandIcon": "/assets/images/ok1.png",
     "name": "Nissan X-Trail",
     "image": "/assets/carImages/nissan-xtrail.png",
-    "price": {
-      "INR": "₹25 Lakhs",
-      "USD": "$33,000"
-    },
+    "price": "₹25 Lakhs",
     "releaseYear": 2023,
     "bookings": 85,
     "extraFeatures": [
@@ -544,10 +484,7 @@
     "brandIcon": "/assets/images/ok1.png",
     "name": "Nissan Titan",
     "image": "/assets/carImages/nissan-titan2.jpg",
-    "price": {
-      "INR": "₹35 Lakhs",
-      "USD": "$46,000"
-    },
+    "price": "₹35 Lakhs",
     "releaseYear": 2023,
     "bookings": 60,
     "extraFeatures": [
@@ -571,10 +508,7 @@
     "brandIcon": "/assets/images/ok1.png",
     "name": "Nissan Qashqai",
     "image": "/assets/carImages/nissan-qashqai2.jpg",
-    "price": {
-      "INR": "₹18 Lakhs",
-      "USD": "$24,000"
-    },
+    "price": "₹18 Lakhs",
     "releaseYear": 2023,
     "bookings": 140,
     "extraFeatures": [
@@ -598,10 +532,7 @@
     "brandIcon": "/assets/images/ok1.png",
     "name": "Nissan 370Z",
     "image": "/assets/carImages/nissan-370z2.webp",
-    "price": {
-      "INR": "₹45 Lakhs",
-      "USD": "$60,000"
-    },
+    "price": "₹45 Lakhs",
     "releaseYear": 2023,
     "bookings": 50,
     "extraFeatures": [
@@ -625,10 +556,7 @@
     "brandIcon": "/assets/images/ok1.png",
     "name": "Nissan GT-R",
     "image": "/assets/carImages/nissan-gtr3.jpg",
-    "price": {
-      "INR": "₹1.5 Crore",
-      "USD": "$130,000"
-    },
+    "price": "₹1.5 Crore",
     "releaseYear": 2023,
     "bookings": 30,
     "extraFeatures": [
@@ -652,10 +580,7 @@
     "brandIcon": "/assets/images/mistcarlogo.png",
     "name": "Mitsubishi Outlander",
     "image": "/assets/carImages/mitsubishi-outlander.jpg",
-    "price": {
-      "INR": "₹26 Lakhs",
-      "USD": "$35,000"
-    },
+    "price": "₹26 Lakhs",
     "releaseYear": 2023,
     "bookings": 150,
     "extraFeatures": [
@@ -679,10 +604,7 @@
     "brandIcon": "/assets/images/mistcarlogo.png",
     "name": "Mitsubishi Lancer",
     "image": "/assets/carImages/mitsubishi-lancer.jpg",
-    "price": {
-      "INR": "₹20 Lakhs",
-      "USD": "$27,000"
-    },
+    "price": "₹20 Lakhs",
     "releaseYear": 2023,
     "bookings": 180,
     "extraFeatures": [
@@ -706,10 +628,7 @@
     "brandIcon": "/assets/images/mistcarlogo.png",
     "name": "Mitsubishi Eclipse Cross",
     "image": "/assets/carImages/mitsubishi-eclipse-cross.jpg",
-    "price": {
-      "INR": "₹22 Lakhs",
-      "USD": "$29,000"
-    },
+    "price": "₹22 Lakhs",
     "releaseYear": 2023,
     "bookings": 160,
     "extraFeatures": [
@@ -733,10 +652,7 @@
     "brandIcon": "/assets/images/mistcarlogo.png",
     "name": "Mitsubishi ASX",
     "image": "/assets/carImages/mitsubishi-asx.jpg",
-    "price": {
-      "INR": "₹18 Lakhs",
-      "USD": "$23,000"
-    },
+    "price": "₹18 Lakhs",
     "releaseYear": 2023,
     "bookings": 200,
     "extraFeatures": [
@@ -760,10 +676,7 @@
     "brandIcon": "/assets/images/mistcarlogo.png",
     "name": "Mitsubishi Pajero",
     "image": "/assets/carImages/mitsubishi-pajero.jpg",
-    "price": {
-      "INR": "₹35 Lakhs",
-      "USD": "$46,000"
-    },
+    "price": "₹35 Lakhs",
     "releaseYear": 2023,
     "bookings": 120,
     "extraFeatures": [
@@ -787,10 +700,7 @@
     "brandIcon": "/assets/images/mistcarlogo.png",
     "name": "Mitsubishi Mirage",
     "image": "/assets/carImages/mitsubishi-mirage.jpg",
-    "price": {
-      "INR": "₹10 Lakhs",
-      "USD": "$13,000"
-    },
+    "price": "₹10 Lakhs",
     "releaseYear": 2023,
     "bookings": 250,
     "extraFeatures": [
@@ -814,10 +724,7 @@
     "brandIcon": "/assets/images/mistcarlogo.png",
     "name": "Mitsubishi Galant",
     "image": "/assets/carImages/mitsubishi-galant2.jpg",
-    "price": {
-      "INR": "₹22 Lakhs",
-      "USD": "$28,000"
-    },
+    "price": "₹22 Lakhs",
     "releaseYear": 2023,
     "bookings": 130,
     "extraFeatures": [
@@ -841,10 +748,7 @@
     "brandIcon": "/assets/images/mistcarlogo.png",
     "name": "Mitsubishi Montero Sport",
     "image": "/assets/carImages/mitsubishi-montero-sport.avif",
-    "price": {
-      "INR": "₹40 Lakhs",
-      "USD": "$52,000"
-    },
+    "price": "₹40 Lakhs",
     "releaseYear": 2023,
     "bookings": 80,
     "extraFeatures": [
@@ -868,10 +772,7 @@
     "brandIcon": "/assets/images/mistcarlogo.png",
     "name": "Mitsubishi Outlander PHEV",
     "image": "/assets/carImages/mitsubishi-outlander-phev2.jpg",
-    "price": {
-      "INR": "₹45 Lakhs",
-      "USD": "$58,000"
-    },
+    "price": "₹45 Lakhs",
     "releaseYear": 2023,
     "bookings": 50,
     "extraFeatures": [
@@ -895,10 +796,7 @@
     "brandIcon": "/assets/images/mistcarlogo.png",
     "name": "Mitsubishi L200",
     "image": "/assets/carImages/mitsubishi-l2002.webp",
-    "price": {
-      "INR": "₹28 Lakhs",
-      "USD": "$36,000"
-    },
+    "price": "₹28 Lakhs",
     "releaseYear": 2023,
     "bookings": 90,
     "extraFeatures": [
@@ -922,10 +820,7 @@
     "brandIcon": "/assets/images/mistcarlogo.png",
     "name": "Mitsubishi RVR",
     "image": "/assets/carImages/mitsubishi-rvr.jpg",
-    "price": {
-      "INR": "₹24 Lakhs",
-      "USD": "$32,000"
-    },
+    "price": "₹24 Lakhs",
     "releaseYear": 2023,
     "bookings": 150,
     "extraFeatures": [
@@ -949,10 +844,7 @@
     "brandIcon": "/assets/images/mistcarlogo.png",
     "name": "Mitsubishi Mirage G4",
     "image": "/assets/carImages/mitsubishi-mirage-g42.jpg",
-    "price": {
-      "INR": "₹12 Lakhs",
-      "USD": "$16,000"
-    },
+    "price": "₹12 Lakhs",
     "releaseYear": 2023,
     "bookings": 180,
     "extraFeatures": [
@@ -976,10 +868,7 @@
     "brandIcon": "/assets/images/mistcarlogo.png",
     "name": "Mitsubishi 3000GT",
     "image": "/assets/carImages/mitsubishi-3000gt2.jpg",
-    "price": {
-      "INR": "₹50 Lakhs",
-      "USD": "$65,000"
-    },
+    "price": "₹50 Lakhs",
     "releaseYear": 2023,
     "bookings": 40,
     "extraFeatures": [
