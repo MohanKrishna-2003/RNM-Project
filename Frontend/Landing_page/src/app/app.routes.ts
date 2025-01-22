@@ -8,6 +8,8 @@ import { ContactComponent } from './contact/contact.component';
 import { BookingComponent } from './booking/booking.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { FeedbackComponent } from './feedback/feedback.component';
+import { CarSelectionComponent } from './car-selection/car-selection.component';
 
 export const routes: Routes = [
   // { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -21,6 +23,10 @@ export const routes: Routes = [
   { path: 'location', component: LocationComponent } ,
   { path: '',component:HomeComponent },
   {path:'login',component:LoginComponent},
-  {path:'signup',component:SignupComponent}
+  {path:'signup',component:SignupComponent},
+  {path:'feedback',component:FeedbackComponent},
   // { path: 'booking', component: BookingComponent }
+  { path: 'booking', component: BookingComponent },
+  { path: 'car-selection-page', component: CarSelectionComponent }
+
 ];

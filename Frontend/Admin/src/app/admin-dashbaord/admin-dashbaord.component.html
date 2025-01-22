@@ -41,7 +41,7 @@
             <h6 class="mb-10">Total Registered Users</h6>
             <h3 class="text-bold mb-10">{{totalusers}}</h3>
             <p class="text-sm text-success">
-              <span class="text-gray">(2020-2024)</span>
+              <span class="text-gray">(MyRNM)</span>
             </p>
           </div>
         </div>
@@ -57,7 +57,7 @@
             <h6 class="mb-10">Total Showrooms</h6>
             <h3 class="text-bold mb-10">{{showroomcount}}</h3>
             <p class="text-sm text-success">
-              <span class="text-gray">(Renault, Nissan and Mitsubhishi)</span>
+              <span class="text-gray">(India)</span>
             </p>
           </div>
         </div>
@@ -72,7 +72,7 @@
             <h6 class="mb-10">User Satisfaction</h6>
             <h3 class="text-bold mb-10">{{usersatisfaction}} %</h3>
             <p class="text-sm text-success">
-              <span class="text-gray"> (According to Feedback - 2024)</span>
+              <span class="text-gray"> (From Feedback data)</span>
             </p>
           </div>
         </div>
@@ -128,7 +128,22 @@
 
       <div class="col-lg-5">
         <div class="card-style mb-30">
-          
+          <div class="title d-flex flex-wrap align-items-center justify-content-between">
+            <div class="left">
+              <h6 class="text-medium mb-2">Feedback Analysis</h6>
+            </div>
+            <div class="right">
+              <div class="select-style-1 mb-2">
+                <div class="select-position select-sm">
+                  <select class="bg-light"  [(ngModel)]="selectedYear">
+                    <option value="y2024">2024</option>
+                    <option value="y2025">2025</option>
+                  </select>
+                </div>
+              </div>
+              <!-- end select -->
+            </div>
+          </div>
           <!-- End Title -->
           <div class="chart">
             <div id="legend4">
@@ -138,7 +153,7 @@
                     <span class="bg-color primary-bg"> </span>
                     <div class="text">
                       <p class="text-sm text-success">
-                        <span class="text-dark">Positive Feedback</span>
+                        <span class="text-dark">Positive feedbacks</span>
                       </p>
                       <h2>{{totalpositive}}</h2>
                     </div>
@@ -149,7 +164,7 @@
                     <span class="bg-color danger-bg"></span>
                     <div class="text">
                       <p class="text-sm text-danger">
-                        <span class="text-dark">Negative Feedback</span> 
+                        <span class="text-dark">Negative Feedbacks</span> 
                       </p>
                       <h2>{{totalnegative}}</h2>
                     </div>
@@ -157,7 +172,7 @@
                 </li>
               </ul>
             </div>
-            <canvas id="Chart4" style="width: 100%; height: 420px; ">{{chart4}}</canvas>
+            <canvas id="Chart4" style="width: 100%; height: 420px;">{{chart4}}</canvas>
           </div>
           <!-- End Chart -->
         </div>

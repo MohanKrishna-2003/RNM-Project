@@ -28,8 +28,8 @@ public class Feedback {
     @Column(name="feedback")
     private String feedback;
 
-//    @Column(name="feedback_date")
-//    private String feedback_date;
+    @Column(name="user_ratings")
+    private Integer users_ratings;
 
     @Column(name="user_email")
     private String user_email;

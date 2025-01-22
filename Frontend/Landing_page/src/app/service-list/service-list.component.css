@@ -89,66 +89,62 @@
   }
 }
 
-.owl-carousel .item {
-  display: flex;
-  justify-content: center;
-  align-items: stretch; /* Ensure all cards stretch equally */
-}
-
-/* Card styling */
 .card {
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 300px;  /* Limit the max width */
+  max-width: 300px;
   margin: 0 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  min-height: 300px; /* Set a minimum height for equal sizing */
-  max-height: 400px; /* Set a max height to prevent excessive expansion */
+  min-height: 300px;
+  max-height: 400px;
   background-color: #fff;
   overflow: hidden;
   padding: 10px;
-  justify-content: space-between; /* Distribute the content evenly */
+  justify-content: space-between;
+  border-radius: 8px; 
+  transition: all 0.3s ease; 
 }
-
-/* Ensure card body takes available space */
+.card:hover {
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+  background-color: #f9f9f9;
+}
 .card-body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
-  height: 100%;  /* Ensure it fills the card */
+  height: 100%;
 }
-
-/* Card title styling */
 .card-title {
   font-size: 1.25rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
+  color: #333; 
 }
-
-/* Card subtitle for the brand name */
-/* .card-subtitle {
-  font-size: 1rem;
-  color: #888;
-  margin-bottom: 1rem;
-} */
-
-/* Card text styling for the description */
 .card-text {
   font-size: 1rem;
   color: #555;
-  flex-grow: 1;  /* Allow text to take up remaining space, ensuring uniform height */
-  overflow: hidden;  /* Truncate overflow text */
-  text-overflow: ellipsis;  /* Add ellipsis for long text */
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 3;  /* Limit to 3 lines */
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
-
-/* Optional: Add a hover effect for the card */
-.card:hover {
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  transform: translateY(-5px);
-  transition: all 0.3s ease;
+.owl-carousel .item {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+}
+.owl-nav button {
+  background-color: #f0f0f0;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.owl-nav button:hover {
+  background-color: #e0e0e0;
 }

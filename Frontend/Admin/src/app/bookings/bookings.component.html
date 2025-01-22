@@ -7,7 +7,7 @@
   </div>
 
   <!-- Search Bar -->
-  <!-- <div class="input-group mb-4">
+  <div class="input-group mb-4">
     <input
       type="text"
       class="form-control search-input"
@@ -18,7 +18,7 @@
     <button class="btn btn-outline-primary" type="button">
       <i class="fas fa-search"></i> Search
     </button>
-  </div> -->
+  </div>
 
   <!-- Bookings Table -->
   <div class="table-responsive w-100">
@@ -44,7 +44,7 @@
           <td>
             <span
               class="badge"
-              style="background-color: rgb(225, 164, 21)"
+              style="background-color: rgb(216, 136, 15)"
               [ngClass]="{
                 'bg-success': booking.status === 'Confirmed',
                 'bg-secondary': booking.status === 'Cancelled',
@@ -55,29 +55,52 @@
             </span>
           </td>
           <td class="action-buttons">
-            <button
-              class="btn btn-sm btn-info me-2 mx-2"
-              (click)="viewDetails(booking)"
-            >
-              <i class="fas fa-eye icon-small"></i> Details
-            </button>
-            <button
-              class="btn btn-sm btn-danger mx-2"
-              (click)="cancelBooking(booking)"
-              [disabled]="booking.status === 'Cancelled'"
-            >
-              <i class="fas fa-times-circle icon-small"></i> Cancel
-            </button>
-            <button
-              class="btn btn-sm btn-success mx-2"
-              (click)="cancelBooking(booking)"
-              [disabled]="booking.status === 'Cancelled'"
-            >
-              <i class="fas fa-times-circle icon-small"></i> Approve
-            </button>
+            <!-- Vertical Ellipsis Dropdown Button -->
+            <div class="dropdown">
+              <button
+                class="btn btn-sm btn-outline-secondary"
+                type="button"
+                id="dropdownMenuButton"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="fas fa-ellipsis-v"></i>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li>
+                  <a class="dropdown-item" (click)="viewDetails(booking)">
+                    <i class="fas fa-eye"></i> View Details
+                  </a>
+                </li>
+                <li>
+                  <button
+                    class="dropdown-item"
+                    (click)="cancelBooking(booking)"
+                    [disabled]="booking.status === 'Cancelled'"
+                  >
+                    <i class="fas fa-times-circle"></i> Cancel Booking
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="dropdown-item"
+                    (click)="approveBooking(booking)"
+                    [disabled]="booking.status === 'Confirmed'"
+                  >
+                    <i class="fas fa-check-circle"></i> Approve Booking
+                  </button>
+                </li>
+              </ul>
+            </div>
+            
           </td>
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <!-- Load More Button -->
+  <div class="d-flex justify-content-center mt-4">
+    <button *ngIf="filteredBookings.length < bookings.length" class="btn btn-primary" (click)="loadMore()">Load More</button>
   </div>
 </div>

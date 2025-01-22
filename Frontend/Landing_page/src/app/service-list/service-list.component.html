@@ -46,21 +46,3 @@
 
 
 
-<div class="container py-5">
-  <h2 class="text-center mb-5">What Our Customers Say</h2>
-
-  <!-- Owl Carousel Container -->
-  <div id="customer-carousel" class="owl-carousel owl-theme">
-    <!-- Loop through testimonials -->
-    <div class="item" *ngFor="let testimonial of testimonials">
-      <div class="card">
-        <!-- <img [src]="testimonial.image" alt="{{ testimonial.name }}" class="card-img-top"> -->
-        <div class="card-body">
-          <h5 class="card-title">{{ testimonial.name }}</h5>
-          <p class="card-text mt-5">{{ testimonial.description }}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-

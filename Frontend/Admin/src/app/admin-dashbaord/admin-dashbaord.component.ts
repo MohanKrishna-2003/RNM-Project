@@ -3,6 +3,8 @@ import { AdminHeaderComponent } from '../admin-header/admin-header.component';
 import { Chart, registerables } from 'chart.js';
 import { HttpClient } from '@angular/common/http';
 import { log } from 'node:console';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 Chart.register(...registerables);
 
@@ -17,7 +19,7 @@ export interface FeedbackData {
 @Component({
   selector: 'app-admin-dashbaord',
   standalone: true,
-  imports: [AdminHeaderComponent],
+  imports: [AdminHeaderComponent, FormsModule],
   templateUrl: './admin-dashbaord.component.html',
   styleUrl: './admin-dashbaord.component.css',
 })
@@ -35,10 +37,10 @@ export class AdminDashbaordComponent implements OnInit {
   brands: any = [];
   showroomcount: any;
   config3: any;
+  config:any;
+  config2:any;
   bcounts: number[]=[];
   ngOnInit(): void {
-    this.chart = new Chart('Chart1', this.config);
-    this.chart2 = new Chart('Chart2', this.config2);
     this.chart4 = new Chart('Chart4', this.config4);
 
     this.http
@@ -111,6 +113,32 @@ export class AdminDashbaordComponent implements OnInit {
           this.months1.push(this.usermonthly[i].month); // Push the month to the months array
           this.counts.push(this.usermonthly[i].count); // Push the count to the counts array
         }
+
+         this.config = {
+          type: 'line',
+          data: {
+            labels: this.months1,
+            datasets: [
+              {
+                label: 'Increase in Website Usage (Number of Users)',
+                backgroundColor: '#365CF5',
+                borderColor: '#365CF5',
+                data: this.chardata1,
+                pointBackgroundColor: 'transparent',
+                pointHoverBackgroundColor: '#365CF5',
+                pointBorderColor: 'transparent',
+                pointHoverBorderColor: '#fff',
+                pointHoverBorderWidth: 5,
+                borderWidth: 5,
+                pointRadius: 8,
+                pointHoverRadius: 8,
+                cubicInterpolationMode: 'monotone', // Add this line for curved line
+              },
+            ],
+          },
+        };
+        this.chart = new Chart('Chart1', this.config);
+
       });
 
     this.http
@@ -126,6 +154,23 @@ export class AdminDashbaordComponent implements OnInit {
           this.slotmonths.push(this.slotusermonthly[i].month); // Push the month to the months array
           this.slotcounts.push(this.slotusermonthly[i].count); // Push the count to the counts array
         }
+        this.config2 = {
+          type: 'bar',
+          data: {
+            labels: this.slotmonths,
+            datasets: [
+              {
+                label: 'Users (Number) ',
+                backgroundColor: '#365CF5',
+                borderRadius: 30,
+                barThickness: 6,
+                maxBarThickness: 8,
+                data: this.slotcounts,
+              },
+            ],
+          },
+        };
+        this.chart2 = new Chart('Chart2', this.config2);
       });
     this.processFeedbackData();
     this.calculateSum();
@@ -150,18 +195,25 @@ export class AdminDashbaordComponent implements OnInit {
   negativeCounts: number[] = [];
   totalpositive = 0;
   totalnegative = 0;
-
+  selectedYear: String="y2024";
   processFeedbackData(): void {
+    console.log("INSIDE PROCESS FEEDBACKS");
+    
     // Iterate through each month and check if feedback data exists for it
     for (let i = 0; i < this.months.length; i++) {
-      let month = this.months[i] + ' 2024'; // Add year to month for matching
-
-      // Initialize counts with 0 if no data is found for the month
+      
+      let month: string;  
+//not working
+if (this.selectedYear.includes("y2025")) {
+  month = this.months[i] + ' 2025'; 
+  console.log(this.selectedYear);
+} else {
+  console.log(this.selectedYear);
+  month = this.months[i] + ' 2024';  
+}
       let positive = 0;
       let negative = 0;
-      let neutral = 0;
 
-      // Check if data exists for this month and update the counts accordingly
       if (this.feedbackData[month]) {
         positive = this.feedbackData[month].positive || 0;
         negative = this.feedbackData[month].negative || 0;
@@ -188,26 +240,7 @@ export class AdminDashbaordComponent implements OnInit {
     ).toFixed(2);
     console.log(this.usersatisfaction);
   }
-  // public config3: any = {
-  //   type: 'pie', // Pie chart type
-  //   data: {
-  //     labels: ['Renault', 'Nissan', 'Mitsubishi'], // Labels
-  //     datasets: [
-  //       {
-  //         label: 'Car Bookings',
-  //         data: [7, 2, 3], // Sample data
-  //         backgroundColor: ['#365CF5', '#9b51e0', '#4CAF50'],
-  //         hoverBackgroundColor: ['#2A46B1', '#7F37A8', '#388E3C'],
-  //         borderWidth: 5,
-  //         borderColor: '#ffffff',
-  //       },
-  //     ],
-  //   },
-  //   options: {
-  //     responsive: false, // Responsive chart
-  //     maintainAspectRatio: false, // Allow resizing
-  //   },
-  // };
+
 
   chart: any;
   chart2: any;
@@ -216,78 +249,12 @@ export class AdminDashbaordComponent implements OnInit {
   chart4data: any;
   chardata1: any = this.counts;
   usersatisfaction: any;
-  public config: any = {
-    type: 'line',
-    data: {
-      labels: this.months1,
-      datasets: [
-        {
-          label: 'Increase in Website Usage (Number of Users)',
-          backgroundColor: '#365CF5',
-          borderColor: '#365CF5',
-          data: this.chardata1,
-          pointBackgroundColor: 'transparent',
-          pointHoverBackgroundColor: '#365CF5',
-          pointBorderColor: 'transparent',
-          pointHoverBorderColor: '#fff',
-          pointHoverBorderWidth: 5,
-          borderWidth: 5,
-          pointRadius: 8,
-          pointHoverRadius: 8,
-          cubicInterpolationMode: 'monotone', // Add this line for curved line
-        },
-      ],
-    },
-  };
 
-  public config2: any = {
-    type: 'bar',
-    data: {
-      labels: this.slotmonths,
-      datasets: [
-        {
-          label: 'Users (Number) ',
-          backgroundColor: '#365CF5',
-          borderRadius: 30,
-          barThickness: 6,
-          maxBarThickness: 8,
-          data: this.slotcounts,
-        },
-      ],
-    },
-  };
 
-  // console.log();
 
-  // =========== chart three start
-  // public config3: any = {
-  //   type: 'pie', // Pie chart type
-  //   data: {
-  //     labels: ['Renault', 'Nissan', 'Mitsubishi'], // Labels
-  //     datasets: [
-  //       {
-  //         label: 'Car Bookings',
-  //         data: [1, 2, 3], // Sample data
-  //         backgroundColor: ['#365CF5', '#9b51e0', '#4CAF50'],
-  //         hoverBackgroundColor: ['#2A46B1', '#7F37A8', '#388E3C'],
-  //         borderWidth: 5,
-  //         borderColor: '#ffffff',
-  //       },
-  //     ],
-  //   },
-  //   options: {
-  //     responsive: false, // Responsive chart
-  //     maintainAspectRatio: false, // Allow resizing
-  //   },
-  // };
-
-  // =========== chart three end
-
-  // ================== chart four start
   public config4: any = {
     type: 'bar',
     data: {
-      // labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
       labels: this.months,
 
       datasets: [
@@ -312,67 +279,6 @@ export class AdminDashbaordComponent implements OnInit {
           data: this.negativeCounts,
         },
       ],
-    },
-    // options: {
-    //   plugins: {
-    //     tooltip: {
-    //       backgroundColor: "#F3F6F8",
-    //       titleColor: "#8F92A1",
-    //       titleFontSize: 12,
-    //       bodyColor: "#171717",
-    //       bodyFont: {
-    //         weight: "bold",
-    //         size: 16,
-    //       },
-    //       multiKeyBackground: "transparent",
-    //       displayColors: false,
-    //       padding: {
-    //         x: 30,
-    //         y: 10,
-    //       },
-    //       bodyAlign: "center",
-    //       titleAlign: "center",
-    //       enabled: true,
-    //     },
-    //     legend: {
-    //       display: false,
-    //     },
-    //   },
-    //   layout: {
-    //     padding: {
-    //       top: 0,
-    //     },
-    //   },
-    //   responsive: true,
-    //   // maintainAspectRatio: false,
-    //   title: {
-    //     display: false,
-    //   },
-    //   scales: {
-    //     y: {
-    //       grid: {
-    //         display: false,
-    //         drawTicks: false,
-    //         drawBorder: false,
-    //       },
-    //       ticks: {
-    //         padding: 35,
-    //         max: 1200,
-    //         min: 0,
-    //       },
-    //     },
-    //     x: {
-    //       grid: {
-    //         display: false,
-    //         drawBorder: false,
-    //         color: "rgba(143, 146, 161, .1)",
-    //         zeroLineColor: "rgba(143, 146, 161, .1)",
-    //       },
-    //       ticks: {
-    //         padding: 20,
-    //       },
-    //     },
-    //   },
-    // },
+    }
   };
 }

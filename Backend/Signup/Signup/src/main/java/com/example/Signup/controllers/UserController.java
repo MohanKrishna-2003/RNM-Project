@@ -4,6 +4,8 @@ import com.example.Signup.Entity.Feedback;
 import com.example.Signup.Entity.Users;
 import com.example.Signup.response.GeneralResponse;
 import com.example.Signup.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +15,7 @@ import java.util.List;
 
 @RequestMapping(path = "user")
 @RestController
-@CrossOrigin(origins = "http://localhost:4200/")
+@CrossOrigin("*")
 public class UserController {
 
     @Autowired

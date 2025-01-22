@@ -28,11 +28,12 @@ public class Feedback {
     @Column(name="feedback")
     private String feedback;
 
-//    @Column(name="feedback_date")
-//    private String feedback_date;
 
     @Column(name="user_email")
     private String user_email;
+
+    @Column(name="users_ratings")
+    private Integer users_ratings;
 
     @CreationTimestamp
     @Column(name = "feedback_date", nullable = false, updatable = false)
