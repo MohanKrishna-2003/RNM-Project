@@ -158,6 +158,7 @@
           <option value="20+">Above 20 km/l</option>
         </select>
       </label>
+      
     
       <!-- <       
         Color:
@@ -250,7 +251,7 @@
 
   <div class="gif-container" *ngIf="showGif; else carsDisplay">
     <!-- <img [src]="staticPics[currentImageIndex]" alt="Cycling Image" class="cycling-image" /> -->
-    <h1>SELECT A CAR TO PROCEED WITH YOUR BOOKINGS.....</h1>
+    <h1>Sorry we couldn't load the cars at the moment! Try again later...</h1>
   </div>
 
   <ng-template #carsDisplay>
