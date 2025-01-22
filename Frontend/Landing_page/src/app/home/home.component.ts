@@ -14,7 +14,7 @@ import { FeedbackComponent } from '../feedback/feedback.component';
   standalone:true,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  imports: [HeaderComponent,FeedbackComponent, BookingComponent, ServiceListComponent, FooterComponent, ContactComponent, ChatbotComponent, H1Component]
+  imports: [HeaderComponent,FeedbackComponent, BookingComponent, ServiceListComponent, FooterComponent, ContactComponent, ChatbotComponent, H1Component,]
 })
 export class HomeComponent implements AfterViewInit {
   @ViewChild('carouselExample', { static: false }) carousel!: ElementRef;
