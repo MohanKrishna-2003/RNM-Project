@@ -8,13 +8,14 @@ import { ContactComponent } from "../contact/contact.component";
 import { ChatbotComponent } from '../chatbot/chatbot.component';
 import { H1Component } from "../h1/h1.component";
 import { FeedbackComponent } from '../feedback/feedback.component';
+import { TestimonialComponent } from '../testimonial/testimonial.component';
 
 @Component({
   selector: 'app-home',
   standalone:true,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  imports: [HeaderComponent,FeedbackComponent, BookingComponent, ServiceListComponent, FooterComponent, ContactComponent, ChatbotComponent, H1Component]
+  imports: [HeaderComponent,FeedbackComponent, BookingComponent,TestimonialComponent, ServiceListComponent, FooterComponent, ContactComponent, ChatbotComponent, H1Component]
 })
 export class HomeComponent implements AfterViewInit {
   @ViewChild('carouselExample', { static: false }) carousel!: ElementRef;
