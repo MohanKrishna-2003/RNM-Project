@@ -7,6 +7,7 @@ declare var $: any;
 
 @Component({
   selector: 'app-feedback',
+  standalone:true,
   imports: [ReactiveFormsModule , FormsModule, CommonModule],
   templateUrl: './feedback.component.html',
   styleUrls: ['./feedback.component.css']

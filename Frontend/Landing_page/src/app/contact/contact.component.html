@@ -1,52 +1,4 @@
 
-<!-- News Section -->
-<div class="container mt-5">
-  <!-- Title Section -->
-  <div class="text-center">
-    <h1 class="news-heading">Notifications - Latest News</h1>
-    <p class="lead">Stay updated with the latest news about Renault, Nissan, and Mitsubishi.</p>
-  </div>
-
-  <!-- News articles section -->
-  <div id="newsCards" class="row">
-    <!-- Loop through the articles and display them -->
-    <div *ngFor="let article of articles.slice(0, currentIndex)" class="col-lg-12 col-md-8 col-lg-12 lg-12">
-      <div class="card news-card">
-        <img
-          [src]="article.urlToImage || DEFAULT_IMAGE"
-          class="card-img-top"
-          alt="{{ article.title }}"
-          (error)="article.urlToImage = DEFAULT_IMAGE"
-        />
-        <div class="card-body">
-          <h5 class="news-card-title">{{ article.title }}</h5>
-          <p class="news-card-description">
-            {{ article.description || 'No description available.' }}
-          </p>
-          <p class="news-author">Author: {{ article.author || 'Unknown' }}</p>
-          <a [href]="article.url" target="_blank" class="btn read-more-btn">Read More</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Loading Spinner while fetching more articles -->
-  <div *ngIf="loading" id="loadingSpinner" class="spinner-border text-primary" role="status">
-    <span class="sr-only">Loading...</span>
-  </div>
-
-  <!-- Load More Button -->
-  <div *ngIf="!loading && currentIndex < articles.length">
-    <button id="loadMoreBtn" class="btn btn-primary mb-3" (click)="loadMore()">
-      Load More
-    </button>
-  </div>
-</div>
-
-
-
-
-
 <section id="contact" class="bg-image" style="background-image: url('/image.png')">
   <!-- Overlay for better contrast -->
   <div class="overlay"></div>
@@ -77,38 +29,38 @@
       <div class="col-md-6">
         <div class="card p-4" style="background-color: #ececec;">
           <h3 class="card-title mb-4">Send us a Message</h3>
-          <form [formGroup]="feedbackForm" (ngSubmit)="submit()">
+          <form [formGroup]="contact" (ngSubmit)="onsubmit()">
             <!-- Email Input -->
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" formControlName="user_email" placeholder="Enter a valid email address" required>
-              <div *ngIf="feedbackForm.get('user_email')?.touched && feedbackForm.get('user_email')?.invalid" class="text-danger">
-                <div *ngIf="feedbackForm.get('user_email')?.hasError('required')">Email is required</div>
-                <div *ngIf="feedbackForm.get('user_email')?.hasError('email')">Please provide a valid email address.</div>
+              <input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter a valid email address" required>
+              <div *ngIf="contact.get('email')?.touched && contact.get('email')?.invalid" class="text-danger">
+                <div *ngIf="contact.get('email')?.hasError('required')">Email is required</div>
+                <div *ngIf="contact.get('email')?.hasError('email')">Please provide a valid email address.</div>
               </div>
             </div>
 
             <!-- Name Input -->
             <div class="mb-3">
               <label for="name" class="form-label">Name</label>
-              <input type="text" class="form-control" id="name" formControlName="user_name" placeholder="Enter your name" required>
-              <div *ngIf="feedbackForm.get('user_name')?.touched && feedbackForm.get('user_name')?.invalid" class="text-danger">
-                <div *ngIf="feedbackForm.get('user_name')?.hasError('required')">Name is required</div>
+              <input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter your name" required>
+              <div *ngIf="contact.get('name')?.touched && contact.get('name')?.invalid" class="text-danger">
+                <div *ngIf="contact.get('name')?.hasError('required')">Name is required</div>
               </div>
             </div>
 
             <!-- Message Textarea -->
             <div class="mb-3">
               <label for="message" class="form-label">Message</label>
-              <textarea class="form-control" id="message" formControlName="feedback" rows="4" placeholder="Enter your message" required></textarea>
-              <div *ngIf="feedbackForm.get('feedback')?.touched && feedbackForm.get('feedback')?.invalid" class="text-danger">
-                <div *ngIf="feedbackForm.get('feedback')?.hasError('required')">Message is required</div>
+              <textarea class="form-control" id="message" formControlName="message" rows="4" placeholder="Enter your message" required></textarea>
+              <div *ngIf="contact.get('message')?.touched && contact.get('message')?.invalid" class="text-danger">
+                <div *ngIf="contact.get('message')?.hasError('required')">Message is required</div>
               </div>
             </div>
 
             <!-- Submit Button -->
             <div class="text-center">
-              <button type="submit" class="btn btn-primary w-100 mt-3" [disabled]="feedbackForm.invalid">Submit Feedback</button>
+              <button type="submit" class="btn btn-primary w-100 mt-3" [disabled]="contact.invalid">Submit </button>
             </div>
           </form>
         </div>
@@ -117,20 +69,5 @@
   </div>
 </section>
 
-<!-- Logos Section -->
-<section id="logos" class="logos-section py-6" style="background-color: #f9f9f9;">
-  <div class="container text-center">
-    <div class="row">
-      <div class="col-md-4 mb-4">
-        <img src="renault..png" alt="Logo 1" class="img-fluid" style="max-height: 200px;">
-      </div>
-      <div class="col-md-4 mb-4">
-        <img src="nissan.png" alt="Logo 2" class="img-fluid" style="max-height: 200px;">
-      </div>
-      <div class="col-md-4 mb-4">
-        <img src="mitsubishi.png" alt="Logo 3" class="img-fluid" style="max-height: 200px;">
-      </div>
-    </div>
-  </div>
-</section>
+
 

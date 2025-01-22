@@ -22,7 +22,7 @@ public class UserService {
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     public Users addingUserData(Users users) {
-        //checking if the user is already present or not if it is not it throws an error
+//        checking if the user is already present or not if it is not it throws an error
         Optional <Users> existingUser = userRepo.findByEmail(users.getEmail());
         if (existingUser.isPresent()) {
             throw new RuntimeException("Email has been already registered");
