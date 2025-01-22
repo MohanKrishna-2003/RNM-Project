@@ -17,7 +17,7 @@ export class TestimonialComponent implements OnInit{
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.http.get("http://localhost:8080/user/getUsersFeedback").subscribe((res: any) => {
+    this.http.get("http://localhost:8080/feedback/feedbackchart").subscribe((res: any) => {
       console.log(res);
       this.testimonials = res.slice(0, 10);  // Limit to 10 testimonials
       console.log(this.testimonials);

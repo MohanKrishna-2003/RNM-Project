@@ -17,7 +17,7 @@ public class FeedbackService {
 
     public List<Feedback> getFeedbacks() throws Exception {
         try{
-            List<Feedback> feedbackList = feedbackRepo.findAll();
+            List<Feedback> feedbackList = feedbackRepo.findsortFeedback();
             return feedbackList;
         }
      catch (Exception e){
