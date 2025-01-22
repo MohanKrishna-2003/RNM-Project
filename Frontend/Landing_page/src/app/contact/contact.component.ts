@@ -11,7 +11,7 @@ import { FormGroup,ReactiveFormsModule,FormsModule ,FormBuilder, Validators} fro
   styleUrl: './contact.component.css'
 })
 export class ContactComponent {
-
+   
    contact: FormGroup;
    constructor(private http: HttpClient, private fb: FormBuilder) {
     this.contact = this.fb.group({
@@ -20,9 +20,9 @@ export class ContactComponent {
       message: ['',[Validators.maxLength(100),Validators.required]]
     });
   }
-
+  
   onsubmit() {
-
+   
     if (this.contact.valid) {
       const data = this.contact.value;
       console.log('Form Data:', data);
@@ -35,8 +35,9 @@ export class ContactComponent {
           console.error('Error occurred while submitting form:', error);
         }
       );
-    }
+    } 
   }
   }
+  
 
- 
+

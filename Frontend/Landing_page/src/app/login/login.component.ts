@@ -35,6 +35,7 @@ export class LoginComponent {
         localStorage.setItem("useremail",res.email);
         // localStorage.removeItem("login");
         // localStorage.clear(); 
+        
         console.log("Login success");
         this.route.navigateByUrl(""); 
       },
