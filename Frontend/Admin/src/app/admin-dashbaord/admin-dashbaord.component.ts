@@ -171,7 +171,7 @@ export class AdminDashbaordComponent implements OnInit {
         };
         this.chart2 = new Chart('Chart2', this.config2);
       });
-    this.processFeedbackData(2024);
+    this.processFeedbackData();
     // this.changeFeedbackYear();
     this.calculateSum();
     console.log(this.selectedYear);
@@ -198,11 +198,11 @@ export class AdminDashbaordComponent implements OnInit {
   totalnegative = 0;
   selectedYear: String = 'y2024';
   year:number=2024;
-  processFeedbackData(yearvalue: number): void {
+  processFeedbackData(): void {
     console.log('INSIDE PROCESS FEEDBACKS');
     
-    for (let i = 0; i < 12; i++) {
-      let month= this.months[i] +" "+ yearvalue;
+    for (let i = 0; i < this.months.length; i++) {
+      let month= this.months[i] +" "+ this.year;
   
       let positive = 0;
       let negative = 0;
