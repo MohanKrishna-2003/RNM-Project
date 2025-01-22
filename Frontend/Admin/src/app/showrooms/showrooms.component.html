@@ -1,22 +1,65 @@
 <app-admin-header></app-admin-header>
+
 <div class="container mt-4" id="showroom">
-    <h2 class="text-center mb-4">Renault Showrooms in India</h2>
+  <h2 class="text-center mb-4" style="text-align: left;">MyRNM Showrooms in India</h2><br><br>
   
-    <!-- Showroom Cards -->
-    <div class="row">
-      <div *ngFor="let showroom of showrooms" class="col-md-4 mb-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">{{ showroom.name }}</h5>
-            <p class="card-text">
-              <strong>Address:</strong> {{ showroom.address }}
-            </p>
-            <p class="card-text">
-              <strong>Contact:</strong> {{ showroom.contact }}
-            </p>
-          </div>
+  <!-- Renault Showrooms -->
+  <!-- <div class="row">
+    <h3 class="text-center mb-4">Renault Showrooms</h3>
+
+    <div *ngFor="let showroom of showrooms" class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ showroom.name }}</h5>
+          <p class="card-text">
+            <strong>Address:</strong> {{ showroom.address }}
+          </p>
+          <p class="card-text">
+            <strong>Contact:</strong> {{ showroom.contact }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- Nissan Showrooms -->
+  <!-- <div class="row">
+    <h3 class="text-center mb-4">Nissan Showrooms</h3>
+
+    <div *ngFor="let showroom of nissanShowrooms" class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ showroom.name }}</h5>
+          <p class="card-text">
+            <strong>Address:</strong> {{ showroom.address }}
+          </p>
+          <p class="card-text">
+            <strong>Contact:</strong> {{ showroom.contact }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- Mitsubishi Showrooms -->
+  <!-- <div class="row">
+    <h3 class="text-center mb-4">Mitsubishi Showrooms</h3>
+
+    <div *ngFor="let showroom of mitsubishiShowrooms" class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ showroom.name }}</h5>
+          <p class="card-text">
+            <strong>Address:</strong> {{ showroom.address }}
+          </p>
+          <p class="card-text">
+            <strong>Contact:</strong> {{ showroom.contact }}
+          </p>
         </div>
       </div>
     </div>
   </div>
+</div> -->
+
   
+  <app-location></app-location>

@@ -16,21 +16,21 @@ public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    @Column(name = "name")
+    @Column(name="name")
     private String name;
-
-    @Column(name = "email")
+    @Column(name="email")
     private String email;
-
-    @Column(name = "password")
+    @Column(name="password")
     private String password;
 
-    @Column(name = "mobile")
-    private Long mobile;
-
-    @Column(name = "address")
+    @Column(name="address")
     private String address;
+
+    @CreationTimestamp
+    @Column(name = "registration_date", nullable = false, updatable = false)
+    private Date registrationDate; // This field will store the registration date and time
+
+    @OneToMany
 
     @CreationTimestamp
     @Column(name = "registration_date", nullable = false, updatable = false)

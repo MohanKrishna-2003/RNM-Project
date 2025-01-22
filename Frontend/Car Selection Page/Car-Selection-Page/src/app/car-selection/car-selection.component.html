@@ -79,7 +79,6 @@
     <div class="filters">
       <label>
         Price Range:
-        <!-- [(ngModel)]="selectedPrice" -->
         <select (click)="filterCarsByPrice($event)" class="baloo">
           <option value="">All</option>
           <option value="low">Below ₹10 Lakhs</option>
@@ -87,11 +86,9 @@
           <option value="high">Above ₹20 Lakhs</option>
         </select>
       </label>
-
+    
       <label>
         Order By:
-        <!-- hey here onwards I removed the event emitters because it will dynicamlly apply this filter while selecting so we should apply the filters after the user is clicking the apply button - MOHAN -->
-        <!-- (change)="sortCars($event)" -->
         <select (change)="sortByOrder($event)" class="baloo">
           <option value="">None</option>
           <option value="maxPrice">Max Price</option>
@@ -99,9 +96,9 @@
           <option value="booking">Availability</option>
         </select>
       </label>
+    
       <label>
         Rating:
-        <!-- [(ngModel)]="filterByRating"" -->
         <select (change)="filterByRating($event)" class="baloo">
           <option value="">All</option>
           <option value="1">1 Star</option>
@@ -111,6 +108,7 @@
           <option value="5">5 Stars</option>
         </select>
       </label>
+    
       <label>
         Engine Type:
         <select (change)="filterByEngine($event)" class="baloo">
@@ -120,6 +118,7 @@
           <option value="electric">Electric</option>
         </select>
       </label>
+    
       <label>
         Seater:
         <select (change)="filterBySeater($event)" class="baloo">
@@ -129,6 +128,7 @@
           <option value="7">7-Seater</option>
         </select>
       </label>
+    
       <label>
         Transmission:
         <select (change)="filterByTransmission($event)" class="baloo">
@@ -137,6 +137,7 @@
           <option value="automatic">Automatic</option>
         </select>
       </label>
+    
       <label>
         Availability:
         <select (change)="filterByAvailability($event)" class="baloo">
@@ -146,6 +147,7 @@
           <option value="discontinued">Discontinued</option>
         </select>
       </label>
+    
       <label>
         Fuel Efficiency:
         <select (change)="filterByFuelEfficiency($event)" class="baloo">
@@ -156,7 +158,8 @@
           <option value="20+">Above 20 km/l</option>
         </select>
       </label>
-      <label>
+    
+      <!-- <       
         Color:
         <select (change)="filterByColor($event)" class="baloo">
           <option value="">All</option>
@@ -166,7 +169,8 @@
           <option value="white">White</option>
           <option value="grey">Grey</option>
         </select>
-      </label>
+      </label> -->
+    
       <label>
         Drive Type:
         <select (change)="filterByDriveType($event)" class="baloo">
@@ -177,6 +181,7 @@
           <option value="4wd">4-Wheel Drive</option>
         </select>
       </label>
+    
       <label>
         Warranty:
         <select (change)="filterByWarranty($event)" class="baloo">
@@ -188,6 +193,7 @@
         </select>
       </label>
     </div>
+    
     <!-- <button class="apply-filters baloo" (click)="applyFilters()">Apply!</button> -->
   </div>
 </div>
@@ -266,8 +272,8 @@
               <strong>Release Year:</strong> {{ car.releaseYear }}
             </p>
             <p class="car-price car-details space">
-              <strong>Price:</strong> INR {{ car.price.INR }} / USD
-              {{ car.price.USD }}
+              <strong>Price:</strong> INR {{ car.price }} 
+              <!-- {{ car.price.USD }} -->
             </p>
             <p class="car-bookings car-details space">
               <strong>Bookings:</strong> {{ car.bookings }}+
@@ -356,8 +362,8 @@
             <strong>Release Year:</strong> {{ selectedCar.releaseYear }}
           </p>
           <p class="car-price car-details space">
-            <strong>Price:</strong> INR {{ selectedCar.price.INR }} / USD
-            {{ selectedCar.price.USD }}
+            <strong>Price:</strong> INR {{ selectedCar.price }} 
+            <!-- {{ selectedCar.price.USD }} -->
           </p>
           <p class="car-bookings car-details space">
             <strong>Bookings:</strong> {{ selectedCar.bookings }}+
@@ -449,16 +455,13 @@
         <div class="formbold-steps">
           <ul>
             <li class="formbold-step-menu1" [ngClass]="{ active: currentStep === 1 }">
-              <span>1</span>
-              Sign Up
+              <span>1</span> Sign Up
             </li>
             <li class="formbold-step-menu2" [ngClass]="{ active: currentStep === 2 }">
-              <span>2</span>
-              Test Slot Availability
+              <span>2</span> Test Slot Availability
             </li>
             <li class="formbold-step-menu3" [ngClass]="{ active: currentStep === 3 }">
-              <span>3</span>
-              Confirmation
+              <span>3</span> Confirmation
             </li>
           </ul>
         </div>
@@ -467,27 +470,41 @@
         <div class="formbold-form-step-1" [ngClass]="{ active: currentStep === 1 }">
           <div>
             <label for="name" class="formbold-form-label">User name</label>
-            <input type="text" name="name" placeholder="Enter your name" id="firstname" class="formbold-form-input"
-              required />
+            <input type="text" name="name" id="firstname" placeholder="Enter your name" class="formbold-form-input"
+              [(ngModel)]="formData.name" #name="ngModel" required />
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error">
+              <!-- <small *ngIf="name.errors?.['required']">Name is required.</small> -->
+            </div>
           </div>
 
           <div class="formbold-input-flex">
             <div>
               <label for="phone" class="formbold-form-label">Phone Number</label>
               <input type="text" name="phone" id="phone" class="formbold-form-input"
-                placeholder="Enter your phone number" required />
+                placeholder="Enter your phone number" [(ngModel)]="formData.phone" #phone="ngModel" required
+                pattern="^\d{10}$" maxlength="10" minlength="10"
+                [ngClass]="{'is-invalid': phone.invalid && (phone.dirty || phone.touched)}" />
+              <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="error">
+                <!-- <small *ngIf="phone.errors?.['required']">Phone number is required.</small>
+                <small *ngIf="phone.errors?.['pattern']">Phone number must be exactly 10 digits.</small> -->
+              </div>
             </div>
+
             <div>
               <label for="email" class="formbold-form-label">Email Address</label>
-              <input type="email" name="email" placeholder="Enter your email" id="email" class="formbold-form-input"
-                required />
+              <input type="email" name="email" id="email" placeholder="Enter your email" class="formbold-form-input"
+                [(ngModel)]="formData.email" #email="ngModel" required />
+              <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error">
+                <!-- <small *ngIf="email.errors?.['required']">Email is required.</small> -->
+                <small *ngIf="email.errors?.['email']">Invalid email format.</small>
+              </div>
             </div>
           </div>
 
           <div>
             <label for="address" class="formbold-form-label">Address</label>
-            <input type="text" name="address" id="address" placeholder="Flat 4, 24 Castle Street, Perth, PH1 3JY"
-              class="formbold-form-input" />
+            <input type="text" name="address" id="address" placeholder="Enter your address" class="formbold-form-input"
+              [(ngModel)]="formData.address" />
           </div>
         </div>
 
@@ -495,69 +512,79 @@
         <div class="formbold-form-step-2" [ngClass]="{ active: currentStep === 2 }">
           <div>
             <label for="preferred-date" class="formbold-form-label">Preferred Date</label>
-            <input type="date" id="preferred-date" class="formbold-form-input" required />
+            <input type="date" id="preferred-date" class="formbold-form-input" [(ngModel)]="formData.preferredDate"
+              #preferredDate="ngModel" required [min]="todayDate" />
+            <div *ngIf="preferredDate.invalid && (preferredDate.dirty || preferredDate.touched)" class="error">
+              <small *ngIf="preferredDate.errors?.['required']">Preferred date is required.</small>
+            </div>
+            
 
             <label for="time-slot" class="formbold-form-label">Preferred Time Slot</label>
-            <select id="time-slot" class="formbold-form-input" required>
-              <option value="" disabled selected>Select a time slot</option>
+            <select id="time-slot" class="formbold-form-input" [(ngModel)]="formData.timeSlot" name="timeSlot"
+              #timeSlot="ngModel" required>
+              <option [value]="" disabled>Select a time slot</option>
               <option value="morning">Morning (9:00 AM - 12:00 PM)</option>
               <option value="afternoon">Afternoon (12:00 PM - 3:00 PM)</option>
               <option value="evening">Evening (3:00 PM - 6:00 PM)</option>
             </select>
+            <div *ngIf="timeSlot.invalid && (timeSlot.dirty || timeSlot.touched)" class="error">
+              <small *ngIf="timeSlot.errors?.['required']">Time slot is required.</small>
+            </div>
 
             <label for="showroom" class="formbold-form-label">Preferred Showroom Location</label>
-            <select id="showroom" class="formbold-form-input" required>
-              <option value="" disabled selected>Select a Location</option>
-              <option value="morning">Chennai </option>
-              <option value="afternoon">Madurai </option>
-              <option value="evening">Coimbatore </option>
+            <select id="showroom" class="formbold-form-input" [(ngModel)]="formData.showroomLocation"
+              name="showroomLocation" #showroomLocation="ngModel" required>
+              <option [value]="" disabled>Select a Location</option>
+              <option value="chennai">Chennai</option>
+              <option value="madurai">Madurai</option>
+              <option value="coimbatore">Coimbatore</option>
             </select>
+            <div *ngIf="showroomLocation.invalid && (showroomLocation.dirty || showroomLocation.touched)" class="error">
+              <small *ngIf="showroomLocation.errors?.['required']">Showroom location is required.</small>
+            </div>
           </div>
         </div>
 
         <!-- Step 3 Content -->
         <div class="formbold-form-step-3" [ngClass]="{ active: currentStep === 3 }">
-          <div class="formbold-form-input">
+          <div>
             <p>
               You are about to finalize your booking. Please ensure the information provided is correct before
-              confirming
+              confirming.
               You will be responsible for any damage to the car during the rental period, excluding wear and tear.
             </p>
-            <br><br>
-            <div>
-              <button class="formbold-confirm-btn active">
+            <br /><br />
+            <div class="formbold-form-btn-wrapper">
+              <!-- Back Button -->
+              <button class="formbold-btn" type="button" (click)="goBack()">
+                Back
+              </button>
+              <!-- Confirmation Buttons -->
+              <button class="formbold-confirm-btn active" type="button" (click)="confirmBooking()"
+                style="margin-right: 10px;">
                 Yes! I Agree.
               </button>
-              <br>
-              <button class="formbold-confirm-btn">No! I don’t Agree</button>
+              <button class="formbold-confirm-btn" type="button" (click)="goBack()" style="margin-left: 10px;">
+                No! I Don’t Agree
+              </button>
             </div>
           </div>
         </div>
 
         <!-- Buttons for Navigation -->
-        <div class="formbold-form-btn-wrapper">
-          <button class="formbold-btn" (click)="goBack()" *ngIf="currentStep > 1">
+        <div class="formbold-form-btn-wrapper" *ngIf="currentStep < 3">
+          <button class="formbold-btn proper" type="button" (click)="goBack()" *ngIf="currentStep > 1">
             Back
           </button>
-
-          <button class="formbold-btn" (click)="nextStep()">
+          <button class="formbold-btn" type="button" [disabled]="!isStepValid()" (click)="nextStep()">
             {{ currentStep === 3 ? "Submit" : "Next Step" }}
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g clip-path="url(#clip0_1675_1807)">
-                <path
-                  d="M10.7814 7.33312L7.20541 3.75712L8.14808 2.81445L13.3334 7.99979L8.14808 13.1851L7.20541 12.2425L10.7814 8.66645H2.66675V7.33312H10.7814Z"
-                  fill="white" />
-              </g>
-              <defs>
-                <clipPath id="clip0_1675_1807">
-                  <rect width="16" height="16" fill="white" />
-                </clipPath>
-              </defs>
-            </svg>
           </button>
         </div>
       </form>
     </div>
+
+
+
   </div>
 </div>
 

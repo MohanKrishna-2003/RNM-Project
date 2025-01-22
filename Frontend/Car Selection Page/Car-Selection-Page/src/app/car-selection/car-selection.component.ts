@@ -1,16 +1,16 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import carsData from '../../assets/cars.json';
 import { CommonModule } from '@angular/common';
+import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-car-selection',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, HttpClientModule],
   templateUrl: './car-selection.component.html',
   styleUrls: ['./car-selection.component.css']
 })
-
 export class CarSelectionComponent implements OnInit {
 
   staticPics: string[] = [
@@ -29,15 +29,45 @@ export class CarSelectionComponent implements OnInit {
   selectedBrand: string = 'Renault';
   isBookingClicked: boolean = false;
   selectedCar: any = null;
-  // showBox : boolean = false;
-  constructor() { }
+  isFilterSidebarOpen: boolean = false;
+  selectedPrice: string = '';
+  sortBy: string = '';
+  todayDate: string;
+  status: boolean = true;
+  currentStep: number = 1; 
+
+  formData = {
+    name: '',                   
+    phone: '',                  
+    email: '',                  
+    address: '',                
+    preferredDate: new Date(),  
+    timeSlot: '',               
+    showroomLocation: '',       
+    confirmation: false         
+  };
+
+  private apiUrl = 'http://localhost:8080/api/slot-bookings';
+
+  constructor(private http: HttpClient) {
+    const today = new Date();
+    this.todayDate = today.toISOString().split('T')[0];  
+  }
 
   ngOnInit(): void {
-    this.cars = carsData;
-    this.displayedCars = [...this.cars];
+    this.fetchCarsFromBackend(); 
     this.startImageCycle();
     this.handleScroll();
-    this.displayCars('Renault')
+  }
+
+  fetchCarsFromBackend(): void {
+    this.http.get<any[]>('http://localhost:8080/api/cars') 
+      .subscribe(cars => {
+        this.cars = cars;
+        this.displayedCars = [...this.cars];
+        this.showGif = false;
+        // console.log(this.displayedCars)
+      });
   }
 
   displayCars(brand: string): void {
@@ -76,46 +106,28 @@ export class CarSelectionComponent implements OnInit {
     });
   }
 
-  isFilterSidebarOpen: boolean = false;
-  selectedPrice: string = '';
-  sortBy: string = '';
-
-
   toggleFilterSidebar(): void {
     this.isFilterSidebarOpen = !this.isFilterSidebarOpen;
   }
 
-  toggleBooking(carName: String) {
+  toggleBooking(carName: String): void {
     this.isBookingClicked = !this.isBookingClicked;
-    this.selectedCar = carsData.find(car => car.name == carName);
-    console.log(this.selectedCar);
-
+    this.selectedCar = this.cars.find(car => car.name === carName);
   }
 
-  closeForm(){
+  closeForm(): void {
     this.isBookingClicked = !this.isBookingClicked;
   }
+
   applyFilters(): void {
-    //   this.toggleFilterSidebar()
-    //   console.log(this.selectedPrice)
-    //   if (this.selectedPrice) {
-    //     this.filterCarsByPrice();
-    //   }
-    //   // else if(this.sortBy())
-    //   else {
-    //     this.displayedCars = [...this.cars];
-    //   }
-
     this.showGif = false;
   }
-
 
   filterCarsByPrice(event: Event): void {
     const selectedPrice = (event?.target as HTMLSelectElement).value;
     this.displayedCars = this.cars.filter(car => {
       const rawPrice = car.price?.INR;
-      if (!rawPrice)
-        return false;
+      if (!rawPrice) return false;
       const normalizedPrice = this.normalizePrice(rawPrice);
       switch (selectedPrice) {
         case 'low':
@@ -128,15 +140,11 @@ export class CarSelectionComponent implements OnInit {
           return true;
       }
     });
-
     this.showGif = false;
   }
 
-
   normalizePrice(rawPrice: string): number {
     let numericPrice = rawPrice.replace(/[₹$,]/g, '').trim();
-
-
     if (numericPrice.includes('Crore')) {
       numericPrice = numericPrice.replace('Crore', '').trim();
       return parseFloat(numericPrice) * 10000000;
@@ -151,47 +159,45 @@ export class CarSelectionComponent implements OnInit {
   confirm() {
     alert("Your booking slot is confirmed... please await further instructions.....");
   }
+
   sortByOrder(event: Event): void {
     const sortBy = (event.target as HTMLSelectElement).value;
-    if (sortBy == 'maxPrice') {
+    if (sortBy === 'maxPrice') {
       this.displayedCars = this.cars.sort((a, b) => this.normalizePrice(b.price.INR) - this.normalizePrice(a.price.INR));
-    }
-    else if (sortBy == 'minPrice') {
+    } else if (sortBy === 'minPrice') {
       this.displayedCars = this.cars.sort((a, b) => this.normalizePrice(a.price.INR) - this.normalizePrice(b.price.INR));
-    }
-    else {
+    } else {
       this.displayedCars = [...this.cars];
     }
     this.showGif = false;
-
-
   }
 
+  // Filter functions for other attributes
   filterByRating(event: Event): void {
     const selectedRating = (event.target as HTMLSelectElement).value;
-    // console.log(selectedRating);
-    this.displayedCars = this.cars.filter(car => car.rating == selectedRating);
+    if (selectedRating) {
+      this.displayedCars = this.cars.filter(car => car.rating === parseInt(selectedRating, 10));
+    } else {
+      this.displayedCars = [...this.cars];
+    }
     this.showGif = false;
   }
 
   filterByEngine(event: Event): void {
-    const selectedEngineType = (event.target as HTMLSelectElement).value;
-    if (selectedEngineType) {
-      this.displayedCars = this.cars.filter(car => car.engineType.trim().toLowerCase() === selectedEngineType.toLowerCase());
-    }
-    else {
+    const selectedEngine = (event.target as HTMLSelectElement).value;
+    if (selectedEngine) {
+      this.displayedCars = this.cars.filter(car => car.engineType.toLowerCase() === selectedEngine.toLowerCase());
+    } else {
       this.displayedCars = [...this.cars];
     }
     this.showGif = false;
-
   }
 
   filterBySeater(event: Event): void {
-    const selectedSeatingCapacity = (event.target as HTMLSelectElement).value;
-    if (selectedSeatingCapacity) {
-      this.displayedCars = this.cars.filter(car => car.seater == selectedSeatingCapacity);
-    }
-    else {
+    const selectedSeater = (event.target as HTMLSelectElement).value;
+    if (selectedSeater) {
+      this.displayedCars = this.cars.filter(car => car.seats === parseInt(selectedSeater, 10));
+    } else {
       this.displayedCars = [...this.cars];
     }
     this.showGif = false;
@@ -200,9 +206,8 @@ export class CarSelectionComponent implements OnInit {
   filterByTransmission(event: Event): void {
     const selectedTransmission = (event.target as HTMLSelectElement).value;
     if (selectedTransmission) {
-      this.displayedCars = this.cars.filter(car => car.transmission.trim().toLowerCase() === selectedTransmission.toLowerCase());
-    }
-    else {
+      this.displayedCars = this.cars.filter(car => car.transmission.toLowerCase() === selectedTransmission.toLowerCase());
+    } else {
       this.displayedCars = [...this.cars];
     }
     this.showGif = false;
@@ -211,9 +216,8 @@ export class CarSelectionComponent implements OnInit {
   filterByAvailability(event: Event): void {
     const selectedAvailability = (event.target as HTMLSelectElement).value;
     if (selectedAvailability) {
-      this.displayedCars = this.cars.filter(car => car.availability.trim().toLowerCase() === selectedAvailability.toLowerCase());
-    }
-    else {
+      this.displayedCars = this.cars.filter(car => car.availability.toLowerCase() === selectedAvailability.toLowerCase());
+    } else {
       this.displayedCars = [...this.cars];
     }
     this.showGif = false;
@@ -222,9 +226,8 @@ export class CarSelectionComponent implements OnInit {
   filterByFuelEfficiency(event: Event): void {
     const selectedFuelEfficiency = (event.target as HTMLSelectElement).value;
     if (selectedFuelEfficiency) {
-      this.displayedCars = this.cars.filter(car => car.fuelEfficiency.trim().toLowerCase() === selectedFuelEfficiency.toLowerCase());
-    }
-    else {
+      this.displayedCars = this.cars.filter(car => car.fuelEfficiency <= parseInt(selectedFuelEfficiency, 10));
+    } else {
       this.displayedCars = [...this.cars];
     }
     this.showGif = false;
@@ -233,9 +236,8 @@ export class CarSelectionComponent implements OnInit {
   filterByColor(event: Event): void {
     const selectedColor = (event.target as HTMLSelectElement).value;
     if (selectedColor) {
-      this.displayedCars = this.cars.filter(car => car.color.trim().toLowerCase() === selectedColor.toLowerCase());
-    }
-    else {
+      this.displayedCars = this.cars.filter(car => car.color.toLowerCase() === selectedColor.toLowerCase());
+    } else {
       this.displayedCars = [...this.cars];
     }
     this.showGif = false;
@@ -244,9 +246,8 @@ export class CarSelectionComponent implements OnInit {
   filterByDriveType(event: Event): void {
     const selectedDriveType = (event.target as HTMLSelectElement).value;
     if (selectedDriveType) {
-      this.displayedCars = this.cars.filter(car => car.driveType.trim().toLowerCase() === selectedDriveType.toLowerCase());
-    }
-    else {
+      this.displayedCars = this.cars.filter(car => car.driveType.toLowerCase() === selectedDriveType.toLowerCase());
+    } else {
       this.displayedCars = [...this.cars];
     }
     this.showGif = false;
@@ -255,38 +256,108 @@ export class CarSelectionComponent implements OnInit {
   filterByWarranty(event: Event): void {
     const selectedWarranty = (event.target as HTMLSelectElement).value;
     if (selectedWarranty) {
-      this.displayedCars = this.cars.filter(car => car.warranty.trim().toLowerCase() === selectedWarranty.toLowerCase());
-    }
-    else {
+      this.displayedCars = this.cars.filter(car => car.warranty === selectedWarranty);
+    } else {
       this.displayedCars = [...this.cars];
     }
     this.showGif = false;
   }
 
-  status: boolean = true;
-  clickEvent() {
-    this.status = !this.status;
-  }
-
-  currentStep: number = 1; // Keeps track of the current step in the form
-
   nextStep(): void {
     if (this.currentStep < 3) {
-      this.currentStep++; // Move to the next step
-    } 
-    else {
-      this.confirm1(); 
+      this.currentStep++;
+    } else {
+      this.submitForm();
     }
   }
 
   goBack(): void {
     if (this.currentStep > 1) {
-      this.currentStep--; // Move to the previous step
+      this.currentStep--;
     }
   }
 
-  confirm1(): void {
-    alert('Form Submitted!');
+  submitForm(): void {
+    const formattedDate = this.formData.preferredDate ? this.formData.preferredDate.toISOString() : '';
+    const formDataToSend = {
+      ...this.formData,
+      preferredDate: formattedDate,
+      selectedCarDetails: this.selectedCar.name
+    };
+
+    
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    this.http.post(this.apiUrl, formDataToSend, { headers }).subscribe(
+      (response) => {
+        console.log(formDataToSend);  // Checking the data being sent to the backend
+
+        this.showSuccessDialog();
+      },
+      (error) => {
+      
+        console.log(formDataToSend);  // Checking the data being sent to the backend
+        
+        this.showFailureDialog();
+      }
+    );
   }
- 
+
+  confirmBooking(): void {
+    this.formData.confirmation = true;
+    this.submitForm();
+  }
+
+  notAgreed(): void {
+    this.formData.confirmation = false;
+    this.submitForm();
+  }
+
+  isStepValid(): boolean {
+    switch (this.currentStep) {
+      case 1:
+        return !!this.formData.name && !!this.formData.phone && !!this.formData.email;
+      case 2:
+        return !!this.formData.preferredDate && !!this.formData.timeSlot && !!this.formData.showroomLocation;
+      case 3:
+        return true;
+      default:
+        return false;
+    }
+  }
+
+  showSuccessDialog(): void {
+    this.closeForm();
+    Swal.fire({
+      title: '🎉 Slot Booked Successfully!',
+      text: 'Your test drive slot has been booked. We will send a confirmation receipt to your registered email!',
+      imageUrl: 'assets/images/success.gif',
+      imageWidth: 400,
+      imageHeight: 300,
+      confirmButtonText: 'OK',
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+      }
+    });
+  }
+
+  showFailureDialog(): void {
+    this.closeForm();
+    Swal.fire({
+      title: '❌ Slot Booking Failed!',
+      text: 'There was an issue booking your test drive slot. Please try again later.',
+      imageUrl: 'assets/images/fail.gif',
+      imageWidth: 400,
+      imageHeight: 300,
+      confirmButtonText: 'Try Again',
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+      }
+    });
+  }
 }

@@ -1,40 +1,25 @@
+<<<<<<< HEAD
+=======
 /* Chatbot Container */
+>>>>>>> f2ac65f4b7d918fb402144fb2282bfa5130c9e32
 .chatbot-container {
   width: 100%;
   max-width: 600px;
   position: fixed;
+<<<<<<< HEAD
+  bottom: 80px;  /* Place chatbot above the arrow button */
+  right: 20px;   /* Align the chatbot to the right */
+=======
   bottom: 80px;
   right: 20px;
+>>>>>>> f2ac65f4b7d918fb402144fb2282bfa5130c9e32
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 20px;
   z-index: 1000;
-}
-
-/* Floating Chatbot Icon */
-.chatbot-icon-container {
-  position: fixed;
-  bottom: 90px;  /* Adjusted to move the icon upwards */
-  right: 20px;
-  z-index: 1001;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Chatbot Icon (Bubble) */
-.chatbot-icon {
-  width: 60px;  /* Set the width of the bubble */
-  height: 60px; /* Set the height of the bubble */
-  background-color: #4CAF50;  /* Green background */
-  color: white;  /* White text color */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;  /* Makes it circular */
-  font-size: 30px;  /* Size of the text inside the bubble */
+  display: block;
+  transition: display 0.3s ease-in-out;
 }
 
 /* Close Button Styling */
@@ -52,8 +37,27 @@
 .close-btn:hover {
   color: #f44336; /* Red color when hovering */
 }
+/* Floating Chatbot Icon */
+.chatbot-icon {
+  position: fixed;
+  bottom: 90px;  /* Adjusted to move the icon upwards */
+  right: 20px;
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 50%;
+  padding: 15px;
+  font-size: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1001;
+}
 
-/* Chat Window */
+/* Hover effect on the icon */
+.chatbot-icon:hover {
+  background-color: #45a049;
+}
+
+
 .chat-window {
   display: flex;
   flex-direction: column;
