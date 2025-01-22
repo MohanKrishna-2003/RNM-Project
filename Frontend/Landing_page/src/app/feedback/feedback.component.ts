@@ -84,12 +84,14 @@ export class FeedbackComponent {
       const data = this.feedbackForm.value;
       data.user_id = localStorage.getItem("id");
       console.log(data);
-      this.http.post("http://localhost:8085/userlogin/postFeedback", data).subscribe({
+      this.http.post("http://localhost:8080/feedback/postFeedback", data).subscribe({
         next: (res) => {
           console.log(res);
           // this.feedbackForm.clearAsyncValidators
           // this.feedbackForm.reset();
           console.log(this.feedbackForm);
+          alert("Form submitted Sucessfully. Thankyou for your feedback!!");
+          window.location.reload();
             // this.feedbackForm.get('feedback').reset()
         },
         error: (err) => {

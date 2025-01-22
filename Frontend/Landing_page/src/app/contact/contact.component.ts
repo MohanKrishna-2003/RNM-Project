@@ -27,9 +27,12 @@ export class ContactComponent {
       const data = this.contact.value;
       console.log('Form Data:', data);
 
-      this.http.post('http://localhost:8085/contact', data).subscribe(
+      this.http.post('http://localhost:8080/contact/postcontact', data).subscribe(
         (response: any) => {
           console.log('Form Submitted Successfully:', response);
+          alert("Form Submitted Succesfully. We will reach out to you soon !!")
+          window.location.reload();
+
         },
         (error) => {
           console.error('Error occurred while submitting form:', error);

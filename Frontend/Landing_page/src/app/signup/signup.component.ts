@@ -38,7 +38,7 @@ export class SignupComponent {
     if (this.signupForm.valid) {
       const data = this.signupForm.value;
       console.log(data);
-      this.http.post('http://localhost:8085/userlogin/addUserData', data).subscribe(
+      this.http.post('http://localhost:8080/user/addUserData', data).subscribe(
         {
           next:(res)=>{
               console.log(res);

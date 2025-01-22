@@ -9,13 +9,15 @@ import { ChatbotComponent } from '../chatbot/chatbot.component';
 // import { H1Component } from "../h1/h1.component";
 import { FeedbackComponent } from '../feedback/feedback.component';
 import { TestimonialComponent } from '../testimonial/testimonial.component';
+import { LogoComponent } from '../logo/logo.component';
+import { NewsComponent } from '../news/news.component';
 
 @Component({
   selector: 'app-home',
   standalone:true,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  imports: [HeaderComponent,FeedbackComponent, BookingComponent,TestimonialComponent, ServiceListComponent, FooterComponent, ContactComponent, ChatbotComponent, H1Component]
+  imports: [HeaderComponent,FeedbackComponent, BookingComponent,TestimonialComponent, ServiceListComponent, FooterComponent, ContactComponent, ChatbotComponent, LogoComponent, NewsComponent]
 })
 export class HomeComponent implements AfterViewInit {
   @ViewChild('carouselExample', { static: false }) carousel!: ElementRef;
