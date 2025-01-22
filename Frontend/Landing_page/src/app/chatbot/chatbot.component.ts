@@ -15,11 +15,10 @@ export class ChatbotComponent {
   options: string[] = [
     'What is your name?',
     'What can you do?',
-    'Learn About Cars',
     'Book a Test Drive',
-    'Customer Reviews/Testimonial',
     'feedback',
     'Locations',
+    'News',
     'Goodbye!',
   ];
 
@@ -44,21 +43,19 @@ export class ChatbotComponent {
   onOptionSelected(option: string): void {
     this.messages.push({ sender: 'user', text: option });
 
-    if (option === 'Learn About Cars') {
+    if (option === 'Book a test drive') {
       this.router.navigate(['/booking']);
-    } else if (option === 'Book a Test Drive') {
-      this.router.navigate(['/booking']); // Navigate to the booking page
-      this.messages.push({ sender: 'bot', text: 'Redirecting to the booking page.' });
-    } else if (option === 'feedback') {
+    }  else if (option === 'feedback') {
       this.router.navigate(['/feedback']);
-      this.messages.push({ sender: 'bot', text: 'Redirecting to the contact page.' });
+      this.messages.push({ sender: 'bot', text: 'Redirecting to the feedback page.' });
     } else if (option === 'Locations') {
       this.router.navigate(['/location']); // Navigate to the locations page
       this.messages.push({ sender: 'bot', text: 'Redirecting to the locations page.' });
-    } else if (option === 'Customer Reviews/Testimonial') {
-      this.router.navigate(['/service-list']); // Navigate to the testimonials page
+    }
+    else if (option === 'News') {
+      this.router.navigate(['/news']); // Navigate to the testimonials page
       this.messages.push({ sender: 'bot', text: 'Redirecting to the testimonials page.' });
-    } else {
+    }else {
       const botReply = this.getBotResponse(option);
       this.messages.push({ sender: 'bot', text: botReply });
     }

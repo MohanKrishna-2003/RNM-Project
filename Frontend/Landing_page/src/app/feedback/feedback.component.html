@@ -1,10 +1,23 @@
-<div class="container-fluid feedback d-flex justify-content-center align-items-center ">
-    <div class="main">
-      <div class="row w-100">
-        <div class="col-12 col-sm-6 col-md-6 d-flex justify-content-center align-items-center">
-          <div class="image mt-5">
-            <img src="https://static.vecteezy.com/system/resources/previews/016/389/997/non_2x/online-customer-feedback-and-survey-free-png.png" alt="Feedback Image" width="100%" class="img-fluid">
-          </div>
+<div class="container py-5">
+  <h2 class="text-center mb-5">What Our Customers Say</h2>
+  <div id="customer-carousel" class="owl-carousel owl-theme">
+    <div class="item" *ngFor="let testimonial of testimonials">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ testimonial.name }}</h5>
+          <p class="card-text mt-5">{{ testimonial.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid feedback d-flex justify-content-center align-items-center " id="feedback">
+  <div class="main">
+    <div class="row w-100">
+      <div class="col-12 col-sm-6 col-md-6 d-flex justify-content-center align-items-center">
+        <div class="image mt-5">
+          <img src="https://static.vecteezy.com/system/resources/previews/016/389/997/non_2x/online-customer-feedback-and-survey-free-png.png" alt="Feedback Image" width="100%" class="img-fluid">
         </div>
         <div class="col-12 col-sm-6 col-md-6 mt-5">
           <div class="card-body mt-4 w-100">
