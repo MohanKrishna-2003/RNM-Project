@@ -3,30 +3,32 @@
   <div class="overlay"></div>
 
   <div class="container py-5">
-    <div class="row">
+    <div class="row" >
       <!-- Left Column (Contact Information) -->
-      <div class="col-md-6 text-white mb-4">
+      <div class="col-md-6 text-white">
         <h2 class="display-4">Contact Us</h2>
         <p class="lead">We're here to help! Whether you have questions or feedback, feel free to reach out to us.</p>
+        <br>
         <ul class="list-unstyled">
           <li class="mb-3">
             <i class="fas fa-phone fa-2x"></i> &nbsp;&nbsp;
             <strong>Phone:</strong> <a href="tel:+1234567890" class="text-white">+1 234 567 890</a>
-          </li>
+          </li><br>
           <li class="mb-3">
             <i class="fas fa-envelope fa-2x"></i> &nbsp;&nbsp;
-            <strong>Email:</strong> <a href="mailto:info@myrn.com" class="text-white">infomyrn.com</a>
-          </li>
+            <strong>Email:</strong> <a href="mailto:infomyrnm.com" class="text-white">infomyrnm.com</a>
+          </li><br>
           <li class="mb-3">
             <i class="fas fa-map-marker-alt fa-2x"></i> &nbsp;&nbsp;
             <strong>Address:</strong> Ascendas IT Park, Mahindra World City SEZ, Chengalpattu, Tamil Nadu 603002
           </li>
         </ul>
+
       </div>
 
       <!-- Right Column (Contact Form) -->
       <div class="col-md-6">
-        <div class="card p-4" style="background-color: #ececec;">
+        <div class="card p-4" style="background-color: #cecece;">
           <h3 class="card-title mb-4">Send us a Message</h3>
           <form [formGroup]="contact" (ngSubmit)="onsubmit()">
             <!-- Email Input -->
@@ -48,6 +50,8 @@
               </div>
             </div>
 
+
+
             <!-- Message Textarea -->
             <div class="mb-3">
               <label for="message" class="form-label">Message</label>
@@ -67,3 +71,6 @@
     </div>
   </div>
 </section>
+
+
+

@@ -14,7 +14,12 @@
 .table thead th {
   background-color: #f7c600;
 }
-
+#canvas{
+  margin:0px;
+}
+#barchart2{
+  height:508px;
+}
 .section {
   margin-left: 250px; /* Adjust based on the width of the navbar */
   width: calc(100% - 250px); /* Make the dashboard take the rest of the available space */
@@ -2726,7 +2731,7 @@ h6,
 }
 .single-notification .notification .content {
   display: block;
-  max-width: 800px;
+  /* max-width: 800px; */
 }
 .single-notification .notification .content h6 {
   margin-bottom: 15px;

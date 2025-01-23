@@ -1,296 +1,55 @@
-<app-admin-header></app-admin-header>
-<div class="notification-wrapper">
-    <div class="container-fluid">
-      <!-- ========== title-wrapper start ========== -->
-      <div class="title-wrapper pt-30">
-        <div class="row align-items-center">
-          <div class="col-md-6">
-            <div class="title">
-              <h2>Notifications</h2>
-            </div><br><br>
-          </div>
-          <!-- end col -->
-      
-          <!-- end col -->
-        </div>
-        <!-- end row -->
+<!-- <section id="home">
+  <div class="container news-container">
+      <br>
+      <h1 class="text-center mb-4">Latest News on Renault & Nissan</h1>
+      <div id="newsCards" class="row g-4">
       </div>
-      <!-- ========== title-wrapper end ========== -->
+      <div class="text-center mt-4">
+          <img id="loadingSpinner" src="newicon.gif" alt="Loading...">
 
-      <div class="card-style">
-        <div class="single-notification">
-    
-          <div class="notification">
-            <div class="image warning-bg">
-              <span>W</span>
-            </div>
-            <a href="#0" class="content">
-              <h6>Wrapped Bitcoin is now listed on Unity Exchange</h6>
-              <p class="text-sm text-gray">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Vivamus tortor, odio viverra malesuada sapien dui. Penatibus
-                id amet lectus facilisi tincidunt at non.
-              </p>
-              <span class="text-sm text-medium text-gray">25 min ago</span>
-            </a>
-          </div>
-          <div class="action">
-            <button class="delete-btn">
-              <i class="lni lni-trash-can"></i>
-            </button>
-            <button class="more-btn dropdown-toggle" id="moreAction" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="lni lni-more-alt"></i>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreAction">
-              <li class="dropdown-item">
-                <a href="#0" class="text-gray">Mark as Read</a>
-              </li>
-              <li class="dropdown-item">
-                <a href="#0" class="text-gray">Reply</a>
-              </li>
-            </ul>
-          </div>
+          <button id="loadMoreBtn" class="btn btn-primary mt-3">Load More</button>
+      </div>
+  </div>
+</section> -->
+<app-admin-header></app-admin-header>
+<div class="container-fluid">
+  <!-- Title Section -->
+  <div class="text-center">
+    <h1 class="news-heading">Notifications - Latest News</h1>
+    <p class="lead">Stay updated with the latest news about Renault, Nissan and Mitsubhishi.</p>
+  </div>
+
+  <!-- News articles section -->
+  <div id="newsCards" class="row">
+    <!-- Loop through the articles and display them -->
+    <div *ngFor="let article of articles.slice(0, currentIndex)" class="col-lg-4 col-md-6 col-sm-12">
+      <div class="card news-card">
+        <img
+          [src]="article.urlToImage || DEFAULT_IMAGE"
+          class="card-img-top"
+          alt="{{ article.title }}"
+          (error)="article.urlToImage = DEFAULT_IMAGE" 
+        />
+        <div class="card-body">
+          <h5 class="news-card-title">{{ article.title }}</h5>
+          <p class="news-card-description">
+            {{ article.description || 'No description available.' }}
+          </p>
+          <p class="news-author">Author: {{ article.author || 'Unknown' }}</p>
+          <a [href]="article.url" target="_blank" class="btn read-more-btn">Read More</a>
         </div>
-        <!-- end single notification -->
-        <div class="single-notification">
-          
-          <div class="notification">
-            <div class="image secondary-bg">
-              <span>V</span>
-            </div>
-            <a href="#0" class="content">
-              <h6>Vivamus tortor, odio viverra malesuada sapien dui.</h6>
-              <p class="text-sm text-gray">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Vivamus tortor, odio viverra malesuada sapien dui. Penatibus
-                id amet lectus facilisi tincidunt at non.
-              </p>
-              <span class="text-sm text-medium text-gray">30 min ago</span>
-            </a>
-          </div>
-          <div class="action">
-            <button class="delete-btn">
-              <i class="lni lni-trash-can"></i>
-            </button>
-            <button class="more-btn dropdown-toggle" id="moreAction" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="lni lni-more-alt"></i>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreAction">
-              <li class="dropdown-item">
-                <a href="#0" class="text-gray">Mark as Read</a>
-              </li>
-              <li class="dropdown-item">
-                <a href="#0" class="text-gray">Reply</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <!-- end single notification -->
-        <div class="single-notification">
-         
-          <div class="notification">
-            <div class="image success-bg">
-              <span>S</span>
-            </div>
-            <a href="#0" class="content">
-              <h6>Srapped Citcoin is now listed on Unity Exchange</h6>
-              <p class="text-sm text-gray">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Vivamus tortor, odio viverra malesuada sapien dui. Penatibus
-                id amet lectus facilisi tincidunt at non.
-              </p>
-              <span class="text-sm text-medium text-gray">35 min ago</span>
-            </a>
-          </div>
-          <div class="action">
-            <button class="delete-btn">
-              <i class="lni lni-trash-can"></i>
-            </button>
-            <button class="more-btn dropdown-toggle" id="moreAction" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="lni lni-more-alt"></i>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreAction">
-              <li class="dropdown-item">
-                <a href="#0" class="text-gray">Mark as Read</a>
-              </li>
-              <li class="dropdown-item">
-                <a href="#0" class="text-gray">Reply</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <!-- end single notification -->
-        <div class="single-notification readed">
-         
-          <div class="notification">
-            <div class="image primary-bg">
-              <span>T</span>
-            </div>
-            <a href="#0" class="content">
-              <h6>Trapped Eitcoin is now listed on Unity Exchange</h6>
-              <p class="text-sm text-gray">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Vivamus tortor, odio viverra malesuada sapien dui. Penatibus
-                id amet lectus facilisi tincidunt at non.
-              </p>
-              <span class="text-sm text-medium text-gray">25 min ago</span>
-            </a>
-          </div>
-          <div class="action">
-            <button class="delete-btn">
-              <i class="lni lni-trash-can"></i>
-            </button>
-            <button class="more-btn dropdown-toggle" id="moreAction" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="lni lni-more-alt"></i>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreAction">
-              <li class="dropdown-item">
-                <a href="#0" class="text-gray">Mark as Read</a>
-              </li>
-              <li class="dropdown-item">
-                <a href="#0" class="text-gray">Reply</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <!-- end single notification -->
-        <div class="single-notification readed">
-          
-          <div class="notification">
-            <div class="image info-bg">
-              <span>U</span>
-            </div>
-            <a href="#0" class="content">
-              <h6>Urapped Bitcoin is now listed on Unity Exchange</h6>
-              <p class="text-sm text-gray">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Vivamus tortor, odio viverra malesuada sapien dui. Penatibus
-                id amet lectus facilisi tincidunt at non.
-              </p>
-              <span class="text-sm text-medium text-gray">25 min ago</span>
-            </a>
-          </div>
-          <div class="action">
-            <button class="delete-btn">
-              <i class="lni lni-trash-can"></i>
-            </button>
-            <button class="more-btn dropdown-toggle" id="moreAction" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="lni lni-more-alt"></i>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreAction">
-              <li class="dropdown-item">
-                <a href="#0" class="text-gray">Mark as Read</a>
-              </li>
-              <li class="dropdown-item">
-                <a href="#0" class="text-gray">Reply</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <!-- end single notification -->
-        <div class="single-notification readed">
-         
-          <div class="notification">
-            <div class="image info-bg">
-              <span>W</span>
-            </div>
-            <a href="#0" class="content">
-              <h6>Wrapped Space is now listed on producthunt</h6>
-              <p class="text-sm text-gray">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Vivamus tortor, odio viverra malesuada sapien dui. Penatibus
-                id amet lectus facilisi tincidunt at non.
-              </p>
-              <span class="text-sm text-medium text-gray">25 min ago</span>
-            </a>
-          </div>
-          <div class="action">
-            <button class="delete-btn">
-              <i class="lni lni-trash-can"></i>
-            </button>
-            <button class="more-btn dropdown-toggle" id="moreAction" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="lni lni-more-alt"></i>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreAction">
-              <li class="dropdown-item">
-                <a href="#0" class="text-gray">Mark as Read</a>
-              </li>
-              <li class="dropdown-item">
-                <a href="#0" class="text-gray">Reply</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <!-- end single notification -->
-        <div class="single-notification readed">
-       
-          <div class="notification">
-            <div class="image warning-bg">
-              <span>L</span>
-            </div>
-            <a href="#0" class="content">
-              <h6>Lindy Uikit on trending</h6>
-              <p class="text-sm text-gray">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Vivamus tortor, odio viverra malesuada sapien dui. Penatibus
-                id amet lectus facilisi tincidunt at non.
-              </p>
-              <span class="text-sm text-medium text-gray">25 min ago</span>
-            </a>
-          </div>
-          <div class="action">
-            <button class="delete-btn">
-              <i class="lni lni-trash-can"></i>
-            </button>
-            <button class="more-btn dropdown-toggle" id="moreAction" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="lni lni-more-alt"></i>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreAction">
-              <li class="dropdown-item">
-                <a href="#0" class="text-gray">Mark as Read</a>
-              </li>
-              <li class="dropdown-item">
-                <a href="#0" class="text-gray">Reply</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <!-- end single notification -->
-        <div class="single-notification">
-      
-          <div class="notification">
-            <div class="image danger-bg">
-              <span>C</span>
-            </div>
-            <a href="#0" class="content">
-              <h6>Classify is on sell</h6>
-              <p class="text-sm text-gray">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Vivamus tortor, odio viverra malesuada sapien dui. Penatibus
-                id amet lectus facilisi tincidunt at non.
-              </p>
-              <span class="text-sm text-medium text-gray">25 min ago</span>
-            </a>
-          </div>
-          <div class="action">
-            <button class="delete-btn">
-              <i class="lni lni-trash-can"></i>
-            </button>
-            <button class="more-btn dropdown-toggle" id="moreAction" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="lni lni-more-alt"></i>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreAction">
-              <li class="dropdown-item">
-                <a href="#0" class="text-gray">Mark as Read</a>
-              </li>
-              <li class="dropdown-item">
-                <a href="#0" class="text-gray">Reply</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <!-- end single notification -->
       </div>
     </div>
-    <!-- end container -->
   </div>
+
+  <!-- Loading Spinner while fetching more articles -->
+  <div *ngIf="loading" id="loadingSpinner" class="spinner-border text-primary" role="status">
+    <span class="sr-only">Loading...</span>
+    <h1>LOADINF</h1>
+  </div>
+
+  <!-- Load More Button -->
+  <button *ngIf="!loading" id="loadMoreBtn" class="btn btn-primary" (click)="loadMore()">
+    Load More
+  </button>
+</div>

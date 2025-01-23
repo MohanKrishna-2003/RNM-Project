@@ -1,4 +1,7 @@
+<<<<<<<<< Temporary merge branch 1
+=========
 import { createRequire } from 'module';const require = createRequire(import.meta.url);
+>>>>>>>>> Temporary merge branch 2
 import {
   CommonModule,
   DOCUMENT,
@@ -9,7 +12,19 @@ import {
   isPlatformServer,
   parseCookieValue,
   setRootDomAdapter
+<<<<<<<<< Temporary merge branch 1
+<<<<<<<< HEAD:Frontend/car-book/.angular/cache/19.0.5/car-book/vite/deps_ssr/chunk-6S3VGHBK.js
 } from "./chunk-FXCKPLS3.js";
+========
+} from "./chunk-MCO6UI4J.js";
+>>>>>>>> f2ac65f4b7d918fb402144fb2282bfa5130c9e32:Frontend/Admin/.angular/cache/18.2.7/Sample/vite/deps/chunk-65RCXNHE.js
+=========
+<<<<<<<<<< Temporary merge branch 1:Frontend/car-book/.angular/cache/19.0.6/car-book/vite/deps_ssr/chunk-6FWMCUKM.js
+} from "./chunk-2M2HMFBT.js";
+==========
+} from "./chunk-FXCKPLS3.js";
+>>>>>>>>>> Temporary merge branch 2:Frontend/car-book/.angular/cache/19.0.5/car-book/vite/deps_ssr/chunk-6S3VGHBK.js
+>>>>>>>>> Temporary merge branch 2
 import {
   APP_BOOTSTRAP_LISTENER,
   APP_ID,
@@ -26,6 +41,10 @@ import {
   InjectionToken,
   NgModule,
   NgZone,
+<<<<<<<<< Temporary merge branch 1
+  Observable,
+=========
+>>>>>>>>> Temporary merge branch 2
   Optional,
   PLATFORM_ID,
   PLATFORM_INITIALIZER,
@@ -44,6 +63,13 @@ import {
   ViewEncapsulation,
   XSS_SECURITY_URL,
   ZONELESS_ENABLED,
+<<<<<<<<< Temporary merge branch 1
+  __async,
+  __objRest,
+  __spreadProps,
+  __spreadValues,
+=========
+>>>>>>>>> Temporary merge branch 2
   _global,
   _sanitizeHtml,
   _sanitizeUrl,
@@ -53,13 +79,34 @@ import {
   bypassSanitizationTrustScript,
   bypassSanitizationTrustStyle,
   bypassSanitizationTrustUrl,
+<<<<<<<<< Temporary merge branch 1
+  concatMap,
+  createPlatformFactory,
+  filter,
+  finalize,
+  formatRuntimeError,
+  forwardRef,
+  from,
+=========
   createPlatformFactory,
   formatRuntimeError,
   forwardRef,
+>>>>>>>>> Temporary merge branch 2
   inject,
   internalCreateApplication,
   makeEnvironmentProviders,
   makeStateKey,
+<<<<<<<<< Temporary merge branch 1
+  map,
+  of,
+  performanceMarkFeature,
+  platformCore,
+  runInInjectionContext,
+  setClassMetadata,
+  setDocument,
+  switchMap,
+  tap,
+=========
   performanceMarkFeature,
   platformCore,
   require_cjs,
@@ -67,6 +114,7 @@ import {
   runInInjectionContext,
   setClassMetadata,
   setDocument,
+>>>>>>>>> Temporary merge branch 2
   truncateMiddle,
   unwrapSafeValue,
   withDomHydration,
@@ -77,7 +125,16 @@ import {
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
   ɵɵinject
+<<<<<<<<< Temporary merge branch 1
+<<<<<<<< HEAD:Frontend/car-book/.angular/cache/19.0.5/car-book/vite/deps_ssr/chunk-6S3VGHBK.js
 } from "./chunk-DHLVHDDN.js";
+=========
+<<<<<<<<<< Temporary merge branch 1:Frontend/car-book/.angular/cache/19.0.6/car-book/vite/deps_ssr/chunk-6FWMCUKM.js
+} from "./chunk-PEAVEDUD.js";
+==========
+} from "./chunk-DHLVHDDN.js";
+>>>>>>>>>> Temporary merge branch 2:Frontend/car-book/.angular/cache/19.0.5/car-book/vite/deps_ssr/chunk-6S3VGHBK.js
+>>>>>>>>> Temporary merge branch 2
 import {
   __async,
   __objRest,
@@ -85,10 +142,18 @@ import {
   __spreadValues,
   __toESM
 } from "./chunk-YHCV7DAQ.js";
+<<<<<<<<< Temporary merge branch 1
+========
+} from "./chunk-RXLE57JX.js";
+>>>>>>>> f2ac65f4b7d918fb402144fb2282bfa5130c9e32:Frontend/Admin/.angular/cache/18.2.7/Sample/vite/deps/chunk-65RCXNHE.js
+
+// node_modules/@angular/common/fesm2022/http.mjs
+=========
 
 // node_modules/@angular/common/fesm2022/http.mjs
 var import_rxjs = __toESM(require_cjs(), 1);
 var import_operators = __toESM(require_operators(), 1);
+>>>>>>>>> Temporary merge branch 2
 var HttpHandler = class {
 };
 var HttpBackend = class {
@@ -1105,30 +1170,50 @@ var HttpClient = class _HttpClient {
         transferCache: options.transferCache
       });
     }
+<<<<<<<<< Temporary merge branch 1
+    const events$ = of(req).pipe(concatMap((req2) => this.handler.handle(req2)));
+    if (first instanceof HttpRequest || options.observe === "events") {
+      return events$;
+    }
+    const res$ = events$.pipe(filter((event) => event instanceof HttpResponse));
+=========
     const events$ = (0, import_rxjs.of)(req).pipe((0, import_operators.concatMap)((req2) => this.handler.handle(req2)));
     if (first instanceof HttpRequest || options.observe === "events") {
       return events$;
     }
     const res$ = events$.pipe((0, import_operators.filter)((event) => event instanceof HttpResponse));
+>>>>>>>>> Temporary merge branch 2
     switch (options.observe || "body") {
       case "body":
         switch (req.responseType) {
           case "arraybuffer":
+<<<<<<<<< Temporary merge branch 1
+            return res$.pipe(map((res) => {
+=========
             return res$.pipe((0, import_operators.map)((res) => {
+>>>>>>>>> Temporary merge branch 2
               if (res.body !== null && !(res.body instanceof ArrayBuffer)) {
                 throw new Error("Response is not an ArrayBuffer.");
               }
               return res.body;
             }));
           case "blob":
+<<<<<<<<< Temporary merge branch 1
+            return res$.pipe(map((res) => {
+=========
             return res$.pipe((0, import_operators.map)((res) => {
+>>>>>>>>> Temporary merge branch 2
               if (res.body !== null && !(res.body instanceof Blob)) {
                 throw new Error("Response is not a Blob.");
               }
               return res.body;
             }));
           case "text":
+<<<<<<<<< Temporary merge branch 1
+            return res$.pipe(map((res) => {
+=========
             return res$.pipe((0, import_operators.map)((res) => {
+>>>>>>>>> Temporary merge branch 2
               if (res.body !== null && typeof res.body !== "string") {
                 throw new Error("Response is not a string.");
               }
@@ -1136,7 +1221,11 @@ var HttpClient = class _HttpClient {
             }));
           case "json":
           default:
+<<<<<<<<< Temporary merge branch 1
+            return res$.pipe(map((res) => res.body));
+=========
             return res$.pipe((0, import_operators.map)((res) => res.body));
+>>>>>>>>> Temporary merge branch 2
         }
       case "response":
         return res$;
@@ -1268,7 +1357,11 @@ var FetchBackend = class _FetchBackend {
   })?.fetch ?? ((...args) => globalThis.fetch(...args));
   ngZone = inject(NgZone);
   handle(request) {
+<<<<<<<<< Temporary merge branch 1
+    return new Observable((observer) => {
+=========
     return new import_rxjs.Observable((observer) => {
+>>>>>>>>> Temporary merge branch 2
       const aborter = new AbortController();
       this.doRequest(request, aborter.signal, observer).then(noop, (error) => observer.error(new HttpErrorResponse({
         error
@@ -1479,7 +1572,11 @@ function legacyInterceptorFnFactory() {
     const contributeToStability = inject(REQUESTS_CONTRIBUTE_TO_STABILITY);
     if (contributeToStability) {
       const taskId = pendingTasks.add();
+<<<<<<<<< Temporary merge branch 1
+      return chain(req, handler).pipe(finalize(() => pendingTasks.remove(taskId)));
+=========
       return chain(req, handler).pipe((0, import_operators.finalize)(() => pendingTasks.remove(taskId)));
+>>>>>>>>> Temporary merge branch 2
     } else {
       return chain(req, handler);
     }
@@ -1512,7 +1609,11 @@ var HttpInterceptorHandler = class _HttpInterceptorHandler extends HttpHandler {
     }
     if (this.contributeToStability) {
       const taskId = this.pendingTasks.add();
+<<<<<<<<< Temporary merge branch 1
+      return this.chain(initialRequest, (downstreamRequest) => this.backend.handle(downstreamRequest)).pipe(finalize(() => this.pendingTasks.remove(taskId)));
+=========
       return this.chain(initialRequest, (downstreamRequest) => this.backend.handle(downstreamRequest)).pipe((0, import_operators.finalize)(() => this.pendingTasks.remove(taskId)));
+>>>>>>>>> Temporary merge branch 2
     } else {
       return this.chain(initialRequest, (downstreamRequest) => this.backend.handle(downstreamRequest));
     }
@@ -1580,7 +1681,11 @@ var JsonpClientBackend = class _JsonpClientBackend {
     if (req.headers.keys().length > 0) {
       throw new Error(JSONP_ERR_HEADERS_NOT_SUPPORTED);
     }
+<<<<<<<<< Temporary merge branch 1
+    return new Observable((observer) => {
+=========
     return new import_rxjs.Observable((observer) => {
+>>>>>>>>> Temporary merge branch 2
       const callback = this.nextCallback();
       const url = req.urlWithParams.replace(/=JSONP_CALLBACK(&|$)/, `=${callback}$1`);
       const node = this.document.createElement("script");
@@ -1728,9 +1833,15 @@ var HttpXhrBackend = class _HttpXhrBackend {
       throw new RuntimeError(-2800, (typeof ngDevMode === "undefined" || ngDevMode) && `Cannot make a JSONP request without JSONP support. To fix the problem, either add the \`withJsonpSupport()\` call (if \`provideHttpClient()\` is used) or import the \`HttpClientJsonpModule\` in the root NgModule.`);
     }
     const xhrFactory = this.xhrFactory;
+<<<<<<<<< Temporary merge branch 1
+    const source = xhrFactory.ɵloadImpl ? from(xhrFactory.ɵloadImpl()) : of(null);
+    return source.pipe(switchMap(() => {
+      return new Observable((observer) => {
+=========
     const source = xhrFactory.ɵloadImpl ? (0, import_rxjs.from)(xhrFactory.ɵloadImpl()) : (0, import_rxjs.of)(null);
     return source.pipe((0, import_operators.switchMap)(() => {
       return new import_rxjs.Observable((observer) => {
+>>>>>>>>> Temporary merge branch 2
         const xhr = xhrFactory.build();
         xhr.open(req.method, req.urlWithParams);
         if (req.withCredentials) {
@@ -2279,7 +2390,11 @@ function transferCacheInterceptorFn(req, next) {
     if (typeof ngDevMode === "undefined" || ngDevMode) {
       headers = appendMissingHeadersDetection(req.url, headers, headersToInclude ?? []);
     }
+<<<<<<<<< Temporary merge branch 1
+    return of(new HttpResponse({
+=========
     return (0, import_rxjs.of)(new HttpResponse({
+>>>>>>>>> Temporary merge branch 2
       body,
       headers,
       status,
@@ -2287,7 +2402,11 @@ function transferCacheInterceptorFn(req, next) {
       url
     }));
   }
+<<<<<<<<< Temporary merge branch 1
+  return next(req).pipe(tap((event) => {
+=========
   return next(req).pipe((0, import_operators.tap)((event) => {
+>>>>>>>>> Temporary merge branch 2
     if (event instanceof HttpResponse && isServer) {
       transferState.set(storeKey, {
         [BODY]: event.body,
@@ -4245,10 +4364,24 @@ function provideClientHydration(...features) {
   }
   return makeEnvironmentProviders([typeof ngDevMode !== "undefined" && ngDevMode ? provideZoneJsCompatibilityDetector() : [], withDomHydration(), featuresKind.has(HydrationFeatureKind.NoHttpTransferCache) || hasHttpTransferCacheOptions ? [] : withHttpTransferCache({}), providers]);
 }
+<<<<<<<<< Temporary merge branch 1
 var VERSION = new Version("19.0.4");
 
 export {
+<<<<<<<< HEAD:Frontend/car-book/.angular/cache/19.0.5/car-book/vite/deps_ssr/chunk-6S3VGHBK.js
   HTTP_ROOT_INTERCEPTOR_FNS,
+========
+>>>>>>>> f2ac65f4b7d918fb402144fb2282bfa5130c9e32:Frontend/Admin/.angular/cache/18.2.7/Sample/vite/deps/chunk-65RCXNHE.js
+=========
+<<<<<<<<<< Temporary merge branch 1:Frontend/car-book/.angular/cache/19.0.6/car-book/vite/deps_ssr/chunk-6FWMCUKM.js
+var VERSION = new Version("19.0.5");
+==========
+var VERSION = new Version("19.0.4");
+>>>>>>>>>> Temporary merge branch 2:Frontend/car-book/.angular/cache/19.0.5/car-book/vite/deps_ssr/chunk-6S3VGHBK.js
+
+export {
+  HTTP_ROOT_INTERCEPTOR_FNS,
+>>>>>>>>> Temporary merge branch 2
   BrowserDomAdapter,
   BrowserGetTestability,
   EVENT_MANAGER_PLUGINS,
@@ -4291,16 +4424,44 @@ export {
 
 @angular/common/fesm2022/http.mjs:
   (**
+<<<<<<<<< Temporary merge branch 1
    * @license Angular v19.0.4
+=========
+<<<<<<<<<< Temporary merge branch 1:Frontend/car-book/.angular/cache/19.0.6/car-book/vite/deps_ssr/chunk-6FWMCUKM.js
+   * @license Angular v19.0.5
+==========
+   * @license Angular v19.0.4
+>>>>>>>>>> Temporary merge branch 2:Frontend/car-book/.angular/cache/19.0.5/car-book/vite/deps_ssr/chunk-6S3VGHBK.js
+>>>>>>>>> Temporary merge branch 2
    * (c) 2010-2024 Google LLC. https://angular.io/
    * License: MIT
    *)
 
 @angular/platform-browser/fesm2022/platform-browser.mjs:
   (**
+<<<<<<<<< Temporary merge branch 1
    * @license Angular v19.0.4
+=========
+<<<<<<<<<< Temporary merge branch 1:Frontend/car-book/.angular/cache/19.0.6/car-book/vite/deps_ssr/chunk-6FWMCUKM.js
+   * @license Angular v19.0.5
+==========
+   * @license Angular v19.0.4
+>>>>>>>>>> Temporary merge branch 2:Frontend/car-book/.angular/cache/19.0.5/car-book/vite/deps_ssr/chunk-6S3VGHBK.js
+>>>>>>>>> Temporary merge branch 2
    * (c) 2010-2024 Google LLC. https://angular.io/
    * License: MIT
    *)
 */
+<<<<<<<<< Temporary merge branch 1
+<<<<<<<< HEAD:Frontend/car-book/.angular/cache/19.0.5/car-book/vite/deps_ssr/chunk-6S3VGHBK.js
 //# sourceMappingURL=chunk-6S3VGHBK.js.map
+========
+//# sourceMappingURL=chunk-65RCXNHE.js.map
+>>>>>>>> f2ac65f4b7d918fb402144fb2282bfa5130c9e32:Frontend/Admin/.angular/cache/18.2.7/Sample/vite/deps/chunk-65RCXNHE.js
+=========
+<<<<<<<<<< Temporary merge branch 1:Frontend/car-book/.angular/cache/19.0.6/car-book/vite/deps_ssr/chunk-6FWMCUKM.js
+//# sourceMappingURL=chunk-6FWMCUKM.js.map
+==========
+//# sourceMappingURL=chunk-6S3VGHBK.js.map
+>>>>>>>>>> Temporary merge branch 2:Frontend/car-book/.angular/cache/19.0.5/car-book/vite/deps_ssr/chunk-6S3VGHBK.js
+>>>>>>>>> Temporary merge branch 2

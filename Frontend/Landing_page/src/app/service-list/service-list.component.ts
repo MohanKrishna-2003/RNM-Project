@@ -1,6 +1,7 @@
 // service-list.component.ts
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FeedbackComponent } from '../feedback/feedback.component';
 declare var $: any;
 
 @Component({

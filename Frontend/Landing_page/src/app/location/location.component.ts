@@ -38,7 +38,7 @@ export class LocationComponent implements AfterViewInit {
 
   // Fetch shop data from an API
   private loadShops(): void {
-    const apiUrl = 'http://localhost:8080/locations'; // Replace with your actual API URL
+    const apiUrl = 'http://localhost:8080/showrooms/locations'; // Replace with your actual API URL
     this.http.get<Shop[]>(apiUrl).subscribe(
       (data) => {
         console.log('Fetched shops data:', data);  // Log the fetched data

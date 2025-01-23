@@ -1,0 +1,595 @@
+<app-header></app-header>
+<div class="page-container" [class.shifted]="isFilterSidebarOpen">
+  <header class="header-section">
+    <h1 class="header-title">Online Test Drive Booking</h1>
+    <p class="header-subtitle">Driving your dreams forward</p>
+    <!-- <a href="/home" class="btn btn-primary btn-lg home-icon">Back to Home</a> -->
+  </header>
+
+  <div class="main-body" [class.shifted]="isFilterSidebarOpen">
+    <div class="left-section">
+      <div class="left-section-content">
+        <!-- <div class="question-wrapper">
+                    <img src="/assets/images/newq.avif" alt="Steering Icon" class="question-icon" />
+                    <h2 class="question-text one">What Makes a Car Handle Well?</h2>
+                </div>
+                <div class="answer-wrapper">
+                    <img src="/assets/images/steer1.png" alt="Steering Icon" class="answer-icon" />
+                    <p class="answer-text onea">The steering system is the most crucial component for smooth handling
+                        and turning precision.</p>
+                </div> -->
+        <div class="question-wrapper">
+          <h2 class="question-text one" style="font-size: xx-large">
+            Welcome to myRNM – Your Personalized Car Shopping Experience!
+          </h2>
+        </div>
+
+        <div class="answer-wrapper">
+          <p class="answer-text onea" style="font-size: larger">
+            Thank you for choosing myRNM! We’re thrilled to help you find the
+            perfect car. With our easy-to-use app, you can browse through a wide
+            selection of vehicles and filter your options based on your
+            preferences. Once you’ve found the car that catches your eye,
+            booking a test drive is just a few taps away. Whether you're after
+            performance, style, or practicality, we’re here to ensure your
+            car-buying journey be seamless and exciting. Book your test drive
+            today and experience your future car firsthand!
+          </p>
+        </div>
+      </div>
+      <div class="left-section-content">
+        <div class="question-wrapper">
+          <h2 class="question-text two">
+            <a id="q2" href="#brand-section" role="button">Click here to select your car....</a>
+          </h2>
+        </div>
+        <!--  
+                <div class="answer-wrapper">
+                    <img src="/assets/images/newt.webp" alt="Tyre Icon" class="answer-icon" />
+                    <p class="answer-text twoa">Tires provide the necessary grip for traction, ensuring safety and
+                        stability during the drive.</p> -->
+      </div>
+      <!-- <div class="left-section-content"> -->
+      <!-- <div class="question-wrapper">
+                    <img src="/assets/images/newq.avif" alt="Engine Icon" class="question-icon" />
+                    <h2 class="question-text three">What Makes a Car Powerful?</h2>
+                </div>
+                <div class="answer-wrapper">
+                    <img src="/assets/images/steer3.png" alt="Engine Icon" class="answer-icon" />
+                    <p class="answer-text threea">The engine’s horsepower and torque deliver the speed and performance
+                        that define power in a car.</p>
+                </div> -->
+      <!-- </div> -->
+    </div>
+    <div class="right-section">
+      <div class="image-container">
+        <img [src]="staticPics[currentImageIndex]" alt="Static Image" class="animated-image" />
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <img src="http://localhost:4200/assets/staticPics/img1.avif" alt="Static Image" class="animated-image"> -->
+
+<!-- Sidebar for Filters -->
+<div class="container">
+  <div class="filter-sidebar" [class.open]="isFilterSidebarOpen">
+    <button class="close-sidebar" (click)="toggleFilterSidebar()">
+      <img src="/assets/images/close.png" alt="Close Filter" class="filter2" />
+    </button>
+    <h2 style="color: black">Choose Your CAR!</h2>
+    <div class="filters">
+      <label>
+        Price Range:
+        <select (click)="filterCarsByPrice($event)" class="baloo">
+          <option value="">All</option>
+          <option value="low">Below ₹10 Lakhs</option>
+          <option value="mid">₹10-₹20 Lakhs</option>
+          <option value="high">Above ₹20 Lakhs</option>
+        </select>
+      </label>
+    
+      <label>
+        Order By:
+        <select (change)="sortByOrder($event)" class="baloo">
+          <option value="">None</option>
+          <option value="maxPrice">Max Price</option>
+          <option value="minPrice">Min Price</option>
+          <option value="booking">Availability</option>
+        </select>
+      </label>
+    
+      <label>
+        Rating:
+        <select (change)="filterByRating($event)" class="baloo">
+          <option value="">All</option>
+          <option value="1">1 Star</option>
+          <option value="2">2 Stars</option>
+          <option value="3">3 Stars</option>
+          <option value="4">4 Stars</option>
+          <option value="5">5 Stars</option>
+        </select>
+      </label>
+    
+      <label>
+        Engine Type:
+        <select (change)="filterByEngine($event)" class="baloo">
+          <option value="">All</option>
+          <option value="petrol">Petrol</option>
+          <option value="diesel">Diesel</option>
+          <option value="electric">Electric</option>
+        </select>
+      </label>
+    
+      <label>
+        Seater:
+        <select (change)="filterBySeater($event)" class="baloo">
+          <option value="">All</option>
+          <option value="4">4-Seater</option>
+          <option value="5">5-Seater</option>
+          <option value="7">7-Seater</option>
+        </select>
+      </label>
+    
+      <label>
+        Transmission:
+        <select (change)="filterByTransmission($event)" class="baloo">
+          <option value="">All</option>
+          <option value="manual">Manual</option>
+          <option value="automatic">Automatic</option>
+        </select>
+      </label>
+    
+      <label>
+        Availability:
+        <select (change)="filterByAvailability($event)" class="baloo">
+          <option value="">All</option>
+          <option value="in-stock">In Stock</option>
+          <option value="pre-order">Pre-Order</option>
+          <option value="discontinued">Discontinued</option>
+        </select>
+      </label>
+    
+      <label>
+        Fuel Efficiency:
+        <select (change)="filterByFuelEfficiency($event)" class="baloo">
+          <option value="">All</option>
+          <option value="10">Up to 10 km/l</option>
+          <option value="15">Up to 15 km/l</option>
+          <option value="20">Up to 20 km/l</option>
+          <option value="20+">Above 20 km/l</option>
+        </select>
+      </label>
+      
+    
+      <!-- <       
+        Color:
+        <select (change)="filterByColor($event)" class="baloo">
+          <option value="">All</option>
+          <option value="red">Red</option>
+          <option value="blue">Blue</option>
+          <option value="black">Black</option>
+          <option value="white">White</option>
+          <option value="grey">Grey</option>
+        </select>
+      </label> -->
+    
+      <label>
+        Drive Type:
+        <select (change)="filterByDriveType($event)" class="baloo">
+          <option value="">All</option>
+          <option value="fwd">Front-Wheel Drive</option>
+          <option value="rwd">Rear-Wheel Drive</option>
+          <option value="awd">All-Wheel Drive</option>
+          <option value="4wd">4-Wheel Drive</option>
+        </select>
+      </label>
+    
+      <label>
+        Warranty:
+        <select (change)="filterByWarranty($event)" class="baloo">
+          <option value="">All</option>
+          <option value="3">Up to 3 Years</option>
+          <option value="5">Up to 5 Years</option>
+          <option value="7">Up to 7 Years</option>
+          <option value="lifetime">Lifetime</option>
+        </select>
+      </label>
+    </div>
+    
+    <!-- <button class="apply-filters baloo" (click)="applyFilters()">Apply!</button> -->
+  </div>
+</div>
+
+<div class="brand-section" id="brand-section" [class.shifted]="isFilterSidebarOpen">
+  <br />
+  <div class="brand-tabs">
+    <button (click)="toggleFilterSidebar()" class="brand-logo filter">
+      <img src="/assets/images/filter.jpg" alt="Filter" class="filter" />
+    </button>
+
+    <!-- <button (click)="displayCars('Renault')" class="brand-logo renault">
+      <img
+        src="/assets/images/renonewlogo.jpg"
+        alt="Renault"
+        class="brand-icon"
+      />
+    </button>
+    <button (click)="displayCars('Nissan')" class="brand-logo nissan">
+      <img
+        src="/assets/images/nissanlogo.png"
+        alt="Nissan"
+        class="brand-icon"
+      />
+    </button>
+    <button (click)="displayCars('Mitsubishi')" class="brand-logo mitsubishi">
+      <img src="/assets/images/newm.webp" alt="Mitsubishi" class="brand-icon" />
+    </button> -->
+    <div class="form-check form-check-inline">
+      <label class="form-check-label" for="renault">
+        <img src="/assets/images/renonewlogo.jpg" alt="Renault" class="brand-icon" />
+      </label>
+      <input class="form-check-input custom-radio" type="radio" name="brand" id="renault" value="Renault"
+        [(ngModel)]="selectedBrand" (change)="displayCars('Renault')" checked />
+    </div>
+
+    <div class="form-check form-check-inline">
+      <label class="form-check-label" for="nissan">
+        <img src="/assets/images/nissanlogo.png" alt="Nissan" class="brand-icon" />
+      </label>
+      <input class="form-check-input custom-radio" type="radio" name="brand" id="nissan" value="Nissan"
+        [(ngModel)]="selectedBrand" (change)="displayCars('Nissan')" />
+    </div>
+
+    <div class="form-check form-check-inline">
+      <label class="form-check-label" for="mitsubishi">
+        <img src="/assets/images/newm.webp" alt="Mitsubishi" class="brand-icon" />
+      </label>
+      <br />
+      <input class="form-check-input custom-radio" type="radio" name="brand" id="mitsubishi" value="Mitsubishi"
+        [(ngModel)]="selectedBrand" (change)="displayCars('Mitsubishi')" />
+    </div>
+  </div>
+
+  <div class="gif-container" *ngIf="showGif; else carsDisplay">
+    <!-- <img [src]="staticPics[currentImageIndex]" alt="Cycling Image" class="cycling-image" /> -->
+    <h1>Sorry we couldn't load the cars at the moment! Try again later...</h1>
+  </div>
+
+  <ng-template #carsDisplay>
+    <div class="cars-display">
+      <div *ngFor="let car of displayedCars" class="car-card animate-on-scroll">
+        <div class="car-image-container">
+          <img [src]="car.image" alt="{{ car.name }}" class="car-image" />
+        </div>
+        <h3 class="car-name space middle">
+          <img [src]="car.brandIcon" alt="" class="brandimg" />{{ car.name }}
+        </h3>
+        <div class="combine">
+          <div class="vertical-bar"></div>
+          <h4 class="car-details space">{{ car.details }}</h4>
+        </div>
+        <div class="car-details-container">
+          <div class="left-side">
+            <p class="car-release-year car-details space">
+              <strong>Release Year:</strong> {{ car.releaseYear }}
+            </p>
+            <p class="car-price car-details space">
+              <strong>Price:</strong> INR {{ car.price }} 
+              <!-- {{ car.price.USD }} -->
+            </p>
+            <p class="car-bookings car-details space">
+              <strong>Bookings:</strong> {{ car.bookings }}+
+            </p>
+            <p class="car-bookings car-details space">
+              <strong>Seater:</strong> {{ car.seater }}
+            </p>
+
+            <p class="car-bookings car-details space">
+              <strong>Engine Type:</strong> {{ car.engineType }}
+            </p>
+            <p class="car-bookings car-details space">
+              <strong>Rating:</strong>
+              <span class="stars">
+                <img *ngFor="let star of [].constructor(car.rating)" src="assets/images/star.png" alt="Star"
+                  class="star-icon" />
+              </span>
+            </p>
+          </div>
+          <div class="divider"></div>
+          <div class="right-side">
+            <p class="car-bookings car-details space">
+              <strong>Availability:</strong> {{ car.availability }}
+            </p>
+            <p class="car-bookings car-details space">
+              <strong>Fuel Efficiency:</strong> Up to
+              {{ car.fuelEfficiency }}km/l
+            </p>
+            <p class="car-bookings car-details space">
+              <strong>Color:</strong> {{ car.color }}
+            </p>
+            <p class="car-bookings car-details space">
+              <strong>Drive Type/Mode:</strong> {{ car.driveType }}
+            </p>
+            <p class="car-bookings car-details space">
+              <strong>Transmission:</strong> {{ car.transmission }}
+            </p>
+            <p class="car-bookings car-details space">
+              <strong>Warranty:</strong> {{ car.warranty }} Years<img src="assets/images/warn.png" alt=""
+                class="warranty-icon" />
+            </p>
+          </div>
+        </div>
+        <div class="extra-features car-details space">
+          <strong class="extra-features-title">Extra Features:</strong>
+          <ul>
+            <li *ngFor="let feature of car.extraFeatures">
+              <img src="/assets/images/ver.png" alt="Verified" class="verified-icon" />
+              {{ feature }}
+            </li>
+          </ul>
+        </div>
+        <button class="book-slot-btn" (click)="toggleBooking(car.name)">
+          <img [src]="'/assets/images/bkslot.png'" alt="Book Slot" class="slot-icon" />
+          Book Slot
+        </button>
+      </div>
+    </div>
+  </ng-template>
+</div>
+
+<!-- Sidebar for test slot -->
+@if (isBookingClicked){
+<div class="test-drive-dialog show">
+  <div class="dialog-content">
+    <!-- Left Side: Car Info -->
+    <div class="car-info">
+      <button class="close-btn" (click)="closeForm()">
+        <img src="/assets/images/close.png" alt="Close Dialog" />
+      </button>
+      <div class="car-image-container">
+        <img [src]="selectedCar.image" alt="{{ selectedCar.name }}" class="car-image" />
+      </div>
+      <h3 class="car-name space middle">
+        <img [src]="selectedCar.brandIcon" alt="" class="brandimg" />{{
+        selectedCar.name
+        }}
+      </h3>
+      <div class="combine">
+        <div class="vertical-bar"></div>
+        <h4 class="car-details space">{{ selectedCar.details }}</h4>
+      </div>
+      <div class="car-details-container">
+        <div class="left-side">
+          <p class="car-release-year car-details space">
+            <strong>Release Year:</strong> {{ selectedCar.releaseYear }}
+          </p>
+          <p class="car-price car-details space">
+            <strong>Price:</strong> INR {{ selectedCar.price }} 
+            <!-- {{ selectedCar.price.USD }} -->
+          </p>
+          <p class="car-bookings car-details space">
+            <strong>Bookings:</strong> {{ selectedCar.bookings }}+
+          </p>
+          <p class="car-bookings car-details space">
+            <strong>Seater:</strong> {{ selectedCar.seater }}
+          </p>
+
+          <p class="car-bookings car-details space">
+            <strong>Engine Type:</strong> {{ selectedCar.engineType }}
+          </p>
+          <p class="car-bookings car-details space">
+            <strong>Rating:</strong>
+            <span class="stars">
+              <img *ngFor="let star of [].constructor(selectedCar.rating)" src="assets/images/star.png" alt="Star"
+                class="star-icon" />
+            </span>
+          </p>
+        </div>
+        <div class="divider"></div>
+        <div class="right-side">
+          <p class="car-bookings car-details space">
+            <strong>Availability:</strong> {{ selectedCar.availability }}
+          </p>
+          <p class="car-bookings car-details space">
+            <strong>Fuel Efficiency:</strong> Up to
+            {{ selectedCar.fuelEfficiency }}km/l
+          </p>
+          <p class="car-bookings car-details space">
+            <strong>Color:</strong> {{ selectedCar.color }}
+          </p>
+          <p class="car-bookings car-details space">
+            <strong>Drive Type/Mode:</strong> {{ selectedCar.driveType }}
+          </p>
+          <p class="car-bookings car-details space">
+            <strong>Transmission:</strong> {{ selectedCar.transmission }}
+          </p>
+          <p class="car-bookings car-details space">
+            <strong>Warranty:</strong> {{ selectedCar.warranty }} Years<img src="assets/images/warn.png" alt=""
+              class="warranty-icon" />
+          </p>
+        </div>
+      </div>
+      <div class="extra-features car-details space">
+        <strong class="extra-features-title">Extra Features:</strong>
+        <ul>
+          <li *ngFor="let feature of selectedCar.extraFeatures">
+            <img src="/assets/images/ver.png" alt="Verified" class="verified-icon" />
+            {{ feature }}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Right Side: Test Drive Form -->
+    <!-- <div class="test-drive-form">
+      <h2>Book Your Test Drive Slot</h2>
+      <form id="slot-booking-form" (submit)="confirm()">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" placeholder="Enter your name" required />
+
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" placeholder="Enter your phone number" required />
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="Enter your email" required />
+
+        <label for="preferred-date">Preferred Date</label>
+        <input type="date" id="preferred-date" required />
+
+        <label for="time-slot">Preferred Time Slot</label>
+        <select id="time-slot" required>
+          <option value="" disabled selected>Select a time slot</option>
+          <option value="morning">Morning (9:00 AM - 12:00 PM)</option>
+          <option value="afternoon">Afternoon (12:00 PM - 3:00 PM)</option>
+          <option value="evening">Evening (3:00 PM - 6:00 PM)</option>
+        </select>
+
+        <button type="submit" class="submit-btn">Book Slot!</button>
+      </form>
+    </div> -->
+
+    <div class="formbold-form-wrapper" id="rightform">
+      <br /><br />
+      <h2>Book Your Test Drive Slot</h2>
+      <br /><br />
+
+      <!-- <form id="slot-booking-form"> -->
+        <div class="formbold-steps">
+          <ul>
+            <li class="formbold-step-menu1" [ngClass]="{ active: currentStep === 1 }">
+              <span>1</span> Sign Up
+            </li>
+            <li class="formbold-step-menu2" [ngClass]="{ active: currentStep === 2 }">
+              <span>2</span> Test Slot Availability
+            </li>
+            <li class="formbold-step-menu3" [ngClass]="{ active: currentStep === 3 }">
+              <span>3</span> Confirmation
+            </li>
+          </ul>
+        </div>
+
+        <!-- Step 1 Content -->
+        <div class="formbold-form-step-1" [ngClass]="{ active: currentStep === 1 }">
+          <div>
+            <label for="name" class="formbold-form-label">User name</label>
+            <input type="text" name="name" id="firstname" placeholder="Enter your name" class="formbold-form-input"
+              [(ngModel)]="formData.name" #name="ngModel" required />
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error">
+              <!-- <small *ngIf="name.errors?.['required']">Name is required.</small> -->
+            </div>
+          </div>
+
+          <div class="formbold-input-flex">
+            <div>
+              <label for="phone" class="formbold-form-label">Phone Number</label>
+              <input type="text" name="phone" id="phone" class="formbold-form-input"
+                placeholder="Enter your phone number" [(ngModel)]="formData.phone" #phone="ngModel" required
+                pattern="^\d{10}$" maxlength="10" minlength="10"
+                [ngClass]="{'is-invalid': phone.invalid && (phone.dirty || phone.touched)}" />
+              <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="error">
+                <!-- <small *ngIf="phone.errors?.['required']">Phone number is required.</small>
+                <small *ngIf="phone.errors?.['pattern']">Phone number must be exactly 10 digits.</small> -->
+              </div>
+            </div>
+
+            <div>
+              <label for="email" class="formbold-form-label">Email Address</label>
+              <input type="email" name="email" id="email" placeholder="Enter your email" class="formbold-form-input"
+                [(ngModel)]="formData.email" #email="ngModel" required />
+              <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error">
+                <!-- <small *ngIf="email.errors?.['required']">Email is required.</small> -->
+                <small *ngIf="email.errors?.['email']">Invalid email format.</small>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label for="address" class="formbold-form-label">Address</label>
+            <input type="text" name="address" id="address" placeholder="Enter your address" class="formbold-form-input"
+              [(ngModel)]="formData.address" />
+          </div>
+        </div>
+
+        <!-- Step 2 Content -->
+        <div class="formbold-form-step-2" [ngClass]="{ active: currentStep === 2 }">
+          <div>
+            <label for="preferred-date" class="formbold-form-label">Preferred Date</label>
+            <input type="date" id="preferred-date" class="formbold-form-input" [(ngModel)]="formData.preferredDate"
+              #preferredDate="ngModel" required [min]="todayDate" />
+            <div *ngIf="preferredDate.invalid && (preferredDate.dirty || preferredDate.touched)" class="error">
+              <small *ngIf="preferredDate.errors?.['required']">Preferred date is required.</small>
+            </div>
+            
+
+            <label for="time-slot" class="formbold-form-label">Preferred Time Slot</label>
+            <select id="time-slot" class="formbold-form-input" [(ngModel)]="formData.timeSlot" name="timeSlot"
+              #timeSlot="ngModel" required>
+              <option [value]="" disabled>Select a time slot</option>
+              <option value="morning">Morning (9:00 AM - 12:00 PM)</option>
+              <option value="afternoon">Afternoon (12:00 PM - 3:00 PM)</option>
+              <option value="evening">Evening (3:00 PM - 6:00 PM)</option>
+            </select>
+            <div *ngIf="timeSlot.invalid && (timeSlot.dirty || timeSlot.touched)" class="error">
+              <small *ngIf="timeSlot.errors?.['required']">Time slot is required.</small>
+            </div>
+
+            <label for="showroom" class="formbold-form-label">Preferred Showroom Location</label>
+            <select id="showroom" class="formbold-form-input" [(ngModel)]="formData.showroomLocation"
+              name="showroomLocation" #showroomLocation="ngModel" required>
+              <option [value]="" disabled>Select a Location</option>
+              <option value="chennai">Chennai</option>
+              <option value="madurai">Madurai</option>
+              <option value="coimbatore">Coimbatore</option>
+            </select>
+            <div *ngIf="showroomLocation.invalid && (showroomLocation.dirty || showroomLocation.touched)" class="error">
+              <small *ngIf="showroomLocation.errors?.['required']">Showroom location is required.</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 Content -->
+        <div class="formbold-form-step-3" [ngClass]="{ active: currentStep === 3 }">
+          <div>
+            <p>
+              You are about to finalize your booking. Please ensure the information provided is correct before
+              confirming.
+              You will be responsible for any damage to the car during the rental period, excluding wear and tear.
+            </p>
+            <br /><br />
+            <div class="formbold-form-btn-wrapper">
+              <!-- Back Button -->
+              <button class="formbold-btn" type="button" (click)="goBack()">
+                Back
+              </button>
+              <!-- Confirmation Buttons -->
+              <button class="formbold-confirm-btn active" type="button" (click)="confirmBooking()"
+                style="margin-right: 10px;">
+                Yes! I Agree.
+              </button>
+              <button class="formbold-confirm-btn" type="button" (click)="goBack()" style="margin-left: 10px;">
+                No! I Don’t Agree
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Buttons for Navigation -->
+        <div class="formbold-form-btn-wrapper" *ngIf="currentStep < 3">
+          <button class="formbold-btn proper" type="button" (click)="goBack()" *ngIf="currentStep > 1">
+            Back
+          </button>
+          <button class="formbold-btn" type="button" [disabled]="!isStepValid()" (click)="nextStep()">
+            {{ currentStep === 3 ? "Submit" : "Next Step" }}
+          </button>
+        </div>
+      <!-- </form> -->
+    </div>
+
+
+
+  </div>
+</div>
+
+<br /><br />
+}
+<app-footer></app-footer>

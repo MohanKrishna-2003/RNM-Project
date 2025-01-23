@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 
-@RequestMapping(path = "userlogin")
+@RequestMapping(path = "user")
 @RestController
 @CrossOrigin("*")
 public class UserController {
@@ -54,10 +54,12 @@ public class UserController {
             return ResponseEntity.badRequest().body(new GeneralResponse("Error in Fetching Data"));
         }
     }
-    @GetMapping("/getAllFeedback")
-    public ResponseEntity<?> getAllFeedback(){
+
+
+    @GetMapping("/getUsersFeedback")
+    public ResponseEntity<?> getAllUsersFeedback(){
         try{
-            List<Users> list = userService.getAllFeedback();
+            List<Feedback> list = userService.getAllFeedback();
             return ResponseEntity.ok(list);
         }catch (Exception e){
             e.printStackTrace();

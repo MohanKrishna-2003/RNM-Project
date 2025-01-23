@@ -21,13 +21,11 @@
       <div class="col-xl-3 col-lg-4 col-sm-6 ">
         <div class="icon-card mb-30">
           <div class="icon purple">
-            <i class="bi bi-person-fill"></i>
-          </div>
+            <i class="bi bi-person-plus-fill"></i>          </div>
           <div class="content">
             <h6 class="mb-10">New Users</h6>
-            <h3 class="text-bold mb-10">34567</h3>
+            <h3 class="text-bold mb-10">{{last30}}</h3>
             <p class="text-sm text-success">
-              +2.00%
               <span class="text-gray">(30 days)</span>
             </p>
           </div>
@@ -38,14 +36,12 @@
       <div class="col-xl-3 col-lg-4 col-sm-6">
         <div class="icon-card mb-30">
           <div class="icon success">
-            <i class="bi bi-currency-dollar"></i>
-          </div>
+            <i class="bi bi-people-fill"></i>          </div>
           <div class="content">
-            <h6 class="mb-10">Total Income</h6>
-            <h3 class="text-bold mb-10">$74,567</h3>
+            <h6 class="mb-10">Total Registered Users</h6>
+            <h3 class="text-bold mb-10">{{totalusers}}</h3>
             <p class="text-sm text-success">
-              <i class="lni lni-arrow-up"></i> +5.45%
-              <span class="text-gray">Increased</span>
+              <span class="text-gray">(MyRNM)</span>
             </p>
           </div>
         </div>
@@ -59,10 +55,9 @@
           </div>
           <div class="content">
             <h6 class="mb-10">Total Showrooms</h6>
-            <h3 class="text-bold mb-10">15</h3>
+            <h3 class="text-bold mb-10">{{showroomcount}}</h3>
             <p class="text-sm text-success">
-              <i class="lni lni-arrow-down"></i> 2.00%
-              <span class="text-gray">Increase</span>
+              <span class="text-gray">(India)</span>
             </p>
           </div>
         </div>
@@ -72,14 +67,12 @@
       <div class="col-xl-3 col-lg-4 col-sm-6">
         <div class="icon-card mb-30">
           <div class="icon orange">
-            <i class="bi bi-car-front-fill"></i>
-          </div>
+            <i class="bi bi-patch-check-fill"></i>          </div>
           <div class="content">
-            <h6 class="mb-10">Total Car Models</h6>
-            <h3 class="text-bold mb-10">50</h3>
+            <h6 class="mb-10">User Satisfaction</h6>
+            <h3 class="text-bold mb-10">{{usersatisfaction}} %</h3>
             <p class="text-sm text-success">
-              +5.00%
-              <span class="text-gray"> Increase</span>
+              <span class="text-gray"> (From Feedback data)</span>
             </p>
           </div>
         </div>
@@ -99,7 +92,7 @@
           </div>
           <!-- End Title -->
           <div class="chart">
-            <canvas id="Chart1" style="width: 100%; height: 400px; margin-left: -35px;">{{chart}}</canvas>
+            <canvas id="Chart1" style="width: 100%; height: 400px; "></canvas>
           </div>
           <!-- End Chart -->
         </div>
@@ -115,7 +108,7 @@
           </div>
           <!-- End Title -->
           <div class="chart">
-            <canvas id="Chart2" style="width: 100%; height: 400px; margin-left: -45px;">{{chart2}}</canvas>
+            <canvas id="Chart2" style="width: 100%; height: 400px; "></canvas>
           </div>
           <!-- End Chart -->
         </div>
@@ -123,45 +116,34 @@
       <!-- End Col -->
       <div class="col">
         <div id="legend3">
-          <ul class="legend3 d-flex flex-wrap align-items-center mb-30">
-            <li>
-              <div class="d-flex">
-                <span class="bg-color primary-bg"> </span>
-                <div class="text">
-                  <p class="text-sm text-success">
-                    <span class="text-dark">Revenue</span> +25.55%
-                  </p>
-                </div>
+            <div class="title d-flex flex-wrap justify-content-between">
+              <div class="left">
+                <h6 class="text-medium mb-10">Cars Registered by Users (2024) </h6>
               </div>
-            </li>
-            <li>
-              <div class="d-flex">
-                <span class="bg-color purple-bg"></span>
-                <div class="text">
-                  <p class="text-sm text-success">
-                    <span class="text-dark">Net Profit</span> +45.55%
-                  </p>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="d-flex">
-                <span class="bg-color orange-bg"></span>
-                <div class="text">
-                  <p class="text-sm text-danger">
-                    <span class="text-dark">Order</span> -4.2%
-                  </p>
-                </div>
-              </div>
-            </li>
-          </ul>
+             
+            </div>
         </div>
-        <canvas id="Chart3" style="width: 100%; height: 450px; margin-left: -35px;">{{chart3}}</canvas>
+        <canvas id="Chart3" style="width: 100%; height: 450px;"></canvas>
       </div>
 
       <div class="col-lg-5">
         <div class="card-style mb-30">
-          
+          <div class="title d-flex flex-wrap align-items-center justify-content-between">
+            <div class="left">
+              <h6 class="text-medium mb-2">Feedback Analysis</h6>
+            </div>
+            <!-- <div class="right">
+              <div class="select-style-1 mb-2">
+                <div class="select-position select-sm">
+                  <select class="bg-light"  [(ngModel)]="selectedYear">
+                    <option value="y2024">2024</option>
+                    <option value="y2025">2025</option>
+                  </select>
+                </div>
+              </div>
+               end select 
+            </div> -->
+          </div>
           <!-- End Title -->
           <div class="chart">
             <div id="legend4">
@@ -171,10 +153,9 @@
                     <span class="bg-color primary-bg"> </span>
                     <div class="text">
                       <p class="text-sm text-success">
-                        <span class="text-dark">Showroom Visits</span>
-                        +25.55%
+                        <span class="text-dark">Positive feedbacks</span>
                       </p>
-                      <h2>3456</h2>
+                      <h2>{{totalpositive}}</h2>
                     </div>
                   </div>
                 </li>
@@ -183,15 +164,15 @@
                     <span class="bg-color danger-bg"></span>
                     <div class="text">
                       <p class="text-sm text-danger">
-                        <span class="text-dark">No show</span> -2.05%
+                        <span class="text-dark">Negative Feedbacks</span> 
                       </p>
-                      <h2>3456</h2>
+                      <h2>{{totalnegative}}</h2>
                     </div>
                   </div>
                 </li>
               </ul>
             </div>
-            <canvas id="Chart4" style="width: 100%; height: 420px; margin-left: -35px;">{{chart4}}</canvas>
+            <canvas id="Chart4" style="width: 100%; height: 420px;"></canvas>
           </div>
           <!-- End Chart -->
         </div>

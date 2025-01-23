@@ -1,10 +1,9 @@
 <app-admin-header></app-admin-header>
 
-<div class="container mt-4" id="book">
+<div class="container-fluid mt-4" id="book">
   <!-- Page Header -->
   <div class="d-flex justify-content-between align-items-center mb-4">
     <h2>Bookings</h2>
-    <button class="btn btn-primary btn-lg">Add New Booking</button>
   </div>
 
   <!-- Search Bar -->
@@ -22,13 +21,14 @@
   </div>
 
   <!-- Bookings Table -->
-  <div class="table-responsive">
-    <table class="table table-striped table-hover">
+  <div class="table-responsive w-100">
+    <table class="table table-responsive table-striped">
       <thead class="table-light">
         <tr>
-          <th>#</th>
+          <th>User Id</th>
           <th>Car</th>
           <th>User</th>
+          <th>Email</th>
           <th>Date</th>
           <th>Status</th>
           <th>Actions</th>
@@ -37,39 +37,70 @@
       <tbody>
         <tr *ngFor="let booking of filteredBookings; let i = index">
           <td>{{ i + 1 }}</td>
-          <td>{{ booking.car }}</td>
-          <td>{{ booking.user }}</td>
-          <td>{{ booking.date | date : "shortDate" }}</td>
+          <td>{{ booking.selectedCarDetails }}</td>
+          <td>{{ booking.name }}</td>
+          <td>{{ booking.email }}</td>
+          <td>{{ booking.preferredDate | date : "shortDate" }}</td>
           <td>
             <span
               class="badge"
+              style="background-color: rgb(216, 136, 15)"
               [ngClass]="{
-                'bg-primary': booking.status === 'Confirmed',
+                'bg-success': booking.status === 'Confirmed',
                 'bg-secondary': booking.status === 'Cancelled',
-                'bg-dark': booking.status === 'Pending'
+                'bg-primary': booking.status === 'Pending'
               }"
             >
               {{ booking.status }}
             </span>
           </td>
           <td class="action-buttons">
-            <button
-              class="btn btn-sm btn-info me-2"
-              (click)="viewDetails(booking)"
-            >
-              <i class="fas fa-eye icon-small"></i> Details
-            </button>
-            <button
-              class="btn btn-sm btn-dark"
-              (click)="cancelBooking(booking)"
-              [disabled]="booking.status === 'Cancelled'"
-            >
-              <i class="fas fa-times-circle icon-small"></i> Cancel
-            </button>
+            <!-- Vertical Ellipsis Dropdown Button -->
+            <div class="dropdown">
+              <button
+                class="btn btn-sm btn-outline-secondary"
+                type="button"
+                id="dropdownMenuButton"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="fas fa-ellipsis-v"></i>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li>
+                  <a class="dropdown-item" (click)="viewDetails(booking)">
+                    <i class="fas fa-eye"></i> View Details
+                  </a>
+                </li>
+                <li>
+                  <button
+                    class="dropdown-item"
+                    (click)="cancelBooking(booking)"
+                    [disabled]="booking.status === 'Cancelled'"
+                  >
+                    <i class="fas fa-times-circle"></i> Cancel Booking
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="dropdown-item"
+                    (click)="approveBooking(booking)"
+                    [disabled]="booking.status === 'Confirmed'"
+                  >
+                    <i class="fas fa-check-circle"></i> Approve Booking
+                  </button>
+                </li>
+              </ul>
+            </div>
+            
           </td>
         </tr>
       </tbody>
     </table>
   </div>
-</div>
 
+  <!-- Load More Button -->
+  <div class="d-flex justify-content-center mt-4">
+    <button *ngIf="filteredBookings.length < bookings.length" class="btn btn-primary" (click)="loadMore()">Load More</button>
+  </div>
+</div>
