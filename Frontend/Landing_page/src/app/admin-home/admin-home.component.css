@@ -1,0 +1,33 @@
+.jumbotron {
+  background-color: #002984;
+  color: white;
+  padding: 2rem 1rem;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.card-text {
+  font-size: 1rem;
+}
+
+.list-group-item {
+  font-size: 1rem;
+}
+
+.card h2 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+a {
+  text-decoration: none;
+}
+#home {
+  margin-left: 250px; /* Adjust based on the width of the navbar */
+  width: calc(100% - 250px); /* Make the dashboard take the rest of the available space */
+  padding: 20px;
+  box-sizing: border-box;
+}

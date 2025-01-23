@@ -1,0 +1,47 @@
+<app-admin-header></app-admin-header>
+<div class="container mt-4" id="feedback">
+  <!-- Page Header -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>User Feedback</h2>
+  </div>
+  <br>
+
+  <!-- Feedback Cards -->
+  <div class="card-style">
+    <div *ngFor="let feedback of displayedFeedback; let i = index" class="single-notification">
+      <div class="notification">
+        <div class="image info-bg" id="bgimg" [ngClass]="getBackgroundClass(i)">
+          <span>{{ feedback.user_name.charAt(0) }}</span> <!-- First letter of user -->
+        </div>
+        <a href="#0" class="content">
+          <h6>{{ feedback.user_name }}</h6>
+          <p class="text-sm text-gray">{{ feedback.feedback }}</p>
+          <span class="text-sm text-medium text-gray">{{ feedback.user_email }}</span>
+        </a>
+      </div>
+      <div class="action">
+        <button class="delete-btn" (click)="deleteFeedback(feedback)">
+          <i class="lni lni-trash-can"></i>
+        </button>
+        <button class="more-btn dropdown-toggle" id="moreAction" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="lni lni-more-alt"></i>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreAction">
+          <li class="dropdown-item">
+            <a href="#0" class="text-gray">Reply</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End Feedback Cards -->
+
+  <!-- Load More Button -->
+  <div class="text-center mt-4">
+    <button *ngIf="displayedFeedback.length < feedbackList.length" 
+            class="btn btn-primary" 
+            (click)="loadMore()">
+      Load More
+    </button>
+  </div>
+</div>

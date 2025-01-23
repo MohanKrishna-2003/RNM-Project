@@ -1,0 +1,54 @@
+.navbar-brand img {
+  max-height: 50px;
+}
+.nav-link {
+  color: #000 !important;
+}
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Ensure the navbar stays above other content */
+}
+
+.navbar .nav-link {
+  color: #f8f9fa !important; /* Ensures all links are light-colored */
+  transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+.navbar .nav-link:hover {
+  color: #007bff !important;
+}
+
+.header {
+  margin-left: 250px; /* Adjust based on the width of the navbar */
+  width: calc(100% - 250px); /* Make the dashboard take the rest of the available space */
+  padding: 20px;
+  box-sizing: border-box;
+}
+/* Add these styles in your CSS file or in a <style> block */
+.profile-box {
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.2); /* Light background for the profile box */
+  border-radius: 20px; /* Rounded corners */
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s ease; /* Smooth transition for hover */
+}
+
+.profile-box:hover {
+  background-color: rgba(255, 255, 255, 0.3); /* Darker background on hover */
+}
+
+.image img {
+  border-radius: 50%; /* Make the profile image circular */
+}
+
+.text h6 {
+  margin: 0; /* Remove default margin from <h6> */
+}

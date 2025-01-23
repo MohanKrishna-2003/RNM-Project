@@ -10,6 +10,13 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { CarSelectionComponent } from './car-selection/car-selection.component';
+import { AdminDashbaordComponent } from './admin-dashbaord/admin-dashbaord.component';
+import { AdminHomeComponent } from './admin-home/admin-home.component';
+import { UsersComponent } from './users/users.component';
+import { UserFeedbackComponent } from './user-feedback/user-feedback.component';
+import { ShowroomsComponent } from './showrooms/showrooms.component';
+import { AdminSettingsComponent } from './admin-settings/admin-settings.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 export const routes: Routes = [
   // { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -27,6 +34,15 @@ export const routes: Routes = [
   {path:'feedback',component:FeedbackComponent},
   // { path: 'booking', component: BookingComponent }
   { path: 'booking', component: BookingComponent },
-  { path: 'car-selection-page', component: CarSelectionComponent }
+  { path: 'car-selection-page', component: CarSelectionComponent },
+  // {"path":"", component:AdminDashbaordComponent},
+  {"path":"home", component:AdminHomeComponent},
+  {"path":"bookings", component:BookingComponent},
+  {"path":"users", component:UsersComponent},
+  {"path":"feedback", component:UserFeedbackComponent},
+  {"path":"showrooms", component:ShowroomsComponent},
+  {"path":"settings", component:AdminSettingsComponent},
+  {"path":"notifications", component:NotificationsComponent},
+  {"path":"dashboard", component:AdminDashbaordComponent}
 
 ];
