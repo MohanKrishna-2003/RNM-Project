@@ -15,6 +15,7 @@ export class ChatbotComponent {
   options: string[] = [
     'What is your name?',
     'What can you do?',
+    'Learn About Cars',
     'Book a Test Drive',
     'feedback',
     'Locations',
@@ -43,9 +44,12 @@ export class ChatbotComponent {
   onOptionSelected(option: string): void {
     this.messages.push({ sender: 'user', text: option });
 
-    if (option === 'Book a test drive') {
+    if (option === 'Learn About Cars') {
       this.router.navigate(['/booking']);
-    }  else if (option === 'feedback') {
+    } else if (option === 'Book a Test Drive') {
+      this.router.navigate(['/booking']); // Navigate to the booking page
+      this.messages.push({ sender: 'bot', text: 'Redirecting to the booking page.' });
+    } else if (option === 'feedback') {
       this.router.navigate(['/feedback']);
       this.messages.push({ sender: 'bot', text: 'Redirecting to the feedback page.' });
     } else if (option === 'Locations') {

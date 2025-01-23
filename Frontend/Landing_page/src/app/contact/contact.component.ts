@@ -27,7 +27,7 @@ export class ContactComponent {
       const data = this.contact.value;
       console.log('Form Data:', data);
 
-      this.http.post('http://localhost:8085/contact', data).subscribe(
+      this.http.post('http://localhost:8080/contact', data).subscribe(
         (response: any) => {
           console.log('Form Submitted Successfully:', response);
         },
@@ -39,4 +39,3 @@ export class ContactComponent {
   }
   }
 
- 
