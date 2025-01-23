@@ -2,8 +2,9 @@ package com.example.Signup.service;
 
 import com.example.Signup.Entity.Feedback;
 import com.example.Signup.Entity.Users;
-import com.example.Signup.repository.FeedBackRepo;
+import com.example.Signup.repository.FeedbackRepo;
 import com.example.Signup.repository.UserRepo;
+import com.example.Signup.response.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
@@ -18,7 +19,7 @@ public class UserService {
     @Autowired
     UserRepo userRepo;
     @Autowired
-    FeedBackRepo feedBackRepo;
+    FeedbackRepo feedBackRepo;
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     public Users addingUserData(Users users) {
