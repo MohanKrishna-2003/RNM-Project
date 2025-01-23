@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 
 @Entity
@@ -33,5 +34,9 @@ public class Users {
 
     @Column(name="registration_date")
     private LocalDate registration_date;
+
+    @OneToMany
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    private List<Feedback> feedbacks;
 
 }

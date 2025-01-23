@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="page-container" [class.shifted]="isFilterSidebarOpen">
   <header class="header-section">
     <h1 class="header-title">Online Test Drive Booking</h1>
@@ -79,7 +80,6 @@
     <div class="filters">
       <label>
         Price Range:
-        <!-- [(ngModel)]="selectedPrice" -->
         <select (click)="filterCarsByPrice($event)" class="baloo">
           <option value="">All</option>
           <option value="low">Below ₹10 Lakhs</option>
@@ -87,11 +87,9 @@
           <option value="high">Above ₹20 Lakhs</option>
         </select>
       </label>
-
+    
       <label>
         Order By:
-        <!-- hey here onwards I removed the event emitters because it will dynicamlly apply this filter while selecting so we should apply the filters after the user is clicking the apply button - MOHAN -->
-        <!-- (change)="sortCars($event)" -->
         <select (change)="sortByOrder($event)" class="baloo">
           <option value="">None</option>
           <option value="maxPrice">Max Price</option>
@@ -99,9 +97,9 @@
           <option value="booking">Availability</option>
         </select>
       </label>
+    
       <label>
         Rating:
-        <!-- [(ngModel)]="filterByRating"" -->
         <select (change)="filterByRating($event)" class="baloo">
           <option value="">All</option>
           <option value="1">1 Star</option>
@@ -111,6 +109,7 @@
           <option value="5">5 Stars</option>
         </select>
       </label>
+    
       <label>
         Engine Type:
         <select (change)="filterByEngine($event)" class="baloo">
@@ -120,6 +119,7 @@
           <option value="electric">Electric</option>
         </select>
       </label>
+    
       <label>
         Seater:
         <select (change)="filterBySeater($event)" class="baloo">
@@ -129,6 +129,7 @@
           <option value="7">7-Seater</option>
         </select>
       </label>
+    
       <label>
         Transmission:
         <select (change)="filterByTransmission($event)" class="baloo">
@@ -137,6 +138,7 @@
           <option value="automatic">Automatic</option>
         </select>
       </label>
+    
       <label>
         Availability:
         <select (change)="filterByAvailability($event)" class="baloo">
@@ -146,6 +148,7 @@
           <option value="discontinued">Discontinued</option>
         </select>
       </label>
+    
       <label>
         Fuel Efficiency:
         <select (change)="filterByFuelEfficiency($event)" class="baloo">
@@ -156,7 +159,9 @@
           <option value="20+">Above 20 km/l</option>
         </select>
       </label>
-      <label>
+      
+    
+      <!-- <       
         Color:
         <select (change)="filterByColor($event)" class="baloo">
           <option value="">All</option>
@@ -166,7 +171,8 @@
           <option value="white">White</option>
           <option value="grey">Grey</option>
         </select>
-      </label>
+      </label> -->
+    
       <label>
         Drive Type:
         <select (change)="filterByDriveType($event)" class="baloo">
@@ -177,6 +183,7 @@
           <option value="4wd">4-Wheel Drive</option>
         </select>
       </label>
+    
       <label>
         Warranty:
         <select (change)="filterByWarranty($event)" class="baloo">
@@ -188,7 +195,8 @@
         </select>
       </label>
     </div>
-    <button class="apply-filters baloo" (click)="applyFilters()">Apply!</button>
+    
+    <!-- <button class="apply-filters baloo" (click)="applyFilters()">Apply!</button> -->
   </div>
 </div>
 
@@ -244,7 +252,7 @@
 
   <div class="gif-container" *ngIf="showGif; else carsDisplay">
     <!-- <img [src]="staticPics[currentImageIndex]" alt="Cycling Image" class="cycling-image" /> -->
-    <h1>SELECT A CAR TO PROCEED WITH YOUR BOOKINGS.....</h1>
+    <h1>Sorry we couldn't load the cars at the moment! Try again later...</h1>
   </div>
 
   <ng-template #carsDisplay>
@@ -266,8 +274,8 @@
               <strong>Release Year:</strong> {{ car.releaseYear }}
             </p>
             <p class="car-price car-details space">
-              <strong>Price:</strong> INR {{ car.price.INR }} / USD
-              {{ car.price.USD }}
+              <strong>Price:</strong> INR {{ car.price }} 
+              <!-- {{ car.price.USD }} -->
             </p>
             <p class="car-bookings car-details space">
               <strong>Bookings:</strong> {{ car.bookings }}+
@@ -356,8 +364,8 @@
             <strong>Release Year:</strong> {{ selectedCar.releaseYear }}
           </p>
           <p class="car-price car-details space">
-            <strong>Price:</strong> INR {{ selectedCar.price.INR }} / USD
-            {{ selectedCar.price.USD }}
+            <strong>Price:</strong> INR {{ selectedCar.price }} 
+            <!-- {{ selectedCar.price.USD }} -->
           </p>
           <p class="car-bookings car-details space">
             <strong>Bookings:</strong> {{ selectedCar.bookings }}+
@@ -445,7 +453,7 @@
       <h2>Book Your Test Drive Slot</h2>
       <br /><br />
 
-      <form id="slot-booking-form">
+      <!-- <form id="slot-booking-form"> -->
         <div class="formbold-steps">
           <ul>
             <li class="formbold-step-menu1" [ngClass]="{ active: currentStep === 1 }">
@@ -574,7 +582,7 @@
             {{ currentStep === 3 ? "Submit" : "Next Step" }}
           </button>
         </div>
-      </form>
+      <!-- </form> -->
     </div>
 
 
@@ -584,3 +592,4 @@
 
 <br /><br />
 }
+<app-footer></app-footer>

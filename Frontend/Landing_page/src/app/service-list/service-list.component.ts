@@ -9,7 +9,7 @@ declare var $: any;
   standalone:true,
   templateUrl: './service-list.component.html',
   styleUrls: ['./service-list.component.css'],
-  imports: [CommonModule,FeedbackComponent]
+  imports: [CommonModule]
 })
 export class ServiceListComponent {
   services = [

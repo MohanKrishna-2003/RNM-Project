@@ -50,4 +50,5 @@ public class SlotBooking {
 
     @Column(name = "brand")
     private String brand;
+
 }

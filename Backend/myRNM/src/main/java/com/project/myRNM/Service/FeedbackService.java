@@ -8,16 +8,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import java.util.stream.Collectors;
 
 @Service
 public class FeedbackService {
 
     @Autowired
     FeedbackRepo feedbackRepo;
-
+    private static final Logger logger = LoggerFactory.getLogger(FeedbackService.class);
     public List<Feedback> getFeedbacks() throws Exception {
         try{
-            List<Feedback> feedbackList = feedbackRepo.findAll();
+            List<Feedback> feedbackList = feedbackRepo.findsortFeedback();
             return feedbackList;
         }
      catch (Exception e){
@@ -92,6 +95,22 @@ public class FeedbackService {
             return feedbackRepo.save(feedback);
         } catch (Exception e) {
             throw new RuntimeException("Error in Posting Feedback");
+        }
+    }
+    public List<Feedback> getAllFeedback() {
+        try {
+            logger.info("Attempting to fetch all feedback entries.");
+            List<Feedback> feedbackList = feedbackRepo.findAll();
+            List<Feedback> feedbacks = feedbackList.stream().filter((res)->res.getUsers_ratings()>=4).collect(Collectors.toList());
+            if (feedbackList.isEmpty()) {
+                logger.warn("No feedback found in the system.");
+            } else {
+                logger.info("Successfully fetched {} feedback entries.", feedbackList.size());
+            }
+            return feedbacks;
+        } catch (Exception e) {
+            logger.error("Error occurred while fetching all feedback entries: {}", e.getMessage());
+            throw new RuntimeException("Unable to fetch feedback at the moment.");
         }
     }
     }

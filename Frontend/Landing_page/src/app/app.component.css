@@ -1,45 +1,25 @@
 /* Style for Scroll to Top Button */
 .scroll-to-top-btn {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background-color: #007bff;  /* Button color */
-  color: white;
-  font-size: 24px;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 50%;
+  bottom: 30px;  /* Position the button 30px from the bottom */
+  right: 30px;   /* Position the button 30px from the right */
+  background: transparent;  /* No background */
+  color: black;  /* Color for the icon */
+  font-size: 36px;  /* Icon size */
+  border: none;  /* No border */
+  padding: 0;  /* Remove padding */
   cursor: pointer;
-  display: none; /* Hidden by default */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s ease;
-}
-
-/* Button hover effect */
-.scroll-to-top-btn:hover {
-  background-color: #0056b3;  /* Darker color on hover */
+  display: none;  /* Hidden by default */
+  z-index: 1000;  /* Ensure the button is on top of other elements */
 }
 
 /* Show button when scrolled down */
 .show-scroll-btn {
-  display: block !important;
-}
-/* Position the arrow button fixed at the bottom-right of the screen */
-.arrow-button {
-  position: fixed;
-  bottom: 20px;  /* Place the button a little above the bottom */
-  right: 20px;   /* Align the button to the right */
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  padding: 15px;
-  font-size: 20px;
-  cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
+  display: block !important;  /* Override the default display:none */
 }
 
-.arrow-button:hover {
-  background-color: #0056b3;
+/* Style for the icon inside the button */
+.scroll-to-top-btn i {
+  font-size: 36px;  /* Size of the icon */
+  color: black;  /* Color of the icon */
 }

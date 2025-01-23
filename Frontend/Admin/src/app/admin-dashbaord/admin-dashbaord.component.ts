@@ -37,9 +37,9 @@ export class AdminDashbaordComponent implements OnInit {
   brands: any = [];
   showroomcount: any;
   config3: any;
-  config:any;
-  config2:any;
-  bcounts: number[]=[];
+  config: any;
+  config2: any;
+  bcounts: number[] = [];
   ngOnInit(): void {
     this.chart4 = new Chart('Chart4', this.config4);
 
@@ -114,7 +114,7 @@ export class AdminDashbaordComponent implements OnInit {
           this.counts.push(this.usermonthly[i].count); // Push the count to the counts array
         }
 
-         this.config = {
+        this.config = {
           type: 'line',
           data: {
             labels: this.months1,
@@ -138,7 +138,6 @@ export class AdminDashbaordComponent implements OnInit {
           },
         };
         this.chart = new Chart('Chart1', this.config);
-
       });
 
     this.http
@@ -173,10 +172,12 @@ export class AdminDashbaordComponent implements OnInit {
         this.chart2 = new Chart('Chart2', this.config2);
       });
     this.processFeedbackData();
+    // this.changeFeedbackYear();
     this.calculateSum();
+    console.log(this.selectedYear);
   }
 
-  feedbackData: any=[];
+  feedbackData: any = [];
   months: string[] = [
     'January',
     'February',
@@ -195,36 +196,37 @@ export class AdminDashbaordComponent implements OnInit {
   negativeCounts: number[] = [];
   totalpositive = 0;
   totalnegative = 0;
-  selectedYear: String="y2024";
+  selectedYear: String = 'y2024';
+  year:number=2024;
   processFeedbackData(): void {
-    console.log("INSIDE PROCESS FEEDBACKS");
+    console.log('INSIDE PROCESS FEEDBACKS');
     
-    // Iterate through each month and check if feedback data exists for it
     for (let i = 0; i < this.months.length; i++) {
-      
-      let month: string;  
-//not working
-if (this.selectedYear.includes("y2025")) {
-  month = this.months[i] + ' 2025'; 
-  console.log(this.selectedYear);
-} else {
-  console.log(this.selectedYear);
-  month = this.months[i] + ' 2024';  
-}
+      let month= this.months[i] +" "+ this.year;
+  
       let positive = 0;
       let negative = 0;
-
+  
+      // Check if feedback data exists for the given month
       if (this.feedbackData[month]) {
         positive = this.feedbackData[month].positive || 0;
         negative = this.feedbackData[month].negative || 0;
       }
-
+  
       // Push the counts into the arrays
       this.positiveCounts.push(positive);
       this.negativeCounts.push(negative);
     }
   }
-
+  
+  // changeFeedbackYear() {
+  //    let year1 = this.selectedYear === "y2024" ? 2024 : 2025;
+  //   this.processFeedbackData(year1);
+  //   // this.calculateSum();
+  //   console.log("CHART UPDATION"+year1);
+  //   this.chart4.update();
+  // }
+  
   calculateSum() {
     this.totalpositive = this.positiveCounts.reduce(
       (sum, current) => sum + current,
@@ -241,7 +243,6 @@ if (this.selectedYear.includes("y2025")) {
     console.log(this.usersatisfaction);
   }
 
-
   chart: any;
   chart2: any;
   chart3: any;
@@ -249,8 +250,6 @@ if (this.selectedYear.includes("y2025")) {
   chart4data: any;
   chardata1: any = this.counts;
   usersatisfaction: any;
-
-
 
   public config4: any = {
     type: 'bar',
@@ -279,6 +278,6 @@ if (this.selectedYear.includes("y2025")) {
           data: this.negativeCounts,
         },
       ],
-    }
+    },
   };
 }
