@@ -86,7 +86,7 @@
           <option value="high">Above ₹20 Lakhs</option>
         </select>
       </label>
-    
+
       <label>
         Order By:
         <select (change)="sortByOrder($event)" class="baloo">
@@ -96,7 +96,7 @@
           <option value="booking">Availability</option>
         </select>
       </label>
-    
+
       <label>
         Rating:
         <select (change)="filterByRating($event)" class="baloo">
@@ -108,7 +108,7 @@
           <option value="5">5 Stars</option>
         </select>
       </label>
-    
+
       <label>
         Engine Type:
         <select (change)="filterByEngine($event)" class="baloo">
@@ -118,7 +118,7 @@
           <option value="electric">Electric</option>
         </select>
       </label>
-    
+
       <label>
         Seater:
         <select (change)="filterBySeater($event)" class="baloo">
@@ -128,7 +128,7 @@
           <option value="7">7-Seater</option>
         </select>
       </label>
-    
+
       <label>
         Transmission:
         <select (change)="filterByTransmission($event)" class="baloo">
@@ -137,7 +137,7 @@
           <option value="automatic">Automatic</option>
         </select>
       </label>
-    
+
       <label>
         Availability:
         <select (change)="filterByAvailability($event)" class="baloo">
@@ -147,7 +147,7 @@
           <option value="discontinued">Discontinued</option>
         </select>
       </label>
-    
+
       <label>
         Fuel Efficiency:
         <select (change)="filterByFuelEfficiency($event)" class="baloo">
@@ -158,8 +158,8 @@
           <option value="20+">Above 20 km/l</option>
         </select>
       </label>
-      
-    
+
+
       <!-- <       
         Color:
         <select (change)="filterByColor($event)" class="baloo">
@@ -171,7 +171,7 @@
           <option value="grey">Grey</option>
         </select>
       </label> -->
-    
+
       <label>
         Drive Type:
         <select (change)="filterByDriveType($event)" class="baloo">
@@ -182,7 +182,7 @@
           <option value="4wd">4-Wheel Drive</option>
         </select>
       </label>
-    
+
       <label>
         Warranty:
         <select (change)="filterByWarranty($event)" class="baloo">
@@ -194,7 +194,7 @@
         </select>
       </label>
     </div>
-    
+
     <!-- <button class="apply-filters baloo" (click)="applyFilters()">Apply!</button> -->
   </div>
 </div>
@@ -273,7 +273,7 @@
               <strong>Release Year:</strong> {{ car.releaseYear }}
             </p>
             <p class="car-price car-details space">
-              <strong>Price:</strong> INR {{ car.price }} 
+              <strong>Price:</strong> INR {{ car.price }}
               <!-- {{ car.price.USD }} -->
             </p>
             <p class="car-bookings car-details space">
@@ -363,7 +363,7 @@
             <strong>Release Year:</strong> {{ selectedCar.releaseYear }}
           </p>
           <p class="car-price car-details space">
-            <strong>Price:</strong> INR {{ selectedCar.price }} 
+            <strong>Price:</strong> INR {{ selectedCar.price }}
             <!-- {{ selectedCar.price.USD }} -->
           </p>
           <p class="car-bookings car-details space">
@@ -518,7 +518,7 @@
             <div *ngIf="preferredDate.invalid && (preferredDate.dirty || preferredDate.touched)" class="error">
               <small *ngIf="preferredDate.errors?.['required']">Preferred date is required.</small>
             </div>
-            
+
 
             <label for="time-slot" class="formbold-form-label">Preferred Time Slot</label>
             <select id="time-slot" class="formbold-form-input" [(ngModel)]="formData.timeSlot" name="timeSlot"

@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "slot_bookings")
+@Table(name = "slot_booking")
 public class SlotBooking {
     @Id
     @NotNull
