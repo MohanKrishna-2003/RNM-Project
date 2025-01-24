@@ -41,14 +41,14 @@ public interface SlotBookingRepository extends JpaRepository<SlotBooking, String
             "        WHEN 12 THEN 'December' " +
             "    END AS month, " +
             "    COUNT(s) AS totalBookings " +
-            "FROM slot_bookings s " +
+            "FROM slot_booking s " +
             "GROUP BY EXTRACT(MONTH FROM s.booking_timestamp) " +
             "ORDER BY EXTRACT(MONTH FROM s.booking_timestamp)", nativeQuery = true)
     List<Object[]> findMonthlyBookingCountsByMonthName();
 
 
     @Query(value = "SELECT s.brand, COUNT(s) " +
-            "FROM slot_bookings s " +
+            "FROM slot_booking s " +
             "WHERE s.brand IN ('Renault', 'Nissan', 'Mitsubishi') " +
             "GROUP BY s.brand", nativeQuery = true)
     List<Object[]> findCountByBrand();

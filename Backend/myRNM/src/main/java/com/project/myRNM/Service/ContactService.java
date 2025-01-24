@@ -5,6 +5,8 @@ import com.project.myRNM.Repository.ContactRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ContactService {
 
@@ -15,5 +17,9 @@ public class ContactService {
     public Contact post(Contact contactModel)  {
 
         return contactRepo.save(contactModel);
+    }
+
+    public List<Contact> getcontact() {
+        return contactRepo.findAll();
     }
 }

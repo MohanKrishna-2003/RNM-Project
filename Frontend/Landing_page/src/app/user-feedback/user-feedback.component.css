@@ -245,6 +245,7 @@ h6,
   align-items: center;
   font-weight: 600;
   margin-right: 15px;
+  margin-top: 35px;
 }
 @media (max-width: 767px) {
   .single-notification .notification .image {

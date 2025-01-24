@@ -39,16 +39,52 @@ export class AdminDashbaordComponent implements OnInit {
   config3: any;
   config: any;
   config2: any;
+  config4:any;
   bcounts: number[] = [];
   ngOnInit(): void {
-    this.chart4 = new Chart('Chart4', this.config4);
 
     this.http
-      .get('http://localhost:8080/feedback/feedbackcount')
-      .subscribe((res) => {
-        console.log(res);
-        this.feedbackData = res;
-      });
+    .get('http://localhost:8080/feedback/feedbackcount')
+    .subscribe((res) => {
+      console.log("FEEDBACK " + this.feedbackData);
+      this.feedbackData = res;  // Assuming response has the required structure
+      
+      this.processFeedbackData();
+      this.calculateSum();  
+      // Call this after receiving the data
+       this.config4 = {
+        type: 'bar',
+        data: {
+          labels: this.months,
+    
+          datasets: [
+            {
+              label: 'Positive Feedback',
+              backgroundColor: '#365CF5',
+              borderColor: 'transparent',
+              borderRadius: 20,
+              borderWidth: 5,
+              barThickness: 20,
+              maxBarThickness: 20,
+              data: this.positiveCounts,
+            },
+            {
+              label: 'Negative Feedback',
+              backgroundColor: '#d50100',
+              borderColor: 'transparent',
+              borderRadius: 20,
+              borderWidth: 5,
+              barThickness: 20,
+              maxBarThickness: 20,
+              data: this.negativeCounts,
+            },
+          ],
+        },
+      };
+      this.chart4 = new Chart('Chart4', this.config4);
+
+    });
+    
     this.http.get('http://localhost:8080/user/totaluser').subscribe((res) => {
       console.log(res);
       this.totalusers = res;
@@ -103,11 +139,11 @@ export class AdminDashbaordComponent implements OnInit {
     this.http
       .get('http://localhost:8080/user/userMonthlyCount')
       .subscribe((res) => {
-        console.log('DATAAAAAAAAAAA');
+        console.log("FIRST CHART RESPONSE "+res);
 
-        console.log(res);
 
         this.usermonthly = res;
+        console.log("FIRST CHART DATA "+this.usermonthly[0].month);
 
         for (let i = 0; i < this.usermonthly.length; i++) {
           this.months1.push(this.usermonthly[i].month); // Push the month to the months array
@@ -171,7 +207,7 @@ export class AdminDashbaordComponent implements OnInit {
         };
         this.chart2 = new Chart('Chart2', this.config2);
       });
-    this.processFeedbackData();
+    // this.processFeedbackData();
     // this.changeFeedbackYear();
     this.calculateSum();
     console.log(this.selectedYear);
@@ -202,7 +238,9 @@ export class AdminDashbaordComponent implements OnInit {
     console.log('INSIDE PROCESS FEEDBACKS');
     
     for (let i = 0; i < this.months.length; i++) {
-      let month= this.months[i] +" "+ this.year;
+      let month= this.months[i] + ' 2024';
+      console.log("DATA "+this.feedbackData[month]);
+      
   
       let positive = 0;
       let negative = 0;
@@ -215,8 +253,10 @@ export class AdminDashbaordComponent implements OnInit {
   
       // Push the counts into the arrays
       this.positiveCounts.push(positive);
-      this.negativeCounts.push(negative);
+      this.negativeCounts.push(negative);      
     }
+    console.log("positive and negative "+this.positiveCounts[0]+this.negativeCounts[0]);
+    
   }
   
   // changeFeedbackYear() {
@@ -251,33 +291,5 @@ export class AdminDashbaordComponent implements OnInit {
   chardata1: any = this.counts;
   usersatisfaction: any;
 
-  public config4: any = {
-    type: 'bar',
-    data: {
-      labels: this.months,
 
-      datasets: [
-        {
-          label: 'Positive Feedback',
-          backgroundColor: '#365CF5',
-          borderColor: 'transparent',
-          borderRadius: 20,
-          borderWidth: 5,
-          barThickness: 20,
-          maxBarThickness: 20,
-          data: this.positiveCounts,
-        },
-        {
-          label: 'Negative Feedback',
-          backgroundColor: '#d50100',
-          borderColor: 'transparent',
-          borderRadius: 20,
-          borderWidth: 5,
-          barThickness: 20,
-          maxBarThickness: 20,
-          data: this.negativeCounts,
-        },
-      ],
-    },
-  };
 }

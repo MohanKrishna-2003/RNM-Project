@@ -35,7 +35,7 @@ public class Users {
 
     @CreationTimestamp
     @Column(name = "registration_date", nullable = false, updatable = false)
-    private Date registration_date;
+    private LocalDate registration_date;
 
     @OneToMany
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
