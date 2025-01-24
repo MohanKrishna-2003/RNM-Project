@@ -10,5 +10,4 @@ public class MyRnmApplication {
 		System.out.println("Backend Started!");
 		SpringApplication.run(MyRnmApplication.class, args);
 	}
-
 }
