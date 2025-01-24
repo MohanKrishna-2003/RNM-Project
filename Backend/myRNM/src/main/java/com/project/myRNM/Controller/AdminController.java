@@ -2,11 +2,14 @@ package com.project.myRNM.Controller;
 
 import com.project.myRNM.DTOs.AdminDTO;
 import com.project.myRNM.Entity.Admin;
+import com.project.myRNM.Entity.Users;
 import com.project.myRNM.Response.GeneralResponse;
 import com.project.myRNM.Service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 
 @RestController
 @RequestMapping("/admin")
@@ -34,4 +37,6 @@ public ResponseEntity<?> admindetails(){
             return ResponseEntity.notFound().build();
         }
     }
+
+
 }
