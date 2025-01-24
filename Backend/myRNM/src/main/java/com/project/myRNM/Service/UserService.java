@@ -21,6 +21,11 @@ public class UserService {
     UserRepo userRepo;
 
     public Users addUserData(Users users) {
+//        checking if the user is already present or not if it is not it throws an error
+        Optional <Users> existingUser = userRepo.findByEmail(users.getEmail());
+        if (existingUser.isPresent()) {
+            throw new RuntimeException("Email has been already registered");
+        }
         return userRepo.save(users);
     }
 
@@ -63,6 +68,7 @@ public class UserService {
 
         return monthlyCounts;
     }
+
 
 
 }

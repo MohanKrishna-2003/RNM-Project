@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { NewsComponent } from './news/news.component';
 import { FeedbackComponent } from './feedback/feedback.component';
+import { CarSelectionComponent } from './car-selection/car-selection.component';
 
 export const routes: Routes = [
   // { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -26,5 +27,7 @@ export const routes: Routes = [
   {path:'signup',component:SignupComponent},
   { path: 'booking', component: BookingComponent },
   {path:'news',component:NewsComponent},
-  {path:'feedback',component:FeedbackComponent}
+  {path:'feedback',component:FeedbackComponent},
+  {path:'car-selection-page',component:CarSelectionComponent}
+
 ];

@@ -14,7 +14,7 @@ declare var $: any;
 })
 export class FeedbackComponent {
   feedbackForm: FormGroup;
-  selectedRatingMessage: string | null = null;  
+  selectedRatingMessage: string | null = null;
   testimonials:any[]=[];
   constructor(private http: HttpClient, private fb: FormBuilder,private router:Router) {
     this.feedbackForm = this.fb.group({
@@ -103,3 +103,4 @@ export class FeedbackComponent {
   }
 }
 
+ 

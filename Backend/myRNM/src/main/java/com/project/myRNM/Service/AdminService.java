@@ -21,6 +21,7 @@ public class AdminService {
             return adminDetails;
         } catch (Exception e) {
             throw new RuntimeException(e);
+
         }
     }
 
