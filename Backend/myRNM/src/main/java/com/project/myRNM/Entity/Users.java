@@ -2,6 +2,7 @@ package com.project.myRNM.Entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -32,8 +33,9 @@ public class Users {
     @Column(name="user_mobile")
     private String mobile;
 
-    @Column(name="registration_date")
-    private LocalDate registration_date;
+    @CreationTimestamp
+    @Column(name = "registration_date", nullable = false, updatable = false)
+    private Date registration_date;
 
     @OneToMany
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")

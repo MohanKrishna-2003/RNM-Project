@@ -24,5 +24,6 @@ public class Admin {
         this.address = address;
         this.bio = bio;
         this.admin_id = admin_id;
+
     }
 }
