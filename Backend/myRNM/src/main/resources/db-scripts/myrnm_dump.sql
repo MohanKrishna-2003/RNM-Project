@@ -5,6 +5,9 @@
 -- Dumped from database version 17.2
 -- Dumped by pg_dump version 17.2
 
+
+-- updated the changes
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
@@ -26,7 +29,7 @@ SET default_table_access_method = heap;
 --
 
 CREATE TABLE public.admin (
-    admin_id integer NOT NULL,
+    admin_id integer NOT NULL PRIMARY KEY,  -- Added PRIMARY KEY
     address character varying(255),
     bio character varying(255),
     company character varying(255),
@@ -34,12 +37,8 @@ CREATE TABLE public.admin (
     name character varying(255)
 );
 
-
 ALTER TABLE public.admin OWNER TO postgres;
 
---
--- Name: car; Type: TABLE; Schema: public; Owner: postgres
---
 
 CREATE TABLE public.car (
     bookings integer NOT NULL,
@@ -47,7 +46,7 @@ CREATE TABLE public.car (
     release_year integer NOT NULL,
     seater integer NOT NULL,
     warranty integer NOT NULL,
-    id bigint NOT NULL,
+    id bigint NOT NULL PRIMARY KEY,  -- Added PRIMARY KEY constraint to 'id'
     availability character varying(255),
     brand character varying(255),
     brand_icon character varying(255),
@@ -62,7 +61,6 @@ CREATE TABLE public.car (
     price character varying(255),
     transmission character varying(255)
 );
-
 
 ALTER TABLE public.car OWNER TO postgres;
 
@@ -80,6 +78,7 @@ CREATE SEQUENCE public.car_id_seq
 
 ALTER SEQUENCE public.car_id_seq OWNER TO postgres;
 
+
 --
 -- Name: car_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -92,16 +91,14 @@ ALTER SEQUENCE public.car_id_seq OWNED BY public.car.id;
 --
 
 CREATE TABLE public.contact (
-    messageid integer NOT NULL,
+    messageid integer NOT NULL PRIMARY KEY,  -- Added PRIMARY KEY constraint to 'messageid'
     email character varying(255),
     message character varying(255),
     name character varying(255)
 );
 
-
 ALTER TABLE public.contact OWNER TO postgres;
 
---
 -- Name: contact_messageid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -128,7 +125,7 @@ ALTER SEQUENCE public.contact_messageid_seq OWNED BY public.contact.messageid;
 --
 
 CREATE TABLE public.feedback (
-    feedback_id integer NOT NULL,
+    feedback_id integer NOT NULL PRIMARY KEY,  -- Added PRIMARY KEY constraint to 'feedback_id'
     user_id integer,
     user_ratings integer,
     feedback_date timestamp(6) without time zone NOT NULL,
@@ -136,7 +133,6 @@ CREATE TABLE public.feedback (
     user_email character varying(255),
     user_name character varying(255)
 );
-
 
 ALTER TABLE public.feedback OWNER TO postgres;
 
@@ -169,12 +165,11 @@ ALTER SEQUENCE public.feedback_feedback_id_seq OWNED BY public.feedback.feedback
 CREATE TABLE public.location (
     lat double precision,
     lng double precision,
-    id bigint NOT NULL,
+    id bigint NOT NULL PRIMARY KEY,  -- Added PRIMARY KEY constraint to 'id'
     address character varying(255),
     icon character varying(255),
     name character varying(255)
 );
-
 
 ALTER TABLE public.location OWNER TO postgres;
 
@@ -204,6 +199,7 @@ ALTER SEQUENCE public.location_id_seq OWNED BY public.location.id;
 --
 
 CREATE TABLE public.slot_booking (
+    id serial PRIMARY KEY,  -- Added 'id' as a primary key column
     confirmation boolean,
     preferred_date date,
     booking_timestamp timestamp(6) without time zone NOT NULL,
@@ -218,7 +214,6 @@ CREATE TABLE public.slot_booking (
     time_slot character varying(255)
 );
 
-
 ALTER TABLE public.slot_booking OWNER TO postgres;
 
 --
@@ -227,14 +222,13 @@ ALTER TABLE public.slot_booking OWNER TO postgres;
 
 CREATE TABLE public.user_details (
     registration_date date,
-    user_id bigint NOT NULL,
+    user_id bigint NOT NULL PRIMARY KEY,  -- Added PRIMARY KEY constraint to 'user_id'
     password character varying(255),
     user_address character varying(255),
     user_email character varying(255),
     user_mobile character varying(255),
     user_name character varying(255)
 );
-
 
 ALTER TABLE public.user_details OWNER TO postgres;
 
@@ -481,69 +475,69 @@ SELECT pg_catalog.setval('public.location_id_seq', 5, true);
 SELECT pg_catalog.setval('public.user_details_user_id_seq', 20, true);
 
 
+----
+---- Name: admin admin_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+----
 --
--- Name: admin admin_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--ALTER TABLE ONLY public.admin
+--    ADD CONSTRAINT admin_pkey PRIMARY KEY (admin_id);
 --
-
-ALTER TABLE ONLY public.admin
-    ADD CONSTRAINT admin_pkey PRIMARY KEY (admin_id);
-
-
 --
--- Name: car car_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+----
+---- Name: car car_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+----
 --
-
-ALTER TABLE ONLY public.car
-    ADD CONSTRAINT car_pkey PRIMARY KEY (id);
-
-
+--ALTER TABLE ONLY public.car
+--    ADD CONSTRAINT car_pkey PRIMARY KEY (id);
 --
--- Name: contact contact_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
-
-ALTER TABLE ONLY public.contact
-    ADD CONSTRAINT contact_pkey PRIMARY KEY (messageid);
-
-
+----
+---- Name: contact contact_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+----
 --
--- Name: feedback feedback_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--ALTER TABLE ONLY public.contact
+--    ADD CONSTRAINT contact_pkey PRIMARY KEY (messageid);
 --
-
-ALTER TABLE ONLY public.feedback
-    ADD CONSTRAINT feedback_pkey PRIMARY KEY (feedback_id);
-
-
 --
--- Name: location location_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+----
+---- Name: feedback feedback_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+----
 --
-
-ALTER TABLE ONLY public.location
-    ADD CONSTRAINT location_pkey PRIMARY KEY (id);
-
-
+--ALTER TABLE ONLY public.feedback
+--    ADD CONSTRAINT feedback_pkey PRIMARY KEY (feedback_id);
 --
--- Name: slot_booking slot_booking_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
-
-ALTER TABLE ONLY public.slot_booking
-    ADD CONSTRAINT slot_booking_pkey PRIMARY KEY (email);
-
-
+----
+---- Name: location location_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+----
 --
--- Name: user_details user_details_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--ALTER TABLE ONLY public.location
+--    ADD CONSTRAINT location_pkey PRIMARY KEY (id);
 --
-
-ALTER TABLE ONLY public.user_details
-    ADD CONSTRAINT user_details_pkey PRIMARY KEY (user_id);
-
-
 --
--- Name: feedback fk95hegocikqd5foguk7jkvkgpa; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+----
+---- Name: slot_booking slot_booking_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+----
 --
-
-ALTER TABLE ONLY public.feedback
-    ADD CONSTRAINT fk95hegocikqd5foguk7jkvkgpa FOREIGN KEY (user_id) REFERENCES public.user_details(user_id);
-
+--ALTER TABLE ONLY public.slot_booking
+--    ADD CONSTRAINT slot_booking_pkey PRIMARY KEY (email);
+--
+--
+----
+---- Name: user_details user_details_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+----
+--
+--ALTER TABLE ONLY public.user_details
+--    ADD CONSTRAINT user_details_pkey PRIMARY KEY (user_id);
+--
+--
+----
+---- Name: feedback fk95hegocikqd5foguk7jkvkgpa; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+----
+--
+--ALTER TABLE ONLY public.feedback
+--    ADD CONSTRAINT fk95hegocikqd5foguk7jkvkgpa FOREIGN KEY (user_id) REFERENCES public.user_details(user_id);
+--
 
 --
 -- PostgreSQL database dump complete
