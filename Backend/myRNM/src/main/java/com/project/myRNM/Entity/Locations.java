@@ -3,7 +3,7 @@ package com.project.myRNM.Entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "locations")
+@Table(name = "location")
 public class Locations {
 
     @Id
