@@ -1,19 +1,28 @@
 package com.project.myRNM.DTOs;
 
 public class AdminDTO {
-    String name, email, company,address,bio;
+    private String name;
+    private String email;
+    private String company;
+    private String address;
+    private String bio;
+    private String password;
 
+    // Default constructor
     public AdminDTO() {
     }
 
-    public AdminDTO(String name, String mail, String company, String address, String bio) {
+    // Constructor with parameters
+    public AdminDTO(String name, String email, String company, String address, String bio, String password) {
         this.name = name;
-        this.email = mail;
+        this.email = email;
         this.company = company;
         this.address = address;
         this.bio = bio;
+        this.password = password;
     }
 
+    // Getter and Setter methods
     public String getName() {
         return name;
     }
@@ -22,20 +31,20 @@ public class AdminDTO {
         this.name = name;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getCompany() {
         return company;
     }
 
     public void setCompany(String company) {
         this.company = company;
-    }
-
-    public String getEMail() {
-        return email;
-    }
-
-    public void setMail(String mail) {
-        this.email = mail;
     }
 
     public String getAddress() {
@@ -52,5 +61,13 @@ public class AdminDTO {
 
     public void setBio(String bio) {
         this.bio = bio;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

@@ -31,7 +31,7 @@
             <!-- Admin Details View -->
             <div class="profile-info">
               <div class="d-flex align-items-center mb-30">
-                <div class="profile-meta ml-3">
+                <div class="profile-meta">
                   <h5 class="text-bold text-dark mb-10">{{admin[0].name}}</h5>
                   <p class="text-sm text-gray">{{admin[0].mail}}</p>
                 </div>
@@ -123,7 +123,31 @@
                   </div>
                 </div>
               </div>
-
+              <div class="col-12">
+                <div class="input-style-1">
+                  <label>Password</label>
+                  <div class="password-container">
+                    <input 
+                      [type]="passwordVisible ? 'text' : 'password'" 
+                      formControlName="password" 
+                      placeholder="Enter your password" />
+                    
+                    <!-- Eye icon to toggle password visibility -->
+                    <i 
+                      class="fa" 
+                      [ngClass]="passwordVisible ? 'fa-eye-slash' : 'fa-eye'" 
+                      (click)="passwordVisible = !passwordVisible" 
+                      style="cursor: pointer;">
+                    </i>
+                  </div>
+              
+                  <!-- Validation error message -->
+                  <div *ngIf="f['password'].invalid && (f['password'].dirty || f['password'].touched)" class="error">
+                    <div *ngIf="f['password'].errors?.['required']">Password is required.</div>
+                  </div>
+                </div>
+              </div>
+              
               <div class="col-12">
                 <button class="main-btn primary-btn btn-hover" id="updatep" [disabled]="profileForm.invalid">
                   Update Profile

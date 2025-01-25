@@ -16,6 +16,7 @@ import swal from 'sweetalert';
 })
 export class AdminSettingsComponent implements OnInit{
   profileForm!: FormGroup;
+  passwordVisible: boolean = false;
 
   admin : any;
   constructor(private fb: FormBuilder, private http:HttpClient){}
@@ -31,7 +32,8 @@ ngOnInit(): void {
         email: [this.admin[0]?.mail || '', [Validators.required, Validators.email]],
         company: [this.admin[0]?.company || '', [Validators.required]],
         address: [this.admin[0]?.address || '', [Validators.required]],
-        bio: [this.admin[0]?.bio || '', [Validators.required, Validators.minLength(10)]]
+        bio: [this.admin[0]?.bio || '', [Validators.required, Validators.minLength(10)]],
+        password:[this.admin[0]?.password || '', [Validators.required]] 
       });
     },
     (error) => {

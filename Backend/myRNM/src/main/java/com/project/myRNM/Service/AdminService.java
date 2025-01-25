@@ -31,11 +31,11 @@ public class AdminService {
         if (existingProfileOpt.isPresent()) {
             Admin existingProfile = existingProfileOpt.get();
             existingProfile.setName(profileData.getName());
-            existingProfile.setMail(profileData.getEMail());
+            existingProfile.setMail(profileData.getEmail());
             existingProfile.setCompany(profileData.getCompany());
             existingProfile.setAddress(profileData.getAddress());
             existingProfile.setBio(profileData.getBio());
-
+            existingProfile.setPassword(profileData.getPassword() );
             return adminRepo.save(existingProfile);
         }
         return null;
