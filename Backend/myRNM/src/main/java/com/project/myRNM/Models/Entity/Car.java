@@ -1,4 +1,4 @@
-package com.project.myRNM.Entity;
+package com.project.myRNM.Models.Entity.Entity;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -1,4 +1,4 @@
-package com.project.myRNM.Response;
+package com.project.myRNM.Models.Entity.Response;
 
 public class GeneralResponse {
     private String message;

@@ -1,4 +1,4 @@
-package com.project.myRNM.DTOs;
+package com.project.myRNM.Models.Entity.DTOs;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

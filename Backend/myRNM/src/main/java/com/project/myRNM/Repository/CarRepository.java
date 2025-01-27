@@ -1,6 +1,6 @@
 package com.project.myRNM.Repository;
 
-import com.project.myRNM.Entity.Car;
+import com.project.myRNM.Models.Entity.Car;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

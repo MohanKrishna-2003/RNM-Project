@@ -1,11 +1,10 @@
-package com.project.myRNM.Entity;
+package com.project.myRNM.Models.Entity.Entity;
 
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 
