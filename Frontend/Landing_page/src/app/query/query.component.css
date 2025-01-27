@@ -1,3 +1,139 @@
+/* Overlay style for pop-up */
+.form-popup {
+  display: block;
+  text-align: center;
+  position: fixed;
+  z-index: 9;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.6);
+  transition: opacity 0.3s ease;
+}
+
+/* Container for the form */
+.form-container {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 30px;
+  border-radius: 12px;
+  width: 60%;
+  max-width: 600px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+/* Form Header */
+h2 {
+  font-size: 1.8rem;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+/* Form Group (Flexbox Layout) */
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* Form Labels */
+label {
+  font-size: 1rem;
+  color: #555;
+  font-weight: 500;
+  width: 30%;  /* Adjust label width */
+  text-align: left;  /* Align labels to the left */
+  margin-bottom: 0;
+}
+
+/* Form Input and Textarea styling */
+input[type="email"], input[type="text"], textarea {
+  width: 70%; /* Adjust content width to fit next to the label */
+  padding: 12px 15px;
+  margin-top: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+/* Focus effect on input fields */
+input[type="email"]:focus, input[type="text"]:focus, textarea:focus {
+  border-color: #4CAF50;
+  outline: none;
+}
+
+/* Button Styles */
+button {
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  width: 100%;
+  margin-top: 15px;  /* Ensure buttons have space */
+}
+
+/* Send button (green) */
+button.btn {
+  color: white;
+}
+
+button.btn:hover {
+  background-color: grey;
+  transform: scale(1.05);
+}
+
+/* Close button (red) */
+button.cancel {
+  background-color: #f44336;
+  color: white;
+}
+
+button.cancel:hover {
+  background-color: #e53935;
+  transform: scale(1.05);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 767px) {
+  .form-container {
+    width: 90%;
+    padding: 20px;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  /* Adjust label widths and content for mobile */
+  .form-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  label {
+    width: 100%; /* Labels take full width on smaller screens */
+    margin-bottom: 8px;
+  }
+
+  input[type="email"], input[type="text"], textarea {
+    width: 100%; /* Inputs take full width on smaller screens */
+  }
+
+  button {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
 #contact {
     margin-left: 250px; /* Adjust based on the width of the navbar */
     width: calc(

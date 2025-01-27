@@ -1,16 +1,19 @@
 package com.project.myRNM.Service;
 
 
-import com.project.myRNM.DTOs.BrandCountDTO;
-import com.project.myRNM.DTOs.UserSlotCount;
-import com.project.myRNM.Entity.SlotBooking;
+import com.project.myRNM.Models.DTOs.BrandCountDTO;
+import com.project.myRNM.Models.DTOs.SlotBookingDTO;
+import com.project.myRNM.Models.DTOs.UserSlotCount;
+import com.project.myRNM.Models.Entity.SlotBooking;
 import com.project.myRNM.Repository.SlotBookingRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SlotBookingService {
@@ -18,7 +21,7 @@ public class SlotBookingService {
     @Autowired
     private SlotBookingRepository slotBookingRepository;
 
-    public SlotBooking saveSlotBooking(SlotBooking slotBooking){
+    public SlotBooking saveSlotBooking(SlotBooking slotBooking) {
         if (slotBooking.getEmail() == null || slotBooking.getEmail().isEmpty()) {
             throw new IllegalArgumentException("Mail is required and cannot be empty");
         }
@@ -28,47 +31,48 @@ public class SlotBookingService {
         return slotBookingRepository.save(slotBooking);
     }
 
-    public List<SlotBooking> getAllBookings(){
-        return slotBookingRepository.findAll();
+    public List<SlotBooking> getAllBookings() {
+        return slotBookingRepository.findALlBookings();
     }
 
-    public SlotBooking getBookingByEmail(String email){
-        return slotBookingRepository.findById(email).orElse(null);
+    public SlotBooking getBookingByEmail(Integer id) {
+        return slotBookingRepository.findById(id).orElse(null);
     }
 
-    public void deleteBooking(String email){
-        slotBookingRepository.deleteById(email);
+    public void deleteBooking(Integer id) {
+        slotBookingRepository.deleteById(id);
     }
 
+
+    public List<UserSlotCount> getMonthlyUserCounts() {
+        List<Object[]> results = slotBookingRepository.findMonthlyBookingCounts();
+        List<UserSlotCount> monthlyCounts = new ArrayList<>();
+
+        // Map results from Object[] to MonthlyUserCount DTO
+        for (Object[] result : results) {
+            String month = (String) result[0];  // The first element is the month
+            Long totalUsers = (Long) result[1];  // The second element is the user count
+            monthlyCounts.add(new UserSlotCount(month, totalUsers));
+        }
+
+        return monthlyCounts;
+    }
 
 //    public List<UserSlotCount> getMonthlyUserCounts() {
-//        List<Object[]> results = slotBookingRepository.findMonthlyBookingCounts();
+//        List<Object[]> results = slotBookingRepository.findMonthlyBookingCountsByMonthName();
 //        List<UserSlotCount> monthlyCounts = new ArrayList<>();
-//
+////
 //        // Map results from Object[] to MonthlyUserCount DTO
 //        for (Object[] result : results) {
 //            String month = (String) result[0];  // The first element is the month
-//            Long totalUsers = (Long) result[1];  // The second element is the user count
+//            Long totalUsers = (Long) result[1];
+//// The second element is the user count
 //            monthlyCounts.add(new UserSlotCount(month, totalUsers));
 //        }
 //
 //        return monthlyCounts;
 //    }
 
-    public List<UserSlotCount> getMonthlyUserCounts() {
-        List<Object[]> results = slotBookingRepository.findMonthlyBookingCountsByMonthName();
-        List<UserSlotCount> monthlyCounts = new ArrayList<>();
-
-        // Map results from Object[] to MonthlyUserCount DTO
-        for (Object[] result : results) {
-            String month = (String) result[0];  // The first element is the month
-            Long totalUsers = (Long) result[1];
-// The second element is the user count
-            monthlyCounts.add(new UserSlotCount(month, totalUsers));
-        }
-
-        return monthlyCounts;
-    }
     public List<BrandCountDTO> getCountByBrand() {
         List<Object[]> queryResult = slotBookingRepository.findCountByBrand();
 
@@ -85,4 +89,40 @@ public class SlotBookingService {
         return result;
     }
 
+    @Transactional
+    public SlotBooking updateStatus(SlotBookingDTO slotBookingDTO) {
+
+        Integer id = slotBookingDTO.getId();
+        System.out.println(id);
+        try {
+            // Directly pass the Integer ID to findById
+
+            Optional<SlotBooking> selectedSlot = slotBookingRepository.findById(id);
+
+            if (selectedSlot.isPresent()) {
+                SlotBooking slotBooking = selectedSlot.get();
+
+
+                // Update the status based on DTO
+                if ("confirmed".equalsIgnoreCase(slotBookingDTO.getStatus())) {
+                    slotBooking.setStatus("Confirmed");
+                } else if ("cancelled".equalsIgnoreCase(slotBookingDTO.getStatus())) {
+                    slotBooking.setStatus("Cancelled");
+                }
+
+                // Log the status change
+                System.out.println("Updated status: " + slotBooking.getStatus());
+
+                // Save and flush the updated entity
+                return slotBookingRepository.saveAndFlush(slotBooking);
+            } else {
+                return null; // SlotBooking not found
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException("Error updating status", e);
+        }
+    }
+
 }
+

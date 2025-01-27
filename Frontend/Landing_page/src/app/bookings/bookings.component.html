@@ -25,7 +25,7 @@
     <table class="table table-striped w-100">
       <thead class="table-light">
         <tr>
-          <th>User Id</th>
+          <th>Slot Id</th>
           <th>Car</th>
           <th>User</th>
           <th>Email</th>
@@ -35,8 +35,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let booking of filteredBookings; let i = index">
-          <td>{{ i + 1 }}</td>
+        <tr *ngFor="let booking of filteredBookings;">
+          <td>{{ booking.id }}</td>
           <td>{{ booking.selectedCarDetails }}</td>
           <td>{{ booking.name }}</td>
           <td>{{ booking.email }}</td>
@@ -44,11 +44,10 @@
           <td>
             <span
               class="badge"
-              style="background-color: rgb(216, 136, 15)"
               [ngClass]="{
-                'bg-success': booking.status === 'Confirmed',
-                'bg-secondary': booking.status === 'Cancelled',
-                'bg-primary': booking.status === 'Pending'
+                'bg-success': booking.status === 'confirmed'|| booking.status==='Confirmed',
+                'bg-secondary': booking.status === 'cancelled' || booking.status==='Cancelled',
+                'bg-primary': booking.status === 'Pending'|| booking.status==='pending'
               }"
             >
               {{ booking.status }}

@@ -1,4 +1,4 @@
-package com.project.myRNM.Models.Entity.Entity;
+package com.project.myRNM.Models.Entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Table(name = "slot_booking")
 public class SlotBooking {
-    @Id
+
     @NotNull
     @Column(nullable = false, unique = true)
     // yoo, I have set mail here as the primary key.
@@ -27,6 +27,8 @@ public class SlotBooking {
     private String name;
     private String phone;
     private String address;
+
+    @Column(name = "status")
     private String status;
 
     @Column(name = "preferred_date")
@@ -37,6 +39,10 @@ public class SlotBooking {
 
     @Column(name = "showroom_location")
     private String showroomLocation;
+
+    @Id
+    private Integer id;
+    private Integer user_id;
 
     private Boolean confirmation;
 

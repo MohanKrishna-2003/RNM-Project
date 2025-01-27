@@ -1,7 +1,7 @@
 package com.project.myRNM.Controller;
 
 
-import com.project.myRNM.Entity.Contact;
+import com.project.myRNM.Models.Entity.Contact;
 import com.project.myRNM.Service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

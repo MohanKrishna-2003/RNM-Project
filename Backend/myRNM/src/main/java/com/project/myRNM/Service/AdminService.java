@@ -1,8 +1,7 @@
 package com.project.myRNM.Service;
 
-import com.project.myRNM.DTOs.AdminDTO;
-import com.project.myRNM.Entity.Admin;
-import com.project.myRNM.Entity.Users;
+import com.project.myRNM.Models.DTOs.AdminDTO;
+import com.project.myRNM.Models.Entity.Admin;
 import com.project.myRNM.Repository.AdminRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

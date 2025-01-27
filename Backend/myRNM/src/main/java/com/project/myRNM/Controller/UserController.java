@@ -1,14 +1,13 @@
 package com.project.myRNM.Controller;
 
-import com.project.myRNM.Entity.Users;
-import com.project.myRNM.Response.GeneralResponse;
+import com.project.myRNM.Models.Entity.Users;
+import com.project.myRNM.Models.Response.GeneralResponse;
 import com.project.myRNM.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.Objects;
 
 @RequestMapping(path = "user")
 @RestController

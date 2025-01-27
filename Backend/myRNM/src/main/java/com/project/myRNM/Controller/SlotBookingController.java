@@ -1,8 +1,8 @@
 package com.project.myRNM.Controller;
 
-import com.project.myRNM.DTOs.BrandCountDTO;
-import com.project.myRNM.Entity.SlotBooking;
-import com.project.myRNM.Response.GeneralResponse;
+import com.project.myRNM.Models.DTOs.SlotBookingDTO;
+import com.project.myRNM.Models.Entity.SlotBooking;
+import com.project.myRNM.Models.Response.GeneralResponse;
 import com.project.myRNM.Service.SlotBookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ import java.util.List;
 
 @Controller
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/slot-bookings")
+@RequestMapping("/api/slot-bookings")
 public class SlotBookingController {
 
     @Autowired
@@ -32,18 +32,18 @@ public class SlotBookingController {
         return ResponseEntity.ok(bookings);
     }
 
-    @GetMapping("/{email}")
-    public ResponseEntity<?> getBookingsByEmail(@PathVariable String email) {
-        SlotBooking booking = slotBookingService.getBookingByEmail(email);
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getBookingsByEmail(@PathVariable Integer id) {
+        SlotBooking booking = slotBookingService.getBookingByEmail(id);
         if (booking == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(booking);
     }
 
-    @DeleteMapping("/{email}")
-    public ResponseEntity<?> deleteBooking(@PathVariable String email) {
-        slotBookingService.deleteBooking(email);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteBooking(@PathVariable Integer id) {
+        slotBookingService.deleteBooking(id);
         return ResponseEntity.noContent().build();
     }
 
@@ -61,6 +61,15 @@ public class SlotBookingController {
         try {
             return ResponseEntity.ok(slotBookingService.getCountByBrand());
 
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
+        }
+    }
+    @PostMapping("/updatestatus")
+    public ResponseEntity<?> updateUserStatus(@RequestBody SlotBookingDTO slotBookingDTO){
+        try{
+            slotBookingService.updateStatus(slotBookingDTO);
+            return ResponseEntity.ok(new GeneralResponse("SUCCESSFULLY UPDATED !!"));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
         }

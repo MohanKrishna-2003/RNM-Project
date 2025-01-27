@@ -1,4 +1,4 @@
-package com.project.myRNM.Models.Entity.Entity;
+package com.project.myRNM.Models.Entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

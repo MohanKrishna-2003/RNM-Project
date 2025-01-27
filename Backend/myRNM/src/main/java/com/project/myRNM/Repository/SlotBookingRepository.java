@@ -55,4 +55,6 @@ public interface SlotBookingRepository extends JpaRepository<SlotBooking, Intege
 @Query("select s from SlotBooking s order by user_id")
     List<SlotBooking> findALlBookings();
 
+//@Query("select s from SlotBooking s order by id desc")
+//    List<SlotBooking> getAllSlots();
 }

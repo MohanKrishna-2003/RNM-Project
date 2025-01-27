@@ -85,7 +85,7 @@
               <div class="col-12">
                 <div class="input-style-1">
                   <label>Email</label>
-                  <input type="email" formControlName="email" placeholder="Email" />
+                  <input type="email" formControlName="email" placeholder="Email"  />
                   <div *ngIf="f['email'].invalid && (f['email'].dirty || f['email'].touched)" class="error">
                     <div *ngIf="f['email']['errors']?.['required']">Email is required.</div>
                     <div *ngIf="f['email']['errors']?.['email']">Please enter a valid email address.</div>

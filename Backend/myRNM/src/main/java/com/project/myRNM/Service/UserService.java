@@ -1,15 +1,14 @@
 package com.project.myRNM.Service;
 
-import com.project.myRNM.DTOs.MonthlyUserCount;
-import com.project.myRNM.DTOs.UserDTO;
-import com.project.myRNM.Entity.Users;
+import com.project.myRNM.Models.DTOs.MonthlyUserCount;
+import com.project.myRNM.Models.DTOs.UserDTO;
+import com.project.myRNM.Models.Entity.Users;
 import com.project.myRNM.Repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;

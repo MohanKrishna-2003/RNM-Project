@@ -101,7 +101,7 @@ export class AdminDashbaordComponent implements OnInit {
       this.last30 = res;
     });
     this.http
-      .get('http://localhost:8080/slot-bookings/brandCount')
+      .get('http://localhost:8080/api/slot-bookings/brandCount')
       .subscribe((res) => {
         console.log(res);
         this.brandsdata = res;
@@ -177,7 +177,7 @@ export class AdminDashbaordComponent implements OnInit {
       });
 
     this.http
-      .get('http://localhost:8080/slot-bookings/userMonthlyCount')
+      .get('http://localhost:8080/api/slot-bookings/userMonthlyCount')
       .subscribe((res) => {
         console.log('DATAAAAAAAAAAA');
 

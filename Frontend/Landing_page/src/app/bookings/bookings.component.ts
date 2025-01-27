@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
 interface Booking {
+  id:number;
+  user_id: number;
   name: string;
   selectedCarDetails: string;
   preferredDate: string;
@@ -12,7 +14,7 @@ interface Booking {
   phone: string;
   email: string;
   address: string;
-  timeslot: string;
+  timeSlot: string;
   showroomLocation: string;
   bookingTimeStamp: string;
 }
@@ -34,7 +36,7 @@ export class BookingsComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.http.get<Booking[]>("http://localhost:8080/slot-bookings").subscribe((res) => {
+    this.http.get<Booking[]>("http://localhost:8080/api/slot-bookings").subscribe((res) => {
       this.bookings = res;
       this.filteredBookings = this.bookings.slice(0, this.pageSize);
     });
@@ -72,7 +74,7 @@ export class BookingsComponent implements OnInit {
         <strong>User Phone:</strong> ${booking.phone} <br>
         <strong>Email:</strong> ${booking.email} <br>
         <strong>Address:</strong> ${booking.address} <br>
-        <strong>Timeslot:</strong> ${booking.timeslot} <br>
+        <strong>Timeslot:</strong> ${booking.timeSlot} <br>
         <strong>Showroom Location:</strong> ${booking.showroomLocation} <br>
         <strong>Booking Timestamp:</strong> ${booking.bookingTimeStamp}
       `,
@@ -81,12 +83,48 @@ export class BookingsComponent implements OnInit {
     });}
 
   cancelBooking(booking: Booking): void {
+   let data={
+    "id":booking.id,
+    "status":"Cancelled"
+    }
+    let email={
+      "recipient":"nayanadece@gmail.com",
+      "text":"We are sorry to inform you that your booking for the date "+booking.preferredDate+" is cancelled. Sorry for the inconvinience!!",
+      "subject":"BOOKING CANCELLED !"
+    }
     if (confirm(`Are you sure you want to cancel this booking?`)) {
+      this.http.post("http://localhost:8080/api/slot-bookings/updatestatus",data).subscribe((res) => {
+       console.log(res);
+       
+      });
+
+      this.http.post("http://localhost:8080/mail/sendmail",email).subscribe((res) => {
+        console.log(res);
+        
+       });
       booking.status = 'Cancelled';
+
     }
   }
 
   approveBooking(booking: Booking): void {
+    let data={
+      "id":booking.id,
+      "status":"Confirmed"
+      }
+      let email={
+        "recipient":"nayanadece@gmail.com",
+        "text":"Dear User! Your booking has been confirmed for "+booking.preferredDate,
+        "subject":"BOOKING CONFIRMATION !"
+      }
+      this.http.post("http://localhost:8080/api/slot-bookings/updatestatus",data).subscribe((res) => {
+        console.log(res);
+        
+       });
+       this.http.post("http://localhost:8080/mail/sendmail",email).subscribe((res) => {
+        console.log(res);
+        
+       });
     booking.status = 'Confirmed';
     console.log('Approved booking:', booking);
   }

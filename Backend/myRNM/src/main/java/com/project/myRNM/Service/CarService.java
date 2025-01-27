@@ -1,12 +1,11 @@
 package com.project.myRNM.Service;
 
-import com.project.myRNM.Entity.Car;
+import com.project.myRNM.Models.Entity.Car;
 import com.project.myRNM.Repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CarService {
