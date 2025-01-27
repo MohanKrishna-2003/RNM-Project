@@ -131,7 +131,11 @@ CREATE TABLE public.feedback (
     feedback_date timestamp(6) without time zone NOT NULL,
     feedback character varying(255),
     user_email character varying(255),
-    user_name character varying(255)
+    user_name character varying(255),
+        CONSTRAINT fk95hegocikqd5foguk7jkvkgpa FOREIGN KEY (user_id)
+        REFERENCES public.user_details (user_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
 );
 
 ALTER TABLE public.feedback OWNER TO postgres;
