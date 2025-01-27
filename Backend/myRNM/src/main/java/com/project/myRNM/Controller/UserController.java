@@ -1,9 +1,11 @@
 package com.project.myRNM.Controller;
 
 import com.project.myRNM.Entity.Users;
+import com.project.myRNM.Exception.UserNotFoundException;
 import com.project.myRNM.Response.GeneralResponse;
 import com.project.myRNM.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,10 +22,10 @@ public class UserController {
 
     @PostMapping("/loginByPost")
     public ResponseEntity<?> loginByPost(@RequestBody HashMap<String, String> login) throws Exception {
-        try{
+        try {
             Users foundUsers = userService.loginByPost(login.get("email"), login.get("password"));
             return ResponseEntity.ok(foundUsers);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
         }
@@ -77,6 +79,21 @@ public class UserController {
             return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
         }
     }
+
+    @PutMapping("/updateProfile/{id}")
+    public ResponseEntity<?> updateProfile(@PathVariable("id") Long id, @RequestBody Users users) {
+        try {
+            Users userData = userService.updateProfile(id, users);
+            if (userData != null) {
+                return ResponseEntity.ok().body(new GeneralResponse("Successfully Updated"));
+            }
+            else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new GeneralResponse("User not found or no update was made"));
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new GeneralResponse(e.getMessage()));
+        }
+    }
 }
 
 
@@ -87,7 +104,9 @@ public class UserController {
 
 
 
-
+//            else {
+//                return ResponseEntity.status(HttpStatus.NOT_MODIFIED).body(new GeneralResponse("No changes were made"));
+//            }
 
 
 

@@ -5,6 +5,7 @@ import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http'
 import Swal from 'sweetalert2';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-car-selection',
@@ -51,7 +52,7 @@ export class CarSelectionComponent implements OnInit {
 
   private apiUrl = 'http://localhost:8080/api/slot-bookings';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient , private router : Router) {
     const today = new Date();
     this.todayDate = today.toISOString().split('T')[0];  
   }
@@ -60,6 +61,22 @@ export class CarSelectionComponent implements OnInit {
     this.fetchCarsFromBackend(); 
     this.startImageCycle();
     this.handleScroll();
+    const name = localStorage.getItem("username");
+    const email = localStorage.getItem("useremail");
+    const phone = localStorage.getItem("phone");
+    const address = localStorage.getItem("address");
+    if (name) {
+      this.formData.name = name;
+    }
+    if (email) {
+      this.formData.email = email;
+    }
+    if(phone){
+      this.formData.phone = phone;
+    }
+    if(address){
+      this.formData.address = address;
+    }
   }
 
   fetchCarsFromBackend(): void {
@@ -113,6 +130,12 @@ export class CarSelectionComponent implements OnInit {
   }
 
   toggleBooking(carName: String): void {
+   
+  const isLoggedIn = localStorage.getItem("login") !== null;
+  if (!isLoggedIn) {
+    alert('Please log in to book a slot');
+    this.router.navigateByUrl("/login")
+  }
     this.isBookingClicked = !this.isBookingClicked;
     this.selectedCar = this.cars.find(car => car.name === carName);
   }

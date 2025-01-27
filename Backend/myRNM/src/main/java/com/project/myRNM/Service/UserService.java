@@ -3,6 +3,7 @@ package com.project.myRNM.Service;
 import com.project.myRNM.DTOs.MonthlyUserCount;
 import com.project.myRNM.DTOs.UserDTO;
 import com.project.myRNM.Entity.Users;
+import com.project.myRNM.Exception.UserNotFoundException;
 import com.project.myRNM.Repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,7 +34,8 @@ public class UserService {
         Optional<Users> users = userRepo.login(email, password);
         return users.orElseThrow(() -> new RuntimeException("Invalid email or password"));
     }
-    public List<Users> getUserData(){
+
+    public List<Users> getUserData() {
         return userRepo.findAll();
     }
 
@@ -46,13 +48,16 @@ public class UserService {
                 .map(user -> new UserDTO(user.getId(), user.getName(), user.getEmail(), user.getMobile(), user.getAddress()))
                 .collect(Collectors.toList());
     }
-    public Integer totalUsers(){
+
+    public Integer totalUsers() {
         return userRepo.totalUsers();
     }
-    public Long last30users(){
+
+    public Long last30users() {
         LocalDate thirtyDaysAgo = LocalDate.now().minusDays(30);
         Long count = userRepo.countUsersRegisteredInLast30Days(thirtyDaysAgo);
-    return count;}
+        return count;
+    }
 
     public List<MonthlyUserCount> getMonthlyUserCounts() {
         List<Object[]> results = userRepo.findMonthlyUserCounts();
@@ -69,4 +74,14 @@ public class UserService {
     }
 
 
+    public Users updateProfile(Long id, Users users) throws Exception {
+        Users foundUser = userRepo.findById(id).orElse(null);
+//        System.out.println("-----"+foundUser);
+        if (foundUser == null) {
+            throw new UserNotFoundException("User with id " + id + " not found");
+        }
+        foundUser.setAddress(users.getAddress());
+        foundUser.setMobile(users.getMobile());
+        return userRepo.save(foundUser);
+    }
 }
