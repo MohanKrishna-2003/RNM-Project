@@ -412,6 +412,7 @@ button.cancel:hover {
     display: inline-flex;
     justify-content: flex-end;
     padding-top: 10px;
+    padding-right: 80px;
   }
   @media (max-width: 767px) {
     .single-notification .action {

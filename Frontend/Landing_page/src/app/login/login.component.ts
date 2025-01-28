@@ -33,6 +33,8 @@ export class LoginComponent {
         localStorage.setItem("id",res.id);
         localStorage.setItem("username",res.name);
         localStorage.setItem("useremail",res.email);
+        localStorage.setItem("phone",res.mobile);
+        localStorage.setItem("address",res.address)
         // localStorage.removeItem("login");
         // localStorage.clear(); 
         

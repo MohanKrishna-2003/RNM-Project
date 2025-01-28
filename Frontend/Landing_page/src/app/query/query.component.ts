@@ -26,6 +26,7 @@ export class QueryComponent {
   email: string = '';
   subject: string = '';
   message: string = '';
+  selectedmail: String='';
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
@@ -61,8 +62,9 @@ export class QueryComponent {
     return classes[index % classes.length];
   }
 
-  openForm() {
+  openForm(email:String) {
     this.isFormVisible = true;
+    this.selectedmail=email;
   }
 
   closeForm() {
@@ -70,11 +72,10 @@ export class QueryComponent {
   }
   onSubmit() {
     let data={
-      "recipient": "nayanadece@gmail.com",
+      "recipient": this.selectedmail,
       "text":this.message,
       "subject":this.subject
     }
-    if (this.email && this.message) {
       console.log(data);
       alert("EMAIL SUCCESFULLY SEND !!")
 
@@ -85,5 +86,5 @@ export class QueryComponent {
         }
       });
     }
-    }
+    
 }

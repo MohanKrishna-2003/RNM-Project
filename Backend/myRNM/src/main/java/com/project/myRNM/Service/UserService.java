@@ -32,7 +32,8 @@ public class UserService {
         Optional<Users> users = userRepo.login(email, password);
         return users.orElseThrow(() -> new RuntimeException("Invalid email or password"));
     }
-    public List<Users> getUserData(){
+
+    public List<Users> getUserData() {
         return userRepo.findAll();
     }
 
@@ -45,13 +46,16 @@ public class UserService {
                 .map(user -> new UserDTO(user.getId(), user.getName(), user.getEmail(), user.getMobile(), user.getAddress()))
                 .collect(Collectors.toList());
     }
-    public Integer totalUsers(){
+
+    public Integer totalUsers() {
         return userRepo.totalUsers();
     }
-    public Long last30users(){
+
+    public Long last30users() {
         LocalDate thirtyDaysAgo = LocalDate.now().minusDays(30);
         Long count = userRepo.countUsersRegisteredInLast30Days(thirtyDaysAgo);
-    return count;}
+        return count;
+    }
 
     public List<MonthlyUserCount> getMonthlyUserCounts() {
         List<Object[]> results = userRepo.findMonthlyUserCounts();
@@ -68,5 +72,10 @@ public class UserService {
     }
 
 
-
+    public Users updateProfile(Long id, Users users) throws Exception {
+        Users foundUser = userRepo.findById(id).orElse(null);
+        if (foundUser == null) {
+        foundUser.setMobile(users.getMobile());
+        return userRepo.save(foundUser);
+    }
 }

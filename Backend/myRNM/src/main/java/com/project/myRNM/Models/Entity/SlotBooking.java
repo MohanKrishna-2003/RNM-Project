@@ -4,6 +4,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,9 +21,20 @@ import java.time.LocalDateTime;
 @Table(name = "slot_booking")
 public class SlotBooking {
 
-    @NotNull
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private Users user;
+
+    @ManyToOne
+    @JoinColumn(name = "center_id")
+    private Center center;
+
     @Column(nullable = false, unique = true)
-    // yoo, I have set mail here as the primary key.
     private String email;
 
     private String name;
@@ -37,8 +50,8 @@ public class SlotBooking {
     @Column(name = "time_slot")
     private String timeSlot;
 
-    @Column(name = "showroom_location")
-    private String showroomLocation;
+//    @Column(name = "showroom_location")
+//    private String showroomLocation;
 
     @Id
     private Integer id;
@@ -53,7 +66,7 @@ public class SlotBooking {
 //    @JsonProperty("selectedCarDetails")
     private String selectedCarDetails;
 
-    @Column(name = "brand")
-    private String brand;
+//    @Column(name = "brand")
+//    private String brand;
 
 }

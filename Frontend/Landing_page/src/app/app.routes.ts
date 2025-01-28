@@ -47,8 +47,8 @@ export const routes: Routes = [
   {"path":"settings", component:AdminSettingsComponent},
   {"path":"notifications", component:NotificationsComponent},
   {"path":"dashboard", component:AdminDashbaordComponent},
-  {"path":"contact-query", component:QueryComponent}
-  { path: 'booking', component: BookingComponent },
+  {"path":"contact-query", component:QueryComponent},
+ { path: 'booking', component: BookingComponent },
   {path:'news',component:NewsComponent},
   {path:'feedback',component:FeedbackComponent}
 ];

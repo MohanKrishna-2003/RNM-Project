@@ -5,11 +5,13 @@ import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http'
 import Swal from 'sweetalert2';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
+import { Router, RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-car-selection',
   standalone: true,
-  imports: [FormsModule, CommonModule, HttpClientModule, HeaderComponent, FooterComponent],
+  imports: [FormsModule, CommonModule, HttpClientModule],
   templateUrl: './car-selection.component.html',
   styleUrls: ['./car-selection.component.css']
 })
@@ -28,7 +30,6 @@ export class CarSelectionComponent implements OnInit {
   cars: any[] = [];
   showGif: boolean = true;
   gifPath: string = 'assets/gifs/loading.gif';
-  selectedBrand: string = 'Renault';
   isBookingClicked: boolean = false;
   selectedCar: any = null;
   isFilterSidebarOpen: boolean = false;
@@ -36,40 +37,142 @@ export class CarSelectionComponent implements OnInit {
   sortBy: string = '';
   todayDate: string;
   status: boolean = true;
-  currentStep: number = 1; 
+  currentStep: number = 1;
 
   formData = {
-    name: '',                   
-    phone: '',                  
-    email: '',                  
-    address: '',                
-    preferredDate: new Date(),  
-    timeSlot: '',               
-    showroomLocation: '',       
-    confirmation: false         
+    name: '',
+    phone: '',
+    email: '',
+    address: '',
+    preferredDate: new Date(),
+    status: "pending",
+    timeSlot: '',
+    confirmation: false,
   };
+
+
+  brands: any[] = [];
+  selectedBrand: string = 'Renault';
+  selectedCenter: any;
+  filteredLocations: any[] = [];
+  availableTimeSlots: any[] = [];
+  selectedCenterId: number = 1;
 
   private apiUrl = 'http://localhost:8080/api/slot-bookings';
 
-  constructor(private http: HttpClient) {
+
+
+  constructor(private http: HttpClient , private router : Router) {
     const today = new Date();
     this.todayDate = today.toISOString().split('T')[0];  
   }
 
+
   ngOnInit(): void {
-    this.fetchCarsFromBackend(); 
+    this.http.get<any>('http://localhost:8080/api/brands').subscribe(
+      (data) => {
+        this.brands = data;  
+        console.log(this.brands);
+      },
+      (error) => {
+        console.error('Error fetching brands data', error);  // Handle error
+      }
+    );
+    this.fetchCarsFromBackend();
     this.startImageCycle();
     this.handleScroll();
+    const name = localStorage.getItem("username");
+    const email = localStorage.getItem("useremail");
+    const phone = localStorage.getItem("phone");
+    const address = localStorage.getItem("address");
+    if (name) {
+      this.formData.name = name;
+    }
+    if (email) {
+      this.formData.email = email;
+    }
+    if(phone){
+      this.formData.phone = phone;
+    }
+    if(address){
+      this.formData.address = address;
+    }
+  }
+
+  toggleBooking(carName: String): void {
+    this.isBookingClicked = !this.isBookingClicked;
+    this.selectedCar = this.cars.find(car => car.name === carName);
+    console.log(this.selectedCar);
+    if (this.selectedCar) {
+      this.getFilteredCenters();
+    }
+  }
+
+
+  getFilteredCenters(): void {
+    if (this.selectedBrand) {
+      const selectedBrand = this.brands.find(
+        brand => brand.name.toLowerCase() === this.selectedBrand.toLowerCase()
+      );
+
+      if (selectedBrand) {
+        this.filteredLocations = selectedBrand.centers || []; // Assign the centers
+      } else {
+        this.filteredLocations = []; // Reset if brand is not found
+      }
+    } else {
+      this.filteredLocations = []; // Reset if no brand is selected
+    }
+  }
+
+  // Update time slots based on the selected showroom location
+  updateAvailableTimeSlots(selectedCenterId: number | string): void {
+    console.log('Filtered Locations:', this.filteredLocations);
+    console.log('Selected Center ID:', selectedCenterId);
+
+    // Ensure selectedCenterId is a number
+    const centerId = typeof selectedCenterId === 'string' ? Number(selectedCenterId) : selectedCenterId;
+
+    const selectedCenter = this.filteredLocations.find(center => center.id === centerId);
+    console.log('Selected Center:', selectedCenter);
+
+    if (selectedCenter) {
+      this.availableTimeSlots = [
+        { key: 'morning', label: 'Morning (9:00 AM - 12:00 PM)', count: selectedCenter.morningSlots },
+        { key: 'afternoon', label: 'Afternoon (12:00 PM - 3:00 PM)', count: selectedCenter.afternoonSlots },
+        { key: 'evening', label: 'Evening (3:00 PM - 6:00 PM)', count: selectedCenter.eveningSlots },
+      ].filter(slot => slot.count > 0); // Only show slots with availability
+    } else {
+      this.availableTimeSlots = []; // Reset if no center is selected
+    }
+  }
+
+
+
+  constructor(private http: HttpClient) {
+    console.log("working");
+    console.log(this.filteredLocations);
+    const today = new Date();
+    this.todayDate = today.toISOString().split('T')[0];
   }
 
   fetchCarsFromBackend(): void {
-    this.http.get<any[]>('http://localhost:8080/api/cars') 
+    this.http.get<any[]>('http://localhost:8080/api/cars')
       .subscribe(cars => {
         this.cars = cars;
         this.displayedCars = [...this.cars];
         this.showGif = false;
+
+        this.displayedCars.forEach(car => {
+          car.bookSlot = () => {
+            this.selectedBrand = car.brand; // Set the selected brand based on clicked car
+            // this.updateShowroomLocations(); // Update showroom locations based on selected brand
+          };
+        });
         // console.log(this.displayedCars)
       });
+
+
   }
 
   displayCars(brand: string): void {
@@ -108,11 +211,19 @@ export class CarSelectionComponent implements OnInit {
     });
   }
 
+
   toggleFilterSidebar(): void {
     this.isFilterSidebarOpen = !this.isFilterSidebarOpen;
   }
 
+
   toggleBooking(carName: String): void {
+   
+  const isLoggedIn = localStorage.getItem("login") !== null;
+  if (!isLoggedIn) {
+    alert('Please log in to book a slot');
+    this.router.navigateByUrl("/login")
+  }
     this.isBookingClicked = !this.isBookingClicked;
     this.selectedCar = this.cars.find(car => car.name === carName);
   }
@@ -279,30 +390,72 @@ export class CarSelectionComponent implements OnInit {
     }
   }
 
+
+  userId: number;
+
+
+  fetchUserIdByEmail(email: string): any {
+    return this.http.get<number>(`http://localhost:8080/user/getUserIdByEmail/${email}`);
+  }
+
   submitForm(): void {
-    const formattedDate = this.formData.preferredDate ? this.formData.preferredDate.toISOString() : '';
+    // Check if preferredDate is a valid date object, and if not, attempt to convert it
+    let formattedDate = '';
+    if (this.formData.preferredDate) {
+      const preferredDate = new Date(this.formData.preferredDate);
+      if (!isNaN(preferredDate.getTime())) {
+        formattedDate = preferredDate.toISOString();
+      } else {
+        console.error('Invalid date:', this.formData.preferredDate);
+      }
+    }
+  
+    const email = this.formData.email;
+    if (email) {
+      // Fetch User ID by email
+      this.fetchUserIdByEmail(email).subscribe({
+        next: (userId: any) => {
+          console.log('User ID fetched successfully:', userId);
+          this.userId = userId;
+  
+          // Proceed with submitting the form only after user ID is available
+          this.submitBookingForm(formattedDate);
+        },
+        error: (err: any) => {
+          console.error('Failed to fetch User ID:', err);
+          alert('Unable to fetch user details. Please try again.');
+        }
+      });
+    } else {
+      alert('Please provide an email to proceed.');
+    }
+  }
+  
+  submitBookingForm(formattedDate: string): void {
     const formDataToSend = {
       ...this.formData,
       preferredDate: formattedDate,
+      user: { id: this.userId },
+      center: { id: Number(this.selectedCenterId) },
       selectedCarDetails: this.selectedCar.name
     };
-
-    
+    console.log(formDataToSend);
+  
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+  
     this.http.post(this.apiUrl, formDataToSend, { headers }).subscribe(
       (response) => {
-        console.log(formDataToSend);  // Checking the data being sent to the backend
-
+        console.log('Booking successful:', response);
         this.showSuccessDialog();
       },
       (error) => {
-      
-        console.log(formDataToSend);  // Checking the data being sent to the backend
-        
+        console.error('Booking failed:', error);
         this.showFailureDialog();
       }
     );
   }
+  
+
 
   confirmBooking(): void {
     this.formData.confirmation = true;
@@ -314,18 +467,27 @@ export class CarSelectionComponent implements OnInit {
     this.submitForm();
   }
 
-  isStepValid(): boolean {
-    switch (this.currentStep) {
-      case 1:
-        return !!this.formData.name && !!this.formData.phone && !!this.formData.email;
-      case 2:
-        return !!this.formData.preferredDate && !!this.formData.timeSlot && !!this.formData.showroomLocation;
-      case 3:
-        return true;
-      default:
-        return false;
+  isStepValid(): any {
+    if (this.currentStep === 1) {
+      // Step 1: Check if all required fields are valid
+      return this.formData.name?.trim() &&
+        this.formData.phone?.trim() &&
+        this.formData.phone?.length === 10 &&
+        /^\d{10}$/.test(this.formData.phone) &&
+        this.formData.email?.trim() &&
+        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(this.formData.email);
+    } else if (this.currentStep === 2) {
+      // Step 2: Check if all required fields are valid
+      return this.formData.preferredDate &&
+        this.selectedCenterId &&
+        this.formData.timeSlot;
+    } else if (this.currentStep === 3) {
+      // Step 3: Always valid as it is just a confirmation step
+      return true;
     }
+    return false;
   }
+
 
   showSuccessDialog(): void {
     this.closeForm();
@@ -363,3 +525,19 @@ export class CarSelectionComponent implements OnInit {
     });
   }
 }
+
+
+//hey I have used cron for daily reset of the slot bookings 
+// ┌───────────── Second (0–59)
+// │ ┌───────────── Minute (0–59)
+// │ │ ┌───────────── Hour (0–23)
+// │ │ │ ┌───────────── Day of Month (1–31)
+// │ │ │ │ ┌───────────── Month (1–12 or JAN–DEC)
+// │ │ │ │ │ ┌───────────── Day of Week (0–7 or SUN–SAT, 0 and 7 both mean Sunday)
+// │ │ │ │ │ │
+// * * * * * *
+
+// 0 0 0 * * *: Runs every day at midnight.
+// 0 */5 * * * *: Runs every 5 minutes.
+// 0 0 12 * * *: Runs daily at 12:00 PM.
+// 0 0 0 1 1 *: Runs yearly on January 1 at midnight

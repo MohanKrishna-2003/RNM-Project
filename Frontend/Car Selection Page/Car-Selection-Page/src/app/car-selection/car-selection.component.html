@@ -37,11 +37,7 @@
         </div>
       </div>
       <div class="left-section-content">
-        <div class="question-wrapper">
-          <h2 class="question-text two">
-            <a id="q2" href="#brand-section" role="button">Click here to select your car....</a>
-          </h2>
-        </div>
+
         <!--  
                 <div class="answer-wrapper">
                     <img src="/assets/images/newt.webp" alt="Tyre Icon" class="answer-icon" />
@@ -199,30 +195,106 @@
   </div>
 </div>
 
+
+<div *ngIf="brands.length === 0" class="text-center mt-5">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <p class="mt-3">Loading brands data...</p>
+</div>
+
+<div *ngIf="brands.length > 0" class="container-fluid mt-5">
+  <!-- Interactive Heading -->
+  <div class="text-center mb-5">
+    <h2 class="display-4 showroom">
+      <img src="/assets/images/thun.gif" class="smallthun" alt=""> Showrooms Available Today!
+    </h2>
+
+  </div>
+
+  <div class="row">
+    <div *ngFor="let brand of brands" class="col-md-4 mb-4">
+      <div class="card border-0 shadow rounded-lg">
+        <div class="card-body p-4 text-center">
+          <h5 class="card-title mb-4 display-4 brand-name">
+            <span class="blinking-circle">🔴</span>{{ brand.name }}
+          </h5>
+
+          <div *ngFor="let center of brand.centers" class="mb-4">
+            <div class="card bg-light rounded-lg">
+              <div class="card-body">
+                <!-- Center Image and Info -->
+                <div class="d-flex align-items-center mb-3">
+                  <img src="/assets/images/{{ center.name }}.png" alt="{{ center.name }}" class="center-image mr-3" />
+                  <br>
+                  <div>
+                    <h6 class="card-title mb-1">{{ center.name }}</h6> <br>
+                    <p class="card-text mb-1">
+                      <strong>Location:</strong> {{ center.location }}
+                    </p>
+                  </div>
+                </div><br>
+
+                <!-- Slots in Single Line -->
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <span class="badge px-3 py-2" [ngClass]="{
+                      'alert-success': (center.morningSlots || 0) > 5,
+                      'alert-warning': (center.morningSlots || 0) <= 5 && (center.morningSlots || 0) > 2,
+                      'alert-danger': (center.morningSlots || 0) <= 2
+                    }">
+                    Morning: {{ center.morningSlots || 0 }} <span class="text-danger live-heading">slots!</span>
+                  </span>
+                  <span class="badge px-3 py-2" [ngClass]="{
+                      'alert-success': (center.afternoonSlots || 0) > 5,
+                      'alert-warning': (center.afternoonSlots || 0) <= 5 && (center.afternoonSlots || 0) > 2,
+                      'alert-danger': (center.afternoonSlots || 0) <= 2
+                    }">
+                    Afternoon: {{ center.afternoonSlots || 0 }} <span class="text-danger live-heading">slots!</span>
+                  </span>
+                  <span class="badge px-3 py-2" [ngClass]="{
+                      'alert-success': (center.eveningSlots || 0) > 5,
+                      'alert-warning': (center.eveningSlots || 0) <= 5 && (center.eveningSlots || 0) > 2,
+                      'alert-danger': (center.eveningSlots || 0) <= 2
+                    }">
+                    Evening: {{ center.eveningSlots || 0 }} <span class="text-danger live-heading">slots!</span>
+                  </span>
+                </div><br>
+
+                <!-- Total Available Slots -->
+                <div class="alert" [ngClass]="{
+                    'alert-success': (center.availableSlots || 0) > 10,
+                    'alert-warning': (center.availableSlots || 0) <= 10 && (center.availableSlots || 0) > 5,
+                    'alert-danger': (center.availableSlots || 0) <= 5
+                  }">
+                  <strong>Total Available Slots:</strong> {{ center.availableSlots || 0 }}
+                  <span class="text-danger live-heading">Live!</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<br><br>
+
+<div class="question-wrapper">
+  <h2 class="question-text two">
+    <a id="q2" href="#brand-section" role="button">Click a brand to select your car....</a>
+  </h2>
+</div>
+
+
 <div class="brand-section" id="brand-section" [class.shifted]="isFilterSidebarOpen">
   <br />
   <div class="brand-tabs">
     <button (click)="toggleFilterSidebar()" class="brand-logo filter">
       <img src="/assets/images/filter.jpg" alt="Filter" class="filter" />
     </button>
-
-    <!-- <button (click)="displayCars('Renault')" class="brand-logo renault">
-      <img
-        src="/assets/images/renonewlogo.jpg"
-        alt="Renault"
-        class="brand-icon"
-      />
-    </button>
-    <button (click)="displayCars('Nissan')" class="brand-logo nissan">
-      <img
-        src="/assets/images/nissanlogo.png"
-        alt="Nissan"
-        class="brand-icon"
-      />
-    </button>
-    <button (click)="displayCars('Mitsubishi')" class="brand-logo mitsubishi">
-      <img src="/assets/images/newm.webp" alt="Mitsubishi" class="brand-icon" />
-    </button> -->
     <div class="form-check form-check-inline">
       <label class="form-check-label" for="renault">
         <img src="/assets/images/renonewlogo.jpg" alt="Renault" class="brand-icon" />
@@ -250,7 +322,6 @@
   </div>
 
   <div class="gif-container" *ngIf="showGif; else carsDisplay">
-    <!-- <img [src]="staticPics[currentImageIndex]" alt="Cycling Image" class="cycling-image" /> -->
     <h1>Sorry we couldn't load the cars at the moment! Try again later...</h1>
   </div>
 
@@ -447,140 +518,144 @@
       </form>
     </div> -->
 
+
+
     <div class="formbold-form-wrapper" id="rightform">
       <br /><br />
       <h2>Book Your Test Drive Slot</h2>
       <br /><br />
 
       <!-- <form id="slot-booking-form"> -->
-        <div class="formbold-steps">
-          <ul>
-            <li class="formbold-step-menu1" [ngClass]="{ active: currentStep === 1 }">
-              <span>1</span> Sign Up
-            </li>
-            <li class="formbold-step-menu2" [ngClass]="{ active: currentStep === 2 }">
-              <span>2</span> Test Slot Availability
-            </li>
-            <li class="formbold-step-menu3" [ngClass]="{ active: currentStep === 3 }">
-              <span>3</span> Confirmation
-            </li>
-          </ul>
+      <div class="formbold-steps">
+        <ul>
+          <li class="formbold-step-menu1" [ngClass]="{ active: currentStep === 1 }">
+            <span>1</span> Sign Up
+          </li>
+          <li class="formbold-step-menu2" [ngClass]="{ active: currentStep === 2 }">
+            <span>2</span> Test Slot Availability
+          </li>
+          <li class="formbold-step-menu3" [ngClass]="{ active: currentStep === 3 }">
+            <span>3</span> Confirmation
+          </li>
+        </ul>
+      </div>
+
+      <!-- Step 1 Content -->
+      <div class="formbold-form-step-1" [ngClass]="{ active: currentStep === 1 }">
+        <div>
+          <label for="name" class="formbold-form-label">User name</label>
+          <input type="text" name="name" id="firstname" placeholder="Enter your name" class="formbold-form-input"
+            [(ngModel)]="formData.name" #name="ngModel" required />
+          <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error">
+            <!-- <small *ngIf="name.errors?.['required']">Name is required.</small> -->
+          </div>
         </div>
 
-        <!-- Step 1 Content -->
-        <div class="formbold-form-step-1" [ngClass]="{ active: currentStep === 1 }">
+        <div class="formbold-input-flex">
           <div>
-            <label for="name" class="formbold-form-label">User name</label>
-            <input type="text" name="name" id="firstname" placeholder="Enter your name" class="formbold-form-input"
-              [(ngModel)]="formData.name" #name="ngModel" required />
-            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error">
-              <!-- <small *ngIf="name.errors?.['required']">Name is required.</small> -->
-            </div>
-          </div>
-
-          <div class="formbold-input-flex">
-            <div>
-              <label for="phone" class="formbold-form-label">Phone Number</label>
-              <input type="text" name="phone" id="phone" class="formbold-form-input"
-                placeholder="Enter your phone number" [(ngModel)]="formData.phone" #phone="ngModel" required
-                pattern="^\d{10}$" maxlength="10" minlength="10"
-                [ngClass]="{'is-invalid': phone.invalid && (phone.dirty || phone.touched)}" />
-              <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="error">
-                <!-- <small *ngIf="phone.errors?.['required']">Phone number is required.</small>
+            <label for="phone" class="formbold-form-label">Phone Number</label>
+            <input type="text" name="phone" id="phone" class="formbold-form-input" placeholder="Enter your phone number"
+              [(ngModel)]="formData.phone" #phone="ngModel" required pattern="^\d{10}$" maxlength="10" minlength="10"
+              [ngClass]="{'is-invalid': phone.invalid && (phone.dirty || phone.touched)}" />
+            <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="error">
+              <!-- <small *ngIf="phone.errors?.['required']">Phone number is required.</small>
                 <small *ngIf="phone.errors?.['pattern']">Phone number must be exactly 10 digits.</small> -->
-              </div>
-            </div>
-
-            <div>
-              <label for="email" class="formbold-form-label">Email Address</label>
-              <input type="email" name="email" id="email" placeholder="Enter your email" class="formbold-form-input"
-                [(ngModel)]="formData.email" #email="ngModel" required />
-              <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error">
-                <!-- <small *ngIf="email.errors?.['required']">Email is required.</small> -->
-                <small *ngIf="email.errors?.['email']">Invalid email format.</small>
-              </div>
             </div>
           </div>
 
           <div>
-            <label for="address" class="formbold-form-label">Address</label>
-            <input type="text" name="address" id="address" placeholder="Enter your address" class="formbold-form-input"
-              [(ngModel)]="formData.address" />
-          </div>
-        </div>
-
-        <!-- Step 2 Content -->
-        <div class="formbold-form-step-2" [ngClass]="{ active: currentStep === 2 }">
-          <div>
-            <label for="preferred-date" class="formbold-form-label">Preferred Date</label>
-            <input type="date" id="preferred-date" class="formbold-form-input" [(ngModel)]="formData.preferredDate"
-              #preferredDate="ngModel" required [min]="todayDate" />
-            <div *ngIf="preferredDate.invalid && (preferredDate.dirty || preferredDate.touched)" class="error">
-              <small *ngIf="preferredDate.errors?.['required']">Preferred date is required.</small>
-            </div>
-
-
-            <label for="time-slot" class="formbold-form-label">Preferred Time Slot</label>
-            <select id="time-slot" class="formbold-form-input" [(ngModel)]="formData.timeSlot" name="timeSlot"
-              #timeSlot="ngModel" required>
-              <option [value]="" disabled>Select a time slot</option>
-              <option value="morning">Morning (9:00 AM - 12:00 PM)</option>
-              <option value="afternoon">Afternoon (12:00 PM - 3:00 PM)</option>
-              <option value="evening">Evening (3:00 PM - 6:00 PM)</option>
-            </select>
-            <div *ngIf="timeSlot.invalid && (timeSlot.dirty || timeSlot.touched)" class="error">
-              <small *ngIf="timeSlot.errors?.['required']">Time slot is required.</small>
-            </div>
-
-            <label for="showroom" class="formbold-form-label">Preferred Showroom Location</label>
-            <select id="showroom" class="formbold-form-input" [(ngModel)]="formData.showroomLocation"
-              name="showroomLocation" #showroomLocation="ngModel" required>
-              <option [value]="" disabled>Select a Location</option>
-              <option value="chennai">Chennai</option>
-              <option value="madurai">Madurai</option>
-              <option value="coimbatore">Coimbatore</option>
-            </select>
-            <div *ngIf="showroomLocation.invalid && (showroomLocation.dirty || showroomLocation.touched)" class="error">
-              <small *ngIf="showroomLocation.errors?.['required']">Showroom location is required.</small>
+            <label for="email" class="formbold-form-label">Email Address</label>
+            <input type="email" name="email" id="email" placeholder="Enter your email" class="formbold-form-input"
+              [(ngModel)]="formData.email" #email="ngModel" required />
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error">
+              <!-- <small *ngIf="email.errors?.['required']">Email is required.</small> -->
+              <small *ngIf="email.errors?.['email']">Invalid email format.</small>
             </div>
           </div>
         </div>
 
-        <!-- Step 3 Content -->
-        <div class="formbold-form-step-3" [ngClass]="{ active: currentStep === 3 }">
-          <div>
-            <p>
-              You are about to finalize your booking. Please ensure the information provided is correct before
-              confirming.
-              You will be responsible for any damage to the car during the rental period, excluding wear and tear.
-            </p>
-            <br /><br />
-            <div class="formbold-form-btn-wrapper">
-              <!-- Back Button -->
-              <button class="formbold-btn" type="button" (click)="goBack()">
-                Back
-              </button>
-              <!-- Confirmation Buttons -->
-              <button class="formbold-confirm-btn active" type="button" (click)="confirmBooking()"
-                style="margin-right: 10px;">
-                Yes! I Agree.
-              </button>
-              <button class="formbold-confirm-btn" type="button" (click)="goBack()" style="margin-left: 10px;">
-                No! I Don’t Agree
-              </button>
-            </div>
+        <div>
+          <label for="address" class="formbold-form-label">Address</label>
+          <input type="text" name="address" id="address" placeholder="Enter your address" class="formbold-form-input"
+            [(ngModel)]="formData.address" />
+        </div>
+      </div>
+
+      <!-- Step 2 Content -->
+      <div class="formbold-form-step-2" [ngClass]="{ active: currentStep === 2 }">
+        <div>
+          <label for="preferred-date" class="formbold-form-label">Preferred Date</label>
+          <input type="date" id="preferred-date" class="formbold-form-input" [(ngModel)]="formData.preferredDate"
+            #preferredDate="ngModel" required [min]="todayDate" />
+          <div *ngIf="preferredDate.invalid && (preferredDate.dirty || preferredDate.touched)" class="error">
+            <small *ngIf="preferredDate.errors?.['required']">Preferred date is required.</small>
+          </div>
+
+
+          <!-- Showroom Dropdown -->
+          <label for="showroom" class="formbold-form-label">Preferred Showroom Location</label>
+          <select id="showroom" class="formbold-form-input" [(ngModel)]="selectedCenterId"
+            (change)="updateAvailableTimeSlots(selectedCenterId)" name="showroomLocation" #showroomLocation="ngModel"
+            required>
+            <option [value]="" disabled>Select a Location</option>
+            <option *ngFor="let center of filteredLocations" [value]="center.id">
+              {{ center.name }} - {{ center.location }} (Available  Test Drive Slots: {{ center.availableSlots }})
+            </option>
+          </select>
+          <div *ngIf="showroomLocation.invalid && (showroomLocation.dirty || showroomLocation.touched)" class="error">
+            <small *ngIf="showroomLocation.errors?.['required']">Showroom location is required.</small>
+          </div>
+
+          <!-- Time Slot Dropdown -->
+          <label for="time-slot" class="formbold-form-label">Preferred Time Slot</label>
+          <select id="time-slot" class="formbold-form-input" [(ngModel)]="formData.timeSlot" name="timeSlot"
+            #timeSlot="ngModel" required>
+            <option [value]="" disabled>Select a time slot</option>
+            <option *ngFor="let slot of availableTimeSlots" [value]="slot.key">
+              {{ slot.label }} (Available Slots: {{ slot.count }})
+            </option>
+          </select>
+          <div *ngIf="timeSlot.invalid && (timeSlot.dirty || timeSlot.touched)" class="error">
+            <small *ngIf="timeSlot.errors?.['required']">Time slot is required.</small>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Step 3 Content -->
+      <div class="formbold-form-step-3" [ngClass]="{ active: currentStep === 3 }">
+        <div>
+          <p>
+            You are about to finalize your booking. Please ensure the information provided is correct before
+            confirming.
+            You will be responsible for any damage to the car during the rental period, excluding wear and tear.
+          </p>
+          <br /><br />
+          <div class="formbold-form-btn-wrapper">
+            <!-- Back Button -->
+            <button class="formbold-btn" type="button" (click)="goBack()">
+              Back
+            </button>
+            <!-- Confirmation Buttons -->
+            <button class="formbold-confirm-btn active" type="button" (click)="confirmBooking()"
+              style="margin-right: 10px;">
+              Yes! I Agree.
+            </button>
+            <button class="formbold-confirm-btn" type="button" (click)="goBack()" style="margin-left: 10px;">
+              No! I Don’t Agree
+            </button>
           </div>
         </div>
-
-        <!-- Buttons for Navigation -->
-        <div class="formbold-form-btn-wrapper" *ngIf="currentStep < 3">
-          <button class="formbold-btn proper" type="button" (click)="goBack()" *ngIf="currentStep > 1">
-            Back
-          </button>
-          <button class="formbold-btn" type="button" [disabled]="!isStepValid()" (click)="nextStep()">
-            {{ currentStep === 3 ? "Submit" : "Next Step" }}
-          </button>
-        </div>
+      </div>
+      
+      <div class="formbold-form-btn-wrapper" *ngIf="currentStep < 3">
+        <button class="formbold-btn proper" type="button" (click)="goBack()" *ngIf="currentStep > 1">
+          Back
+        </button>
+        <button class="formbold-btn" type="button" [disabled]="!isStepValid()" (click)="nextStep()">
+          {{ currentStep === 3 ? "Submit" : "Next Step" }}
+        </button>
+      </div>
       <!-- </form> -->
     </div>
 

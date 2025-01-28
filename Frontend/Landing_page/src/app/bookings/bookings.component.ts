@@ -87,11 +87,21 @@ export class BookingsComponent implements OnInit {
     "id":booking.id,
     "status":"Cancelled"
     }
-    let email={
-      "recipient":"nayanadece@gmail.com",
-      "text":"We are sorry to inform you that your booking for the date "+booking.preferredDate+" is cancelled. Sorry for the inconvinience!!",
-      "subject":"BOOKING CANCELLED !"
-    }
+    let email = {
+      "recipient": booking.email,
+      "text": `Dear User,
+    
+    We regret to inform you that your booking for the test drive on ${booking.preferredDate} has been canceled. We understand this may be disappointing, and we sincerely apologize for any inconvenience this may have caused. 
+    
+    If you would like to rebook or have any further questions, feel free to reach out to us, and we will be happy to assist you.
+    
+    Thank you for your understanding.
+    
+    Best regards,
+    The myRNM Team`,
+      "subject": "Your Test Drive Booking Has Been Canceled"
+    };
+    
     if (confirm(`Are you sure you want to cancel this booking?`)) {
       this.http.post("http://localhost:8080/api/slot-bookings/updatestatus",data).subscribe((res) => {
        console.log(res);
@@ -112,11 +122,21 @@ export class BookingsComponent implements OnInit {
       "id":booking.id,
       "status":"Confirmed"
       }
-      let email={
-        "recipient":"nayanadece@gmail.com",
-        "text":"Dear User! Your booking has been confirmed for "+booking.preferredDate,
-        "subject":"BOOKING CONFIRMATION !"
-      }
+      let email = {
+        "recipient": booking.email,
+        "text": `Dear User,
+      
+      We are excited to confirm that your booking for the test drive on ${booking.preferredDate} has been successfully confirmed! Get ready to experience the drive of your life with the ${booking.selectedCarDetails}. 
+      
+      Please ensure to arrive at the scheduled time. If you need to make any changes or have any questions, don't hesitate to reach out. 
+      
+      We look forward to seeing you soon!
+      
+      Best regards,
+      The myRNM Team`,
+        "subject": "Your Test Drive Booking is Confirmed!"
+      };
+      
       this.http.post("http://localhost:8080/api/slot-bookings/updatestatus",data).subscribe((res) => {
         console.log(res);
         

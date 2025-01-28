@@ -21,7 +21,7 @@
       </div>
       <div class="action">
        
-        <button class="more-btn" id="moreAction"  aria-expanded="false" (click)="openForm()">
+        <button class="more-btn" id="moreAction"  aria-expanded="false" (click)="openForm(contact.email)">
           <i class="bi bi-telegram" style="font-size: 30px;"></i> 
         </button>
       </div>
@@ -46,7 +46,7 @@
       
       <div class="form-group">
         <label for="email">Recipient Email:</label>
-        <input type="email" id="email" [(ngModel)]="email" name="email" class="form-control" required />
+        <input type="email" id="email" [(ngModel)]="email" name="email" class="form-control" required   [(ngModel)]="selectedmail"/>
       </div>
 
       <div class="form-group">

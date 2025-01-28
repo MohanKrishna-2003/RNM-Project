@@ -21,6 +21,11 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+    @ManyToOne
+    @JoinColumn(name = "center_id")
+    private Center center;
+
     private String brand;
     private String brandIcon;
     private String name;
