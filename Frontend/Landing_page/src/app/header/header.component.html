@@ -1,5 +1,5 @@
 <header class="header">
-  <!-- Logo and Company Name Section -->
+
   <div class="header-top">
     <div class="logo-image">
       <img
@@ -12,6 +12,7 @@
     </div>
     <div class="user-options">
       <span class="privacy-policy">Privacy Policy</span>
+
       <a routerLink="/location" class="user-location">
         <i class="fas fa-map-marker-alt"></i> Location
       </a>
@@ -19,7 +20,6 @@
 
       @if (name=="") {
 <div>
-      <!-- Profile Button with Click Event to Toggle Box -->
       <span class="user-profile" (click)="toggleProfileBox()">
         <i class="fas fa-user"></i> Profile
         </span>
@@ -58,13 +58,13 @@
 
   <!-- Navigation Bar -->
   <nav class="nav">
-    
+
     <ul>
       <li><a href="#">Home</a></li>
       <li><a href="#booking">Booking</a></li>
       <li><a href="#service-list">Service</a></li>
       <li><a href="#contact">Contact</a></li>
-      <li><a href="/dashboard">Admin</a></li>
+      <li><a href="#news">News</a></li>
 
     </ul>
   </nav>

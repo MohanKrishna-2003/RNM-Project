@@ -18,6 +18,8 @@ import { AdminSettingsComponent } from './admin-settings/admin-settings.componen
 import { NotificationsComponent } from './notifications/notifications.component';
 import { QueryComponent } from './query/query.component';
 import { BookingsComponent } from './bookings/bookings.component';
+import { NewsComponent } from './news/news.component';
+
 
 export const routes: Routes = [
   // { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -46,5 +48,7 @@ export const routes: Routes = [
   {"path":"notifications", component:NotificationsComponent},
   {"path":"dashboard", component:AdminDashbaordComponent},
   {"path":"contact-query", component:QueryComponent}
-
+  { path: 'booking', component: BookingComponent },
+  {path:'news',component:NewsComponent},
+  {path:'feedback',component:FeedbackComponent}
 ];
