@@ -103,6 +103,8 @@
   font-style: bold;
   text-transform: uppercase;
   animation: slideLeft 1s ease-in-out;
+  text-align: center;
+  align-items: center;
 }
 
 .one {
@@ -1612,4 +1614,165 @@ button:disabled {
 
 .test-drive-dialog.show {
   animation: slideUp 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+
+.container-fluid {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.card-body h6 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.card-body p {
+  font-size: 1rem;
+  color: #302f2f;
+}
+
+.alert {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.card {
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-0.6px);
+}
+
+.card.bg-light {
+  background-color: #f8f9fa;
+}
+
+.card-body .center-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+
+.showroom{
+  font-weight: bold;
+}
+.card-body .brand-name {
+  font-size: 2rem;
+  font-weight: bolder;
+  /* color: #007bff; */
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+}
+
+.card-body .bi {
+  font-size: 6rem;
+  color: #007bff;
+}
+
+.card-body .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.card-body .btn i {
+  font-size: 1.2rem;
+}
+
+.live-heading {
+  font-size: 0.9rem;
+  color: rgb(255, 0, 0);
+  animation: pulse 1.5s infinite;
+  font-weight: semi-bold;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.9;
+  }
+}
+
+.card-body .alert {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.card-body .alert-success {
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+.card-body .alert-warning {
+  background-color: #fff3cd;
+  border-color: #ffeeba;
+}
+
+.card-body .alert-danger {
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+.blinking-circle {
+  position: relative;
+  top: -7px;
+  left: -4px;
+  font-size: 8px; /* Size of the circle */
+  animation: blink 2s infinite; /* Animation effect */
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.smallthun{
+  width: 45px;
+  height: 48px;
+}
+
+.badge-success {
+  background-color: #28a745;
+  color: #fff;
+}
+.badge-warning {
+  background-color: #ffc107;
+  color: #212529;
+}
+.badge-danger {
+  background-color: #dc3545;
+  color: #fff;
+}
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+}
+.alert-warning {
+  background-color: #fff3cd;
+  color: #856404;
+}
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
 }
