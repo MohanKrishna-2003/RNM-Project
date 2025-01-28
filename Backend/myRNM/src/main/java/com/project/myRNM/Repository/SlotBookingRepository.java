@@ -11,20 +11,21 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
-public interface SlotBookingRepository extends JpaRepository<SlotBooking, Integer> {
+public interface SlotBookingRepository extends JpaRepository<SlotBooking, Long> {
 
-    @Query("SELECT CONCAT(YEAR(s.bookingTimeStamp), '-', LPAD(CAST(MONTH(s.bookingTimeStamp) AS string), 2, '0')) AS month, COUNT(s) AS totalBookings " +
-            "FROM SlotBooking s " +
-            "GROUP BY YEAR(s.bookingTimeStamp), MONTH(s.bookingTimeStamp) " +
-            "ORDER BY YEAR(s.bookingTimeStamp), MONTH(s.bookingTimeStamp)")
-    List<Object[]> findMonthlyBookingCounts();
+//    @Query("SELECT CONCAT(YEAR(s.bookingTimeStamp), '-', LPAD(CAST(MONTH(s.bookingTimeStamp) AS string), 2, '0')) AS month, COUNT(s) AS totalBookings " +
+//            "FROM SlotBooking s " +
+//            "GROUP BY YEAR(s.bookingTimeStamp), MONTH(s.bookingTimeStamp) " +
+//            "ORDER BY YEAR(s.bookingTimeStamp), MONTH(s.bookingTimeStamp)")
+//    List<Object[]> findMonthlyBookingCounts();
+//
+//    @Query("SELECT CONCAT(YEAR(s.bookingTimeStamp), '-', LPAD(CAST(MONTH(s.bookingTimeStamp) AS string), 2, '0')) AS month, " +
+//            "s.center.brand AS brand, COUNT(s) AS totalBookings " +
+//            "FROM SlotBooking s " +
+//            "GROUP BY YEAR(s.bookingTimeStamp), MONTH(s.bookingTimeStamp), s.center.brand " +
+//            "ORDER BY YEAR(s.bookingTimeStamp), MONTH(s.bookingTimeStamp), s.center.brand")
+//    List<Object[]> findMonthlyBookingCountsByBrand();
 
-    @Query("SELECT CONCAT(YEAR(s.bookingTimeStamp), '-', LPAD(CAST(MONTH(s.bookingTimeStamp) AS string), 2, '0')) AS month, " +
-            "s.brand AS brand, COUNT(s) AS totalBookings " +
-            "FROM SlotBooking s " +
-            "GROUP BY YEAR(s.bookingTimeStamp), MONTH(s.bookingTimeStamp), s.brand " +
-            "ORDER BY YEAR(s.bookingTimeStamp), MONTH(s.bookingTimeStamp), s.brand")
-    List<Object[]> findMonthlyBookingCountsByBrand();
 
     // This method checks if a user has already booked for the same brand within the last month
     public List<SlotBooking> findByUserIdAndCenterBrandIdAndBookingTimeStampAfter(Long userId, Long centerBrandId, LocalDateTime bookingTimeStamp);
@@ -55,15 +56,38 @@ public interface SlotBookingRepository extends JpaRepository<SlotBooking, Intege
             "ORDER BY EXTRACT(MONTH FROM s.booking_timestamp)", nativeQuery = true)
     List<Object[]> findMonthlyBookingCountsByMonthName();
 
-    @Query(value = "SELECT s.brand, COUNT(s) " +
+    @Query(value = "SELECT b.name, COUNT(s) " +
             "FROM slot_booking s " +
-            "WHERE s.brand IN ('Renault', 'Nissan', 'Mitsubishi') " +
-            "GROUP BY s.brand", nativeQuery = true)
+            "JOIN center c ON s.center_id = c.id " +
+            "JOIN brand b ON c.brand_id = b.id " +
+            "WHERE b.name IN ('Renault', 'Nissan', 'Mitsubishi') " +
+            "GROUP BY b.name", nativeQuery = true)
     List<Object[]> findCountByBrand();
 
-@Query("select s from SlotBooking s order by user_id")
-    List<SlotBooking> findALlBookings();
+
+//@Query("select s from SlotBooking s order by user_id")
+//    List<SlotBooking> findALlBookings();
 
 //@Query("select s from SlotBooking s order by id desc")
 //    List<SlotBooking> getAllSlots();
+
+
+    @Query("select s from SlotBooking s order by s.user.id")
+    List<SlotBooking> findALlBookings();
+
+    @Query("select s from SlotBooking s order by s.id desc")
+    List<SlotBooking> getAllSlots();
+
+    @Query("SELECT CONCAT(EXTRACT(YEAR FROM s.bookingTimeStamp), '-', LPAD(CAST(EXTRACT(MONTH FROM s.bookingTimeStamp) AS string), 2, '0')) AS month, COUNT(s) AS totalBookings " +
+            "FROM SlotBooking s " +
+            "GROUP BY EXTRACT(YEAR FROM s.bookingTimeStamp), EXTRACT(MONTH FROM s.bookingTimeStamp) " +
+            "ORDER BY EXTRACT(YEAR FROM s.bookingTimeStamp), EXTRACT(MONTH FROM s.bookingTimeStamp)")
+    List<Object[]> findMonthlyBookingCounts();
+
+    @Query("SELECT CONCAT(EXTRACT(YEAR FROM s.bookingTimeStamp), '-', LPAD(CAST(EXTRACT(MONTH FROM s.bookingTimeStamp) AS string), 2, '0')) AS month, " +
+            "s.center.brand AS brand, COUNT(s) AS totalBookings " +
+            "FROM SlotBooking s " +
+            "GROUP BY EXTRACT(YEAR FROM s.bookingTimeStamp), EXTRACT(MONTH FROM s.bookingTimeStamp), s.center.brand " +
+            "ORDER BY EXTRACT(YEAR FROM s.bookingTimeStamp), EXTRACT(MONTH FROM s.bookingTimeStamp), s.center.brand")
+    List<Object[]> findMonthlyBookingCountsByBrand();
 }

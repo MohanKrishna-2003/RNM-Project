@@ -1,8 +1,10 @@
 package com.project.myRNM.Repository;
 
-import com.project.myRNM.Entity.Brand;
+import com.project.myRNM.Models.Entity.Brand;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface BrandRepository extends JpaRepository<Brand, Long> {
 
 }

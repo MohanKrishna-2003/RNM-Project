@@ -1,4 +1,4 @@
-package com.project.myRNM.Entity;
+package com.project.myRNM.Models.Entity;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;

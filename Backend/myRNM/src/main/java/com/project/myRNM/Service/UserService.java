@@ -75,6 +75,10 @@ public class UserService {
     public Users updateProfile(Long id, Users users) throws Exception {
         Users foundUser = userRepo.findById(id).orElse(null);
         if (foundUser == null) {
+            foundUser.setMobile(users.getMobile());
+            return userRepo.save(foundUser);
+        }
+        foundUser.setAddress(users.getAddress());
         foundUser.setMobile(users.getMobile());
         return userRepo.save(foundUser);
     }

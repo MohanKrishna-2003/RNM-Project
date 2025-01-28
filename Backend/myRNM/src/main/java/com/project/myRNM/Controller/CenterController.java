@@ -1,7 +1,7 @@
 package com.project.myRNM.Controller;
 
 
-import com.project.myRNM.Entity.Center;
+import com.project.myRNM.Models.Entity.Center;
 import com.project.myRNM.Repository.CenterRepository;
 import com.project.myRNM.Service.CenterService;
 import org.springframework.beans.factory.annotation.Autowired;

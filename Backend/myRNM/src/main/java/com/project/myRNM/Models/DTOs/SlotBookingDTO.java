@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SlotBookingDTO {
-    Integer id;
+    Long id;
     String status;
 }

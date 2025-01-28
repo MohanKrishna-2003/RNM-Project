@@ -1,11 +1,7 @@
 <header class="header">
-
   <div class="header-top">
     <div class="logo-image">
-      <img
-        src="logo3.png"
-        alt="Logo Image"
-      />
+      <img src="logo3.png" alt="Logo Image" />
     </div>
     <div class="company-name">
       <span>Where Test Drives Meet Dreams!</span>
@@ -17,56 +13,53 @@
         <i class="fas fa-map-marker-alt"></i> Location
       </a>
 
-
       @if (name=="") {
-<div>
-      <span class="user-profile" (click)="toggleProfileBox()">
-        <i class="fas fa-user"></i> Profile
+      <div>
+        <span class="user-profile" (click)="toggleProfileBox()">
+          <i class="fas fa-user"></i> Profile
         </span>
 
-      <!-- Profile Box (Login/Signup Box) -->
-      <div *ngIf="isProfileBoxVisible" class="profile-box">
-        <div class="profile-arrow"></div>  <!--Arrow pointing to profile -->
-         <h4>Login to your RNM Account</h4>
-        <button (click)="onLogin()">Login</button>
-        <button (click)="onSignup()">Sign Up</button>
-      </div>
-    </div>
-  }
-
-    @if (name!="") {
-    <div>
-      <!-- Profile Button with Click Event to Toggle Box -->
-      <span class="user-profile" (click)="toggleProfileBox()">
-        <i class="fas fa-user"></i>
-         {{name}}
-        <!-- <h1>{{name}}</h1> -->
-      </span>
-
-      <!-- Profile Box (Login/Signup Box) -->
-      <div *ngIf="isProfileBoxVisible" class="profile-box">
-        <div class="profile-arrow"></div>  <!--Arrow pointing to profile -->
-         <h4>Login to your RNM Account</h4>
-        <button (click)="Onlogout()">Logout</button>
-        <button (click)="OnEdit()">Edit</button>
+        <!-- Profile Box (Login/Signup Box) -->
+        <div *ngIf="isProfileBoxVisible" class="profile-box">
+          <div class="profile-arrow"></div>
+          <!--Arrow pointing to profile -->
+          <h4>Login to your RNM Account</h4>
+          <button (click)="onLogin()">Login</button>
+          <button (click)="onSignup()">Sign Up</button>
         </div>
+      </div>
+      } @if (name!="") {
+      <div>
+        <!-- Profile Button with Click Event to Toggle Box -->
+        <span class="user-profile" (click)="toggleProfileBox()">
+          <i class="fas fa-user"></i>
+          {{ name }}
+          <!-- <h1>{{name}}</h1> -->
+        </span>
+
+        <!-- Profile Box (Login/Signup Box) -->
+        <div *ngIf="isProfileBoxVisible" class="profile-box">
+          <div class="profile-arrow"></div>
+          <!--Arrow pointing to profile -->
+          <h4>Login to your RNM Account</h4>
+          <button (click)="Onlogout()">Logout</button>
+          <!-- <button (click)="OnEdit()">Edit</button> -->
+        </div>
+      </div>
+      }
     </div>
-  }
-</div>
-</div>
+  </div>
   <!-- Horizontal Divider Line Below -->
   <div class="divider"></div>
 
   <!-- Navigation Bar -->
   <nav class="nav">
-
     <ul>
       <li><a href="#">Home</a></li>
       <li><a href="#booking">Booking</a></li>
       <li><a href="#service-list">Service</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a href="#news">News</a></li>
-
     </ul>
   </nav>
 </header>

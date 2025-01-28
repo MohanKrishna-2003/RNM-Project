@@ -4,7 +4,9 @@ package com.project.myRNM.Service;
 import com.project.myRNM.Models.DTOs.BrandCountDTO;
 import com.project.myRNM.Models.DTOs.SlotBookingDTO;
 import com.project.myRNM.Models.DTOs.UserSlotCount;
+import com.project.myRNM.Models.Entity.Center;
 import com.project.myRNM.Models.Entity.SlotBooking;
+import com.project.myRNM.Repository.CenterRepository;
 import com.project.myRNM.Repository.SlotBookingRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +23,6 @@ public class SlotBookingService {
     @Autowired
     private SlotBookingRepository slotBookingRepository;
 
-    public SlotBooking saveSlotBooking(SlotBooking slotBooking) {
-        if (slotBooking.getEmail() == null || slotBooking.getEmail().isEmpty()) {
-            throw new IllegalArgumentException("Mail is required and cannot be empty");
     @Autowired
     private CenterRepository centerRepository;
 
@@ -74,7 +73,7 @@ public class SlotBookingService {
     }
 
     public List<SlotBooking> getAllBookings() {
-        return slotBookingRepository.findALlBookings();
+        return slotBookingRepository.findAll();
     }
 
     public SlotBooking getBookingByEmail(Long id){
@@ -110,7 +109,7 @@ public class SlotBookingService {
     @Transactional
     public SlotBooking updateStatus(SlotBookingDTO slotBookingDTO) {
 
-        Integer id = slotBookingDTO.getId();
+        Long id = slotBookingDTO.getId();
         System.out.println(id);
         try {
             // Directly pass the Integer ID to findById

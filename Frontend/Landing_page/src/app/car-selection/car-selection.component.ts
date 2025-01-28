@@ -1,22 +1,24 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpClientModule,
+  HttpHeaders,
+} from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 import { Router, RouterModule } from '@angular/router';
-
 
 @Component({
   selector: 'app-car-selection',
   standalone: true,
   imports: [FormsModule, CommonModule, HttpClientModule],
   templateUrl: './car-selection.component.html',
-  styleUrls: ['./car-selection.component.css']
+  styleUrls: ['./car-selection.component.css'],
 })
 export class CarSelectionComponent implements OnInit {
-
   staticPics: string[] = [
     'assets/carImages/renault-koleos.jpg',
     'assets/carImages/renault-arkana.webp',
@@ -45,11 +47,10 @@ export class CarSelectionComponent implements OnInit {
     email: '',
     address: '',
     preferredDate: new Date(),
-    status: "pending",
+    status: 'pending',
     timeSlot: '',
     confirmation: false,
   };
-
 
   brands: any[] = [];
   selectedBrand: string = 'Renault';
@@ -60,51 +61,46 @@ export class CarSelectionComponent implements OnInit {
 
   private apiUrl = 'http://localhost:8080/api/slot-bookings';
 
-
-
-  constructor(private http: HttpClient , private router : Router) {
+  constructor(private http: HttpClient, private router: Router) {
     const today = new Date();
-    this.todayDate = today.toISOString().split('T')[0];  
+    this.todayDate = today.toISOString().split('T')[0];
   }
 
+  // constructor(private http: HttpClient) {
+  //   console.log("working");
+  //   console.log(this.filteredLocations);
+  //   const today = new Date();
+  //   this.todayDate = today.toISOString().split('T')[0];
+  // }
 
   ngOnInit(): void {
     this.http.get<any>('http://localhost:8080/api/brands').subscribe(
       (data) => {
-        this.brands = data;  
+        this.brands = data;
         console.log(this.brands);
       },
       (error) => {
-        console.error('Error fetching brands data', error);  // Handle error
+        console.error('Error fetching brands data', error); // Handle error
       }
     );
     this.fetchCarsFromBackend();
     this.startImageCycle();
     this.handleScroll();
-    const name = localStorage.getItem("username");
-    const email = localStorage.getItem("useremail");
-    const phone = localStorage.getItem("phone");
-    const address = localStorage.getItem("address");
+    const name = localStorage.getItem('username');
+    const email = localStorage.getItem('useremail');
+    const phone = localStorage.getItem('phone');
+    const address = localStorage.getItem('address');
     if (name) {
       this.formData.name = name;
     }
     if (email) {
       this.formData.email = email;
     }
-    if(phone){
+    if (phone) {
       this.formData.phone = phone;
     }
-    if(address){
+    if (address) {
       this.formData.address = address;
-    }
-  }
-
-  toggleBooking(carName: String): void {
-    this.isBookingClicked = !this.isBookingClicked;
-    this.selectedCar = this.cars.find(car => car.name === carName);
-    console.log(this.selectedCar);
-    if (this.selectedCar) {
-      this.getFilteredCenters();
     }
   }
 
@@ -112,7 +108,7 @@ export class CarSelectionComponent implements OnInit {
   getFilteredCenters(): void {
     if (this.selectedBrand) {
       const selectedBrand = this.brands.find(
-        brand => brand.name.toLowerCase() === this.selectedBrand.toLowerCase()
+        (brand) => brand.name.toLowerCase() === this.selectedBrand.toLowerCase()
       );
 
       if (selectedBrand) {
@@ -131,54 +127,59 @@ export class CarSelectionComponent implements OnInit {
     console.log('Selected Center ID:', selectedCenterId);
 
     // Ensure selectedCenterId is a number
-    const centerId = typeof selectedCenterId === 'string' ? Number(selectedCenterId) : selectedCenterId;
+    const centerId =
+      typeof selectedCenterId === 'string'
+        ? Number(selectedCenterId)
+        : selectedCenterId;
 
-    const selectedCenter = this.filteredLocations.find(center => center.id === centerId);
+    const selectedCenter = this.filteredLocations.find(
+      (center) => center.id === centerId
+    );
     console.log('Selected Center:', selectedCenter);
 
     if (selectedCenter) {
       this.availableTimeSlots = [
-        { key: 'morning', label: 'Morning (9:00 AM - 12:00 PM)', count: selectedCenter.morningSlots },
-        { key: 'afternoon', label: 'Afternoon (12:00 PM - 3:00 PM)', count: selectedCenter.afternoonSlots },
-        { key: 'evening', label: 'Evening (3:00 PM - 6:00 PM)', count: selectedCenter.eveningSlots },
-      ].filter(slot => slot.count > 0); // Only show slots with availability
+        {
+          key: 'morning',
+          label: 'Morning (9:00 AM - 12:00 PM)',
+          count: selectedCenter.morningSlots,
+        },
+        {
+          key: 'afternoon',
+          label: 'Afternoon (12:00 PM - 3:00 PM)',
+          count: selectedCenter.afternoonSlots,
+        },
+        {
+          key: 'evening',
+          label: 'Evening (3:00 PM - 6:00 PM)',
+          count: selectedCenter.eveningSlots,
+        },
+      ].filter((slot) => slot.count > 0); // Only show slots with availability
     } else {
       this.availableTimeSlots = []; // Reset if no center is selected
     }
   }
 
-
-
-  constructor(private http: HttpClient) {
-    console.log("working");
-    console.log(this.filteredLocations);
-    const today = new Date();
-    this.todayDate = today.toISOString().split('T')[0];
-  }
-
   fetchCarsFromBackend(): void {
-    this.http.get<any[]>('http://localhost:8080/api/cars')
-      .subscribe(cars => {
-        this.cars = cars;
-        this.displayedCars = [...this.cars];
-        this.showGif = false;
+    this.http.get<any[]>('http://localhost:8080/api/cars').subscribe((cars) => {
+      this.cars = cars;
+      this.displayedCars = [...this.cars];
+      this.showGif = false;
 
-        this.displayedCars.forEach(car => {
-          car.bookSlot = () => {
-            this.selectedBrand = car.brand; // Set the selected brand based on clicked car
-            // this.updateShowroomLocations(); // Update showroom locations based on selected brand
-          };
-        });
-        // console.log(this.displayedCars)
+      this.displayedCars.forEach((car) => {
+        car.bookSlot = () => {
+          this.selectedBrand = car.brand; // Set the selected brand based on clicked car
+          // this.updateShowroomLocations(); // Update showroom locations based on selected brand
+        };
       });
-
-
+      // console.log(this.displayedCars)
+    });
   }
 
   displayCars(brand: string): void {
     this.showFilters = true;
     if (brand) {
-      this.displayedCars = this.cars.filter(car => car.brand === brand);
+      this.displayedCars = this.cars.filter((car) => car.brand === brand);
       this.showGif = false;
     } else {
       this.displayedCars = [...this.cars];
@@ -188,7 +189,8 @@ export class CarSelectionComponent implements OnInit {
 
   startImageCycle(): void {
     setInterval(() => {
-      this.currentImageIndex = (this.currentImageIndex + 1) % this.staticPics.length;
+      this.currentImageIndex =
+        (this.currentImageIndex + 1) % this.staticPics.length;
     }, 2000);
   }
 
@@ -211,22 +213,32 @@ export class CarSelectionComponent implements OnInit {
     });
   }
 
-
   toggleFilterSidebar(): void {
     this.isFilterSidebarOpen = !this.isFilterSidebarOpen;
   }
 
-
   toggleBooking(carName: String): void {
-   
-  const isLoggedIn = localStorage.getItem("login") !== null;
-  if (!isLoggedIn) {
-    alert('Please log in to book a slot');
-    this.router.navigateByUrl("/login")
-  }
+    const isLoggedIn = localStorage.getItem('login') !== null;
+    if (!isLoggedIn) {
+      alert('Please log in to book a slot');
+      this.router.navigateByUrl('/login');
+    }
     this.isBookingClicked = !this.isBookingClicked;
-    this.selectedCar = this.cars.find(car => car.name === carName);
+    this.selectedCar = this.cars.find((car) => car.name === carName);
+    if (this.selectedCar) {
+      this.getFilteredCenters();
+    }
   }
+
+  
+  // toggleBooking(carName: String): void {
+  //   this.isBookingClicked = !this.isBookingClicked;
+  //   this.selectedCar = this.cars.find((car) => car.name === carName);
+  //   console.log(this.selectedCar);
+  //   if (this.selectedCar) {
+  //     this.getFilteredCenters();
+  //   }
+  // }
 
   closeForm(): void {
     this.isBookingClicked = !this.isBookingClicked;
@@ -238,7 +250,7 @@ export class CarSelectionComponent implements OnInit {
 
   filterCarsByPrice(event: Event): void {
     const selectedPrice = (event?.target as HTMLSelectElement).value;
-    this.displayedCars = this.cars.filter(car => {
+    this.displayedCars = this.cars.filter((car) => {
       const rawPrice = car.price?.INR;
       if (!rawPrice) return false;
       const normalizedPrice = this.normalizePrice(rawPrice);
@@ -270,15 +282,23 @@ export class CarSelectionComponent implements OnInit {
   }
 
   confirm() {
-    alert("Your booking slot is confirmed... please await further instructions.....");
+    alert(
+      'Your booking slot is confirmed... please await further instructions.....'
+    );
   }
 
   sortByOrder(event: Event): void {
     const sortBy = (event.target as HTMLSelectElement).value;
     if (sortBy === 'maxPrice') {
-      this.displayedCars = this.cars.sort((a, b) => this.normalizePrice(b.price.INR) - this.normalizePrice(a.price.INR));
+      this.displayedCars = this.cars.sort(
+        (a, b) =>
+          this.normalizePrice(b.price.INR) - this.normalizePrice(a.price.INR)
+      );
     } else if (sortBy === 'minPrice') {
-      this.displayedCars = this.cars.sort((a, b) => this.normalizePrice(a.price.INR) - this.normalizePrice(b.price.INR));
+      this.displayedCars = this.cars.sort(
+        (a, b) =>
+          this.normalizePrice(a.price.INR) - this.normalizePrice(b.price.INR)
+      );
     } else {
       this.displayedCars = [...this.cars];
     }
@@ -289,7 +309,9 @@ export class CarSelectionComponent implements OnInit {
   filterByRating(event: Event): void {
     const selectedRating = (event.target as HTMLSelectElement).value;
     if (selectedRating) {
-      this.displayedCars = this.cars.filter(car => car.rating === parseInt(selectedRating, 10));
+      this.displayedCars = this.cars.filter(
+        (car) => car.rating === parseInt(selectedRating, 10)
+      );
     } else {
       this.displayedCars = [...this.cars];
     }
@@ -299,7 +321,9 @@ export class CarSelectionComponent implements OnInit {
   filterByEngine(event: Event): void {
     const selectedEngine = (event.target as HTMLSelectElement).value;
     if (selectedEngine) {
-      this.displayedCars = this.cars.filter(car => car.engineType.toLowerCase() === selectedEngine.toLowerCase());
+      this.displayedCars = this.cars.filter(
+        (car) => car.engineType.toLowerCase() === selectedEngine.toLowerCase()
+      );
     } else {
       this.displayedCars = [...this.cars];
     }
@@ -309,7 +333,9 @@ export class CarSelectionComponent implements OnInit {
   filterBySeater(event: Event): void {
     const selectedSeater = (event.target as HTMLSelectElement).value;
     if (selectedSeater) {
-      this.displayedCars = this.cars.filter(car => car.seats === parseInt(selectedSeater, 10));
+      this.displayedCars = this.cars.filter(
+        (car) => car.seats === parseInt(selectedSeater, 10)
+      );
     } else {
       this.displayedCars = [...this.cars];
     }
@@ -319,7 +345,10 @@ export class CarSelectionComponent implements OnInit {
   filterByTransmission(event: Event): void {
     const selectedTransmission = (event.target as HTMLSelectElement).value;
     if (selectedTransmission) {
-      this.displayedCars = this.cars.filter(car => car.transmission.toLowerCase() === selectedTransmission.toLowerCase());
+      this.displayedCars = this.cars.filter(
+        (car) =>
+          car.transmission.toLowerCase() === selectedTransmission.toLowerCase()
+      );
     } else {
       this.displayedCars = [...this.cars];
     }
@@ -329,7 +358,10 @@ export class CarSelectionComponent implements OnInit {
   filterByAvailability(event: Event): void {
     const selectedAvailability = (event.target as HTMLSelectElement).value;
     if (selectedAvailability) {
-      this.displayedCars = this.cars.filter(car => car.availability.toLowerCase() === selectedAvailability.toLowerCase());
+      this.displayedCars = this.cars.filter(
+        (car) =>
+          car.availability.toLowerCase() === selectedAvailability.toLowerCase()
+      );
     } else {
       this.displayedCars = [...this.cars];
     }
@@ -339,7 +371,9 @@ export class CarSelectionComponent implements OnInit {
   filterByFuelEfficiency(event: Event): void {
     const selectedFuelEfficiency = (event.target as HTMLSelectElement).value;
     if (selectedFuelEfficiency) {
-      this.displayedCars = this.cars.filter(car => car.fuelEfficiency <= parseInt(selectedFuelEfficiency, 10));
+      this.displayedCars = this.cars.filter(
+        (car) => car.fuelEfficiency <= parseInt(selectedFuelEfficiency, 10)
+      );
     } else {
       this.displayedCars = [...this.cars];
     }
@@ -349,7 +383,9 @@ export class CarSelectionComponent implements OnInit {
   filterByColor(event: Event): void {
     const selectedColor = (event.target as HTMLSelectElement).value;
     if (selectedColor) {
-      this.displayedCars = this.cars.filter(car => car.color.toLowerCase() === selectedColor.toLowerCase());
+      this.displayedCars = this.cars.filter(
+        (car) => car.color.toLowerCase() === selectedColor.toLowerCase()
+      );
     } else {
       this.displayedCars = [...this.cars];
     }
@@ -359,7 +395,9 @@ export class CarSelectionComponent implements OnInit {
   filterByDriveType(event: Event): void {
     const selectedDriveType = (event.target as HTMLSelectElement).value;
     if (selectedDriveType) {
-      this.displayedCars = this.cars.filter(car => car.driveType.toLowerCase() === selectedDriveType.toLowerCase());
+      this.displayedCars = this.cars.filter(
+        (car) => car.driveType.toLowerCase() === selectedDriveType.toLowerCase()
+      );
     } else {
       this.displayedCars = [...this.cars];
     }
@@ -369,7 +407,9 @@ export class CarSelectionComponent implements OnInit {
   filterByWarranty(event: Event): void {
     const selectedWarranty = (event.target as HTMLSelectElement).value;
     if (selectedWarranty) {
-      this.displayedCars = this.cars.filter(car => car.warranty === selectedWarranty);
+      this.displayedCars = this.cars.filter(
+        (car) => car.warranty === selectedWarranty
+      );
     } else {
       this.displayedCars = [...this.cars];
     }
@@ -390,12 +430,12 @@ export class CarSelectionComponent implements OnInit {
     }
   }
 
-
   userId: number;
 
-
   fetchUserIdByEmail(email: string): any {
-    return this.http.get<number>(`http://localhost:8080/user/getUserIdByEmail/${email}`);
+    return this.http.get<number>(
+      `http://localhost:8080/user/getUserIdByEmail/${email}`
+    );
   }
 
   submitForm(): void {
@@ -409,7 +449,7 @@ export class CarSelectionComponent implements OnInit {
         console.error('Invalid date:', this.formData.preferredDate);
       }
     }
-  
+
     const email = this.formData.email;
     if (email) {
       // Fetch User ID by email
@@ -417,32 +457,32 @@ export class CarSelectionComponent implements OnInit {
         next: (userId: any) => {
           console.log('User ID fetched successfully:', userId);
           this.userId = userId;
-  
+
           // Proceed with submitting the form only after user ID is available
           this.submitBookingForm(formattedDate);
         },
         error: (err: any) => {
           console.error('Failed to fetch User ID:', err);
           alert('Unable to fetch user details. Please try again.');
-        }
+        },
       });
     } else {
       alert('Please provide an email to proceed.');
     }
   }
-  
+
   submitBookingForm(formattedDate: string): void {
     const formDataToSend = {
       ...this.formData,
       preferredDate: formattedDate,
       user: { id: this.userId },
       center: { id: Number(this.selectedCenterId) },
-      selectedCarDetails: this.selectedCar.name
+      selectedCarDetails: this.selectedCar.name,
     };
     console.log(formDataToSend);
-  
+
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-  
+
     this.http.post(this.apiUrl, formDataToSend, { headers }).subscribe(
       (response) => {
         console.log('Booking successful:', response);
@@ -454,8 +494,6 @@ export class CarSelectionComponent implements OnInit {
       }
     );
   }
-  
-
 
   confirmBooking(): void {
     this.formData.confirmation = true;
@@ -470,24 +508,29 @@ export class CarSelectionComponent implements OnInit {
   isStepValid(): any {
     if (this.currentStep === 1) {
       // Step 1: Check if all required fields are valid
-      return this.formData.name?.trim() &&
+      return (
+        this.formData.name?.trim() &&
         this.formData.phone?.trim() &&
         this.formData.phone?.length === 10 &&
         /^\d{10}$/.test(this.formData.phone) &&
         this.formData.email?.trim() &&
-        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(this.formData.email);
+        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
+          this.formData.email
+        )
+      );
     } else if (this.currentStep === 2) {
       // Step 2: Check if all required fields are valid
-      return this.formData.preferredDate &&
+      return (
+        this.formData.preferredDate &&
         this.selectedCenterId &&
-        this.formData.timeSlot;
+        this.formData.timeSlot
+      );
     } else if (this.currentStep === 3) {
       // Step 3: Always valid as it is just a confirmation step
       return true;
     }
     return false;
   }
-
 
   showSuccessDialog(): void {
     this.closeForm();
@@ -499,11 +542,11 @@ export class CarSelectionComponent implements OnInit {
       imageHeight: 300,
       confirmButtonText: 'OK',
       showClass: {
-        popup: 'animate__animated animate__fadeInDown'
+        popup: 'animate__animated animate__fadeInDown',
       },
       hideClass: {
-        popup: 'animate__animated animate__fadeOutUp'
-      }
+        popup: 'animate__animated animate__fadeOutUp',
+      },
     });
   }
 
@@ -517,17 +560,16 @@ export class CarSelectionComponent implements OnInit {
       imageHeight: 300,
       confirmButtonText: 'Try Again',
       showClass: {
-        popup: 'animate__animated animate__fadeInDown'
+        popup: 'animate__animated animate__fadeInDown',
       },
       hideClass: {
-        popup: 'animate__animated animate__fadeOutUp'
-      }
+        popup: 'animate__animated animate__fadeOutUp',
+      },
     });
   }
 }
 
-
-//hey I have used cron for daily reset of the slot bookings 
+//hey I have used cron for daily reset of the slot bookings
 // ┌───────────── Second (0–59)
 // │ ┌───────────── Minute (0–59)
 // │ │ ┌───────────── Hour (0–23)

@@ -1,12 +1,12 @@
 package com.project.myRNM.Controller;
 
-import com.project.myRNM.Entity.Users;
+import com.project.myRNM.Models.Entity.Users;
 
 import com.project.myRNM.Repository.UserRepo;
 
 import com.project.myRNM.Exception.UserNotFoundException;
 
-import com.project.myRNM.Response.GeneralResponse;
+import com.project.myRNM.Models.Response.GeneralResponse;
 import com.project.myRNM.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

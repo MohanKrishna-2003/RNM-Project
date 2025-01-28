@@ -1,6 +1,6 @@
 package com.project.myRNM.Service;
 
-import com.project.myRNM.Entity.Center;
+import com.project.myRNM.Models.Entity.Center;
 import com.project.myRNM.Repository.CenterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -53,9 +53,7 @@ public class SlotBooking {
 //    @Column(name = "showroom_location")
 //    private String showroomLocation;
 
-    @Id
-    private Integer id;
-    private Integer user_id;
+//    private Long user_id;
 
     private Boolean confirmation;
 
