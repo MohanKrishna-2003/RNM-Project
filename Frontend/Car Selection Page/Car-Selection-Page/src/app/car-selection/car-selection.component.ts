@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 import Swal from 'sweetalert2';
 
+
 @Component({
   selector: 'app-car-selection',
   standalone: true,
@@ -26,7 +27,6 @@ export class CarSelectionComponent implements OnInit {
   cars: any[] = [];
   showGif: boolean = true;
   gifPath: string = 'assets/gifs/loading.gif';
-  selectedBrand: string = 'Renault';
   isBookingClicked: boolean = false;
   selectedCar: any = null;
   isFilterSidebarOpen: boolean = false;
@@ -35,30 +35,110 @@ export class CarSelectionComponent implements OnInit {
   todayDate: string;
   status: boolean = true;
   currentStep: number = 1; 
-
+  
   formData = {
     name: '',                   
     phone: '',                  
     email: '',                  
     address: '',                
     preferredDate: new Date(),  
+    status: "pending",
     timeSlot: '',               
     showroomLocation: '',       
-    confirmation: false         
+    confirmation: false, 
   };
+  
+  
+  brands:any[] = [];
+  selectedBrand: string = 'Renault';
+  selectedCenter: any;
+  filteredLocations: any[] = [];
+  availableTimeSlots: any[] = [];
+  selectedCenterId: number = 1;
 
   private apiUrl = 'http://localhost:8080/api/slot-bookings';
 
-  constructor(private http: HttpClient) {
-    const today = new Date();
-    this.todayDate = today.toISOString().split('T')[0];  
-  }
 
   ngOnInit(): void {
+    this.http.get<any>('http://localhost:8080/api/brands').subscribe(
+      (data) => {
+        this.brands = data;  // Assign the fetched data to the brands array
+        console.log(this.brands);
+      },
+      (error) => {
+        console.error('Error fetching brands data', error);  // Handle error
+      }
+    );
     this.fetchCarsFromBackend(); 
     this.startImageCycle();
     this.handleScroll();
   }
+
+  toggleBooking(carName: String): void {
+    this.isBookingClicked = !this.isBookingClicked;
+    this.selectedCar = this.cars.find(car => car.name === carName);
+    console.log(this.selectedCar);
+    if (this.selectedCar) {
+      this.getFilteredCenters();
+    }
+  }
+
+
+  getFilteredCenters(): void {
+    if (this.selectedBrand) {
+      const selectedBrand = this.brands.find(
+        brand => brand.name.toLowerCase() === this.selectedBrand.toLowerCase()
+      );
+  
+      if (selectedBrand) {
+        this.filteredLocations = selectedBrand.centers || []; // Assign the centers
+      } else {
+        this.filteredLocations = []; // Reset if brand is not found
+      }
+    } else {
+      this.filteredLocations = []; // Reset if no brand is selected
+    }
+  }
+  
+  // Update time slots based on the selected showroom location
+  updateAvailableTimeSlots(selectedCenterId: number | string): void {
+    console.log('Filtered Locations:', this.filteredLocations);
+    console.log('Selected Center ID:', selectedCenterId);
+  
+    // Ensure selectedCenterId is a number
+    const centerId = typeof selectedCenterId === 'string' ? Number(selectedCenterId) : selectedCenterId;
+  
+    const selectedCenter = this.filteredLocations.find(center => center.id === centerId);
+    console.log('Selected Center:', selectedCenter);
+  
+    if (selectedCenter) {
+      this.availableTimeSlots = [
+        { key: 'morning', label: 'Morning (9:00 AM - 12:00 PM)', count: selectedCenter.morningSlots },
+        { key: 'afternoon', label: 'Afternoon (12:00 PM - 3:00 PM)', count: selectedCenter.afternoonSlots },
+        { key: 'evening', label: 'Evening (3:00 PM - 6:00 PM)', count: selectedCenter.eveningSlots },
+      ].filter(slot => slot.count > 0); // Only show slots with availability
+    } else {
+      this.availableTimeSlots = []; // Reset if no center is selected
+    }
+  }
+  
+  
+
+  constructor(private http: HttpClient) {
+    console.log("working");
+    console.log(this.filteredLocations);
+    const today = new Date();
+    this.todayDate = today.toISOString().split('T')[0];  
+  }
+
+
+  // // Function to handle slot booking
+  // bookSlot(center: any): void {
+  //   this.selectedCenter = center;  // Store selected center
+  //   alert(`You have selected to book a slot at ${center.name}, Location: ${center.location}.`);
+  //   // You can call backend to store the booking details here
+  // }
+
 
   fetchCarsFromBackend(): void {
     this.http.get<any[]>('http://localhost:8080/api/cars') 
@@ -66,8 +146,17 @@ export class CarSelectionComponent implements OnInit {
         this.cars = cars;
         this.displayedCars = [...this.cars];
         this.showGif = false;
+
+        this.displayedCars.forEach(car => {
+          car.bookSlot = () => {
+            this.selectedBrand = car.brand; // Set the selected brand based on clicked car
+            // this.updateShowroomLocations(); // Update showroom locations based on selected brand
+          };
+        });
         // console.log(this.displayedCars)
       });
+
+      
   }
 
   displayCars(brand: string): void {
@@ -106,14 +195,11 @@ export class CarSelectionComponent implements OnInit {
     });
   }
 
+  
   toggleFilterSidebar(): void {
     this.isFilterSidebarOpen = !this.isFilterSidebarOpen;
   }
 
-  toggleBooking(carName: String): void {
-    this.isBookingClicked = !this.isBookingClicked;
-    this.selectedCar = this.cars.find(car => car.name === carName);
-  }
 
   closeForm(): void {
     this.isBookingClicked = !this.isBookingClicked;
@@ -278,29 +364,36 @@ export class CarSelectionComponent implements OnInit {
   }
 
   submitForm(): void {
-    const formattedDate = this.formData.preferredDate ? this.formData.preferredDate.toISOString() : '';
+    // Check if preferredDate is a valid date object, and if not, attempt to convert it
+    let formattedDate = '';
+    if (this.formData.preferredDate) {
+      const preferredDate = new Date(this.formData.preferredDate);
+      if (!isNaN(preferredDate.getTime())) {
+        formattedDate = preferredDate.toISOString();
+      } else {
+        console.error('Invalid date:', this.formData.preferredDate);
+      }
+    }
+  
     const formDataToSend = {
       ...this.formData,
       preferredDate: formattedDate,
       selectedCarDetails: this.selectedCar.name
     };
-
-    
+  
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     this.http.post(this.apiUrl, formDataToSend, { headers }).subscribe(
       (response) => {
         console.log(formDataToSend);  // Checking the data being sent to the backend
-
         this.showSuccessDialog();
       },
       (error) => {
-      
         console.log(formDataToSend);  // Checking the data being sent to the backend
-        
         this.showFailureDialog();
       }
     );
   }
+  
 
   confirmBooking(): void {
     this.formData.confirmation = true;
@@ -312,18 +405,27 @@ export class CarSelectionComponent implements OnInit {
     this.submitForm();
   }
 
-  isStepValid(): boolean {
-    switch (this.currentStep) {
-      case 1:
-        return !!this.formData.name && !!this.formData.phone && !!this.formData.email;
-      case 2:
-        return !!this.formData.preferredDate && !!this.formData.timeSlot && !!this.formData.showroomLocation;
-      case 3:
-        return true;
-      default:
-        return false;
+  isStepValid(): any {
+    if (this.currentStep === 1) {
+      // Step 1: Check if all required fields are valid
+      return this.formData.name?.trim() && 
+             this.formData.phone?.trim() && 
+             this.formData.phone?.length === 10 && 
+             /^\d{10}$/.test(this.formData.phone) &&
+             this.formData.email?.trim() && 
+             /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(this.formData.email);
+    } else if (this.currentStep === 2) {
+      // Step 2: Check if all required fields are valid
+      return this.formData.preferredDate && 
+             this.selectedCenterId && 
+             this.formData.timeSlot;
+    } else if (this.currentStep === 3) {
+      // Step 3: Always valid as it is just a confirmation step
+      return true;
     }
+    return false;
   }
+  
 
   showSuccessDialog(): void {
     this.closeForm();
