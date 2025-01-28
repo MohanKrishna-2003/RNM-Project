@@ -13,10 +13,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
-  errorMsg="";
+  errorMsg = "";
   signupForm: FormGroup;
 
-  constructor(private http: HttpClient, private fb: FormBuilder,private router:Router) {
+  constructor(private http: HttpClient, private fb: FormBuilder, private router: Router) {
     this.signupForm = this.fb.group({
       name: ['', [Validators.required, Validators.maxLength(20), Validators.minLength(3), Validators.pattern('^[A-Za-z\\s-]+$')]],
       email: ['', [Validators.required]],
@@ -40,13 +40,15 @@ export class SignupComponent {
       console.log(data);
       this.http.post('http://localhost:8080/user/addUserData', data).subscribe(
         {
-          next:(res)=>{
-              console.log(res);
-              this.router.navigateByUrl("/login");
-          },error:(err)=>{
-              console.log(err);
-              this.errorMsg = err.error['message'];
-              
+          next: (res:any) => {
+            console.log(res);
+            // const userId = res.id;  
+            // localStorage.setItem('userId', userId.toString());
+            this.router.navigateByUrl("/login");
+          }, error: (err) => {
+            console.log(err);
+            this.errorMsg = err.error['message'];
+
           }
         }
       );

@@ -5,26 +5,23 @@ import com.project.myRNM.DTOs.BrandCountDTO;
 import com.project.myRNM.Entity.SlotBooking;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
-public interface SlotBookingRepository extends JpaRepository<SlotBooking, String> {
+public interface SlotBookingRepository extends JpaRepository<SlotBooking, Long> {
 
-//    @Query("SELECT CONCAT(YEAR(s.bookingTimeStamp), '-', LPAD(CAST(MONTH(s.bookingTimeStamp) AS string), 2, '0')) AS month, COUNT(s) AS totalBookings " +
-//            "FROM SlotBooking s " +
-//            "GROUP BY YEAR(s.bookingTimeStamp), MONTH(s.bookingTimeStamp) " +
-//            "ORDER BY YEAR(s.bookingTimeStamp), MONTH(s.bookingTimeStamp)")
-//    List<Object[]> findMonthlyBookingCounts();
+    // This method checks if a user has already booked for the same brand within the last month
+    public List<SlotBooking> findByUserIdAndCenterBrandIdAndBookingTimeStampAfter(Long userId, Long centerBrandId, LocalDateTime bookingTimeStamp);
 
-//    @Query("SELECT CONCAT(YEAR(s.bookingTimeStamp), '-', LPAD(CAST(MONTH(s.bookingTimeStamp) AS string), 2, '0')) AS month, " +
-//            "s.brand AS brand, COUNT(s) AS totalBookings " +
-//            "FROM SlotBooking s " +
-//            "GROUP BY YEAR(s.bookingTimeStamp), MONTH(s.bookingTimeStamp), s.brand " +
-//            "ORDER BY YEAR(s.bookingTimeStamp), MONTH(s.bookingTimeStamp), s.brand")
-//    List<Object[]> findMonthlyBookingCountsByBrand();
+    // Query for bookings by center ID and booking date range
+    @Query("SELECT s FROM SlotBooking s WHERE s.center.id = :centerId AND s.bookingTimeStamp BETWEEN :startOfDay AND :endOfDay")
+    List<SlotBooking> findByCenterIdAndBookingTimeStamp(@Param("centerId") Long centerId, @Param("startOfDay") LocalDateTime startOfDay, @Param("endOfDay") LocalDateTime endOfDay);
 
+    // Other methods for monthly bookings and counts
     @Query(value = "SELECT " +
             "    CASE EXTRACT(MONTH FROM s.booking_timestamp) " +
             "        WHEN 1 THEN 'January' " +
@@ -46,13 +43,9 @@ public interface SlotBookingRepository extends JpaRepository<SlotBooking, String
             "ORDER BY EXTRACT(MONTH FROM s.booking_timestamp)", nativeQuery = true)
     List<Object[]> findMonthlyBookingCountsByMonthName();
 
-
     @Query(value = "SELECT s.brand, COUNT(s) " +
             "FROM slot_bookings s " +
             "WHERE s.brand IN ('Renault', 'Nissan', 'Mitsubishi') " +
             "GROUP BY s.brand", nativeQuery = true)
     List<Object[]> findCountByBrand();
-
-
-
 }
