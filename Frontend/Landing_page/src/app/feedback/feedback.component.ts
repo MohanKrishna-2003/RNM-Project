@@ -92,7 +92,7 @@ export class FeedbackComponent {
           console.log(this.feedbackForm);
           alert("Form submitted Sucessfully. Thankyou for your feedback!!");
           window.location.reload();
-            // this.feedbackForm.get('feedback').reset()
+          this.feedbackForm.get('feedback').reset()
         },
         error: (err) => {
           console.log(err);

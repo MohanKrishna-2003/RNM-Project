@@ -24,7 +24,7 @@ export class SignupComponent {
       mobile: ['', [Validators.required, Validators.maxLength(10)]],
       address: ['', [Validators.required, Validators.maxLength(50)]],
       confirmPassword: ['', [Validators.required]]
-    }, { validators: this.passwordMatchValidator });
+     },{ validators: this.passwordMatchValidator });
   }
 
   // Password matching validator for sign-up
