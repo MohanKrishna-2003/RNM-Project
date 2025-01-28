@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface UserRepo extends JpaRepository<Users, Integer> {
+public interface UserRepo extends JpaRepository<Users, Long> {
     @Query("select data from Users data where email=?1 and password=?2")
     Optional<Users> login(String email, String password);
 

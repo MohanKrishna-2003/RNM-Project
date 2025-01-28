@@ -42,10 +42,10 @@ export class HeaderComponent implements OnInit {
   }
   Onlogout(){
     // localStorage.removeItem("useremail");  
-localStorage.clear();
-this.name="";
-window.location.reload()
-  
-}
+  localStorage.clear();
+  this.name="";
+  window.location.reload()
+ }
+ OnEdit(){}
 }
 
