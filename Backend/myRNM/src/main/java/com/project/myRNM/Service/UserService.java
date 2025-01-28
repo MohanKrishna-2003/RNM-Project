@@ -3,6 +3,7 @@ package com.project.myRNM.Service;
 import com.project.myRNM.DTOs.MonthlyUserCount;
 import com.project.myRNM.DTOs.UserDTO;
 import com.project.myRNM.Entity.Users;
+import com.project.myRNM.Exception.UserNotFoundException;
 import com.project.myRNM.Repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -63,6 +64,13 @@ public class UserService {
 
         return monthlyCounts;
     }
-
-
+    public Users updateProfile(Long id, Users users) throws Exception {
+        Users foundUser = userRepo.findById(id).orElse(null);
+        if (foundUser == null) {
+            throw new UserNotFoundException("User not found");
+        }
+        foundUser.setAddress(users.getAddress());
+        foundUser.setMobile(users.getMobile());
+        return userRepo.save(foundUser);
+    }
 }

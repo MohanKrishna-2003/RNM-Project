@@ -11,6 +11,6 @@ import { RouterModule } from '@angular/router';
 export class NavbarComponent implements OnInit {
   adminname:String="";
   ngOnInit(): void {
-this.adminname=localStorage.getItem("admin") ?? "John Charlie";  }
+this.adminname=localStorage.getItem("adminName") ?? "John Charlie";  }
 
 }

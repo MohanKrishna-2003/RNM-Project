@@ -9,7 +9,7 @@ import lombok.Data;
 @Entity
 @Table(name="admin")
 public class Admin {
-    String name, mail, company,address,bio;
+    String name, mail, company,address,bio,password;
 
     @Id
     Integer admin_id;
@@ -17,12 +17,13 @@ public class Admin {
     public Admin() {
     }
 
-    public Admin(String name, String mail, String company, String address, String bio, Integer admin_id) {
+    public Admin(String name, String mail, String company, String address, String bio, Integer admin_id,String password) {
         this.name = name;
         this.mail = this.mail;
         this.company = company;
         this.address = address;
         this.bio = bio;
         this.admin_id = admin_id;
+        this.password=password;
     }
 }
