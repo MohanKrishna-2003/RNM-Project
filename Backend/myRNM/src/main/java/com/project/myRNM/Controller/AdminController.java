@@ -1,10 +1,10 @@
 package com.project.myRNM.Controller;
 
-import com.project.myRNM.DTOs.AdminDTO;
-import com.project.myRNM.DTOs.AdminValidateDTO;
-import com.project.myRNM.Entity.Admin;
-import com.project.myRNM.Entity.Users;
-import com.project.myRNM.Response.GeneralResponse;
+import com.project.myRNM.Models.DTOs.AdminDTO;
+import com.project.myRNM.Models.DTOs.AdminValidateDTO;
+import com.project.myRNM.Models.Entity.Admin;
+import com.project.myRNM.Models.Entity.Users;
+import com.project.myRNM.Models.Response.GeneralResponse;
 import com.project.myRNM.Service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

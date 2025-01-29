@@ -17,7 +17,7 @@ public class Admin {
     public Admin() {
     }
 
-    public Admin(String name, String mail, String company, String address, String bio, Integer admin_id, String password) {
+    public Admin(String name, String mail, String company, String address, String bio, Integer admin_id,String password) {
         this.name = name;
         this.mail = this.mail;
         this.company = company;
@@ -25,54 +25,6 @@ public class Admin {
         this.bio = bio;
         this.admin_id = admin_id;
         this.password=password;
-
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-
-    public String getCompany() {
-        return company;
-    }
-
-    public void setCompany(String company) {
-        this.company = company;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getBio() {
-        return bio;
-    }
-
-    public void setBio(String bio) {
-        this.bio = bio;
-    }
-
-    public Integer getAdmin_id() {
-        return admin_id;
-    }
-
-    public void setAdmin_id(Integer admin_id) {
-        this.admin_id = admin_id;
     }
 }
+
