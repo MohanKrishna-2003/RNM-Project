@@ -5,10 +5,11 @@
 }
 
 .header-section {
-  background: linear-gradient(45deg, #000000, #3f3f3f);
+  /* background: linear-gradient(45deg, #000000, #3f3f3f); */
   padding: 1rem;
   color: white;
   animation: bounceIn 2s ease-in-out;
+  background-color: white;
 }
 
 .header-title {
@@ -19,12 +20,15 @@
   font-variation-settings: "MORF" 0;
   font-size: 3rem;
   font-weight: bold;
+  color: black;
 }
 
 .header-subtitle {
   font-size: 1.3rem;
   color: whitesmoke;
   margin-top: 0.5rem;
+  color: black;
+
 }
 
 .home-icon {

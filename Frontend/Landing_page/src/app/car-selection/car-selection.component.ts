@@ -14,7 +14,7 @@ import { Router, RouterModule } from '@angular/router';
 @Component({
   selector: 'app-car-selection',
   standalone: true,
-  imports: [FormsModule, CommonModule, HttpClientModule],
+  imports: [FormsModule, CommonModule, HttpClientModule, HeaderComponent, FooterComponent],
   templateUrl: './car-selection.component.html',
   styleUrls: ['./car-selection.component.css'],
 })

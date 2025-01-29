@@ -26,6 +26,9 @@ public class Center {
     private int afternoonSlots;
     private int eveningSlots;
 
+    private double latitude;
+    private double longitude;
+
     private int originalMorningSlots;
     private int originalAfternoonSlots;
     private int originalEveningSlots;

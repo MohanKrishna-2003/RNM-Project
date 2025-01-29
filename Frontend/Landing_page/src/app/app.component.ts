@@ -14,7 +14,7 @@ import { LoginComponent } from './login/login.component';
 @Component({
   selector: 'app-root',
   standalone:true,
-  imports: [HeaderComponent, CommonModule, RouterModule, FooterComponent, HomeComponent, BookingComponent, ContactComponent, ChatbotComponent, LoginComponent],
+  imports: [ CommonModule, RouterModule,  ChatbotComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

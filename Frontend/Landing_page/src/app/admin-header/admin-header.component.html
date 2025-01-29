@@ -21,11 +21,8 @@
       </div>
       <div>
         <h6 class="fw-500" style="font-weight: bold;">{{adminname}}</h6>
-        <p style="color: grey; "  (click)="onLinkClick()">Admin</p>
+        <p style="color: grey; " >Admin</p>
       
-<div *ngIf="linkopen">
-  <button class="btn btn-primary" (click)="logout()">Logout</button>
-</div>
 
       </div>
     </div>
@@ -141,8 +138,15 @@
         </a>
       </li>
 
-      <span class="divider"><hr /></span>
-
+      <li class="nav-item">
+        <a 
+        href="#"          >
+          <span class="icon">
+            <i class="bi bi-box-arrow-left"></i>
+          </span>
+          <span class="text" (click)="logout()">Logout</span>
+        </a>
+      </li>
     </ul>
   </nav>
  

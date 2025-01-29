@@ -5,51 +5,53 @@ import { FooterComponent } from "../footer/footer.component";
 import L from 'leaflet';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { CommonDataServiceService } from '../common-data-service.service';
 
 // Define an interface for a shop
-interface Shop {
-  name: string;
-  address: string;
-  lat: number;
-  lng: number;
-  icon: string; // The URL for the shop's icon
-}
 
 @Component({
   selector: 'app-location',
   standalone: true,
   templateUrl: './location.component.html',
   styleUrls: ['./location.component.css'],
-  imports: [HeaderComponent, FooterComponent, HttpClientModule, CommonModule, FormsModule],
+  imports: [ HttpClientModule, CommonModule, FormsModule],
 })
 export class LocationComponent implements AfterViewInit {
-  shops: Shop[] = []; // Apply the Shop type to the array
+  // shops: any;
   private map: any;
 
   // Inject HttpClient in the constructor
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private commonService : CommonDataServiceService) {}
 
   ngAfterViewInit(): void {
     this.initMap();  // Initialize the map
     setTimeout(() => {
-      this.loadShops(); // Load shop data after a small delay
+      // this.loadShops(); // Load shop data after a small delay
     }, 100);
+  }
+  shops: any[] = [];
+  ngOnInit() {
+    this.commonService.getCenterDetails().subscribe(data => {
+      this.shops = this.commonService.getFilteredCenterDetails(data);
+      console.log(this.shops);
+      
+    });
   }
 
   // Fetch shop data from an API
-  private loadShops(): void {
-    const apiUrl = 'http://localhost:8080/showrooms/locations'; // Replace with your actual API URL
-    this.http.get<Shop[]>(apiUrl).subscribe(
-      (data) => {
-        console.log('Fetched shops data:', data);  // Log the fetched data
-        this.shops = data; // Populate the shops array with data from the API
-        this.addMarkers(); // Add markers for each shop on the map
-      },
-      (error) => {
-        console.error('Error fetching shops:', error);
-      }
-    );
-  }
+  // private loadShops(): void {
+  //   const apiUrl = 'http://localhost:8080/showrooms/locations'; // Replace with your actual API URL
+  //   this.http.get<Shop[]>(apiUrl).subscribe(
+  //     (data) => {
+  //       console.log('Fetched shops data:', data);  // Log the fetched data
+  //       this.shops = data; // Populate the shops array with data from the API
+  //       this.addMarkers(); // Add markers for each shop on the map
+  //     },
+  //     (error) => {
+  //       console.error('Error fetching shops:', error);
+  //     }
+  //   );
+  // }
 
   // Initialize the map
   private initMap(): void {

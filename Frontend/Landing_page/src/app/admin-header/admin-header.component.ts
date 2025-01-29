@@ -13,14 +13,10 @@ export class AdminHeaderComponent {
 
   constructor(private router:Router){} 
    adminname:String="";
-  linkopen:boolean=false;
   ngOnInit(): void {
 this.adminname=localStorage.getItem("admin") ?? " ";  
   }
 
-  onLinkClick(){
-this.linkopen=!this.linkopen;
-  }
   logout(){
     this.router.navigateByUrl("home");
     localStorage.clear();
