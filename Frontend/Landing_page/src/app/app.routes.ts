@@ -39,7 +39,7 @@ export const routes: Routes = [
   // { path: 'booking', component: BookingComponent },
   { path: 'car-selection-page', component: CarSelectionComponent },
   // {"path":"", component:AdminDashbaordComponent},
-  // {"path":"home", component:AdminHomeComponent},
+  {"path":"home", component:HomeComponent},
   {"path":"userbookings", component:BookingsComponent},
   {"path":"users", component:UsersComponent},
   {"path":"userfeedback", component:UserFeedbackComponent},

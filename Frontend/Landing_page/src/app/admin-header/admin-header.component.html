@@ -21,7 +21,12 @@
       </div>
       <div>
         <h6 class="fw-500" style="font-weight: bold;">{{adminname}}</h6>
-        <p style="color: grey; ">Admin</p>
+        <p style="color: grey; "  (click)="onLinkClick()">Admin</p>
+      
+<div *ngIf="linkopen">
+  <button class="btn btn-primary" (click)="logout()">Logout</button>
+</div>
+
       </div>
     </div>
   </div>
