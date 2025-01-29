@@ -12,6 +12,6 @@ export class AdminHeaderComponent {
 
   adminname:String="";
   ngOnInit(): void {
-this.adminname=localStorage.getItem("admin") ?? "Marie Dupont";  
+this.adminname=localStorage.getItem("admin") ?? " ";  
   }
 }

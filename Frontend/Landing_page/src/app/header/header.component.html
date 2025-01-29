@@ -1,65 +1,135 @@
-<header class="header">
-  <div class="header-top">
-    <div class="logo-image">
-      <img src="logo3.png" alt="Logo Image" />
-    </div>
-    <div class="company-name">
-      <span>Where Test Drives Meet Dreams!</span>
-    </div>
-    <div class="user-options">
-      <span class="privacy-policy">Privacy Policy</span>
+  <header class="header">
+    <!-- Logo and Company Name Section -->
+    <div class="header-top">
+      <div class="logo-image">
+        <img
+          src="logo3.png"
+          alt="Logo Image"
+        />
+      </div>
+      <div class="company-name">
+        <span>Where Test Drives Meet Dreams!</span>
+      </div>
+      <div class="user-options">
+        <span class="privacy-policy">Privacy Policy</span>
+        <a routerLink="/location" class="user-location">
+          <i class="fas fa-map-marker-alt"></i> Location
+        </a>
 
-      <a routerLink="/location" class="user-location">
-        <i class="fas fa-map-marker-alt"></i> Location
-      </a>
 
-      @if (name=="") {
-      <div>
+        @if (name=="") {
+  <div>
+        <!-- Profile Button with Click Event to Toggle Box -->
         <span class="user-profile" (click)="toggleProfileBox()">
           <i class="fas fa-user"></i> Profile
-        </span>
+          </span>
 
         <!-- Profile Box (Login/Signup Box) -->
         <div *ngIf="isProfileBoxVisible" class="profile-box">
-          <div class="profile-arrow"></div>
-          <!--Arrow pointing to profile -->
+          <div class="profile-arrow"></div>  <!--Arrow pointing to profile -->
           <h4>Login to your RNM Account</h4>
           <button (click)="onLogin()">Login</button>
           <button (click)="onSignup()">Sign Up</button>
         </div>
       </div>
-      } @if (name!="") {
+    }
+
+      @if (name!="") {
       <div>
         <!-- Profile Button with Click Event to Toggle Box -->
         <span class="user-profile" (click)="toggleProfileBox()">
           <i class="fas fa-user"></i>
-          {{ name }}
+          {{name}}
           <!-- <h1>{{name}}</h1> -->
         </span>
 
-        <!-- Profile Box (Login/Signup Box) -->
+        <!-- Profile Box (Logout) -->
         <div *ngIf="isProfileBoxVisible" class="profile-box">
-          <div class="profile-arrow"></div>
-          <!--Arrow pointing to profile -->
+          <div class="profile-arrow"></div>  <!--Arrow pointing to profile -->
           <h4>Login to your RNM Account</h4>
           <button (click)="Onlogout()">Logout</button>
-          <!-- <button (click)="OnEdit()">Edit</button> -->
-        </div>
+          <button (click)="openPop()">Edit</button>
+          </div>
       </div>
-      }
+    }
+  </div>
+  </div>
+
+    <!-- Horizontal Divider Line Below -->
+    <div class="divider"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="nav">
+      
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#dasboard">Booking</a></li>
+        <li><a href="#service-list">Service</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="/dashboard">Admin</a></li>
+
+      </ul>
+    </nav>
+  </header>
+
+
+
+  <div *ngIf="isOpen" class="popup-overlay">
+    <div class="popup-content p-4 shadow-lg rounded">
+      <form [formGroup]="edit" (ngSubmit)="submit()">
+        <!-- Heading -->
+        <h2 class="update text-center mb-4 text">Update your details</h2>
+  
+        <!-- Name Input -->
+        <div class="form-group mb-3">
+          <input type="text" class="form-control form-control-lg" formControlName="name" placeholder="Enter your name" required>
+          <div *ngIf="edit.get('name')?.touched && edit.get('name')?.invalid" class="text-danger">
+            <div *ngIf="edit.get('name')?.hasError('required')">Name is required</div>
+          </div>
+        </div>
+  
+        <!-- Email Input -->
+        <div class="form-group mb-3">
+          <input type="email" class="form-control form-control-lg" formControlName="email" placeholder="Enter your email" required>
+          <div *ngIf="edit.get('email')?.touched && edit.get('email')?.invalid" class="text-danger">
+            <div *ngIf="edit.get('email')?.hasError('required')">Email is required</div>
+            <div *ngIf="edit.get('email')?.hasError('email')">Please enter a valid email address</div>
+          </div>
+        </div>
+  
+        <!-- Mobile Input -->
+        <div class="form-group mb-3">
+          <input type="tel" class="form-control form-control-lg" formControlName="mobile" placeholder="Enter your mobile number" required>
+          <div *ngIf="edit.get('mobile')?.touched && edit.get('mobile')?.invalid" class="text-danger">
+            <div *ngIf="edit.get('mobile')?.hasError('required')">Mobile number is required</div>
+            <div *ngIf="edit.get('mobile')?.hasError('phone')">Please enter a valid phone number</div>
+          </div>
+        </div>
+  
+        <!-- Address Input -->
+        <div class="form-group mb-3">
+          <input type="text" class="form-control form-control-lg" formControlName="address" placeholder="Enter your address" required>
+          <div *ngIf="edit.get('address')?.touched && edit.get('address')?.invalid" class="text-danger">
+            <div *ngIf="edit.get('address')?.hasError('required')">Address is required</div>
+            <div *ngIf="edit.get('address')?.hasError('address')">Please enter a valid address</div>
+          </div>
+        </div>
+  <div class="row">
+    <div class="col">
+      <button type="submit" class="btn btn-primary btn-lg w-100 mb-3">Submit</button>
+
+    </div>
+    <div class="col">
+      <button type="button" class="btn btn-secondary btn-lg w-100" (click)="closePop()">Close</button>
+
     </div>
   </div>
-  <!-- Horizontal Divider Line Below -->
-  <div class="divider"></div>
+        <!-- Submit Button -->
+  
+        <!-- Close Button -->
+      </form>
+    </div>
+  </div>
+  
 
-  <!-- Navigation Bar -->
-  <nav class="nav">
-    <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#booking">Booking</a></li>
-      <li><a href="#service-list">Service</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="#news">News</a></li>
-    </ul>
-  </nav>
-</header>
+  <!-- <button (click)="openPop()">open</button> -->

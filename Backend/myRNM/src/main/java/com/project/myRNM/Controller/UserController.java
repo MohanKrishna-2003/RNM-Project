@@ -105,7 +105,6 @@ public class UserController {
             return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
         }
     }
-
     @PutMapping("/updateProfile/{id}")
     public ResponseEntity<?> updateProfile(@PathVariable("id") Long id, @RequestBody Users users) {
         try {

@@ -1,5 +1,7 @@
 package com.project.myRNM.Exception;
 
+
+
 public class UserNotFoundException extends Exception{
     public UserNotFoundException() {
     }

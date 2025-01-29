@@ -70,13 +70,10 @@ public class UserService {
 
         return monthlyCounts;
     }
-
-
     public Users updateProfile(Long id, Users users) throws Exception {
         Users foundUser = userRepo.findById(id).orElse(null);
         if (foundUser == null) {
-            foundUser.setMobile(users.getMobile());
-            return userRepo.save(foundUser);
+            throw new UserNotFoundException("User not found");
         }
         foundUser.setAddress(users.getAddress());
         foundUser.setMobile(users.getMobile());
