@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
+import { CommonDataServiceService } from '../common-data-service.service';
 interface Booking {
   id:number;
   user_id: number;
@@ -33,10 +34,15 @@ export class BookingsComponent implements OnInit {
   pageSize: number = 10;
   page: number = 0;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,  private commondata: CommonDataServiceService) {}
 
   ngOnInit(): void {
-    this.http.get<Booking[]>("http://localhost:8080/api/slot-bookings").subscribe((res) => {
+    // this.http.get<Booking[]>("http://localhost:8080/api/slot-bookings").subscribe((res) => {
+    //   this.bookings = res;
+    //   this.filteredBookings = this.bookings.slice(0, this.pageSize);
+    // });
+
+    this.commondata.getCenterDetails().subscribe((res) => {
       this.bookings = res;
       this.filteredBookings = this.bookings.slice(0, this.pageSize);
     });

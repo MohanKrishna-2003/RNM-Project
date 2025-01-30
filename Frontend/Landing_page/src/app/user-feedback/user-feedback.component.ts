@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AdminHeaderComponent } from '../admin-header/admin-header.component';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { CommonDataServiceService } from '../common-data-service.service';
 
 interface Feedback {
   user_name: string;
@@ -22,19 +23,31 @@ export class UserFeedbackComponent implements OnInit {
   pageSize: number = 10; // Number of feedbacks to show initially
   currentPage: number = 0; // To keep track of the current page for "Load More"
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,  private commondata: CommonDataServiceService) {}
 
   ngOnInit(): void {
-    this.http.get<Feedback[]>("http://localhost:8080/feedback/feedbackchart").subscribe({
+    this.commondata.getCenterDetails().subscribe({
       next: (res) => {
-        console.log(res);
-        this.feedbackList = res;
+        this.feedbackList = this.commondata.getfeedbacks(res);
         this.displayFeedback(); // Display initial set of feedbacks
+        console.log(this.feedbackList);
+        
       },
       error: (err) => {
         console.error('Error fetching feedback:', err);
       }
     });
+    
+    // this.http.get<Feedback[]>("http://localhost:8080/feedback/feedbackchart").subscribe({
+    //   next: (res) => {
+    //     console.log(res);
+    //     this.feedbackList = res;
+    //     this.displayFeedback(); // Display initial set of feedbacks
+    //   },
+    //   error: (err) => {
+    //     console.error('Error fetching feedback:', err);
+    //   }
+    // });
   }
 
   // Display feedback for the current page

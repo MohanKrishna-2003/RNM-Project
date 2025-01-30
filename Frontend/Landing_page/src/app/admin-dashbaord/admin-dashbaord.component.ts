@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 // import { log } from 'node:console';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { CommonDataServiceService } from '../common-data-service.service';
 
 Chart.register(...registerables);
 
@@ -24,7 +25,10 @@ export interface FeedbackData {
   styleUrl: './admin-dashbaord.component.css',
 })
 export class AdminDashbaordComponent implements OnInit {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private commondata: CommonDataServiceService
+  ) {}
   totalusers: any;
   usermonthly: any;
   months1: any = [];
@@ -39,52 +43,51 @@ export class AdminDashbaordComponent implements OnInit {
   config3: any;
   config: any;
   config2: any;
-  config4:any;
+  config4: any;
   bcounts: number[] = [];
   ngOnInit(): void {
-
+    
     this.http
-    .get('http://localhost:8080/feedback/feedbackcount')
-    .subscribe((res) => {
-      console.log("FEEDBACK " + this.feedbackData);
-      this.feedbackData = res;  // Assuming response has the required structure
-      
-      this.processFeedbackData();
-      this.calculateSum();  
-      // Call this after receiving the data
-       this.config4 = {
-        type: 'bar',
-        data: {
-          labels: this.months,
-    
-          datasets: [
-            {
-              label: 'Positive Feedback',
-              backgroundColor: '#365CF5',
-              borderColor: 'transparent',
-              borderRadius: 20,
-              borderWidth: 5,
-              barThickness: 20,
-              maxBarThickness: 20,
-              data: this.positiveCounts,
-            },
-            {
-              label: 'Negative Feedback',
-              backgroundColor: '#d50100',
-              borderColor: 'transparent',
-              borderRadius: 20,
-              borderWidth: 5,
-              barThickness: 20,
-              maxBarThickness: 20,
-              data: this.negativeCounts,
-            },
-          ],
-        },
-      };
-      this.chart4 = new Chart('Chart4', this.config4);
+      .get('http://localhost:8080/feedback/feedbackcount')
+      .subscribe((res) => {
+        console.log('FEEDBACK ' + this.feedbackData);
+        this.feedbackData = res; // Assuming response has the required structure
 
-    });
-    
+        this.processFeedbackData();
+        this.calculateSum();
+        // Call this after receiving the data
+        this.config4 = {
+          type: 'bar',
+          data: {
+            labels: this.months,
+
+            datasets: [
+              {
+                label: 'Positive Feedback',
+                backgroundColor: '#365CF5',
+                borderColor: 'transparent',
+                borderRadius: 20,
+                borderWidth: 5,
+                barThickness: 20,
+                maxBarThickness: 20,
+                data: this.positiveCounts,
+              },
+              {
+                label: 'Negative Feedback',
+                backgroundColor: '#d50100',
+                borderColor: 'transparent',
+                borderRadius: 20,
+                borderWidth: 5,
+                barThickness: 20,
+                maxBarThickness: 20,
+                data: this.negativeCounts,
+              },
+            ],
+          },
+        };
+        this.chart4 = new Chart('Chart4', this.config4);
+      });
+
     this.http.get('http://localhost:8080/user/totaluser').subscribe((res) => {
       console.log(res);
       this.totalusers = res;
@@ -139,11 +142,10 @@ export class AdminDashbaordComponent implements OnInit {
     this.http
       .get('http://localhost:8080/user/userMonthlyCount')
       .subscribe((res) => {
-        console.log("FIRST CHART RESPONSE "+res);
-
+        console.log('FIRST CHART RESPONSE ' + res);
 
         this.usermonthly = res;
-        console.log("FIRST CHART DATA "+this.usermonthly[0].month);
+        console.log('FIRST CHART DATA ' + this.usermonthly[0].month);
 
         for (let i = 0; i < this.usermonthly.length; i++) {
           this.months1.push(this.usermonthly[i].month); // Push the month to the months array
@@ -233,32 +235,32 @@ export class AdminDashbaordComponent implements OnInit {
   totalpositive = 0;
   totalnegative = 0;
   selectedYear: String = 'y2024';
-  year:number=2024;
+  year: number = 2024;
   processFeedbackData(): void {
     console.log('INSIDE PROCESS FEEDBACKS');
-    
+
     for (let i = 0; i < this.months.length; i++) {
-      let month= this.months[i] + ' 2024';
-      console.log("DATA "+this.feedbackData[month]);
-      
-  
+      let month = this.months[i] + ' 2024';
+      console.log('DATA ' + this.feedbackData[month]);
+
       let positive = 0;
       let negative = 0;
-  
+
       // Check if feedback data exists for the given month
       if (this.feedbackData[month]) {
         positive = this.feedbackData[month].positive || 0;
         negative = this.feedbackData[month].negative || 0;
       }
-  
+
       // Push the counts into the arrays
       this.positiveCounts.push(positive);
-      this.negativeCounts.push(negative);      
+      this.negativeCounts.push(negative);
     }
-    console.log("positive and negative "+this.positiveCounts[0]+this.negativeCounts[0]);
-    
+    console.log(
+      'positive and negative ' + this.positiveCounts[0] + this.negativeCounts[0]
+    );
   }
-  
+
   // changeFeedbackYear() {
   //    let year1 = this.selectedYear === "y2024" ? 2024 : 2025;
   //   this.processFeedbackData(year1);
@@ -266,7 +268,7 @@ export class AdminDashbaordComponent implements OnInit {
   //   console.log("CHART UPDATION"+year1);
   //   this.chart4.update();
   // }
-  
+
   calculateSum() {
     this.totalpositive = this.positiveCounts.reduce(
       (sum, current) => sum + current,
@@ -290,6 +292,4 @@ export class AdminDashbaordComponent implements OnInit {
   chart4data: any;
   chardata1: any = this.counts;
   usersatisfaction: any;
-
-
 }

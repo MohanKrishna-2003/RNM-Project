@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { catchError, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
@@ -19,13 +19,15 @@ interface Center {
 @Injectable({
   providedIn: 'root'
 })
-export class CommonDataServiceService {
+export class CommonDataServiceService  {
   CenterDetails: Center[] = [];
-
+  maindata: any;
   constructor(private http: HttpClient) {}
 
+
   getCenterDetails(): Observable<any> {
-    return this.http.get<any>('http://localhost:8080/api/slot-bookings');
+    this.maindata= this.http.get<any>('http://localhost:8080/api/slot-bookings');
+    return this.maindata;
   }
 
   // Method to extract and return unique center details
@@ -58,4 +60,22 @@ export class CommonDataServiceService {
 
     return uniqueCentersArray;
   }
+
+  users: any[] = [];
+  feedbacks : any=[];
+  bookings : any[]=[];
+  getUserDetails(maindata: any): any {
+    this.users = maindata.map((item: any) => item.user);
+    return this.users;
+  }
+  
+  getfeedbacks(maindata: any): any {
+    maindata.forEach((item: any) => {
+      this.feedbacks = this.feedbacks.concat(item.user.feedbacks);
+    });
+    console.log(this.feedbacks);
+    
+    return this.feedbacks;
+  }
+  
 }
