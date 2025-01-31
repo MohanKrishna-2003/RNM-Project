@@ -3,6 +3,7 @@ package com.project.myRNM.Service;
 import com.project.myRNM.Exception.UserNotFoundException;
 import com.project.myRNM.Models.DTOs.MonthlyUserCount;
 import com.project.myRNM.Models.DTOs.UserDTO;
+import com.project.myRNM.Models.DTOs.UserWithFeedbackDTO;
 import com.project.myRNM.Models.Entity.Users;
 import com.project.myRNM.Repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -79,5 +81,40 @@ public class UserService {
         foundUser.setAddress(users.getAddress());
         foundUser.setMobile(users.getMobile());
         return userRepo.save(foundUser);
+    }
+
+    public List<UserWithFeedbackDTO> getAllUsersAndFeedbacks() {
+        List<Object[]> results = userRepo.findAllUserandFeedbacks();
+
+        List<UserWithFeedbackDTO> userWithFeedbackDTOList = new ArrayList<>();
+
+        for (Object[] result : results) {
+            Long userId = (Long) result[0];
+            String userName = (String) result[1];
+            String userEmail = (String) result[2];
+            String userAddress = (String) result[3];
+            String userMobile = (String) result[4];
+            Date registrationDate = (Date) result[5];
+
+            // Feedback-related data
+            Integer feedbackId = (Integer) result[6];
+            Integer userRatings = (Integer) result[7];
+            String feedback = (String) result[8];
+            Date feedbackDate = (Date) result[9];
+
+            UserWithFeedbackDTO.FeedbackDTO feedbackDTO = new UserWithFeedbackDTO.FeedbackDTO(
+                    feedbackId, userRatings, feedback, feedbackDate);
+
+            List<UserWithFeedbackDTO.FeedbackDTO> feedbacks = new ArrayList<>();
+            feedbacks.add(feedbackDTO);
+
+            // Check if user already exists in the list to avoid duplicates
+            UserWithFeedbackDTO userWithFeedbackDTO = new UserWithFeedbackDTO(
+                    userId, userName, userEmail, userAddress, userMobile, registrationDate, feedbacks);
+
+            userWithFeedbackDTOList.add(userWithFeedbackDTO);
+        }
+
+        return userWithFeedbackDTOList;
     }
 }

@@ -26,28 +26,28 @@ export class UserFeedbackComponent implements OnInit {
   constructor(private http: HttpClient,  private commondata: CommonDataServiceService) {}
 
   ngOnInit(): void {
-    this.commondata.getCenterDetails().subscribe({
-      next: (res) => {
-        this.feedbackList = this.commondata.getfeedbacks(res);
-        this.displayFeedback(); // Display initial set of feedbacks
-        console.log(this.feedbackList);
-        
-      },
-      error: (err) => {
-        console.error('Error fetching feedback:', err);
-      }
-    });
-    
-    // this.http.get<Feedback[]>("http://localhost:8080/feedback/feedbackchart").subscribe({
+    // this.commondata.getUserandFeedback().subscribe({
     //   next: (res) => {
-    //     console.log(res);
     //     this.feedbackList = res;
     //     this.displayFeedback(); // Display initial set of feedbacks
+    //     console.log(this.feedbackList);
+        
     //   },
     //   error: (err) => {
     //     console.error('Error fetching feedback:', err);
     //   }
     // });
+    
+    this.http.get<Feedback[]>("http://localhost:8080/feedback/feedbackchart").subscribe({
+      next: (res) => {
+        console.log(res);
+        this.feedbackList = res;
+        this.displayFeedback(); // Display initial set of feedbacks
+      },
+      error: (err) => {
+        console.error('Error fetching feedback:', err);
+      }
+    });
   }
 
   // Display feedback for the current page

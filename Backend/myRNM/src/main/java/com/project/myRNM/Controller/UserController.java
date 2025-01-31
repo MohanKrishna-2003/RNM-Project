@@ -1,5 +1,6 @@
 package com.project.myRNM.Controller;
 
+import com.project.myRNM.Models.DTOs.UserWithFeedbackDTO;
 import com.project.myRNM.Models.Entity.Users;
 
 import com.project.myRNM.Repository.UserRepo;
@@ -14,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -118,6 +120,11 @@ public class UserController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new GeneralResponse(e.getMessage()));
         }
+    }
+
+    @GetMapping("/with-feedback")
+    public List<UserWithFeedbackDTO> getAllUsersAndFeedbacks() {
+        return userService.getAllUsersAndFeedbacks();
     }
 }
 

@@ -24,14 +24,14 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
     // Get the data when component initializes
-    // this.getAllTheUserList().subscribe((data: any) => {
-    //   this.users = data;
-    //   this.filteredUsers = this.users.slice(0, this.pageSize); // Initially load the first 10 users
-    // });
-    this.commondata.getCenterDetails().subscribe((data: any) => {
-        this.users = this.commondata.getUserDetails(data);
-        this.filteredUsers = this.users.slice(0, this.pageSize); // Initially load the first 10 users
-      });
+    this.getAllTheUserList().subscribe((data: any) => {
+      this.users = data;
+      this.filteredUsers = this.users.slice(0, this.pageSize); // Initially load the first 10 users
+    });
+    // this.commondata.getCenterDetails().subscribe((data: any) => {
+    //     this.users = this.commondata.getUserDetails(data);
+    //     this.filteredUsers = this.users.slice(0, this.pageSize); // Initially load the first 10 users
+    //   });
   }
 
   getAllTheUserList(): Observable<any> {

@@ -36,5 +36,11 @@ public interface UserRepo extends JpaRepository<Users, Long> {
 
     Optional <Users> findByEmail(String email);  //customMethod
 
+    @Query(value = "SELECT " +
+            "u.user_id AS user_id, u.user_name AS user_name, u.user_email AS user_email, u.user_address AS user_address, u.user_mobile AS user_mobile, u.registration_date, " +
+            "f.feedback_id AS feedback_id, f.user_ratings, f.feedback, f.feedback_date "+
+            "FROM user_details u " +
+            "LEFT JOIN feedback f ON u.user_id = f.user_id ", nativeQuery = true)
+    List<Object[]> findAllUserandFeedbacks();
 }
 

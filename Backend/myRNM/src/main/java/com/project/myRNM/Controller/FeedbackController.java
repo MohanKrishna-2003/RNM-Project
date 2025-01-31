@@ -43,14 +43,14 @@ public class FeedbackController {
         }
     }
 
-    @GetMapping("/getUsersFeedback")
-    public ResponseEntity<?> getAllUsersFeedback(){
-        try{
-            List<Feedback> list = feedbackService.getAllFeedback();
-            return ResponseEntity.ok(list);
-        }catch (Exception e){
-            e.printStackTrace();
-            return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
-        }
-    }
+//    @GetMapping("/getUsersFeedback")
+//    public ResponseEntity<?> getAllUsersFeedback(){
+//        try{
+//            List<Feedback> list = feedbackService.getAllFeedback();
+//            return ResponseEntity.ok(list);
+//        }catch (Exception e){
+//            e.printStackTrace();
+//            return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
+//        }
+//    }
 }

@@ -2,6 +2,7 @@ package com.project.myRNM.Controller;
 
 import com.project.myRNM.Models.DTOs.AdminDTO;
 import com.project.myRNM.Models.DTOs.AdminValidateDTO;
+import com.project.myRNM.Models.DTOs.UserBookingDTO;
 import com.project.myRNM.Models.Entity.Admin;
 import com.project.myRNM.Models.Entity.Users;
 import com.project.myRNM.Models.Response.GeneralResponse;
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 
 @RestController
 @RequestMapping("/admin")
@@ -49,5 +51,10 @@ public class AdminController {
             return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
         }
 
+    }
+
+    @GetMapping("/user_bookings")
+    public List<UserBookingDTO> getUserBookings() {
+        return adminService.getAllUserBookingsWithDetails();
     }
 }

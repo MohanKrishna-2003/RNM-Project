@@ -16,6 +16,7 @@ public interface FeedbackRepo extends JpaRepository<Feedback, Integer> {
 
    @Query("SELECT f FROM Feedback f ORDER BY feedback_date DESC")
     List<Feedback> findsortFeedback();
+
 }
 
 
