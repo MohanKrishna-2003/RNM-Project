@@ -74,7 +74,17 @@
     </button>
     <h2 style="color: black">Choose Your CAR!</h2>
     <div class="filters">
-      <label>
+
+      <label for="carType">Car Type:</label>
+<select id="carType" (change)="filterByCarType($event)" class="baloo">
+  <option value="">All</option>
+  <option value="SUV">SUV</option>
+  <option value="Hatchback">Hatchback</option>
+  <option value="Sedan">Sedan</option>
+  <option value="Truck">Truck</option>
+</select>
+
+      <!-- <label>
         Price Range:
         <select (click)="filterCarsByPrice($event)" class="baloo">
           <option value="">All</option>
@@ -82,9 +92,21 @@
           <option value="mid">₹10-₹20 Lakhs</option>
           <option value="high">Above ₹20 Lakhs</option>
         </select>
+      </label> -->
+      <label class="baloo">
+        Price Range: ₹{{ minPrice }} - ₹{{ maxPrice }}
+        <input 
+          type="range" 
+          min="{{ minPrice }}" 
+          [max]="maxPrice" 
+          [(ngModel)]="selectedPrice"
+          (input)="filterCarsByPrice($event)"
+          step="10000"
+        />
       </label>
-
-      <label>
+      
+      
+      <!-- <label>
         Order By:
         <select (change)="sortByOrder($event)" class="baloo">
           <option value="">None</option>
@@ -92,7 +114,7 @@
           <option value="minPrice">Min Price</option>
           <option value="booking">Availability</option>
         </select>
-      </label>
+      </label> -->
 
       <label>
         Rating:

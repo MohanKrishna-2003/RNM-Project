@@ -35,7 +35,7 @@ export class CarSelectionComponent implements OnInit {
   isBookingClicked: boolean = false;
   selectedCar: any = null;
   isFilterSidebarOpen: boolean = false;
-  selectedPrice: string = '';
+  // selectedPrice: string = '';
   sortBy: string = '';
   todayDate: string;
   status: boolean = true;
@@ -164,6 +164,8 @@ export class CarSelectionComponent implements OnInit {
     this.http.get<any[]>('http://localhost:8080/api/cars').subscribe((cars) => {
       this.cars = cars;
       this.displayedCars = [...this.cars];
+      console.log(this.displayedCars);
+      
       this.showGif = false;
 
       this.displayedCars.forEach((car) => {
@@ -248,39 +250,89 @@ export class CarSelectionComponent implements OnInit {
     this.showGif = false;
   }
 
+
+  minPrice: number = 0;
+  maxPrice: number = 30000000; // Adjust as needed
+  selectedPrice: number = this.maxPrice; 
+
+  // filterCarsByPrice(event: Event): void {
+  //   const selectedPrice = (event?.target as HTMLSelectElement).value;
+  //   this.displayedCars = this.cars.filter((car) => {
+  //     const rawPrice = car.price?.INR;
+  //     if (!rawPrice) return false;
+  //     const normalizedPrice = this.normalizePrice(rawPrice);
+  //     switch (selectedPrice) {
+  //       case 'low':
+  //         return normalizedPrice < 1000000;
+  //       case 'mid':
+  //         return normalizedPrice >= 1000000 && normalizedPrice <= 2000000;
+  //       case 'high':
+  //         return normalizedPrice > 2000000;
+  //       default:
+  //         return true;
+  //     }
+  //   });
+  //   this.showGif = false;
+  // }
+
+  
+  // normalizePrice(rawPrice: string): number {
+  //   let numericPrice = rawPrice.replace(/[₹$,]/g, '').trim();
+  //   if (numericPrice.includes('Crore')) {
+  //     numericPrice = numericPrice.replace('Crore', '').trim();
+  //     return parseFloat(numericPrice) * 10000000;
+  //   }
+  //   if (numericPrice.includes('Lakhs')) {
+  //     numericPrice = numericPrice.replace('Lakhs', '').trim();
+  //     return parseFloat(numericPrice) * 100000;
+  //   }
+  //   return parseFloat(numericPrice) || 0;
+  // }
+
+
   filterCarsByPrice(event: Event): void {
-    const selectedPrice = (event?.target as HTMLSelectElement).value;
+    const target = event.target as HTMLInputElement;
+    const selectedPrice = parseFloat(target.value);
+    console.log('Selected Price: ', selectedPrice); // Debug selected price
+    
     this.displayedCars = this.cars.filter((car) => {
       const rawPrice = car.price?.INR;
+
       if (!rawPrice) return false;
+  
       const normalizedPrice = this.normalizePrice(rawPrice);
-      switch (selectedPrice) {
-        case 'low':
-          return normalizedPrice < 1000000;
-        case 'mid':
-          return normalizedPrice >= 1000000 && normalizedPrice <= 2000000;
-        case 'high':
-          return normalizedPrice > 2000000;
-        default:
-          return true;
-      }
+
+
+      console.log('Normalized Price: ', normalizedPrice); // Debug normalized price
+  
+      return normalizedPrice <= selectedPrice;
+
     });
+    
     this.showGif = false;
   }
-
+  
+  
   normalizePrice(rawPrice: string): number {
-    let numericPrice = rawPrice.replace(/[₹$,]/g, '').trim();
+    let numericPrice = rawPrice.replace(/[₹$,]/g, '').trim(); // Remove ₹ and commas from price string
+  
+    // Check if it's in 'Crore'
     if (numericPrice.includes('Crore')) {
       numericPrice = numericPrice.replace('Crore', '').trim();
-      return parseFloat(numericPrice) * 10000000;
+      return parseFloat(numericPrice) * 10000000; // Convert Crore to number
     }
+  
+    // Check if it's in 'Lakhs'
     if (numericPrice.includes('Lakhs')) {
       numericPrice = numericPrice.replace('Lakhs', '').trim();
-      return parseFloat(numericPrice) * 100000;
+      return parseFloat(numericPrice) * 100000; // Convert Lakhs to number
     }
+    console.log('raw Price: ', numericPrice); // Debug selected price
+  
+    // Otherwise, just return the plain numeric value
     return parseFloat(numericPrice) || 0;
   }
-
+  
   confirm() {
     alert(
       'Your booking slot is confirmed... please await further instructions.....'
@@ -305,6 +357,21 @@ export class CarSelectionComponent implements OnInit {
     this.showGif = false;
   }
 
+  // In CarSelectionComponent
+
+  filterByCarType(event: Event): void {
+    const target = event.target as HTMLSelectElement;  // Type assertion to HTMLSelectElement
+    const selectedType = target.value;  // Now TypeScript knows that 'value' exists
+    if (selectedType) {
+      this.displayedCars = this.cars.filter((car) =>
+        car.details?.toLowerCase().includes(selectedType.toLowerCase())
+      );
+    } else {
+      this.displayedCars = [...this.cars]; // Show all cars if no type is selected
+    }
+    this.showGif = false; // Hide loading gif
+  }
+  
   // Filter functions for other attributes
   filterByRating(event: Event): void {
     const selectedRating = (event.target as HTMLSelectElement).value;
