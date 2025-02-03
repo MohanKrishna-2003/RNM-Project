@@ -252,7 +252,7 @@ export class CarSelectionComponent implements OnInit {
 
 
   minPrice: number = 0;
-  maxPrice: number = 30000000; // Adjust as needed
+  maxPrice: number = 30000000; 
   selectedPrice: number = this.maxPrice; 
 
   // filterCarsByPrice(event: Event): void {
@@ -293,7 +293,7 @@ export class CarSelectionComponent implements OnInit {
   filterCarsByPrice(event: Event): void {
     const target = event.target as HTMLInputElement;
     const selectedPrice = parseFloat(target.value);
-    console.log('Selected Price: ', selectedPrice); // Debug selected price
+    console.log('Selected Price: ', selectedPrice); 
     
     this.displayedCars = this.cars.filter((car) => {
       const rawPrice = car.price?.INR;
@@ -303,7 +303,7 @@ export class CarSelectionComponent implements OnInit {
       const normalizedPrice = this.normalizePrice(rawPrice);
 
 
-      console.log('Normalized Price: ', normalizedPrice); // Debug normalized price
+      console.log('Normalized Price: ', normalizedPrice); 
   
       return normalizedPrice <= selectedPrice;
 
@@ -314,22 +314,19 @@ export class CarSelectionComponent implements OnInit {
   
   
   normalizePrice(rawPrice: string): number {
-    let numericPrice = rawPrice.replace(/[₹$,]/g, '').trim(); // Remove ₹ and commas from price string
+    let numericPrice = rawPrice.replace(/[₹$,]/g, '').trim(); 
   
-    // Check if it's in 'Crore'
     if (numericPrice.includes('Crore')) {
       numericPrice = numericPrice.replace('Crore', '').trim();
-      return parseFloat(numericPrice) * 10000000; // Convert Crore to number
+      return parseFloat(numericPrice) * 10000000; 
     }
   
-    // Check if it's in 'Lakhs'
     if (numericPrice.includes('Lakhs')) {
       numericPrice = numericPrice.replace('Lakhs', '').trim();
-      return parseFloat(numericPrice) * 100000; // Convert Lakhs to number
+      return parseFloat(numericPrice) * 100000; 
     }
-    console.log('raw Price: ', numericPrice); // Debug selected price
+    console.log('raw Price: ', numericPrice); 
   
-    // Otherwise, just return the plain numeric value
     return parseFloat(numericPrice) || 0;
   }
   
@@ -357,22 +354,20 @@ export class CarSelectionComponent implements OnInit {
     this.showGif = false;
   }
 
-  // In CarSelectionComponent
 
   filterByCarType(event: Event): void {
-    const target = event.target as HTMLSelectElement;  // Type assertion to HTMLSelectElement
-    const selectedType = target.value;  // Now TypeScript knows that 'value' exists
+    const target = event.target as HTMLSelectElement;  
+    const selectedType = target.value;  
     if (selectedType) {
       this.displayedCars = this.cars.filter((car) =>
         car.details?.toLowerCase().includes(selectedType.toLowerCase())
       );
     } else {
-      this.displayedCars = [...this.cars]; // Show all cars if no type is selected
+      this.displayedCars = [...this.cars]; 
     }
-    this.showGif = false; // Hide loading gif
+    this.showGif = false; 
   }
   
-  // Filter functions for other attributes
   filterByRating(event: Event): void {
     const selectedRating = (event.target as HTMLSelectElement).value;
     if (selectedRating) {

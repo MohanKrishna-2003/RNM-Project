@@ -1,3 +1,5 @@
+
+
 import { Component } from '@angular/core';
 import { ComponentOptions } from './../../node_modules/@types/bootstrap/js/dist/base-component.d';
 import { Routes } from '@angular/router';
@@ -20,24 +22,23 @@ import { QueryComponent } from './query/query.component';
 import { BookingsComponent } from './bookings/bookings.component';
 import { NewsComponent } from './news/news.component';
 
-
 export const routes: Routes = [
-
-  { path: 'contact', component: ContactComponent },  // This will display the Contact component for '/contact'
-  { path: 'location', component: LocationComponent } ,
-  { path: '',component:HomeComponent },
-  {path:'login',component:LoginComponent},
-  {path:'signup',component:SignupComponent},
-  {path:'feedback',component:FeedbackComponent},
+  { path: 'contact', component: ContactComponent }, // This will display the Contact component for '/contact'
+  { path: 'location', component: LocationComponent },
+  { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: 'feedback', component: FeedbackComponent },
   { path: 'booking', component: BookingComponent },
   { path: 'car-selection-page', component: CarSelectionComponent },
-  {path:"home", component:HomeComponent},
-  {path:"userbookings", component:BookingsComponent},
-  {path:"users", component:UsersComponent},
-  {path:"userfeedback", component:UserFeedbackComponent},
-  {path:"showrooms", component:ShowroomsComponent},
-  {path:"settings", component:AdminSettingsComponent},
-  {path:"notifications", component:NotificationsComponent},
-  {path:"dashboard", component:AdminDashbaordComponent},
-  {path:"contact-query", component:QueryComponent},
-  {path:'news',component:NewsComponent}];
+  { path: 'home', component: HomeComponent },
+  { path: 'userbookings', component: BookingsComponent },
+  { path: 'users', component: UsersComponent },
+  { path: 'userfeedback', component: UserFeedbackComponent },
+  { path: 'showrooms', component: ShowroomsComponent },
+  { path: 'settings', component: AdminSettingsComponent },
+  { path: 'notifications', component: NotificationsComponent },
+  { path: 'dashboard', component: AdminDashbaordComponent },
+  { path: 'contact-query', component: QueryComponent },
+  { path: 'news', component: NewsComponent },
+];

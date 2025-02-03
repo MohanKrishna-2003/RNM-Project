@@ -5,9 +5,11 @@ import { AdminHeaderComponent } from '../admin-header/admin-header.component';
 import { FormsModule } from '@angular/forms';
 
 interface Contact {
+  messageid: number;
   name: string;
   message: string;
   email: string;
+  status: Boolean;
 }
 
 @Component({
@@ -24,17 +26,20 @@ export class QueryComponent {
   currentPage: number = 0; // To keep track of the current page for "Load More"
   isFormVisible = false;
   email: string = '';
-  subject: string = '';
+  subject: string = 'Resolving your Query';
   message: string = '';
   selectedmail: String='';
+  message_id : number ;
   constructor(private http: HttpClient) {}
-
   ngOnInit(): void {
     this.http.get<Contact[]>("http://localhost:8080/contact/contact").subscribe({
       next: (res) => {
         console.log(res);
+
         this.contactList = res;
-        this.displayQuery(); // Display initial set of feedbacks
+          this.displayQuery();
+        
+         // Display initial set of feedbacks
       },
       error: (err) => {
         console.error('Error fetching feedback:', err);
@@ -62,9 +67,10 @@ export class QueryComponent {
     return classes[index % classes.length];
   }
 
-  openForm(email:String) {
+  openForm(email:String, messageid: number) {
     this.isFormVisible = true;
     this.selectedmail=email;
+    this.message_id= messageid;
   }
 
   closeForm() {
@@ -76,15 +82,37 @@ export class QueryComponent {
       "text":this.message,
       "subject":this.subject
     }
-      console.log(data);
-      alert("EMAIL SUCCESFULLY SEND !!")
+
+      console.log(this.message_id);
+      this.http.post("http://localhost:8080/contact/changestatus",this.message_id).subscribe({
+        next: (res) => {
+          console.log(res);
+        }
+      });
+
 
       this.http.post("http://localhost:8080/mail/sendmail",data).subscribe({
         next: (res) => {
           console.log(res);
-          
         }
       });
+
+      alert("EMAIL SUCCESFULLY SEND !!")
+window.location.reload();
     }
     
 }
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+

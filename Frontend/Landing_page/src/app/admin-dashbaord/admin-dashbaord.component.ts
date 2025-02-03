@@ -1,3 +1,5 @@
+
+
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AdminHeaderComponent } from '../admin-header/admin-header.component';
 import { Chart, registerables } from 'chart.js';
@@ -49,12 +51,12 @@ export class AdminDashbaordComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.commondata.getUserandFeedback().subscribe((res)=>{
+    this.commondata.loadData().subscribe((res)=>{
       console.log('FEEDBACK ' + this.feedbackData);
-      this.feedbackData = this.commondata.categorizeFeedbacks(res); 
-      this.totalusers = this.commondata.getTotalUniqueUsers(res);
-      this.last30= this.commondata.getUsersRegisteredCountInLast30Days(res);
-      this.usermonthly= this.commondata.getUsersCountByMonth(res);
+      this.feedbackData = this.commondata.categorizeFeedbacks(this.commondata.userwithfeedbacks); 
+      this.totalusers = this.commondata.getTotalUniqueUsers(this.commondata.userwithfeedbacks);
+      this.last30= this.commondata.getUsersRegisteredCountInLast30Days(this.commondata.userwithfeedbacks);
+      this.usermonthly= this.commondata.getUsersCountByMonth(this.commondata.userwithfeedbacks);
 
       this.processFeedbackData();
       this.calculateSum();
@@ -121,6 +123,64 @@ export class AdminDashbaordComponent implements OnInit {
         },
       };
       this.chart = new Chart('Chart1', this.config);
+
+      
+this.showroomcount= this.commondata.getUniqueCenterCount(this.commondata.maindata);
+this.slotusermonthly = this.commondata.getUsersSlotCountByMonth(this.commondata.maindata);
+console.log(this.slotusermonthly);
+
+for (let i = 0; i < this.slotusermonthly.length; i++) {
+  this.slotmonths.push(this.slotusermonthly[i].month); // Push the month to the months array
+  this.slotcounts.push(this.slotusermonthly[i].count); // Push the count to the counts array
+}
+this.config2 = {
+  type: 'bar',
+  data: {
+    labels: this.slotmonths,
+    datasets: [
+      {
+        label: 'Users (Number) ',
+        backgroundColor: '#365CF5',
+        borderRadius: 30,
+        barThickness: 6,
+        maxBarThickness: 8,
+        data: this.slotcounts,
+      },
+    ],
+  },
+};
+this.chart2 = new Chart('Chart2', this.config2);
+
+this.brandsdata = this.commondata.getCenterAnalysis(this.commondata.maindata);
+for (let i = 0; i < this.brandsdata.length; i++) {
+  this.brands.push(this.brandsdata[i].centerName); // Push the month to the months array
+  this.bcounts.push(this.brandsdata[i].totalBookings);
+  // Push the count to the counts array
+}
+console.log('DATA COUNTS: ', this.bcounts);
+console.log('DATA BRANDS: ', this.brands);
+console.log(this.bcounts[0], this.bcounts[1], this.bcounts[2]);
+this.config3 = {
+  type: 'pie', // Pie chart type
+  data: {
+    labels: this.brands, // Labels
+    datasets: [
+      {
+        label: 'Car Bookings',
+        data: this.bcounts, // Sample data
+        backgroundColor: ['#365CF5', '#9b51e0','#365CF5', '#9b51e0', '#4CAF50'],
+        hoverBackgroundColor: ['#2A46B1', '#7F37A8','#2A46B1', '#7F37A8', '#388E3C'],
+        borderWidth: 5,
+        borderColor: '#ffffff',
+      },
+    ],
+  },
+  options: {
+    responsive: false, // Responsive chart
+    maintainAspectRatio: false, // Allow resizing
+  },
+};
+this.chart3 = new Chart('Chart3', this.config3);
     });
     // this.http
     //   .get('http://localhost:8080/feedback/feedbackcount')
@@ -180,67 +240,67 @@ export class AdminDashbaordComponent implements OnInit {
     //   this.last30 = res;
     // });
 
-    this.commondata.getCenterDetails()
-    .subscribe((res) => {
-      console.log('DATAAAAAAAAAAA');
+//     this.commondata.loadData()
+// .subscribe((res) => {
+//       console.log(res);
 
-this.showroomcount= this.commondata.getUniqueCenterCount(res);
-      this.slotusermonthly = this.commondata.getUsersSlotCountByMonth(res);
-      console.log(this.slotusermonthly);
+// this.showroomcount= this.commondata.getUniqueCenterCount(this.commondata.maindata);
+//       this.slotusermonthly = this.commondata.getUsersSlotCountByMonth(this.commondata.maindata);
+//       console.log(this.slotusermonthly);
 
-      for (let i = 0; i < this.slotusermonthly.length; i++) {
-        this.slotmonths.push(this.slotusermonthly[i].month); // Push the month to the months array
-        this.slotcounts.push(this.slotusermonthly[i].count); // Push the count to the counts array
-      }
-      this.config2 = {
-        type: 'bar',
-        data: {
-          labels: this.slotmonths,
-          datasets: [
-            {
-              label: 'Users (Number) ',
-              backgroundColor: '#365CF5',
-              borderRadius: 30,
-              barThickness: 6,
-              maxBarThickness: 8,
-              data: this.slotcounts,
-            },
-          ],
-        },
-      };
-      this.chart2 = new Chart('Chart2', this.config2);
+//       for (let i = 0; i < this.slotusermonthly.length; i++) {
+//         this.slotmonths.push(this.slotusermonthly[i].month); // Push the month to the months array
+//         this.slotcounts.push(this.slotusermonthly[i].count); // Push the count to the counts array
+//       }
+//       this.config2 = {
+//         type: 'bar',
+//         data: {
+//           labels: this.slotmonths,
+//           datasets: [
+//             {
+//               label: 'Users (Number) ',
+//               backgroundColor: '#365CF5',
+//               borderRadius: 30,
+//               barThickness: 6,
+//               maxBarThickness: 8,
+//               data: this.slotcounts,
+//             },
+//           ],
+//         },
+//       };
+//       this.chart2 = new Chart('Chart2', this.config2);
 
-      this.brandsdata = this.commondata.getCenterAnalysis(res);
-      for (let i = 0; i < this.brandsdata.length; i++) {
-        this.brands.push(this.brandsdata[i].centerName); // Push the month to the months array
-        this.bcounts.push(this.brandsdata[i].totalBookings);
-        // Push the count to the counts array
-      }
-      console.log('DATA COUNTS: ', this.bcounts);
-      console.log('DATA BRANDS: ', this.brands);
-      console.log(this.bcounts[0], this.bcounts[1], this.bcounts[2]);
-      this.config3 = {
-        type: 'pie', // Pie chart type
-        data: {
-          labels: this.brands, // Labels
-          datasets: [
-            {
-              label: 'Car Bookings',
-              data: this.bcounts, // Sample data
-              backgroundColor: ['#365CF5', '#9b51e0','#365CF5', '#9b51e0', '#4CAF50'],
-              hoverBackgroundColor: ['#2A46B1', '#7F37A8','#2A46B1', '#7F37A8', '#388E3C'],
-              borderWidth: 5,
-              borderColor: '#ffffff',
-            },
-          ],
-        },
-        options: {
-          responsive: false, // Responsive chart
-          maintainAspectRatio: false, // Allow resizing
-        },
-      };
-      this.chart3 = new Chart('Chart3', this.config3);
-    });
+//       this.brandsdata = this.commondata.getCenterAnalysis(this.commondata.maindata);
+//       for (let i = 0; i < this.brandsdata.length; i++) {
+//         this.brands.push(this.brandsdata[i].centerName); // Push the month to the months array
+//         this.bcounts.push(this.brandsdata[i].totalBookings);
+//         // Push the count to the counts array
+//       }
+//       console.log('DATA COUNTS: ', this.bcounts);
+//       console.log('DATA BRANDS: ', this.brands);
+//       console.log(this.bcounts[0], this.bcounts[1], this.bcounts[2]);
+//       this.config3 = {
+//         type: 'pie', // Pie chart type
+//         data: {
+//           labels: this.brands, // Labels
+//           datasets: [
+//             {
+//               label: 'Car Bookings',
+//               data: this.bcounts, // Sample data
+//               backgroundColor: ['#365CF5', '#9b51e0','#365CF5', '#9b51e0', '#4CAF50'],
+//               hoverBackgroundColor: ['#2A46B1', '#7F37A8','#2A46B1', '#7F37A8', '#388E3C'],
+//               borderWidth: 5,
+//               borderColor: '#ffffff',
+//             },
+//           ],
+//         },
+//         options: {
+//           responsive: false, // Responsive chart
+//           maintainAspectRatio: false, // Allow resizing
+//         },
+//       };
+//       this.chart3 = new Chart('Chart3', this.config3);
+//     });
     
     // this.http
     // .get('http://localhost:8080/api/slot-bookings/brandCount')
@@ -433,3 +493,10 @@ this.showroomcount= this.commondata.getUniqueCenterCount(res);
   chardata1: any = this.counts;
   usersatisfaction: any;
 }
+
+
+
+
+
+
+

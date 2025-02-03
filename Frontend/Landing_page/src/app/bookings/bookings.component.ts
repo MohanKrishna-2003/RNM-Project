@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { AdminHeaderComponent } from '../admin-header/admin-header.component';
 import { CommonModule } from '@angular/common';
@@ -42,8 +43,11 @@ export class BookingsComponent implements OnInit {
     //   this.filteredBookings = this.bookings.slice(0, this.pageSize);
     // });
 
-    this.commondata.getCenterDetails().subscribe((res) => {
-      this.bookings = res;
+    this.commondata.loadData().subscribe((res) => {
+      console.log(res);
+      console.log("THIS IS FROM SERVICE");
+      
+      this.bookings = this.commondata.maindata;
       this.filteredBookings = this.bookings.slice(0, this.pageSize);
     });
   }
@@ -156,3 +160,4 @@ export class BookingsComponent implements OnInit {
   }
   
 }
+

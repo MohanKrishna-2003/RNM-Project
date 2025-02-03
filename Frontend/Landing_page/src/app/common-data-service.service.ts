@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { catchError, tap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { forkJoin, Observable, of } from 'rxjs';
 import { formatDate } from '@angular/common';
 
 interface Center {
@@ -23,28 +23,60 @@ interface Center {
 export class CommonDataServiceService  {
 
   CenterDetails: Center[] = [];
-  maindata: any;
+  maindata: any=[];
   constructor(private http: HttpClient) {}
   totalcentres: number;
   totalusers: number;
   userdata: any;
-  userwithfeedbacks : any;
-
-  getCenterDetails(): Observable<any> {
-    this.maindata= this.http.get<any>('http://localhost:8080/api/slot-bookings');
-    return this.maindata;
+  userwithfeedbacks : any=[];
+  users: any[] = [];
+  feedbacks : any=[];
+  bookings : any[]=[];
+  
+  loadData(): Observable<any> {
+    if (this.maindata.length == 0 || this.userwithfeedbacks.length == 0) {
+      console.log('NO DATA EXISTS');
+      return new Observable((subscriber) => {
+        // this.getCenterDetails()
+       forkJoin([
+        this.http.get('http://localhost:8080/api/slot-bookings') ,
+        this.http.get('http://localhost:8080/user/with-feedback')
+             ])
+          .subscribe((d)=>{
+              console.log("DATA IS PRESENT");
+              
+              console.log(this.maindata);
+              
+              this.maindata = d[0];
+              this.userwithfeedbacks = d[1];
+              subscriber.next();
+              subscriber.complete();
+            }
+          );
+      });
+    } else {
+      console.log("DATA FOUND");
+      
+      return of("");
+    }
   }
 
-  getUserandFeedback(): Observable<any> {
-    this.userwithfeedbacks= this.http.get<any>('http://localhost:8080/user/with-feedback');
-    return this.userwithfeedbacks;
-  }
+  // getCenterDetails(): Observable<any> {
+  //   this.maindata= this.http.get<any>('http://localhost:8080/api/slot-bookings');
+  //   return this.maindata;
+  // }
 
-  getUsers(): Observable<any> {
-    this.userdata= this.http.get<any>('http://localhost:8080/api/slot-bookings');
-    return this.maindata;
-  }
+  // getUserandFeedback(): Observable<any> {
+  //   this.userwithfeedbacks= this.http.get<any>('http://localhost:8080/user/with-feedback');
+  //   return this.userwithfeedbacks;
+  // }
+
+  // getUsers(): Observable<any> {
+  //   this.userdata= this.http.get<any>('http://localhost:8080/api/slot-bookings');
+  //   return this.maindata;
+  // }
   // Method to extract and return unique center details
+
   getFilteredCenterDetails(data: any): Center[] {
     // Using a Map to ensure uniqueness based on center id
     const uniqueCenters = new Map();
@@ -75,10 +107,7 @@ export class CommonDataServiceService  {
     return uniqueCentersArray;
   }
 
-  users: any[] = [];
-  feedbacks : any=[];
-  bookings : any[]=[];
-  
+
   // 
   // getUserDetails(maindata: any): any {
   //   this.users = maindata.map((item: any) => item.user);
@@ -242,4 +271,26 @@ getUniqueCenterCount(data: any[]): number {
   // The size of the Set will give us the unique count of centers
   return centerNames.size;
 }
+
+extractUserData(data: any[]): any[] {
+  let result: any[] = [];
+
+  data.forEach((user: any) => {
+    user.feedbacks.forEach((feedback: any) => {
+      result.push({
+        userId: user.userId,
+        userName : user.userName,
+        userEmail: user.userEmail,
+        feedback: feedback.feedback
+      });
+    });
+  });
+
+  return result;
 }
+
+}
+
+
+
+

@@ -1,6 +1,7 @@
 package com.project.myRNM.Controller;
 
 import com.project.myRNM.Models.DTOs.BrandCountDTO;
+import com.project.myRNM.Models.DTOs.SlotBookingDTO;
 import com.project.myRNM.Models.Entity.Center;
 import com.project.myRNM.Models.Entity.SlotBooking;
 import com.project.myRNM.Repository.CenterRepository;
@@ -104,13 +105,13 @@ public class SlotBookingController {
             return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
         }
     }
-//    @PostMapping("/updatestatus")
-//    public ResponseEntity<?> updateUserStatus(@RequestBody SlotBookingDTO slotBookingDTO){
-//        try{
-//            slotBookingService.updateStatus(slotBookingDTO);
-//            return ResponseEntity.ok(new GeneralResponse("SUCCESSFULLY UPDATED !!"));
-//        } catch (Exception e) {
-//            return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
-//        }
-//    }
+    @PostMapping("/updatestatus")
+    public ResponseEntity<?> updateUserStatus(@RequestBody SlotBookingDTO slotBookingDTO){
+        try{
+            slotBookingService.updateStatus(slotBookingDTO);
+            return ResponseEntity.ok(new GeneralResponse("SUCCESSFULLY UPDATED !!"));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
+        }
+    }
 }

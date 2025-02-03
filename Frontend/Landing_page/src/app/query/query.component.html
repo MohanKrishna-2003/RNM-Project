@@ -6,34 +6,38 @@
   </div>
   <br>
 
-  <!-- Feedback Cards -->
-  <div class="card-style">
-    <div *ngFor="let contact of displayedQuery; let i = index" class="single-notification">
-      <div class="notification">
-        <div class="image info-bg" id="bgimg" [ngClass]="getBackgroundClass(i)">
-          <span>{{ contact.name.charAt(0) }}</span> <!-- First letter of user -->
+ <!-- Feedback Cards -->
+ <div *ngFor="let contact of displayedQuery; let i = index" >
+  <div *ngIf="contact.status == false" >
+    <div class="card-style" *ngIf="contact.status == false">
+      <div  class="single-notification">
+          <div class="notification">
+          <div class="image info-bg" id="bgimg" [ngClass]="getBackgroundClass(i)">
+            <span>{{ contact.name.charAt(0) }}</span> <!-- First letter of user -->
+          </div>
+          <a href="" class="content">
+            <h6>{{ contact.name }}</h6>
+            <p class="text-sm text-gray">{{ contact.message }}</p>
+            <span class="text-sm text-medium text-gray">{{ contact.email }}</span>
+          </a>
         </div>
-        <a href="#0" class="content">
-          <h6>{{ contact.name }}</h6>
-          <p class="text-sm text-gray">{{ contact.message }}</p>
-          <span class="text-sm text-medium text-gray">{{ contact.email }}</span>
-        </a>
-      </div>
-      <div class="action">
-       
-        <button class="more-btn" id="moreAction"  aria-expanded="false" (click)="openForm(contact.email)">
-          <i class="bi bi-telegram" style="font-size: 30px;"></i> 
-        </button>
+  
+        <div class="action" >
+         
+          <button class="more-btn" id="moreAction"  aria-expanded="false"  (click)="openForm(contact.email, contact.messageid)">
+            <i class="bi bi-telegram" style="font-size: 30px;"></i> 
+          </button>
+        </div>
       </div>
     </div>
   </div>
-  <!-- End Feedback Cards -->
+ </div>
 
   <!-- Load More Button -->
   <div class="text-center mt-4">
     <button *ngIf="displayedQuery.length < contactList.length" 
             class="btn btn-primary" 
-            (click)="loadMore()">
+            (click)="loadMore()" style="width: 30%;">
       Load More
     </button>
   </div>

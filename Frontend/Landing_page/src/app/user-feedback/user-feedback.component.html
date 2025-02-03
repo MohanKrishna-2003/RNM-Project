@@ -1,3 +1,4 @@
+
 <app-admin-header></app-admin-header>
 <div class="container mt-4" id="feedback">
   <!-- Page Header -->
@@ -11,12 +12,12 @@
     <div *ngFor="let feedback of displayedFeedback; let i = index" class="single-notification">
       <div class="notification">
         <div class="image info-bg" id="bgimg" [ngClass]="getBackgroundClass(i)">
-          <span>{{ feedback.user_name.charAt(0) }}</span> <!-- First letter of user -->
+          <span>{{ feedback.userName.charAt(0) }}</span> <!-- First letter of user -->
         </div>
         <a href="#0" class="content">
-          <h6>{{ feedback.user_name }}</h6>
+          <h6>{{ feedback.userName }}</h6>
           <p class="text-sm text-gray">{{ feedback.feedback }}</p>
-          <span class="text-sm text-medium text-gray">{{ feedback.user_email }}</span>
+          <span class="text-sm text-medium text-gray">{{ feedback.userEmail }}</span>
         </a>
       </div>
       <div class="action">
@@ -45,3 +46,4 @@
     </button>
   </div>
 </div>
+

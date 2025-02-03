@@ -1,3 +1,5 @@
+
+
 import { Component, OnInit } from '@angular/core';
 import { AdminHeaderComponent } from '../admin-header/admin-header.component';
 import { CommonModule } from '@angular/common';
@@ -5,9 +7,10 @@ import { HttpClient } from '@angular/common/http';
 import { CommonDataServiceService } from '../common-data-service.service';
 
 interface Feedback {
-  user_name: string;
+  userId : number,
+  userName: string;
   feedback: string;
-  user_email: string;
+  userEmail: string;
 }
 
 @Component({
@@ -26,28 +29,28 @@ export class UserFeedbackComponent implements OnInit {
   constructor(private http: HttpClient,  private commondata: CommonDataServiceService) {}
 
   ngOnInit(): void {
-    // this.commondata.getUserandFeedback().subscribe({
-    //   next: (res) => {
-    //     this.feedbackList = res;
-    //     this.displayFeedback(); // Display initial set of feedbacks
-    //     console.log(this.feedbackList);
-        
-    //   },
-    //   error: (err) => {
-    //     console.error('Error fetching feedback:', err);
-    //   }
-    // });
-    
-    this.http.get<Feedback[]>("http://localhost:8080/feedback/feedbackchart").subscribe({
+    this.commondata.loadData().subscribe({
       next: (res) => {
-        console.log(res);
-        this.feedbackList = res;
+        this.feedbackList = this.commondata.extractUserData(this.commondata.userwithfeedbacks);
         this.displayFeedback(); // Display initial set of feedbacks
+        console.log(this.feedbackList);
+        
       },
       error: (err) => {
         console.error('Error fetching feedback:', err);
       }
     });
+    
+    // this.http.get<Feedback[]>("http://localhost:8080/feedback/feedbackchart").subscribe({
+    //   next: (res) => {
+    //     console.log(res);
+    //     this.feedbackList = res;
+    //     this.displayFeedback(); // Display initial set of feedbacks
+    //   },
+    //   error: (err) => {
+    //     console.error('Error fetching feedback:', err);
+    //   }
+    // });
   }
 
   // Display feedback for the current page
@@ -65,7 +68,7 @@ export class UserFeedbackComponent implements OnInit {
 
   // Delete feedback
   deleteFeedback(feedback: Feedback): void {
-    if (confirm(`Are you sure you want to delete feedback from ${feedback.user_name}?`)) {
+    if (confirm(`Are you sure you want to delete feedback from ${feedback.userName}?`)) {
       this.feedbackList = this.feedbackList.filter((f) => f !== feedback);
       this.displayFeedback(); // Update the displayed feedback list
     }
@@ -77,3 +80,5 @@ export class UserFeedbackComponent implements OnInit {
     return classes[index % classes.length];
   }
 }
+
+

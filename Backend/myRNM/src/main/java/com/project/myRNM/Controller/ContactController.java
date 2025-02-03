@@ -23,5 +23,8 @@ public class ContactController {
     public ResponseEntity<?> getcontact(){
         return ResponseEntity.ok(contactService.getcontact());
     }
-
+    @PostMapping("/changestatus")
+    public Contact updateStatus(@RequestBody Integer messageid) {
+        return contactService.updateStatus(messageid);
+    }
 }

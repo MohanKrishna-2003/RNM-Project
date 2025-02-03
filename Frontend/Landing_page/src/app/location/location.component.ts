@@ -31,8 +31,11 @@ export class LocationComponent implements AfterViewInit {
   }
   shops: any[] = [];
   ngOnInit() {
-    this.commonService.getCenterDetails().subscribe(data => {
-      this.shops = this.commonService.getFilteredCenterDetails(data);
+    this.commonService.loadData().subscribe(data => {
+
+      // console.log("dataaaa", this.commonService.maindata, this.commonService.userwithfeedbacks);
+      
+      this.shops = this.commonService.getFilteredCenterDetails(this.commonService.maindata);
       console.log(this.shops);
       
     });

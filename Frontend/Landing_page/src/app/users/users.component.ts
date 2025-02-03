@@ -1,3 +1,5 @@
+
+
 import { Component, OnInit } from '@angular/core';
 import { AdminHeaderComponent } from '../admin-header/admin-header.component';
 import { CommonModule } from '@angular/common';
@@ -24,8 +26,8 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
     // Get the data when component initializes
-    this.getAllTheUserList().subscribe((data: any) => {
-      this.users = data;
+    this.commondata.loadData().subscribe((data: any) => {
+      this.users = this.commondata.userwithfeedbacks;
       this.filteredUsers = this.users.slice(0, this.pageSize); // Initially load the first 10 users
     });
     // this.commondata.getCenterDetails().subscribe((data: any) => {
@@ -34,9 +36,9 @@ export class UsersComponent implements OnInit {
     //   });
   }
 
-  getAllTheUserList(): Observable<any> {
-    return this.http.get('http://localhost:8080/user/userdata');
-  }
+  // getAllTheUserList(): Observable<any> {
+  //   return this.http.get('http://localhost:8080/user/userdata');
+  // }
 
   // Filter users based on the search term
   filterUsers() {
@@ -64,3 +66,5 @@ export class UsersComponent implements OnInit {
     }
   }
 }
+
+
