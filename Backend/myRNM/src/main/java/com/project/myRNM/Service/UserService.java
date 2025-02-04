@@ -76,12 +76,23 @@ public class UserService {
 
     public Users updateProfile(Long id, Users users) throws Exception {
         Users foundUser = userRepo.findById(id).orElse(null);
-//        System.out.println("-----"+foundUser);
         if (foundUser == null) {
             throw new UserNotFoundException("User with id " + id + " not found");
         }
         foundUser.setAddress(users.getAddress());
         foundUser.setMobile(users.getMobile());
         return userRepo.save(foundUser);
+    }
+
+    public Users updatePassword(Users users) throws Exception {
+        Optional<Users> existingUser = userRepo.findByEmail(users.getEmail());
+        if(existingUser.isPresent()){
+            Users users1 = existingUser.get();
+            users1.setPassword(users.getPassword());
+            return userRepo.save(users1);
+        }
+        else {
+           throw new UserNotFoundException("Email is not found");
+        }
     }
 }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule  } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { error } from 'jquery';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -12,7 +13,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginComponent {
   loginForm!: FormGroup; 
-
+  forgotPasswordForm: FormGroup;
+  errorMsg:""
+  formshow = false;  // Initialize form visibility
   constructor(private fb: FormBuilder, private route:Router , private http:HttpClient) { }
 
   ngOnInit(): void {
@@ -20,6 +23,16 @@ export class LoginComponent {
       email: ['', [Validators.required, Validators.email]],  
       password: ['', [Validators.required]]                   
     });
+    this.forgotPasswordForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required]
+    },{ validators: this.passwordMatchValidator });
+  };
+  passwordMatchValidator(group: FormGroup): any {
+    const password = group.get('password')?.value;
+    const confirmPassword = group.get('confirmPassword')?.value;
+    return password && confirmPassword && password === confirmPassword ? null : { match: true };
   }
  submit(): void {
   if (this.loginForm.valid) {
@@ -48,6 +61,34 @@ export class LoginComponent {
     );
   }
 }
+openForgotPasswordModal(){}
+isOpen=false;
+ 
+  openPop(){
+    this.isOpen=true;
+    document.body.style.overflow="hidden";
+ 
+  }
+  closePop(){
+    this.isOpen=false;
+    document.body.style.overflow="auto";
+  }
+  submitForgotPassword() {
+    const data = this.forgotPasswordForm.value;
+    this.http.put('http://localhost:8080/user/updatePassword', data).subscribe(
+      (res) => {
+        console.log(res);
+        alert('Password reset successful!');
+        this.forgotPasswordForm.reset();
+        this.closePop();
+      },
+      (err) => {
+        console.log('Error during password reset:', err);
+        this.errorMsg = err.error['message'];
+        this.forgotPasswordForm.reset();
+      }
+    );
+  }
 }
 
 

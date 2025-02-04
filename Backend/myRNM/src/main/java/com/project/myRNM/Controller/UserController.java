@@ -120,6 +120,19 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new GeneralResponse(e.getMessage()));
         }
     }
+    @PutMapping("/updatePassword")
+    public ResponseEntity<?> updatePassword(@RequestBody Users users) {
+        try {
+            Users userData = userService.updatePassword(users);
+            return ResponseEntity.ok().body(new GeneralResponse("Successfully updated the password"));
+        } catch (UserNotFoundException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new GeneralResponse(e.getMessage()));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new GeneralResponse("An error occurred: " + e.getMessage()));
+        }
+    }
 }
 
 

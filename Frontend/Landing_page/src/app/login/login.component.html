@@ -36,10 +36,55 @@
             </div>
           </form>
           <div class="text-center mt-3 m-2">
-            <p>Don't have an account? <a routerLink="/signup" style="color: #8347ad;">Register</a></p>
+            <p>Don't have an account? <a href="/signup" style="color: #8347ad;">Register</a></p>
+            <p><a href="javascript:void(0);" (click)="openPop()" style="color: #8347ad;">Forgot Password?</a></p>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div *ngIf="isOpen" class="popup-overlay">
+  <div class="popup-content">
+
+    <form [formGroup]="forgotPasswordForm" (ngSubmit)="submitForgotPassword()">
+      <div>
+        <h3 class="mb-4">Reset Password</h3>
+      </div>
+      <div class="form-group">
+        <input type="email" id="email" formControlName="email" placeholder="Enter your email" required />
+        <div *ngIf="forgotPasswordForm.get('email')?.invalid && (forgotPasswordForm.get('email')?.dirty || forgotPasswordForm.get('email')?.touched)" class="text-danger">
+          <div *ngIf="forgotPasswordForm.get('email')?.hasError('required')">Email is required.</div>
+          <div *ngIf="forgotPasswordForm.get('email')?.hasError('email')">Please enter a valid email address.</div>
+          <span class="text-danger">{{errorMsg}}</span> 
+        </div>
+      </div>
+      
+
+      <div class="form-group">
+        <input type="password" id="password" formControlName="password" placeholder="Enter your new password" required />
+        <div *ngIf="forgotPasswordForm.get('password')?.invalid && (forgotPasswordForm.get('password')?.dirty || forgotPasswordForm.get('password')?.touched)" class="text-danger">
+          <div *ngIf="forgotPasswordForm.get('password')?.hasError('required')">New password is required.</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input type="password" id="confirmPassword" formControlName="confirmPassword" placeholder="Confirm your new password" required />
+        <div *ngIf="forgotPasswordForm.get('confirmPassword')?.invalid && (forgotPasswordForm.get('confirmPassword')?.dirty || forgotPasswordForm.get('confirmPassword')?.touched)" class="text-danger">
+          <div *ngIf="forgotPasswordForm.get('confirmPassword')?.hasError('required')">Please confirm your password.</div>
+        </div>
+        <div *ngIf="forgotPasswordForm.hasError('match')" class="text-danger">Passwords do not match</div>
+        </div>
+      
+      <div class="d-flex justify-content-between mt-3">
+        
+        <button type="button" (click)="closePop()" class="w-25 btn btn-secondary mb-2 ">Close</button>
+        <button type="submit" class="w-25 btn btn-primary mb-2" [disabled]="forgotPasswordForm.invalid">Submit</button>
+      </div>
+      <!-- <button type="submit" style="margin-right: 100px;" class=" w-25 btn btn-primary  " [disabled]="forgotPasswordForm.invalid">Submit</button> -->
+      <!-- <button (click)="closePop()" class="btn btn-secondary w-25">Close</button> -->
+    </form>
+    
   </div>
 </div>
