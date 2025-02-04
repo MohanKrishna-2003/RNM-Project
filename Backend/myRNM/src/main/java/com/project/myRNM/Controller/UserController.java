@@ -73,18 +73,18 @@ public class UserController {
         }
     }
 
-    @GetMapping("/getUserIdByEmail/{email}")
-    public ResponseEntity<?> getUserIdByEmail(@PathVariable String email) {
-        System.out.println("Fetching user by email: " + email);  // Log the email
-        Optional<Users> user = userRepo.findByEmail(email);
-        if (user.isPresent()) {
-            System.out.println("User found: " + user.get().getId());  // Log the found user ID
-            return ResponseEntity.ok(user.get().getId());
-        } else {
-            System.out.println("User not found for email: " + email);  // Log when user is not found
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-    }
+//    @GetMapping("/getUserIdByEmail/{email}")
+//    public ResponseEntity<?> getUserIdByEmail(@PathVariable String email) {
+//        System.out.println("Fetching user by email: " + email);  // Log the email
+//        Optional<Users> user = userRepo.findByEmail(email);
+//        if (user.isPresent()) {
+//            System.out.println("User found: " + user.get().getId());  // Log the found user ID
+//            return ResponseEntity.ok(user.get().getId());
+//        } else {
+//            System.out.println("User not found for email: " + email);  // Log when user is not found
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+//        }
+//    }
 
 
 
