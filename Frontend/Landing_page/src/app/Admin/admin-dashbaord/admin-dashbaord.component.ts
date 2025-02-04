@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 // import { log } from 'node:console';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { CommonDataServiceService } from '../common-data-service.service';
+import { CommonDataServiceService } from '../../Services/common-data-service.service';
 
 Chart.register(...registerables);
 

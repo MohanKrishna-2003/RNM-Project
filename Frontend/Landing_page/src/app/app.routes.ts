@@ -1,26 +1,24 @@
-
-
 import { Component } from '@angular/core';
 import { ComponentOptions } from './../../node_modules/@types/bootstrap/js/dist/base-component.d';
 import { Routes } from '@angular/router';
-import { ServiceListComponent } from './service-list/service-list.component';
-import { HomeComponent } from './home/home.component';
-import { LocationComponent } from './location/location.component';
-import { ContactComponent } from './contact/contact.component';
-import { BookingComponent } from './booking/booking.component';
+import { ServiceListComponent } from './Landing Page/service-list/service-list.component';
+import { HomeComponent } from './Landing Page/home/home.component';
+import { LocationComponent } from './Landing Page/location/location.component';
+import { ContactComponent } from './Landing Page/contact/contact.component';
+import { BookingComponent } from './Landing Page/booking/booking.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
-import { FeedbackComponent } from './feedback/feedback.component';
+import { FeedbackComponent } from './Landing Page/feedback/feedback.component';
 import { CarSelectionComponent } from './car-selection/car-selection.component';
-import { AdminDashbaordComponent } from './admin-dashbaord/admin-dashbaord.component';
-import { UsersComponent } from './users/users.component';
-import { UserFeedbackComponent } from './user-feedback/user-feedback.component';
-import { ShowroomsComponent } from './showrooms/showrooms.component';
-import { AdminSettingsComponent } from './admin-settings/admin-settings.component';
-import { NotificationsComponent } from './notifications/notifications.component';
-import { QueryComponent } from './query/query.component';
-import { BookingsComponent } from './bookings/bookings.component';
-import { NewsComponent } from './news/news.component';
+import { AdminDashbaordComponent } from './Admin/admin-dashbaord/admin-dashbaord.component';
+import { UsersComponent } from './Admin/users/users.component';
+import { UserFeedbackComponent } from './Admin/user-feedback/user-feedback.component';
+import { ShowroomsComponent } from './Admin/showrooms/showrooms.component';
+import { AdminSettingsComponent } from './Admin/admin-settings/admin-settings.component';
+import { NotificationsComponent } from './Admin/notifications/notifications.component';
+import { QueryComponent } from './Admin/query/query.component';
+import { BookingsComponent } from './Admin/bookings/bookings.component';
+import { NewsComponent } from './Landing Page/news/news.component';
 
 export const routes: Routes = [
   { path: 'contact', component: ContactComponent }, // This will display the Contact component for '/contact'

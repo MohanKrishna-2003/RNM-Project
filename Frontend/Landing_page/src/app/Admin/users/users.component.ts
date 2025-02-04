@@ -1,28 +1,29 @@
-
-
 import { Component, OnInit } from '@angular/core';
 import { AdminHeaderComponent } from '../admin-header/admin-header.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; // Import FormsModule
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { CommonDataServiceService } from '../common-data-service.service';
+import { CommonDataServiceService } from '../../Services/common-data-service.service';
 
 @Component({
   selector: 'app-users',
   standalone: true,
   imports: [AdminHeaderComponent, CommonModule, FormsModule],
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  styleUrls: ['./users.component.css'],
 })
 export class UsersComponent implements OnInit {
   searchTerm: string = '';
   users: Array<any> = [];
   filteredUsers: Array<any> = [];
-  pageSize: number = 10;  // Number of users per page
-  page: number = 0;       // Current page index
+  pageSize: number = 10; // Number of users per page
+  page: number = 0; // Current page index
 
-  constructor(private http: HttpClient,  private commondata: CommonDataServiceService) {}
+  constructor(
+    private http: HttpClient,
+    private commondata: CommonDataServiceService
+  ) {}
 
   ngOnInit(): void {
     // Get the data when component initializes
@@ -59,12 +60,13 @@ export class UsersComponent implements OnInit {
     this.page++; // Increase the page index
     const startIndex = this.page * this.pageSize;
     const endIndex = startIndex + this.pageSize;
-    
+
     // Load more users if available
     if (startIndex < this.users.length) {
-      this.filteredUsers = [...this.filteredUsers, ...this.users.slice(startIndex, endIndex)];
+      this.filteredUsers = [
+        ...this.filteredUsers,
+        ...this.users.slice(startIndex, endIndex),
+      ];
     }
   }
 }
-
-

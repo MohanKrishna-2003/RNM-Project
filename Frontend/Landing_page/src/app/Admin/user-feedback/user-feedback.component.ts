@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { AdminHeaderComponent } from '../admin-header/admin-header.component';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { CommonDataServiceService } from '../common-data-service.service';
+import { CommonDataServiceService } from '../../Services/common-data-service.service';
 
 interface Feedback {
   userId : number,

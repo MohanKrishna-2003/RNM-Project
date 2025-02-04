@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
-import { CommonDataServiceService } from '../common-data-service.service';
+import { CommonDataServiceService } from '../../Services/common-data-service.service';
 interface Booking {
   id:number;
   user_id: number;

@@ -7,14 +7,20 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import Swal from 'sweetalert2';
-import { HeaderComponent } from '../header/header.component';
-import { FooterComponent } from '../footer/footer.component';
+import { HeaderComponent } from '../Landing Page/header/header.component';
+import { FooterComponent } from '../Landing Page/footer/footer.component';
 import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-car-selection',
   standalone: true,
-  imports: [FormsModule, CommonModule, HttpClientModule, HeaderComponent, FooterComponent],
+  imports: [
+    FormsModule,
+    CommonModule,
+    HttpClientModule,
+    HeaderComponent,
+    FooterComponent,
+  ],
   templateUrl: './car-selection.component.html',
   styleUrls: ['./car-selection.component.css'],
 })
@@ -104,7 +110,6 @@ export class CarSelectionComponent implements OnInit {
     }
   }
 
-
   getFilteredCenters(): void {
     if (this.selectedBrand) {
       const selectedBrand = this.brands.find(
@@ -165,7 +170,7 @@ export class CarSelectionComponent implements OnInit {
       this.cars = cars;
       this.displayedCars = [...this.cars];
       console.log(this.displayedCars);
-      
+
       this.showGif = false;
 
       this.displayedCars.forEach((car) => {
@@ -232,7 +237,6 @@ export class CarSelectionComponent implements OnInit {
     }
   }
 
-  
   // toggleBooking(carName: String): void {
   //   this.isBookingClicked = !this.isBookingClicked;
   //   this.selectedCar = this.cars.find((car) => car.name === carName);
@@ -250,10 +254,9 @@ export class CarSelectionComponent implements OnInit {
     this.showGif = false;
   }
 
-
   minPrice: number = 0;
-  maxPrice: number = 30000000; 
-  selectedPrice: number = this.maxPrice; 
+  maxPrice: number = 30000000;
+  selectedPrice: number = this.maxPrice;
 
   // filterCarsByPrice(event: Event): void {
   //   const selectedPrice = (event?.target as HTMLSelectElement).value;
@@ -275,7 +278,6 @@ export class CarSelectionComponent implements OnInit {
   //   this.showGif = false;
   // }
 
-  
   // normalizePrice(rawPrice: string): number {
   //   let numericPrice = rawPrice.replace(/[₹$,]/g, '').trim();
   //   if (numericPrice.includes('Crore')) {
@@ -289,47 +291,43 @@ export class CarSelectionComponent implements OnInit {
   //   return parseFloat(numericPrice) || 0;
   // }
 
-
   filterCarsByPrice(event: Event): void {
     const target = event.target as HTMLInputElement;
     const selectedPrice = parseFloat(target.value);
-    console.log('Selected Price: ', selectedPrice); 
-    
+    console.log('Selected Price: ', selectedPrice);
+
     this.displayedCars = this.cars.filter((car) => {
       const rawPrice = car.price?.INR;
 
       if (!rawPrice) return false;
-  
+
       const normalizedPrice = this.normalizePrice(rawPrice);
 
+      console.log('Normalized Price: ', normalizedPrice);
 
-      console.log('Normalized Price: ', normalizedPrice); 
-  
       return normalizedPrice <= selectedPrice;
-
     });
-    
+
     this.showGif = false;
   }
-  
-  
+
   normalizePrice(rawPrice: string): number {
-    let numericPrice = rawPrice.replace(/[₹$,]/g, '').trim(); 
-  
+    let numericPrice = rawPrice.replace(/[₹$,]/g, '').trim();
+
     if (numericPrice.includes('Crore')) {
       numericPrice = numericPrice.replace('Crore', '').trim();
-      return parseFloat(numericPrice) * 10000000; 
+      return parseFloat(numericPrice) * 10000000;
     }
-  
+
     if (numericPrice.includes('Lakhs')) {
       numericPrice = numericPrice.replace('Lakhs', '').trim();
-      return parseFloat(numericPrice) * 100000; 
+      return parseFloat(numericPrice) * 100000;
     }
-    console.log('raw Price: ', numericPrice); 
-  
+    console.log('raw Price: ', numericPrice);
+
     return parseFloat(numericPrice) || 0;
   }
-  
+
   confirm() {
     alert(
       'Your booking slot is confirmed... please await further instructions.....'
@@ -354,20 +352,19 @@ export class CarSelectionComponent implements OnInit {
     this.showGif = false;
   }
 
-
   filterByCarType(event: Event): void {
-    const target = event.target as HTMLSelectElement;  
-    const selectedType = target.value;  
+    const target = event.target as HTMLSelectElement;
+    const selectedType = target.value;
     if (selectedType) {
       this.displayedCars = this.cars.filter((car) =>
         car.details?.toLowerCase().includes(selectedType.toLowerCase())
       );
     } else {
-      this.displayedCars = [...this.cars]; 
+      this.displayedCars = [...this.cars];
     }
-    this.showGif = false; 
+    this.showGif = false;
   }
-  
+
   filterByRating(event: Event): void {
     const selectedRating = (event.target as HTMLSelectElement).value;
     if (selectedRating) {

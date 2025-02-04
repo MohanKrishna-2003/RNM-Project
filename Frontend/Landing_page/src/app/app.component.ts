@@ -1,22 +1,27 @@
 import { Component, HostListener } from '@angular/core';
-import { NavigationEnd, Router, RouterModule, RouterOutlet } from '@angular/router';
-import { HeaderComponent } from "./header/header.component";
-import { HomeComponent } from "./home/home.component";
+import {
+  NavigationEnd,
+  Router,
+  RouterModule,
+  RouterOutlet,
+} from '@angular/router';
+import { HeaderComponent } from './Landing Page/header/header.component';
+import { HomeComponent } from './Landing Page/home/home.component';
 import { CommonModule } from '@angular/common';
-import { ServiceListComponent } from "./service-list/service-list.component";
-import { BookingComponent } from "./booking/booking.component";
-import { FooterComponent } from "./footer/footer.component";
-import { ContactComponent } from "./contact/contact.component";
-import { ChatbotComponent } from "./chatbot/chatbot.component";
+import { ServiceListComponent } from './Landing Page/service-list/service-list.component';
+import { BookingComponent } from './Landing Page/booking/booking.component';
+import { FooterComponent } from './Landing Page/footer/footer.component';
+import { ContactComponent } from './Landing Page/contact/contact.component';
+import { ChatbotComponent } from './Landing Page/chatbot/chatbot.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 
 @Component({
   selector: 'app-root',
-  standalone:true,
-  imports: [ CommonModule, RouterModule,  ChatbotComponent],
+  standalone: true,
+  imports: [CommonModule, RouterModule, ChatbotComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
   // Scroll to top function
@@ -41,16 +46,14 @@ export class AppComponent {
     }
   }
   // isOpen=false;
-  
+
   // openPop(){
   //   this.isOpen=true;
   //   document.body.style.overflow="hidden";
-  
+
   // }
   // closePop(){
   //   this.isOpen=false;
   //   document.body.style.overflow="auto";
   // }
 }
-
-

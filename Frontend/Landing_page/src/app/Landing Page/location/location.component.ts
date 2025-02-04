@@ -1,11 +1,10 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http'; // Import HttpClient
-import { HeaderComponent } from "../header/header.component";
-import { FooterComponent } from "../footer/footer.component";
+import { HeaderComponent } from '../header/header.component';
 import L from 'leaflet';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { CommonDataServiceService } from '../common-data-service.service';
+import { CommonDataServiceService } from '../../Services/common-data-service.service';
 
 // Define an interface for a shop
 
@@ -14,30 +13,33 @@ import { CommonDataServiceService } from '../common-data-service.service';
   standalone: true,
   templateUrl: './location.component.html',
   styleUrls: ['./location.component.css'],
-  imports: [ HttpClientModule, CommonModule, FormsModule],
+  imports: [HttpClientModule, CommonModule, FormsModule],
 })
 export class LocationComponent implements AfterViewInit {
   // shops: any;
   private map: any;
 
   // Inject HttpClient in the constructor
-  constructor(private http: HttpClient, private commonService : CommonDataServiceService) {}
+  constructor(
+    private http: HttpClient,
+    private commonService: CommonDataServiceService
+  ) {}
 
   ngAfterViewInit(): void {
-    this.initMap();  // Initialize the map
+    this.initMap(); // Initialize the map
     setTimeout(() => {
       // this.loadShops(); // Load shop data after a small delay
     }, 100);
   }
   shops: any[] = [];
   ngOnInit() {
-    this.commonService.loadData().subscribe(data => {
-
+    this.commonService.loadData().subscribe((data) => {
       // console.log("dataaaa", this.commonService.maindata, this.commonService.userwithfeedbacks);
-      
-      this.shops = this.commonService.getFilteredCenterDetails(this.commonService.maindata);
+
+      this.shops = this.commonService.getFilteredCenterDetails(
+        this.commonService.maindata
+      );
       console.log(this.shops);
-      
     });
   }
 
@@ -78,11 +80,11 @@ export class LocationComponent implements AfterViewInit {
         console.error(`Invalid coordinates for shop: ${shop.name}`);
         return;
       }
-      console.log(`Adding marker for ${shop.name} at lat: ${shop.lat}, lng: ${shop.lng}`);
+      console.log(
+        `Adding marker for ${shop.name} at lat: ${shop.lat}, lng: ${shop.lng}`
+      );
 
-      const marker = L.marker([shop.lat, shop.lng])
-        .addTo(this.map)
-        .bindPopup(`
+      const marker = L.marker([shop.lat, shop.lng]).addTo(this.map).bindPopup(`
           <b>${shop.name}</b><br>
           ${shop.address}
         `);
@@ -90,8 +92,8 @@ export class LocationComponent implements AfterViewInit {
       // Custom icons for the markers
       marker.setIcon(
         L.icon({
-          iconUrl: shop.icon,  // Use custom icon for each shop
-          iconSize: [30, 30],   // Adjust size
+          iconUrl: shop.icon, // Use custom icon for each shop
+          iconSize: [30, 30], // Adjust size
           iconAnchor: [15, 30], // Anchor the icon properly
           popupAnchor: [0, -30], // Adjust the popup position
         })

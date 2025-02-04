@@ -1,15 +1,14 @@
 // service-list.component.ts
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FeedbackComponent } from '../feedback/feedback.component';
 declare var $: any;
 
 @Component({
   selector: 'app-service-list',
-  standalone:true,
+  standalone: true,
   templateUrl: './service-list.component.html',
   styleUrls: ['./service-list.component.css'],
-  imports: [CommonModule]
+  imports: [CommonModule],
 })
 export class ServiceListComponent {
   services = [
@@ -35,6 +34,4 @@ export class ServiceListComponent {
       reverseOrder: false, // image on left
     },
   ];
-
-
 }
