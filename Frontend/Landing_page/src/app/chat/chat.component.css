@@ -1,0 +1,34 @@
+.chat-container {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.chat-header {
+  text-align: center;
+}
+
+.chat-body {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.loading {
+  font-style: italic;
+}
+
+form {
+  display: flex;
+}
+
+input[type="text"] {
+  flex-grow: 1;
+  padding: 10px;
+}
+
+button {
+  padding: 10px;
+}

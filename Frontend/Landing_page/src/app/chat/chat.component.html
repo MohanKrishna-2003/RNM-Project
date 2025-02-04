@@ -1,0 +1,15 @@
+<div class="chat-container">
+  <div class="chat-header">
+    <h2>Chat Application</h2>
+  </div>
+  <div class="chat-body">
+    <div *ngFor="let message of messages">
+      <strong>{{ message.sender }}:</strong> {{ message.text }}
+    </div>
+    <div *ngIf="isLoading" class="loading">Loading...</div>
+  </div>
+  <form [formGroup]="form" (ngSubmit)="sendMessage()">
+    <input formControlName="message" placeholder="Type your message..." />
+    <button type="submit">Send</button>
+  </form>
+</div>

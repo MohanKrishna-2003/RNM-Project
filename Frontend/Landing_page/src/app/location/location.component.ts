@@ -23,27 +23,25 @@ interface Shop {
   imports: [HeaderComponent, FooterComponent, HttpClientModule, CommonModule, FormsModule],
 })
 export class LocationComponent implements AfterViewInit {
-  shops: Shop[] = []; // Apply the Shop type to the array
+  shops: Shop[] = [];
   private map: any;
 
-  // Inject HttpClient in the constructor
   constructor(private http: HttpClient) {}
 
   ngAfterViewInit(): void {
-    this.initMap();  // Initialize the map
+    this.initMap();
     setTimeout(() => {
-      this.loadShops(); // Load shop data after a small delay
+      this.loadShops();
     }, 100);
   }
 
-  // Fetch shop data from an API
   private loadShops(): void {
-    const apiUrl = 'http://localhost:8080/showrooms/locations'; // Replace with your actual API URL
+    const apiUrl = 'http://localhost:8080/showrooms/locations';
     this.http.get<Shop[]>(apiUrl).subscribe(
       (data) => {
-        console.log('Fetched shops data:', data);  // Log the fetched data
-        this.shops = data; // Populate the shops array with data from the API
-        this.addMarkers(); // Add markers for each shop on the map
+        console.log('Fetched shops data:', data);
+        this.shops = data;
+        this.addMarkers();
       },
       (error) => {
         console.error('Error fetching shops:', error);
@@ -51,24 +49,20 @@ export class LocationComponent implements AfterViewInit {
     );
   }
 
-  // Initialize the map
   private initMap(): void {
-    this.map = L.map('map').setView([13.0827, 80.2707], 12); // Initial map center and zoom
+    this.map = L.map('map').setView([13.0827, 80.2707], 12);
 
-    // Tile layer for the map (OpenStreetMap)
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors',
     }).addTo(this.map);
   }
 
-  // Add markers to the map based on fetched shops data
   private addMarkers(): void {
     if (this.shops.length === 0) {
       console.log('No shops to display');
     }
 
     this.shops.forEach((shop) => {
-      // Check for valid coordinates
       if (isNaN(shop.lat) || isNaN(shop.lng)) {
         console.error(`Invalid coordinates for shop: ${shop.name}`);
         return;
@@ -82,15 +76,21 @@ export class LocationComponent implements AfterViewInit {
           ${shop.address}
         `);
 
-      // Custom icons for the markers
       marker.setIcon(
         L.icon({
-          iconUrl: shop.icon,  // Use custom icon for each shop
-          iconSize: [30, 30],   // Adjust size
-          iconAnchor: [15, 30], // Anchor the icon properly
-          popupAnchor: [0, -30], // Adjust the popup position
+          iconUrl: shop.icon,
+          iconSize: [30, 30],
+          iconAnchor: [15, 30],
+          popupAnchor: [0, -30],
         })
       );
     });
   }
+
+  // New method to handle the shop click event
+  goToShopLocation(shop: Shop): void {
+    // Center the map at the clicked shop's coordinates and zoom in
+    this.map.setView([shop.lat, shop.lng], 16); // Adjust zoom level (14) as needed
+  }
 }
+

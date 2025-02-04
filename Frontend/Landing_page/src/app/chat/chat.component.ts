@@ -1,106 +1,83 @@
 import { CommonModule } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormsModule, ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-chatbot',
-  standalone: true,
-  imports: [FormsModule, CommonModule, ReactiveFormsModule],
-  templateUrl: './chatbot.component.html',
-  styleUrls: ['./chatbot.component.css']
+  selector: 'app-chat',
+  standalone:true,
+  imports: [FormsModule,CommonModule,ReactiveFormsModule],
+  templateUrl: './chat.component.html',
+  styleUrls: ['./chat.component.css']
 })
-export class ChatbotComponent implements OnInit {
+
+export class ChatComponent implements OnInit {
   form = new FormGroup({
     message: new FormControl(''),
   });
 
-  options: string[] = [
-    'What is your name?',
-    'What can you do?',
-    'Learn About Cars',
-    'Book a Test Drive',
-    'Feedback',
-    'Locations',
-    'News',
-    'Goodbye!',
-  ];
-
-  messages: { sender: string, text: string | any }[] = [];
+  messages: { sender: string; text: string | any }[] = [];
   isLoading = false;
-  isChatOpen: boolean = false;
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     // Initial setup if needed
   }
 
-  // Toggle the chat window open or closed
-  toggleChat(): void {
-    this.isChatOpen = !this.isChatOpen;
-  }
-
-  // Send a message, either from predefined options or custom message
   sendMessage() {
     const userMessage = this.form.controls.message.value;
-    if (userMessage) {
-      this.messages.push({ sender: 'user', text: userMessage });
-    }
+    this.messages.push({ sender: 'user', text: userMessage });
 
-    // Reset the form input after sending
-    this.form.reset();
+    // Check if the message is an option or a command
+    this.onOptionSelected(userMessage);
 
-    // Handle predefined options or custom message
-    this.onOptionSelected(userMessage); // This will handle predefined options or custom message
+    this.form.reset(); // Reset input field after sending
   }
 
-  // Handle selected options or custom messages
+  // Handle option selected by the user
   onOptionSelected(option: string): void {
-    // Don't add the message again here as it was already added in sendMessage()
+    this.messages.push({ sender: 'user', text: option });
+
     if (option === 'Learn About Cars') {
       this.router.navigate(['/booking']);
-      this.messages.push({ sender: 'bot', text: 'Redirecting to the booking page.' });
     } else if (option === 'Book a Test Drive') {
-      this.router.navigate(['/booking']);
+      this.router.navigate(['/booking']); // Navigate to the booking page
       this.messages.push({ sender: 'bot', text: 'Redirecting to the booking page.' });
     } else if (option === 'Feedback') {
       this.router.navigate(['/feedback']);
       this.messages.push({ sender: 'bot', text: 'Redirecting to the feedback page.' });
     } else if (option === 'Locations') {
-      this.router.navigate(['/location']);
+      this.router.navigate(['/location']); // Navigate to the locations page
       this.messages.push({ sender: 'bot', text: 'Redirecting to the locations page.' });
     } else if (option === 'News') {
-      this.router.navigate(['/news']);
+      this.router.navigate(['/news']); // Navigate to the news page
       this.messages.push({ sender: 'bot', text: 'Redirecting to the news page.' });
-    } else if (option === 'Goodbye!') {
-      this.messages.push({ sender: 'bot', text: 'Goodbye! Hope to assist you again soon. Have a safe drive!' });
     } else {
-      // Custom message, generate bot response via API
+      // If it's not a predefined option, generate a response using the API
       this.generateBotResponse(option);
     }
   }
 
-  // API call to generate bot's response for custom messages
   generateBotResponse(userMessage: string) {
     this.isLoading = true;
 
-    const data = {
+    const data ={
       contents: [
         {
-          parts: [{ text: userMessage }],
+          parts: [{ text:userMessage }],
         },
       ],
     };
 
-    // Replace with your actual API endpoint and key
     this.http.post('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyAiyjwYVl2IuMG1T_DjKX6LuS8WiHtXeG4', data)
       .subscribe(
         (res: any) => {
           this.isLoading = false;
+          console.log(res);
 
-          // Ensure the response structure is correct
+          // Check if the response structure is as expected
           if (res && res.candidates && res.candidates[0] && res.candidates[0].content && res.candidates[0].content.parts[0]) {
             const responseText = res.candidates[0].content.parts[0].text;
             this.messages.push({ sender: 'bot', text: responseText });
@@ -110,8 +87,12 @@ export class ChatbotComponent implements OnInit {
         },
         (err: any) => {
           this.isLoading = false;
+          console.error('Error details:', err.error);
+          console.error('Response Status:', err.status);
+          console.error('Response Message:', err.statusText);
           this.messages.push({ sender: 'bot', text: 'Something went wrong. Please try again later.' });
         }
       );
   }
+
 }
