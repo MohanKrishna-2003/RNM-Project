@@ -613,7 +613,7 @@ export class CarSelectionComponent implements OnInit {
     this.closeForm();
     Swal.fire({
       title: '❌ Slot Booking Failed!',
-      text: 'There was an issue booking your test drive slot. Please try again later.',
+      text: 'There are currently no slots available for the given details. Please try again after some time! ',
       imageUrl: 'assets/images/fail.gif',
       imageWidth: 400,
       imageHeight: 300,

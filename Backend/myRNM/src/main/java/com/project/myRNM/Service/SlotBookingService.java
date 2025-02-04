@@ -12,6 +12,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -63,13 +64,21 @@ public class SlotBookingService {
         }
 
         // so after, here I am updating the center entity in database.
-        centerRepository.save(center);
+        Boolean availability = checkAvailability(slotBooking.getCenter().getId(), slotBooking.getPreferredDate(), slotBooking.getTimeSlot(), slotBooking.getSelectedCarDetails());
 
+        if(availability){
+            centerRepository.save(center);
+            slotBooking.setCenter(center);
+            return slotBookingRepository.save(slotBooking);
+
+        }
+
+        else{
+            throw new IllegalArgumentException("SORRY NO SLOTS AVAILABLE FOR THE GIVEN DETAILS.");
+        }
         // finally saving in the slot booking center data.
-        slotBooking.setCenter(center);
 
         // hence, returning the slot booking data which will be updated in database.x
-        return slotBookingRepository.save(slotBooking);
     }
 
     public List<SlotBooking> getAllBookings() {
@@ -157,6 +166,19 @@ public class SlotBookingService {
         LocalDateTime startOfDay = bookingDate.withHour(0).withMinute(0).withSecond(0).withNano(0);
         LocalDateTime endOfDay = bookingDate.withHour(23).withMinute(59).withSecond(59).withNano(999999999);
         return slotBookingRepository.findByCenterIdAndBookingTimeStamp(centerId, startOfDay, endOfDay);
+    }
+
+
+    @Transactional
+    public Boolean checkAvailability(Long centerId, LocalDate preferredDate, String timeSlot, String selectedCarDetails) {
+
+        List<SlotBooking> existingBookings = slotBookingRepository.findByCenterIdAndPreferredDateAndTimeSlotAndSelectedCarDetails(centerId, preferredDate, timeSlot, selectedCarDetails);
+
+        if (existingBookings.size() >= 3) {
+            return false;
+        }
+
+        return true;
     }
 }
 

@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -90,4 +91,6 @@ public interface SlotBookingRepository extends JpaRepository<SlotBooking, Long> 
             "GROUP BY EXTRACT(YEAR FROM s.bookingTimeStamp), EXTRACT(MONTH FROM s.bookingTimeStamp), s.center.brand " +
             "ORDER BY EXTRACT(YEAR FROM s.bookingTimeStamp), EXTRACT(MONTH FROM s.bookingTimeStamp), s.center.brand")
     List<Object[]> findMonthlyBookingCountsByBrand();
+
+    List<SlotBooking> findByCenterIdAndPreferredDateAndTimeSlotAndSelectedCarDetails(Long centerId, LocalDate preferredDate, String timeSlot, String selectedCarDetails);
 }
