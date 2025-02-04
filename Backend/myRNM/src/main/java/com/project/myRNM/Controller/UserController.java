@@ -8,12 +8,15 @@ import com.project.myRNM.Repository.UserRepo;
 import com.project.myRNM.Exception.UserNotFoundException;
 
 import com.project.myRNM.Models.Response.GeneralResponse;
+import com.project.myRNM.Service.EncryptionService;
 import com.project.myRNM.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
@@ -29,6 +32,9 @@ public class UserController {
 
     @Autowired
     UserRepo userRepo;
+
+    @Autowired
+    EncryptionService encryptionService;
 
     @PostMapping("/loginByPost")
     public ResponseEntity<?> loginByPost(@RequestBody HashMap<String, String> login) throws Exception {
@@ -75,18 +81,18 @@ public class UserController {
         }
     }
 
-    @GetMapping("/getUserIdByEmail/{email}")
-    public ResponseEntity<?> getUserIdByEmail(@PathVariable String email) {
-        System.out.println("Fetching user by email: " + email);  // Log the email
-        Optional<Users> user = userRepo.findByEmail(email);
-        if (user.isPresent()) {
-            System.out.println("User found: " + user.get().getId());  // Log the found user ID
-            return ResponseEntity.ok(user.get().getId());
-        } else {
-            System.out.println("User not found for email: " + email);  // Log when user is not found
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-    }
+//    @GetMapping("/getUserIdByEmail/{email}")
+//    public ResponseEntity<?> getUserIdByEmail(@PathVariable String email) {
+//        System.out.println("Fetching user by email: " + email);  // Log the email
+//        Optional<Users> user = userRepo.findByEmail(email);
+//        if (user.isPresent()) {
+//            System.out.println("User found: " + user.get().getId());  // Log the found user ID
+//            return ResponseEntity.ok(user.get().getId());
+//        } else {
+//            System.out.println("User not found for email: " + email);  // Log when user is not found
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+//        }
+//    }
 
 
 
@@ -126,6 +132,9 @@ public class UserController {
     public List<UserWithFeedbackDTO> getAllUsersAndFeedbacks() {
         return userService.getAllUsersAndFeedbacks();
     }
+
+
+
 }
 
 
@@ -133,12 +142,6 @@ public class UserController {
 
 
 
-
-
-
-//            else {
-//                return ResponseEntity.status(HttpStatus.NOT_MODIFIED).body(new GeneralResponse("No changes were made"));
-//            }
 
 
 

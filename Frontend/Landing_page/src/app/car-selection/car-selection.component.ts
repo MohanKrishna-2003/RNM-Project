@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 import { HeaderComponent } from '../Landing Page/header/header.component';
 import { FooterComponent } from '../Landing Page/footer/footer.component';
 import { Router, RouterModule } from '@angular/router';
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-car-selection',
@@ -78,6 +79,7 @@ export class CarSelectionComponent implements OnInit {
   //   const today = new Date();
   //   this.todayDate = today.toISOString().split('T')[0];
   // }
+  userId: string | null= null;
 
   ngOnInit(): void {
     this.http.get<any>('http://localhost:8080/api/brands').subscribe(
@@ -92,6 +94,13 @@ export class CarSelectionComponent implements OnInit {
     this.fetchCarsFromBackend();
     this.startImageCycle();
     this.handleScroll();
+    this.userId = localStorage.getItem('id'); // Retrieve from localStorage
+    if (this.userId) {
+      console.log('User ID loaded from localStorage:', this.userId);
+    } else {
+      console.error('User ID not found in localStorage');
+    }
+
     const name = localStorage.getItem('username');
     const email = localStorage.getItem('useremail');
     const phone = localStorage.getItem('phone');
@@ -489,14 +498,6 @@ export class CarSelectionComponent implements OnInit {
     }
   }
 
-  userId: number;
-
-  fetchUserIdByEmail(email: string): any {
-    return this.http.get<number>(
-      `http://localhost:8080/user/getUserIdByEmail/${email}`
-    );
-  }
-
   submitForm(): void {
     // Check if preferredDate is a valid date object, and if not, attempt to convert it
     let formattedDate = '';
@@ -510,23 +511,13 @@ export class CarSelectionComponent implements OnInit {
     }
 
     const email = this.formData.email;
-    if (email) {
-      // Fetch User ID by email
-      this.fetchUserIdByEmail(email).subscribe({
-        next: (userId: any) => {
-          console.log('User ID fetched successfully:', userId);
-          this.userId = userId;
-
-          // Proceed with submitting the form only after user ID is available
-          this.submitBookingForm(formattedDate);
-        },
-        error: (err: any) => {
-          console.error('Failed to fetch User ID:', err);
-          alert('Unable to fetch user details. Please try again.');
-        },
-      });
+    if (this.userId) {
+      console.log('User ID retrieved from localStorage:', this.userId);
+      // Proceed with submitting the form after retrieving the userId
+      this.submitBookingForm(formattedDate);
     } else {
-      alert('Please provide an email to proceed.');
+      console.error('User ID not found in localStorage');
+      alert('Unable to retrieve user details. Please login again.');
     }
   }
 

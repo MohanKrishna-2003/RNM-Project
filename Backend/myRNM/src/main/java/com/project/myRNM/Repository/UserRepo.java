@@ -42,5 +42,7 @@ public interface UserRepo extends JpaRepository<Users, Long> {
             "FROM user_details u " +
             "LEFT JOIN feedback f ON u.user_id = f.user_id ", nativeQuery = true)
     List<Object[]> findAllUserandFeedbacks();
+
+    Optional<Users> findByEmailOrMobile(String email, String mobile);
 }
 
