@@ -1,5 +1,5 @@
 import { Component, HostListener } from '@angular/core';
-import { NavigationEnd, Router, RouterModule, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from "./header/header.component";
 import { HomeComponent } from "./home/home.component";
 import { CommonModule } from '@angular/common';
@@ -10,11 +10,12 @@ import { ContactComponent } from "./contact/contact.component";
 import { ChatbotComponent } from "./chatbot/chatbot.component";
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
+import { CarSelectionComponent } from "./car-selection/car-selection.component";
 
 @Component({
   selector: 'app-root',
   standalone:true,
-  imports: [HeaderComponent, CommonModule, RouterModule, FooterComponent, HomeComponent, BookingComponent, ContactComponent, ChatbotComponent, LoginComponent],
+  imports: [ChatbotComponent, RouterModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

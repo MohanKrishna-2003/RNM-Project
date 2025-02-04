@@ -11,13 +11,14 @@ import { FeedbackComponent } from '../feedback/feedback.component';
 import { TestimonialComponent } from '../testimonial/testimonial.component';
 import { LogoComponent } from '../logo/logo.component';
 import { NewsComponent } from '../news/news.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone:true,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  imports: [HeaderComponent,FeedbackComponent, BookingComponent,TestimonialComponent, ServiceListComponent, FooterComponent, ContactComponent, ChatbotComponent, LogoComponent, NewsComponent]
+  imports: [HeaderComponent,FeedbackComponent, BookingComponent,TestimonialComponent, ServiceListComponent, FooterComponent, ContactComponent, LogoComponent, NewsComponent]
 })
 export class HomeComponent implements AfterViewInit {
   @ViewChild('carouselExample', { static: false }) carousel!: ElementRef;

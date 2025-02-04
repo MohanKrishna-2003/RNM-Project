@@ -5,6 +5,7 @@ import { FooterComponent } from "../footer/footer.component";
 import L from 'leaflet';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 // Define an interface for a shop
 interface Shop {
