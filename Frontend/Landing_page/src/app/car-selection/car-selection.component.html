@@ -1,8 +1,10 @@
+<app-header></app-header>
+
 <div class="page-container" [class.shifted]="isFilterSidebarOpen">
   <header class="header-section">
     <h1 class="header-title">Online Test Drive Booking</h1>
     <p class="header-subtitle">Driving your dreams forward</p>
-    <a href="/home" class="btn btn-primary btn-lg home-icon">Back to Home</a>
+    <!-- <a href="/home" class="btn btn-primary btn-lg home-icon">Back to Home</a> -->
   </header>
 
   <div class="main-body" [class.shifted]="isFilterSidebarOpen">
@@ -247,14 +249,14 @@
                   <span class="badge px-3 py-2" [ngClass]="{
                       'alert-success': (center.afternoonSlots || 0) > 5,
                       'alert-warning': (center.afternoonSlots || 0) <= 5 && (center.afternoonSlots || 0) > 2,
-                      'alert-danger': (center.afternoonSlots || 0) <= 4
+                      'alert-danger': (center.afternoonSlots || 0) <= 2
                     }">
                     Afternoon: {{ center.afternoonSlots || 0 }} <span class="text-danger live-heading">slots!</span>
                   </span>
                   <span class="badge px-3 py-2" [ngClass]="{
                       'alert-success': (center.eveningSlots || 0) > 5,
                       'alert-warning': (center.eveningSlots || 0) <= 5 && (center.eveningSlots || 0) > 2,
-                      'alert-danger': (center.eveningSlots || 0) <= 4
+                      'alert-danger': (center.eveningSlots || 0) <= 2
                     }">
                     Evening: {{ center.eveningSlots || 0 }} <span class="text-danger live-heading">slots!</span>
                   </span>
@@ -264,7 +266,7 @@
                 <div class="alert" [ngClass]="{
                     'alert-success': (center.availableSlots || 0) > 10,
                     'alert-warning': (center.availableSlots || 0) <= 10 && (center.availableSlots || 0) > 5,
-                    'alert-danger': (center.availableSlots || 0) <= 4
+                    'alert-danger': (center.availableSlots || 0) <= 5
                   }">
                   <strong>Total Available Slots:</strong> {{ center.availableSlots || 0 }}
                   <span class="text-danger live-heading">Live!</span>
@@ -540,7 +542,6 @@
         </ul>
       </div>
 
-
       <!-- Step 1 Content -->
       <div class="formbold-form-step-1" [ngClass]="{ active: currentStep === 1 }">
         <div>
@@ -549,47 +550,22 @@
             [(ngModel)]="formData.name" #name="ngModel" required />
           <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error">
             <!-- <small *ngIf="name.errors?.['required']">Name is required.</small> -->
-
-        <!-- Step 1 Content -->
-        <div class="formbold-form-step-1" [ngClass]="{ active: currentStep === 1 }">
-          <div>
-            <label for="name" class="formbold-form-label">User name</label>
-            <input type="text" name="name" id="firstname" placeholder="Enter your name" class="formbold-form-input"
-              [(ngModel)]="formData.name" #name="ngModel" required readonly />
-            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error">
-              <!-- <small *ngIf="name.errors?.['required']">Name is required.</small> -->
-            </div>
-
           </div>
         </div>
 
-
-          <div class="formbold-input-flex">
-            <div>
-              <label for="phone" class="formbold-form-label">Phone Number</label>
-              <input type="text" name="phone" id="phone" class="formbold-form-input"
-                placeholder="Enter your phone number" [(ngModel)]="formData.phone" #phone="ngModel" required
-                pattern="^\d{10}$" maxlength="10" minlength="10"
-                [ngClass]="{'is-invalid': phone.invalid && (phone.dirty || phone.touched)}"  />
-              <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="error">
-                <!-- <small *ngIf="phone.errors?.['required']">Phone number is required.</small>
+        <div class="formbold-input-flex">
+          <div>
+            <label for="phone" class="formbold-form-label">Phone Number</label>
+            <input type="text" name="phone" id="phone" class="formbold-form-input" placeholder="Enter your phone number"
+              [(ngModel)]="formData.phone" #phone="ngModel" required pattern="^\d{10}$" maxlength="10" minlength="10"
+              [ngClass]="{'is-invalid': phone.invalid && (phone.dirty || phone.touched)}" />
+            <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="error">
+              <!-- <small *ngIf="phone.errors?.['required']">Phone number is required.</small>
                 <small *ngIf="phone.errors?.['pattern']">Phone number must be exactly 10 digits.</small> -->
-              </div>
-            </div>
-
-            <div>
-              <label for="email" class="formbold-form-label">Email Address</label>
-              <input type="email" name="email" id="email" placeholder="Enter your email" class="formbold-form-input"
-                [(ngModel)]="formData.email" #email="ngModel" required readonly />
-              <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error">
-                <!-- <small *ngIf="email.errors?.['required']">Email is required.</small> -->
-                <small *ngIf="email.errors?.['email']">Invalid email format.</small>
-              </div>
             </div>
           </div>
 
           <div>
-
             <label for="email" class="formbold-form-label">Email Address</label>
             <input type="email" name="email" id="email" placeholder="Enter your email" class="formbold-form-input"
               [(ngModel)]="formData.email" #email="ngModel" required />
@@ -597,11 +573,6 @@
               <!-- <small *ngIf="email.errors?.['required']">Email is required.</small> -->
               <small *ngIf="email.errors?.['email']">Invalid email format.</small>
             </div>
-
-            <label for="address" class="formbold-form-label">Address</label>
-            <input type="text" name="address" id="address" placeholder="Enter your address" class="formbold-form-input"
-              [(ngModel)]="formData.address" re />
-
           </div>
         </div>
 
@@ -617,21 +588,24 @@
         <div>
           <label for="preferred-date" class="formbold-form-label">Preferred Date</label>
           <input type="date" id="preferred-date" class="formbold-form-input" [(ngModel)]="formData.preferredDate"
-            #preferredDate="ngModel" required [min]="todayDate" />
+            #preferredDate="ngModel" required [min]="todayDate"  placeholder="Select your location"/>
           <div *ngIf="preferredDate.invalid && (preferredDate.dirty || preferredDate.touched)" class="error">
             <small *ngIf="preferredDate.errors?.['required']">Preferred date is required.</small>
           </div>
 
+          
           <label for="showroom" class="formbold-form-label">Preferred Showroom Location</label>
           <select id="showroom" class="formbold-form-input" [(ngModel)]="selectedCenterId"
-            (change)="updateAvailableTimeSlots(selectedCenterId)" name="showroomLocation" required>
-            <option [value]="" disabled>Select a Location</option>
+            (click)="updateAvailableTimeSlots(selectedCenterId)" name="showroomLocation" required>
+            <option [value]="null" disabled>Select a Location</option>
             <option *ngFor="let center of filteredLocations" [value]="center.id">
               {{ center.name }} - {{ center.location }} (Available Test Drive Slots: {{ center.availableSlots }})
             </option>
           </select>
+          
 
 
+          <!-- <h1></h1> -->
 
           <!-- <div *ngIf="showroomLocation.invalid && (showroomLocation.dirty || showroomLocation.touched)" class="error">
             <small *ngIf="showroomLocation.errors?.['required']">Showroom location is required.</small>
@@ -641,14 +615,14 @@
           <label for="time-slot" class="formbold-form-label">Preferred Time Slot</label>
           <select id="time-slot" class="formbold-form-input" [(ngModel)]="formData.timeSlot" name="timeSlot"
             #timeSlot="ngModel" required>
-            <option [value]="" disabled>Select a time slot</option>
+            <option [value]="null" disabled>Select a time slot</option>
             <option *ngFor="let slot of availableTimeSlots" [value]="slot.key">
               {{ slot.label }} (Available Slots: {{ slot.count }})
             </option>
           </select>
           <div *ngIf="timeSlot.invalid && (timeSlot.dirty || timeSlot.touched)" class="error">
             <small *ngIf="timeSlot.errors?.['required']">Time slot is required.</small>
-          </div>
+          </div>          
 
         </div>
       </div>
@@ -697,3 +671,4 @@
 
 <br /><br />
 }
+<app-footer></app-footer>
