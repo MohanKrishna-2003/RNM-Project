@@ -20,7 +20,7 @@ export class SignupComponent {
     this.signupForm = this.fb.group({
       name: ['', [Validators.required, Validators.maxLength(20), Validators.minLength(3), Validators.pattern('^[A-Za-z\\s-]+$')]],
       email: ['', [Validators.required]],
-      password: ['', [Validators.required, Validators.maxLength(8)]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
       mobile: ['', [Validators.required, Validators.maxLength(10)]],
       address: ['', [Validators.required, Validators.maxLength(50)]],
       confirmPassword: ['', [Validators.required]]
@@ -41,14 +41,19 @@ export class SignupComponent {
       this.http.post('http://localhost:8080/user/addUserData', data).subscribe(
         {
           next: (res:any) => {
-            console.log(res);
-            // const userId = res.id;  
-            // localStorage.setItem('userId', userId.toString());
             this.router.navigateByUrl("/login");
           }, error: (err) => {
             console.log(err);
-            this.errorMsg = err.error['message'];
-
+            // this.errorMsg = err.error['message'];
+            if (err.error.message === "Email has already been registered") {
+              this.errorMsg = 'This email is already registered';
+              this.signupForm.controls['email'].setErrors({'alreadyRegistered': true});
+            } else if (err.error.message === "Mobile number has already been registered") {
+              this.errorMsg = 'This mobile number is already registered';
+              this.signupForm.controls['mobile'].setErrors({'alreadyRegistered': true});
+            } else {
+              this.errorMsg = 'An error occurred, please try again';
+            }
           }
         }
       );

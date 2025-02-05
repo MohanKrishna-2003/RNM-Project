@@ -24,7 +24,7 @@ import java.util.Optional;
 
 @RequestMapping(path = "user")
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin("*")
 public class UserController {
 
     @Autowired
@@ -140,14 +140,18 @@ public class UserController {
         try {
             Users userData = userService.updatePassword(users);
             return ResponseEntity.ok().body(new GeneralResponse("Successfully updated the password"));
-        } catch (UserNotFoundException e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new GeneralResponse(e.getMessage()));
-        } catch (Exception e) {
+        }
+//        catch (UserNotFoundException e) {
+//            e.printStackTrace();
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new GeneralResponse(e.getMessage()));
+//        }
+//
+        catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new GeneralResponse("An error occurred: " + e.getMessage()));
         }
     }
+
 }
 
 

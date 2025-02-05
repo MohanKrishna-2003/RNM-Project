@@ -45,46 +45,68 @@
   </div>
 </div>
 
+
 <div *ngIf="isOpen" class="popup-overlay">
   <div class="popup-content">
-
-    <form [formGroup]="forgotPasswordForm" (ngSubmit)="submitForgotPassword()">
-      <div>
-        <h3 class="mb-4">Reset Password</h3>
-      </div>
+    <span class="close" (click)="closePop()">X</span>
+   
+    <h2 class="mt-3 mb-3">Forgot Password?</h2>
+    <div *ngIf="sendOtp && !otpVerified">
+      <p class="text-muted">
+        Enter the email address associated with your account, and we'll send you a verification code to reset your password.
+      </p>
+      <form [formGroup]="forgotPasswordForm" (ngSubmit)="sendOtpToMail()">
+        <div>
+          <input type="email" formControlName="recipient" placeholder="Enter your email" required aria-label="Email Address"/>
+          <div *ngIf="forgotPasswordForm.get('recipient').invalid && forgotPasswordForm.get('recipient').touched" class="text-danger">
+            Please enter a valid email.
+          </div>
+        </div>
+        <button type="submit" class="w-75 mt-3" [disabled]="forgotPasswordForm.invalid"   style="margin-left: 2px;">
+          Send Verification Code
+        </button>
+      </form>
+    </div>
+    <div *ngIf="!sendOtp && !otpVerified">
+    <form [formGroup]="OtpForm" class="data" (ngSubmit)="resetPassword()">
+      <p class="text-muted mb-2">
+        Please enter the OTP sent to your email. The OTP should be a 4-digit number.
+      </p>
       <div class="form-group">
-        <input type="email" id="email" formControlName="email" placeholder="Enter your email" required />
-        <div *ngIf="forgotPasswordForm.get('email')?.invalid && (forgotPasswordForm.get('email')?.dirty || forgotPasswordForm.get('email')?.touched)" class="text-danger">
-          <div *ngIf="forgotPasswordForm.get('email')?.hasError('required')">Email is required.</div>
-          <div *ngIf="forgotPasswordForm.get('email')?.hasError('email')">Please enter a valid email address.</div>
-          <span class="text-danger">{{errorMsg}}</span> 
-        </div>
-      </div>
-      
-
-      <div class="form-group">
-        <input type="password" id="password" formControlName="password" placeholder="Enter your new password" required />
-        <div *ngIf="forgotPasswordForm.get('password')?.invalid && (forgotPasswordForm.get('password')?.dirty || forgotPasswordForm.get('password')?.touched)" class="text-danger">
-          <div *ngIf="forgotPasswordForm.get('password')?.hasError('required')">New password is required.</div>
-        </div>
+        <input type="text" class="form-control" formControlName="otp" placeholder="Enter OTP" required maxlength="4"/>
+        <p *ngIf="OtpForm.get('otp')?.hasError('required') && OtpForm.get('otp')?.touched" class="text-danger">
+          OTP is required.
+        </p>
+        <p *ngIf="OtpForm.get('otp')?.hasError('maxlength') && OtpForm.get('otp')?.touched" class="text-danger">
+          OTP cannot exceed 4 characters.
+        </p>
+        <p *ngIf="OtpForm.get('otp')?.hasError('pattern') && OtpForm.get('otp')?.touched" class="text-danger">
+          OTP must be a valid number.
+        </p>
       </div>
 
-      <div class="form-group">
-        <input type="password" id="confirmPassword" formControlName="confirmPassword" placeholder="Confirm your new password" required />
-        <div *ngIf="forgotPasswordForm.get('confirmPassword')?.invalid && (forgotPasswordForm.get('confirmPassword')?.dirty || forgotPasswordForm.get('confirmPassword')?.touched)" class="text-danger">
-          <div *ngIf="forgotPasswordForm.get('confirmPassword')?.hasError('required')">Please confirm your password.</div>
-        </div>
-        <div *ngIf="forgotPasswordForm.hasError('match')" class="text-danger">Passwords do not match</div>
-        </div>
-      
-      <div class="d-flex justify-content-between mt-3">
-        
-        <button type="button" (click)="closePop()" class="w-25 btn btn-secondary mb-2 ">Close</button>
-        <button type="submit" class="w-25 btn btn-primary mb-2" [disabled]="forgotPasswordForm.invalid">Submit</button>
-      </div>
-      <!-- <button type="submit" style="margin-right: 100px;" class=" w-25 btn btn-primary  " [disabled]="forgotPasswordForm.invalid">Submit</button> -->
-      <!-- <button (click)="closePop()" class="btn btn-secondary w-25">Close</button> -->
+      <button type="submit" class="w-75 mt-1" (click)="resetPassword()" style="margin-left: 2px;">
+        Reset Password
+      </button>
     </form>
-    
+  </div>
+  <div *ngIf="otpVerified">
+    <form [formGroup]="PasswordForm" class="text" (ngSubmit)="updatePassword()">
+      <p class="text-muted mb-2">
+        Please enter your new password below. Make sure the password is at least 8 characters long.
+      </p>
+      <div class="form-group">
+        <input type="password" class="form-control" formControlName="password" placeholder="Enter your new password" required />
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control mt-3" formControlName="confirmPassword" placeholder="Confirm your new password" required />
+        <div *ngIf="PasswordForm.hasError('match')" class="text-danger">Passwords do not match</div>
+      </div>
+
+      <button type="submit"  class="w-75 mt-1" style="margin-left: 2px;">
+        Reset Password
+      </button>
+    </form>
+  </div>
   </div>
 </div>
