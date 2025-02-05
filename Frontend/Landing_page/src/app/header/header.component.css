@@ -232,8 +232,9 @@ position: relative;
   bottom: 0;
   background: rgba(0, 0, 0, 0.4); /* Dark transparent overlay */
   z-index: 1050;
-  backdrop-filter: blur(8px); /* Blurring the background for focus */
+  backdrop-filter: blur(10px); /* Blurring the background for focus */
   transition: opacity 0.3s ease-in-out; /* Smooth transition when opening/closing */
+  overflow: hidden;
 }
 
 .popup-content {
@@ -244,6 +245,9 @@ position: relative;
   border-radius: 15px; /* Rounded corners */
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
   animation: popupIn 0.5s ease-out; /* Popup animation */
+  transition: transform 0.3s ease-out;
+  border: 2px solid #89abc7;
+  background-color: #f4f9fd;
 }
 
 /* Heading */
@@ -251,11 +255,12 @@ h2.update {
   text-align: center;
   color: black; /* Set color to black */
   font-family: 'Roboto', sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   margin-bottom: 20px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 2px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1); /* Soft shadow */
 }
 /* Form Group */
 .form-group {
@@ -301,36 +306,43 @@ button {
 }
 
 /* Submit Button */
-button[type="submit"] {
+/* button[type="submit"] {
   background: linear-gradient(145deg, #3498db, #2980b9);
   color: #fff;
+  transform: translateY(-3px);
   box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
-}
+} */
 
-button[type="submit"]:hover {
-  background: linear-gradient(145deg, #2980b9, #3498db);
-  transform: translateY(-3px); /* Hover effect: button lifts */
+/* button[type="submit"]:hover {
+   background: linear-gradient(145deg, #2980b9, #3498db);
+  background: #7f8c8d;
+  transform: translateY(-3px); 
   box-shadow: 0 10px 20px rgba(52, 152, 219, 0.5);
-}
+ 
+} */
 
 /* Close Button */
-button:nth-of-type(2) {
+/* button:nth-of-type(2) {
   background: #95a5a6;
   color: white;
   box-shadow: 0 5px 15px rgba(149, 165, 166, 0.4);
-}
+} */
 
-button:nth-of-type(2):hover {
+/* button:nth-of-type(2):hover {
   background: #7f8c8d;
-  transform: translateY(-3px); /* Hover effect: button lifts */
+  transform: translateY(-3px); 
   box-shadow: 0 10px 20px rgba(149, 165, 166, 0.5);
-}
+} */
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .popup-content {
     padding: 20px;
     width: 90%;
+    font-size: 0.9rem;
+  }
+  h2.update {
+    font-size: 1.3rem; /* Slightly smaller heading on mobile */
   }
 }
 

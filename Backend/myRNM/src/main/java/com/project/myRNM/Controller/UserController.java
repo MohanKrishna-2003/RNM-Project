@@ -1,6 +1,7 @@
 package com.project.myRNM.Controller;
 
 import com.project.myRNM.Entity.Users;
+import com.project.myRNM.Exception.UserNotFoundException;
 import com.project.myRNM.Response.GeneralResponse;
 import com.project.myRNM.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,6 +91,19 @@ public class UserController {
             }
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new GeneralResponse(e.getMessage()));
+        }
+    }
+    @PutMapping("/updatePassword")
+    public ResponseEntity<?> updatePassword(@RequestBody Users users) {
+        try {
+            Users userData = userService.updatePassword(users);
+            return ResponseEntity.ok().body(new GeneralResponse("Successfully updated the password"));
+        } catch (UserNotFoundException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new GeneralResponse(e.getMessage()));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new GeneralResponse("An error occurred: " + e.getMessage()));
         }
     }
 }

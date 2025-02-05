@@ -17,7 +17,7 @@ import { error } from 'jquery';
 export class HeaderComponent implements OnInit {
   name: String='';
     errorMsg="";
-
+   adminName:String='';
   edit:FormGroup;
   constructor(private router: Router , private http:HttpClient,private fb:FormBuilder) {}
   // ngOnInit(): void {
@@ -74,7 +74,10 @@ export class HeaderComponent implements OnInit {
 
 
     // Optionally, update the name value in the header
-    this.name = localStorage.getItem("useremail") || "";
+    this.name = localStorage.getItem("username") || "";
+    this.adminName=localStorage.getItem("adminName");
+    console.log(this.adminName);
+    
   }
   // Variable to toggle the visibility of the profile box
   isProfileBoxVisible = false;
@@ -92,8 +95,7 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl('/login');
     console.log('Redirect to Login page');
   }
-
-  // Function to handle Sign Up
+// Function to handle Sign Up
   onSignup() {
     this.router.navigateByUrl('/signup');
     console.log('Redirect to Signup page');
@@ -126,6 +128,8 @@ submit() {
                     console.log("Updated");
                     localStorage.setItem("phone",updateUser.mobile);
                     localStorage.setItem("address",updateUser.address);
+                    alert("Successfully updated")
+                    this.closePop();
                 },(err) => {
                     this.errorMsg = err.error['message'];
                 });

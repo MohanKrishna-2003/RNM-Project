@@ -12,7 +12,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginComponent {
   loginForm!: FormGroup;
- 
+  forgotPasswordForm:FormGroup;
+  errorMsg="";
   constructor(private fb: FormBuilder, private route: Router, private http: HttpClient) { }
  
   ngOnInit(): void {
@@ -66,6 +67,33 @@ export class LoginComponent {
         }
       );
     }
+  }
+  isOpen=false;
+ 
+  openPop(){
+    this.isOpen=true;
+    document.body.style.overflow="hidden";
+ 
+  }
+  closePop(){
+    this.isOpen=false;
+    document.body.style.overflow="auto";
+  }
+  submitForgotPassword() {
+    const data = this.forgotPasswordForm.value;
+    this.http.put('http://localhost:8080/user/updatePassword', data).subscribe(
+      (res) => {
+        console.log(res);
+        alert('Password reset successful!');
+        this.forgotPasswordForm.reset();
+        this.closePop();
+      },
+      (err) => {
+        console.log('Error during password reset:', err);
+        this.errorMsg = err.error['message'];
+        this.forgotPasswordForm.reset();
+      }
+    );
   }
 }
 

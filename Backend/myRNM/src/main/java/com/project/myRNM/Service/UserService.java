@@ -73,4 +73,15 @@ public class UserService {
         foundUser.setMobile(users.getMobile());
         return userRepo.save(foundUser);
     }
+    public Users updatePassword(Users users) throws Exception {
+        Optional<Users> existingUser = userRepo.findByEmail(users.getEmail());
+        if(existingUser.isPresent()){
+            Users users1 = existingUser.get();
+            users1.setPassword(users.getPassword());
+            return userRepo.save(users1);
+        }
+        else {
+            throw new UserNotFoundException("Email is not found");
+        }
+    }
 }
