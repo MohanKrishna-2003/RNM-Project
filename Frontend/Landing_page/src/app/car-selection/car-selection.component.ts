@@ -99,14 +99,14 @@ export class CarSelectionComponent implements OnInit {
     }
   }
 
-  toggleBooking(carName: String): void {
-    this.isBookingClicked = !this.isBookingClicked;
-    this.selectedCar = this.cars.find(car => car.name === carName);
-    console.log(this.selectedCar);
-    if (this.selectedCar) {
-      this.getFilteredCenters();
-    }
-  }
+  // toggleBooking(carName: String): void {
+  //   this.isBookingClicked = !this.isBookingClicked;
+  //   this.selectedCar = this.cars.find(car => car.name === carName);
+  //   console.log(this.selectedCar);
+  //   if (this.selectedCar) {
+  //     this.getFilteredCenters();
+  //   }
+  // }
 
 
   getFilteredCenters(): void {
@@ -149,12 +149,6 @@ export class CarSelectionComponent implements OnInit {
 
 
 
-  constructor(private http: HttpClient) {
-    console.log("working");
-    console.log(this.filteredLocations);
-    const today = new Date();
-    this.todayDate = today.toISOString().split('T')[0];
-  }
 
   fetchCarsFromBackend(): void {
     this.http.get<any[]>('http://localhost:8080/api/cars')

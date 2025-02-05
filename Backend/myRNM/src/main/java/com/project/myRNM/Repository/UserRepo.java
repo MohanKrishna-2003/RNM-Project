@@ -37,5 +37,6 @@ public interface UserRepo extends JpaRepository<Users, Long> {
 
     Optional <Users> findByEmail(String email);  //customMethod
 
+    Optional<Users> findByEmailOrMobile(String email, String mobile);
 }
 

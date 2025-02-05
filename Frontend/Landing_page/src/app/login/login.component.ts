@@ -1,9 +1,8 @@
-import { Component } from '@angular/core';
+import {  Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule  } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { error } from 'jquery';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -11,86 +10,132 @@ import { error } from 'jquery';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
+
 export class LoginComponent {
-  loginForm!: FormGroup; 
+  loginForm!: FormGroup;
   forgotPasswordForm: FormGroup;
-  errorMsg:""
-  formshow = false;  // Initialize form visibility
-  constructor(private fb: FormBuilder, private route:Router , private http:HttpClient) { }
+  OtpForm:FormGroup
+  errorMsg = "";
+  formshow = false;
+  isOpen = false;
+  sendOtp: boolean = true; 
+  otpVerified:boolean =false;
+  PasswordForm:FormGroup;
+  constructor(private fb: FormBuilder, private route: Router, private http: HttpClient) {}
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],  
-      password: ['', [Validators.required]]                   
-    });
-    this.forgotPasswordForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
-      confirmPassword: ['', Validators.required]
-    },{ validators: this.passwordMatchValidator });
-  };
+      password: ['', [Validators.required]]
+    });
+
+    this.forgotPasswordForm = this.fb.group(
+      {
+        recipient : ['', [Validators.required, Validators.email]],
+      }
+    );
+    this.OtpForm = this.fb.group({
+      otp: ['', [Validators.required,Validators.maxLength(4), Validators.pattern(/^\d{4}$/)]],
+    })
+    this.PasswordForm=this.fb.group({
+      password:['',[Validators.required,Validators.minLength(8)]],
+      confirmPassword:['',[Validators.required]]
+    },{ validators: this.passwordMatchValidator })
+    
+  }
   passwordMatchValidator(group: FormGroup): any {
     const password = group.get('password')?.value;
     const confirmPassword = group.get('confirmPassword')?.value;
     return password && confirmPassword && password === confirmPassword ? null : { match: true };
   }
- submit(): void {
-  if (this.loginForm.valid) {
-    const email = this.loginForm.get('email')?.value;
-    const password = this.loginForm.get('password')?.value;
-    const data = { email, password };  
-    this.http.post("http://localhost:8080/user/loginByPost", data).subscribe(
-      (res: any) => {
-        console.log(res);
-        localStorage.setItem("login",res.email);
-        localStorage.setItem("id",res.id);
-        localStorage.setItem("username",res.name);
-        localStorage.setItem("useremail",res.email);
-        localStorage.setItem("phone",res.mobile);
-        localStorage.setItem("address",res.address)
-        // localStorage.removeItem("login");
-        // localStorage.clear(); 
-        
-        console.log("Login success");
-        this.route.navigateByUrl(""); 
-      },
-      (error) => {
-        console.log("Login failed:", error);
-        alert("Invalid email or password. Please try again.");
-      }
-    );
+  submit(): void {
+    if (this.loginForm.valid) {
+      const email = this.loginForm.get('email')?.value;
+      const password = this.loginForm.get('password')?.value;
+      const data = { email, password };
+      this.http.post("http://localhost:8080/user/loginByPost", data).subscribe(
+        (res: any) => {
+          console.log(res);
+          localStorage.setItem("login", res.email);
+          localStorage.setItem("id", res.id);
+          localStorage.setItem("username", res.name);
+          localStorage.setItem("useremail", res.email);
+          localStorage.setItem("phone", res.mobile);
+          localStorage.setItem("address", res.address);
+          console.log("Login success");
+          this.route.navigateByUrl("");
+        },
+        (error) => {
+          console.log("Login failed:", error);
+          alert("Invalid email or password. Please try again.");
+        }
+      );
+    }
   }
-}
-openForgotPasswordModal(){}
-isOpen=false;
- 
-  openPop(){
-    this.isOpen=true;
-    document.body.style.overflow="hidden";
- 
+openPop() {
+    this.isOpen = true;
+    this.sendOtp = true;
+    document.body.style.overflow = "hidden";
   }
-  closePop(){
-    this.isOpen=false;
-    document.body.style.overflow="auto";
+closePop() {
+    this.isOpen = false;
+    this.sendOtp = true;
+    document.body.style.overflow = "auto";
+    window.location.reload();
   }
-  submitForgotPassword() {
-    const data = this.forgotPasswordForm.value;
-    this.http.put('http://localhost:8080/user/updatePassword', data).subscribe(
-      (res) => {
-        console.log(res);
-        alert('Password reset successful!');
-        this.forgotPasswordForm.reset();
-        this.closePop();
-      },
-      (err) => {
-        console.log('Error during password reset:', err);
-        this.errorMsg = err.error['message'];
-        this.forgotPasswordForm.reset();
-      }
-    );
+  sendOtpToMail() {
+    if (this.forgotPasswordForm.valid) {
+    const recipientEmail = this.forgotPasswordForm.get('recipient')?.value;
+    localStorage.setItem("update",recipientEmail);
+    const otpRequest = {
+        recipient: recipientEmail,
+        subject: "Password Reset OTP",
+        text: "Please use this OTP to reset your password."
+    };
+  this.http.post("http://localhost:8080/sendmail", otpRequest)
+      .subscribe(
+        (res: any) => {
+          this.sendOtp = false;
+        },
+        (err) => {
+          console.log(err);
+          this.errorMsg = err.error['message'];
+          alert(`Error: ${this.errorMsg}`);
+          if (err.status === 400) {  
+            localStorage.setItem("update", recipientEmail);  
+          }
+        }
+      );
+    }
   }
-}
 
+  resetPassword() {
+    if (this.OtpForm.valid) {
+      const otp = this.OtpForm.get('otp')?.value;
+      const userEmail = localStorage.getItem('update');
+      const verifyotp={ recipient: userEmail, text:otp};
+      console.log("Password reset successful", verifyotp);
+      this.http.post("http://localhost:8080/verifyotp",verifyotp).subscribe((res:any)=>{
+        this.otpVerified=true;
+      },(err)=>{
+        console.log(err);
+        this.errorMsg = err.error['message'];
+    })
+    }
+  }
+  updatePassword(){
+    const password = this.PasswordForm.get('password').value;
+    const userEmail = localStorage.getItem('update');
+    const newPassword = {password : password , email : userEmail};
+    this.http.put("http://localhost:8080/user/updatePassword",newPassword).subscribe((res)=>{
+      alert("The password Updated Successfully")
+      window.location.reload();
+      localStorage.removeItem('update')
+    },(err)=>{
+      this.errorMsg = err.error['message'];
+    })
+  }
+}
 
 
 

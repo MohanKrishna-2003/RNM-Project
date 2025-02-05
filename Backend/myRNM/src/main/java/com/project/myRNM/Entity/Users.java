@@ -3,6 +3,7 @@ package com.project.myRNM.Entity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -15,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @Table(name="user_details")
 public class Users {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="user_id")

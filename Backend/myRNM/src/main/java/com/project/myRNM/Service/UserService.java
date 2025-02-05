@@ -6,7 +6,10 @@ import com.project.myRNM.Entity.Users;
 import com.project.myRNM.Exception.UserNotFoundException;
 import com.project.myRNM.Repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -20,20 +23,36 @@ public class UserService {
 
     @Autowired
     UserRepo userRepo;
+    
+    PasswordEncoder passwordEncoder;
 
     public Users addUserData(Users users) {
-        // checking if the user is already present or not if it is not it throws an error
-        Optional<Users> existingUser = userRepo.findByEmail(users.getEmail());
+        // checking if the user is already present if they present throws an error
+        Optional<Users> existingUser = userRepo.findByEmailOrMobile(users.getEmail(), users.getMobile());
         if (existingUser.isPresent()) {
-            throw new RuntimeException("Email has been already registered");
+            if (existingUser.get().getEmail().equals(users.getEmail())) {
+                throw new RuntimeException("Email has already been registered");
+            }
+            if (existingUser.get().getMobile().equals(users.getMobile())) {
+                throw new RuntimeException("Mobile number has already been registered");
+            }
+            throw new RuntimeException("User already registered");
         }
+        this.passwordEncoder = new BCryptPasswordEncoder();
+        users.setPassword(passwordEncoder.encode(users.getPassword()));
         return userRepo.save(users);
+
     }
 
     public Users loginByPost(String email, String password) throws Exception {
-        Optional<Users> users = userRepo.login(email, password);
-        return users.orElseThrow(() -> new RuntimeException("Invalid email or password"));
+        Optional<Users> users = userRepo.findByEmail(email);
+        if (users.isPresent() && passwordEncoder.matches(password, users.get().getPassword())) {
+            return users.get();
+        } else {
+            throw new RuntimeException("Invalid email or password");
+        }
     }
+
 
     public List<Users> getUserData() {
         return userRepo.findAll();
@@ -86,13 +105,14 @@ public class UserService {
 
     public Users updatePassword(Users users) throws Exception {
         Optional<Users> existingUser = userRepo.findByEmail(users.getEmail());
-        if(existingUser.isPresent()){
+        if (existingUser.isPresent()) {
             Users users1 = existingUser.get();
-            users1.setPassword(users.getPassword());
+            this.passwordEncoder = new BCryptPasswordEncoder();
+            users1.setPassword(passwordEncoder.encode(users.getPassword()));
             return userRepo.save(users1);
-        }
-        else {
-           throw new UserNotFoundException("Email is not found");
+        } else {
+            throw new UserNotFoundException("Cannot update the password");
         }
     }
+
 }
