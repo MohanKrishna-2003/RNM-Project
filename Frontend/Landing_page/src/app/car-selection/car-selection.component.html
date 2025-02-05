@@ -430,8 +430,8 @@
 </div>
 
 <!-- Sidebar for test slot -->
-@if (isBookingClicked){
-<div class="test-drive-dialog show">
+
+<div class="test-drive-dialog show" *ngIf="isBookingClicked">
   <div class="dialog-content">
     <!-- Left Side: Car Info -->
     <div class="car-info">
@@ -718,4 +718,3 @@
 </div>
 
 <br /><br />
-}

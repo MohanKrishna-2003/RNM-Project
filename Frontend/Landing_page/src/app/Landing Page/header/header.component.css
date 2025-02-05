@@ -237,7 +237,7 @@ position: relative;
 }
 
 .popup-content {
-  background: linear-gradient(145deg, #f6f7f8, #e8e8e8); /* Soft gradient for the popup */
+  /* background: linear-gradient(145deg, #f6f7f8, #e8e8e8); Soft gradient for the popup */
   padding: 30px;
   width: 100%;
   max-width: 600px;
@@ -302,7 +302,7 @@ button {
 
 /* Submit Button */
 button[type="submit"] {
-  background: linear-gradient(145deg, #3498db, #2980b9);
+  /* background: linear-gradient(145deg, #3498db, #2980b9); */
   color: #fff;
   box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
 }
@@ -343,4 +343,8 @@ button:nth-of-type(2):hover {
     opacity: 1;
     transform: scale(1);
   }
+}
+
+input{
+  font-size: 15px;
 }

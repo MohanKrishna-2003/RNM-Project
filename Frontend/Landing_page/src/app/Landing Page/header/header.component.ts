@@ -75,7 +75,7 @@ export class HeaderComponent implements OnInit {
 
 
     // Optionally, update the name value in the header
-    this.name = localStorage.getItem("useremail") || "";
+    this.name = localStorage.getItem("userename") || "";
   }
   // Variable to toggle the visibility of the profile box
   isProfileBoxVisible = false;

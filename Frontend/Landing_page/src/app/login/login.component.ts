@@ -3,11 +3,10 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule  } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { error } from 'jquery';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule ,  ReactiveFormsModule, RouterLink],
+  imports: [CommonModule ,  ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -79,7 +78,6 @@ export class LoginComponent {
       );
     }
   }
-}
 openForgotPasswordModal(){}
 isOpen=false;
  

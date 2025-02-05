@@ -7,8 +7,6 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import Swal from 'sweetalert2';
-import { HeaderComponent } from '../Landing Page/header/header.component';
-import { FooterComponent } from '../Landing Page/footer/footer.component';
 import { Router, RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -17,7 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @Component({
   selector: 'app-car-selection',
   standalone: true,
-  imports: [FormsModule, CommonModule, HttpClientModule,FooterComponent, HeaderComponent],
+  imports: [FormsModule, CommonModule, HttpClientModule],
   templateUrl: './car-selection.component.html',
   styleUrls: ['./car-selection.component.css'],
 })
