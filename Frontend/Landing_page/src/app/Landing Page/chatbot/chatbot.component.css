@@ -1,19 +1,21 @@
+/* Chatbot Icon Styles */
 .chatbot-icon {
   position: fixed;
   bottom: 100px;
   right: 20px;
   cursor: pointer;
-  z-index: 1001; /* Ensure the button is above other elements but below the chat container */
-  width: 50px;  /* Set width of the container to a smaller size */
-  height: 50px;  /* Set height of the container to a smaller size */
-  background-color: white;  /* White background for the icon */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow to the icon */
+  z-index: 1001;
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 10px; /* Rounded corners for the box (you can adjust or remove if you want sharp corners) */
+  border-radius: 10px;
 }
 
+/* Icon Button Styling */
 .css-15q8v64.e13411jb0 {
   background: transparent;
   border: none;
@@ -24,23 +26,25 @@
   align-items: center;
   width: 100%;
   height: 100%;
-  border-radius: 10px; /* Optional: To make the button corners match the box */
+  border-radius: 10px;
 }
 
+/* Icon Styling */
 .css-15q8v64.e13411jb0 svg {
-  width: 24px;  /* Smaller size for the SVG icon */
-  height: 24px; /* Smaller size for the SVG icon */
-  fill: #007bff;  /* Blue color for the SVG icon */
+  width: 24px;
+  height: 24px;
+  fill: #007bff;
 }
 
+/* Hover Effect for the Icon */
 .css-15q8v64.e13411jb0:hover svg {
-  fill: #0056b3;  /* Darker blue on hover */
+  fill: #0056b3;
 }
 
-/* Close button style */
+/* Close Button Style */
 .close-btn {
   position: absolute;
-  top: 10px; /* Adjust the position to the top-right corner */
+  top: 10px;
   right: 10px;
   font-size: 18px;
   background: transparent;
@@ -49,10 +53,10 @@
   cursor: pointer;
 }
 
-/* Chat container (chat window) */
+/* Chat Container Styling */
 .chat-container {
   position: fixed;
-  bottom: 120px; /* Adjust to place the container above the chatbot icon */
+  bottom: 120px;
   right: 20px;
   max-width: 400px;
   width: 100%;
@@ -61,25 +65,29 @@
   background-color: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-  z-index: 1002; /* Ensure the chat container is above the chatbot icon */
-  display: none; /* Initially hidden */
+  z-index: 1002;
+  display: none;
   flex-direction: column;
   height: 400px;
+  max-height: 80vh; /* Ensure chat container is responsive on smaller screens */
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
+/* Display Chat Container when Open */
 .chat-container.open {
-  display: flex; /* Show the chat container when open */
+  display: flex;
 }
 
-/* Chat window for messages */
+/* Chat Window Styling */
 .chat-window {
   flex-grow: 1;
   overflow-y: auto;
   margin-bottom: 10px;
-  padding-right: 10px; /* Optional: For spacing in case of long messages */
+  padding-right: 10px;
+  padding-left: 10px;
 }
-
-/* Individual message styling */
+/* Individual Message Styling */
 .message {
   padding: 10px;
   border-radius: 5px;
@@ -89,30 +97,53 @@
   word-wrap: break-word;
 }
 
-/* User messages style */
+/* User Message Styling */
 .from-user {
-  background-color: #e1ffc7;
+  background-color: #e1ffc7;  /* Light green */
   align-self: flex-end;
-  border-radius: 5px 5px 0 5px; /* Slightly rounded corners for user messages */
+  border-radius: 5px 5px 0 5px; /* Rounded corners for user messages */
+  color: #000;  /* Black text */
+}
+/* Special Bot Message Styling */
+.from-special-bot {
+  background-color: #d1e7ff; /* Light blue background for special bot responses */
+  align-self: flex-start;
+  border-radius: 5px 5px 5px 0; /* Rounded corners for special bot messages */
+  color: #007bff; /* Blue text */
 }
 
-/* Bot messages style */
+/* Regular Bot Message Styling */
 .from-bot {
   background-color: #f1f1f1;
   align-self: flex-start;
-  border-radius: 5px 5px 5px 0; /* Slightly rounded corners for bot messages */
+  border-radius: 5px 5px 5px 0;
 }
 
-/* Button container (for options) */
+/* User Message Styling */
+.from-user {
+  background-color: #e1ffc7;
+  align-self: flex-end;
+  border-radius: 5px 5px 0 5px;
+}
+
+/* Option Message Styling */
+.from-option {
+  background-color: #f7f7f7;
+  color: #333;
+  align-self: flex-start;
+  border-radius: 5px;
+}
+
+/* Button Container for Options */
 .button-container {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   justify-content: center;
-  margin-top: 10px; /* Optional: Add some margin above the buttons */
+  margin-top: 10px;
 }
 
-/* Style for buttons */
+/* Button Styling */
 #btn-style {
   padding: 10px 20px;
   background-color: #007bff;
@@ -121,14 +152,58 @@
   border-radius: 5px;
   cursor: pointer;
   font-size: 14px;
-  transition: background-color 0.3s ease; /* Smooth transition */
+  transition: background-color 0.3s ease;
 }
 
-/* Hover effect for buttons */
+/* Hover Effect for Buttons */
 #btn-style:hover {
   background-color: #0056b3;
 }
 
+/* Remove Focus Outline for Buttons */
 #btn-style:focus {
-  outline: none; /* Optional: Remove outline on focus */
+  outline: none;
+}
+
+/* User Input Form Styling */
+.user-input-form {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.user-input-form input {
+  width: 80%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.user-input-form button {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.user-input-form button:hover {
+  background-color: #0056b3;
+}
+
+.go-back-btn {
+  background-color: #ff4081;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.go-back-btn:hover {
+  background-color: #f50057;
 }

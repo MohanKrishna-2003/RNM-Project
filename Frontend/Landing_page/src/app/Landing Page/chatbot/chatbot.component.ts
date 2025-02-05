@@ -1,91 +1,140 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormsModule, ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-chatbot',
+  standalone: true,
+  imports: [FormsModule, CommonModule, ReactiveFormsModule],
   templateUrl: './chatbot.component.html',
-  standalone:true,
-  imports: [CommonModule, FormsModule],
   styleUrls: ['./chatbot.component.css']
 })
-export class ChatbotComponent {
-  // Array of options for the main menu
-  options: string[] = [
-    'What is your name?',
-    'What can you do?',
-    'Learn About Cars',
-    'Book a Test Drive',
-    'feedback',
-    'Locations',
-    'News',
-    'Goodbye!',
-  ];
 
-  // Messages array to store user and bot messages
-  messages: { sender: string, text: string }[] = [];
+export class ChatbotComponent implements OnInit {
+  form = new FormGroup({
+    message: new FormControl(''),
+  });
 
-  // Flags to control UI flow
+  options: string[] = [];
+  messages: { sender: string, text: string, isSpecial?: boolean }[] = []; // Added `isSpecial` flag
+  isLoading = false;
   isChatOpen: boolean = false;
+  isOnPage: boolean = false; // Flag to track if the user has navigated to a page
 
-  // Variables to store dynamic content (e.g., car info, booking details)
-  carDetails: string | null = null;
-  bookingDetails: string | null = null;
+  constructor(private http: HttpClient, private router: Router) { }
 
-  constructor(private router: Router) { }
+  ngOnInit(): void {
+    // Initial greeting and options
+    this.messages.push({ sender: 'bot', text: 'Hi, I am a chatbot. How can I assist you today?',isSpecial: true });
 
-  // Toggle chat window visibility
+    this.options = [
+      'What is your name?',
+      'What can you do?',
+      'Learn About Cars',
+      'Book a Test Drive',
+      'Feedback',
+      'Locations',
+      'News',
+      'Goodbye!'
+    ];
+  }
+
+  // Toggle the chat window open or closed
   toggleChat(): void {
     this.isChatOpen = !this.isChatOpen;
   }
 
-  // Handle option selected by the user
+  sendMessage() {
+    const userMessage = this.form.controls.message.value;
+    if (userMessage) {
+      // Check if the message is a predefined option
+      if (this.options.includes(userMessage)) {
+        // If it's an option, skip adding the user's message and directly handle the option
+        this.onOptionSelected(userMessage);
+      } else {
+        // Otherwise, show the user's message (for custom messages)
+        this.messages.push({ sender: 'user', text: userMessage });
+        this.generateBotResponse(userMessage); // Handle custom messages
+      }
+    }
+
+    // Reset the form input after sending
+    this.form.reset();
+  }
+
+
   onOptionSelected(option: string): void {
-    this.messages.push({ sender: 'user', text: option });
-
-    if (option === 'Learn About Cars') {
+    this.messages.push({ sender: 'option', text: option }); // Add option as a message with sender "option"
+    if (option === 'What is your name?') {
+      this.messages.push({ sender: 'bot', text: 'My name is MyRnm, how can I assist you?', isSpecial: true }); // Special message
+    } else if (option === 'What can you do?') {
+      this.messages.push({ sender: 'bot', text: 'I can help you with booking a test drive, provide information about cars, and more!', isSpecial: true }); // Special message
+    } else if (option === 'Learn About Cars') {
       this.router.navigate(['/booking']);
+      this.isOnPage = true;
+      this.messages.push({ sender: 'bot', text: 'Redirecting to the booking page.',isSpecial: true });
     } else if (option === 'Book a Test Drive') {
-      this.router.navigate(['/booking']); // Navigate to the booking page
-      this.messages.push({ sender: 'bot', text: 'Redirecting to the booking page.' });
-    } else if (option === 'feedback') {
+      this.router.navigate(['/booking']);
+      this.isOnPage = true;
+      this.messages.push({ sender: 'bot', text: 'Redirecting to the booking page.',isSpecial: true });
+    } else if (option === 'Feedback') {
       this.router.navigate(['/feedback']);
-      this.messages.push({ sender: 'bot', text: 'Redirecting to the feedback page.' });
+      this.isOnPage = true;
+      this.messages.push({ sender: 'bot', text: 'Redirecting to the feedback page.',isSpecial: true });
     } else if (option === 'Locations') {
-      this.router.navigate(['/location']); // Navigate to the locations page
-      this.messages.push({ sender: 'bot', text: 'Redirecting to the locations page.' });
-    }
-    else if (option === 'News') {
-      this.router.navigate(['/news']); // Navigate to the testimonials page
-      this.messages.push({ sender: 'bot', text: 'Redirecting to the testimonials page.' });
-    }else {
-      const botReply = this.getBotResponse(option);
-      this.messages.push({ sender: 'bot', text: botReply });
-    }
-  }
-
-  // Get bot's response based on user input
-  getBotResponse(option: string): string {
-    switch (option) {
-      case 'What is your name?':
-        return 'I am a chatbot created to help you book test drives, learn about cars, and much more!';
-      case 'What can you do?':
-        return 'I can assist you with booking a test drive, telling you about our cars, showing customer reviews, and more!';
-      case 'Goodbye!':
-        return 'Goodbye! Hope to assist you again soon. Have a safe drive!';
-      default:
-        return 'Sorry, I didn’t understand that. Can you please choose from the available options?';
+      this.router.navigate(['/location']);
+      this.isOnPage = true;
+      this.messages.push({ sender: 'bot', text: 'Redirecting to the locations page.',isSpecial: true });
+    } else if (option === 'News') {
+      this.router.navigate(['/news']);
+      this.isOnPage = true;
+      this.messages.push({ sender: 'bot', text: 'Redirecting to the news page.',isSpecial: true });
+    } else if (option === 'Goodbye!') {
+      this.messages.push({ sender: 'bot', text: 'Goodbye! Hope to assist you again soon. Have a safe drive!',isSpecial: true });
+    } else {
+      this.generateBotResponse(option); // Custom message handling
     }
   }
 
-  // Set dynamic car details (from Home component)
-  setCarDetails(carDetails: string): void {
-    this.carDetails = carDetails;
+  // API call to generate bot's response for custom messages
+  generateBotResponse(userMessage: string) {
+    this.isLoading = true;
+
+    const data = {
+      contents: [
+        {
+          parts: [{ text: userMessage }],
+        },
+      ],
+    };
+
+    // Replace with your actual API endpoint and key
+    this.http.post('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyAiyjwYVl2IuMG1T_DjKX6LuS8WiHtXeG4', data)
+      .subscribe(
+        (res: any) => {
+          this.isLoading = false;
+
+          // Ensure the response structure is correct
+          if (res && res.candidates && res.candidates[0] && res.candidates[0].content && res.candidates[0].content.parts[0]) {
+            const responseText = res.candidates[0].content.parts[0].text;
+            this.messages.push({ sender: 'bot', text: responseText });
+          } else {
+            this.messages.push({ sender: 'bot', text: 'Sorry, I could not understand your request.' });
+          }
+        },
+        (err: any) => {
+          this.isLoading = false;
+          this.messages.push({ sender: 'bot', text: 'Something went wrong. Please try again later.' });
+        }
+      );
   }
 
-  // Set dynamic booking details (from Home component)
-  setBookingDetails(bookingDetails: string): void {
-    this.bookingDetails = bookingDetails;
+  // Go Back to previous page
+  goBack() {
+    this.router.navigate(['/']);
+    this.isOnPage = false;
+    this.messages.push({ sender: 'bot', text: 'You are now back to the chat. How can I help you further?' });
   }
 }

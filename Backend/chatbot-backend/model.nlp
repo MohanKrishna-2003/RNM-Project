@@ -1,0 +1,422 @@
+{
+  "settings": {
+    "languages": [
+      "en"
+    ],
+    "tag": "nlp",
+    "threshold": 0.5,
+    "autoLoad": true,
+    "autoSave": true,
+    "modelFileName": "model.nlp",
+    "executeActionsBeforeAnswers": false,
+    "calculateSentiment": true
+  },
+  "nluManager": {
+    "settings": {
+      "tag": "nlu-manager"
+    },
+    "locales": [
+      "en"
+    ],
+    "languageNames": {},
+    "domainManagers": {
+      "en": {
+        "settings": {
+          "locale": "en",
+          "trainByDomain": false,
+          "tag": "domain-manager-en",
+          "nluByDomain": {
+            "default": {
+              "className": "NeuralNlu",
+              "settings": {}
+            }
+          },
+          "useStemDict": true
+        },
+        "stemDict": {
+          "is,name,what,your": {
+            "intent": "bot.name",
+            "domain": "default"
+          },
+          "can,do,what,you": {
+            "intent": "bot.purpose",
+            "domain": "default"
+          },
+          "about,car,me,tell": {
+            "intent": "bot.cars",
+            "domain": "default"
+          },
+          "a,book,drive,test": {
+            "intent": "bot.bookTestDrive",
+            "domain": "default"
+          },
+          "goodby": {
+            "intent": "bot.goodbye",
+            "domain": "default"
+          }
+        },
+        "intentDict": {
+          "bot.name": "default",
+          "bot.purpose": "default",
+          "bot.cars": "default",
+          "bot.bookTestDrive": "default",
+          "bot.goodbye": "default"
+        },
+        "sentences": [
+          {
+            "domain": "default",
+            "utterance": "What is your name?",
+            "intent": "bot.name"
+          },
+          {
+            "domain": "default",
+            "utterance": "What can you do?",
+            "intent": "bot.purpose"
+          },
+          {
+            "domain": "default",
+            "utterance": "Tell me about cars",
+            "intent": "bot.cars"
+          },
+          {
+            "domain": "default",
+            "utterance": "Book a test drive",
+            "intent": "bot.bookTestDrive"
+          },
+          {
+            "domain": "default",
+            "utterance": "Goodbye",
+            "intent": "bot.goodbye"
+          }
+        ],
+        "domains": {
+          "master_domain": {
+            "settings": {
+              "locale": "en",
+              "tag": "nlu-en",
+              "keepStopwords": true,
+              "nonefeatureValue": 1,
+              "nonedeltaMultiplier": 1.2,
+              "spellCheck": false,
+              "spellCheckDistance": 1,
+              "filterZeros": true,
+              "log": true
+            },
+            "features": {
+              "what": 1,
+              "is": 1,
+              "your": 1,
+              "name": 1,
+              "can": 1,
+              "you": 1,
+              "do": 1,
+              "tell": 1,
+              "me": 1,
+              "about": 1,
+              "car": 1,
+              "book": 1,
+              "a": 1,
+              "test": 1,
+              "drive": 1,
+              "goodby": 1
+            },
+            "intents": {
+              "bot.name": 1,
+              "bot.purpose": 1,
+              "bot.cars": 1,
+              "bot.bookTestDrive": 1,
+              "bot.goodbye": 1
+            },
+            "intentFeatures": {
+              "bot.name": {
+                "what": 1,
+                "is": 1,
+                "your": 1,
+                "name": 1
+              },
+              "bot.purpose": {
+                "what": 1,
+                "can": 1,
+                "you": 1,
+                "do": 1
+              },
+              "bot.cars": {
+                "tell": 1,
+                "me": 1,
+                "about": 1,
+                "car": 1
+              },
+              "bot.bookTestDrive": {
+                "book": 1,
+                "a": 1,
+                "test": 1,
+                "drive": 1
+              },
+              "bot.goodbye": {
+                "goodby": 1
+              }
+            },
+            "featuresToIntent": {
+              "what": [
+                "bot.name",
+                "bot.purpose"
+              ],
+              "is": [
+                "bot.name"
+              ],
+              "your": [
+                "bot.name"
+              ],
+              "name": [
+                "bot.name"
+              ],
+              "can": [
+                "bot.purpose"
+              ],
+              "you": [
+                "bot.purpose"
+              ],
+              "do": [
+                "bot.purpose"
+              ],
+              "tell": [
+                "bot.cars"
+              ],
+              "me": [
+                "bot.cars"
+              ],
+              "about": [
+                "bot.cars"
+              ],
+              "car": [
+                "bot.cars"
+              ],
+              "book": [
+                "bot.bookTestDrive"
+              ],
+              "a": [
+                "bot.bookTestDrive"
+              ],
+              "test": [
+                "bot.bookTestDrive"
+              ],
+              "drive": [
+                "bot.bookTestDrive"
+              ],
+              "goodby": [
+                "bot.goodbye"
+              ]
+            },
+            "neuralNetwork": {
+              "settings": {
+                "locale": "en",
+                "tag": "nlu-en",
+                "keepStopwords": true,
+                "nonefeatureValue": 1,
+                "nonedeltaMultiplier": 1.2,
+                "spellCheck": false,
+                "spellCheckDistance": 1,
+                "filterZeros": true,
+                "log": true
+              },
+              "features": [
+                "what",
+                "is",
+                "your",
+                "name",
+                "can",
+                "you",
+                "do",
+                "tell",
+                "me",
+                "about",
+                "car",
+                "book",
+                "a",
+                "test",
+                "drive",
+                "goodby"
+              ],
+              "intents": [
+                "bot.name",
+                "bot.purpose",
+                "bot.cars",
+                "bot.bookTestDrive",
+                "bot.goodbye"
+              ],
+              "perceptrons": [
+                [
+                  2.5314197540283203,
+                  3.6878116130828857,
+                  3.6878116130828857,
+                  3.6878116130828857,
+                  -1.1317027807235718,
+                  -1.1317027807235718,
+                  -1.1317027807235718,
+                  -0.2234342396259308,
+                  -0.2234342396259308,
+                  -0.2234342396259308,
+                  -0.2234342396259308,
+                  -0.21879348158836365,
+                  -0.21879348158836365,
+                  -0.21879348158836365,
+                  -0.21879348158836365,
+                  -0.667926013469696,
+                  0.688220736371962
+                ],
+                [
+                  2.5416009426116943,
+                  -1.1191480159759521,
+                  -1.1191480159759521,
+                  -1.1191480159759521,
+                  3.687649965286255,
+                  3.687649965286255,
+                  3.687649965286255,
+                  -0.2414349913597107,
+                  -0.2414349913597107,
+                  -0.2414349913597107,
+                  -0.2414349913597107,
+                  -0.23649819195270538,
+                  -0.23649819195270538,
+                  -0.23649819195270538,
+                  -0.23649819195270538,
+                  -0.6621151566505432,
+                  0.6789862627893691
+                ],
+                [
+                  -0.46798527240753174,
+                  -0.22799897193908691,
+                  -0.22799897193908691,
+                  -0.22799897193908691,
+                  -0.210927352309227,
+                  -0.210927352309227,
+                  -0.210927352309227,
+                  3.355351209640503,
+                  3.355351209640503,
+                  3.355351209640503,
+                  3.355351209640503,
+                  -0.29510509967803955,
+                  -0.29510509967803955,
+                  -0.29510509967803955,
+                  -0.29510509967803955,
+                  -0.837037980556488,
+                  0.8614158447447666
+                ],
+                [
+                  -0.477026104927063,
+                  -0.23278644680976868,
+                  -0.23278644680976868,
+                  -0.23278644680976868,
+                  -0.2154259979724884,
+                  -0.2154259979724884,
+                  -0.2154259979724884,
+                  -0.27806010842323303,
+                  -0.27806010842323303,
+                  -0.27806010842323303,
+                  -0.27806010842323303,
+                  3.3548882007598877,
+                  3.3548882007598877,
+                  3.3548882007598877,
+                  3.3548882007598877,
+                  -0.8396274447441101,
+                  0.8633573228695868
+                ],
+                [
+                  -1.4203964471817017,
+                  -0.7095263004302979,
+                  -0.7095263004302979,
+                  -0.7095263004302979,
+                  -0.7071927785873413,
+                  -0.7071927785873413,
+                  -0.7071927785873413,
+                  -0.8837080001831055,
+                  -0.8837080001831055,
+                  -0.8837080001831055,
+                  -0.8837080001831055,
+                  -0.883079469203949,
+                  -0.883079469203949,
+                  -0.883079469203949,
+                  -0.883079469203949,
+                  10.313562393188477,
+                  3.5787530873971596
+                ]
+              ]
+            }
+          }
+        }
+      }
+    },
+    "intentDomains": {},
+    "extraSentences": [
+      [
+        "en",
+        "What is your name?"
+      ],
+      [
+        "en",
+        "What can you do?"
+      ],
+      [
+        "en",
+        "Tell me about cars"
+      ],
+      [
+        "en",
+        "Book a test drive"
+      ],
+      [
+        "en",
+        "Goodbye"
+      ]
+    ]
+  },
+  "ner": {
+    "settings": {
+      "tag": "ner",
+      "entityPreffix": "%",
+      "entitySuffix": "%"
+    },
+    "rules": {}
+  },
+  "nlgManager": {
+    "settings": {
+      "tag": "nlg-manager"
+    },
+    "responses": {
+      "en": {
+        "bot.name": [
+          {
+            "answer": "I am a chatbot created to assist you."
+          }
+        ],
+        "bot.purpose": [
+          {
+            "answer": "I can help you with car details, test drives, and more!"
+          }
+        ],
+        "bot.cars": [
+          {
+            "answer": "I can provide detailed information about cars. Would you like to know about a specific model?"
+          }
+        ],
+        "bot.bookTestDrive": [
+          {
+            "answer": "Please provide the car model and the date you want to book a test drive."
+          }
+        ],
+        "bot.goodbye": [
+          {
+            "answer": "Goodbye! Have a great day!"
+          }
+        ]
+      }
+    }
+  },
+  "actionManager": {
+    "settings": {
+      "tag": "action-manager"
+    },
+    "actions": {}
+  },
+  "slotManager": {}
+}
