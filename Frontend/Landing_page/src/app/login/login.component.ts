@@ -53,17 +53,37 @@ export class LoginComponent {
       const email = this.loginForm.get('email')?.value;
       const password = this.loginForm.get('password')?.value;
       const data = { email, password };
-      this.http.post("http://localhost:8080/user/loginByPost", data).subscribe(
+ 
+      // Determine if it's an admin login or a user login based on email domain
+      const isAdmin = email.startsWith('manager.myrnm');
+      console.log("----"+isAdmin);
+     
+      const apiEndpoint = isAdmin
+        ? 'http://localhost:8080/admin/adminlogin'  // Admin login API endpoint
+        : 'http://localhost:8080/user/loginByPost'; // User login API endpoint
+ 
+      // Make API call based on the type of user
+      this.http.post(apiEndpoint, data).subscribe(
         (res: any) => {
           console.log(res);
           localStorage.setItem("login", res.email);
           localStorage.setItem("id", res.id);
           localStorage.setItem("username", res.name);
           localStorage.setItem("useremail", res.email);
-          localStorage.setItem("phone", res.mobile);
-          localStorage.setItem("address", res.address);
-          console.log("Login success");
-          this.route.navigateByUrl("");
+          localStorage.setItem("phone",res.mobile);
+         localStorage.setItem("address",res.address);
+         
+ 
+          // Redirect based on the type of user
+          if (isAdmin) {
+            console.log("Admin login success");
+            const name = localStorage.setItem("adminName",res.name);
+            this.route.navigateByUrl('/dashboard');
+            localStorage.setItem("admin",email) ; // Redirect to admin dashboard
+          } else {
+            console.log("User login success");
+            this.route.navigateByUrl('/');  // Redirect to user dashboard
+          }
         },
         (error) => {
           console.log("Login failed:", error);

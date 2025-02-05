@@ -14,7 +14,7 @@ export class AdminHeaderComponent {
   constructor(private router:Router){} 
    adminname:String="";
   ngOnInit(): void {
-this.adminname=localStorage.getItem("admin") ?? " ";  
+this.adminname=localStorage.getItem("adminName") ?? " ";  
   }
 
   logout(){

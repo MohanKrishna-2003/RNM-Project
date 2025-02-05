@@ -97,21 +97,21 @@ public class FeedbackService {
             throw new RuntimeException("Error in Posting Feedback");
         }
     }
-//    public List<Feedback> getAllFeedback() {
-//        try {
-//            logger.info("Attempting to fetch all feedback entries.");
-//            List<Feedback> feedbackList = feedbackRepo.findAll();
-//            List<Feedback> feedbacks = feedbackList.stream().filter((res)->res.getUsers_ratings()>=4).collect(Collectors.toList());
-//            if (feedbackList.isEmpty()) {
-//                logger.warn("No feedback found in the system.");
-//            } else {
-//                logger.info("Successfully fetched {} feedback entries.", feedbackList.size());
-//            }
-//            return feedbacks;
-//        } catch (Exception e) {
-//            logger.error("Error occurred while fetching all feedback entries: {}", e.getMessage());
-//            throw new RuntimeException("Unable to fetch feedback at the moment.");
-//        }
-//    }
+    public List<Feedback> getAllFeedback() {
+        try {
+            logger.info("Attempting to fetch all feedback entries.");
+            List<Feedback> feedbackList = feedbackRepo.findAll();
+            List<Feedback> feedbacks = feedbackList.stream().filter((res)->res.getUsers_ratings()>=4).collect(Collectors.toList());
+            if (feedbackList.isEmpty()) {
+                logger.warn("No feedback found in the system.");
+            } else {
+                logger.info("Successfully fetched {} feedback entries.", feedbackList.size());
+            }
+            return feedbacks;
+        } catch (Exception e) {
+            logger.error("Error occurred while fetching all feedback entries: {}", e.getMessage());
+            throw new RuntimeException("Unable to fetch feedback at the moment.");
+        }
+    }
     }
 
