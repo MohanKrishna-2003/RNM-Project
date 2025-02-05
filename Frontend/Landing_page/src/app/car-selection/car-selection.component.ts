@@ -10,18 +10,14 @@ import Swal from 'sweetalert2';
 import { HeaderComponent } from '../Landing Page/header/header.component';
 import { FooterComponent } from '../Landing Page/footer/footer.component';
 import { Router, RouterModule } from '@angular/router';
-import * as CryptoJS from 'crypto-js';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @Component({
   selector: 'app-car-selection',
   standalone: true,
-  imports: [
-    FormsModule,
-    CommonModule,
-    HttpClientModule,
-    HeaderComponent,
-    FooterComponent,
-  ],
+  imports: [FormsModule, CommonModule, HttpClientModule,FooterComponent, HeaderComponent],
   templateUrl: './car-selection.component.html',
   styleUrls: ['./car-selection.component.css'],
 })
@@ -47,6 +43,7 @@ export class CarSelectionComponent implements OnInit {
   todayDate: string;
   status: boolean = true;
   currentStep: number = 1;
+  showMsg:string = "Select your Location";
 
   formData = {
     name: '',
@@ -54,8 +51,8 @@ export class CarSelectionComponent implements OnInit {
     email: '',
     address: '',
     preferredDate: new Date(),
-    status: 'pending',
-    timeSlot: '',
+    status: "pending",
+    timeSlot: null as number | null,
     confirmation: false,
   };
 
@@ -64,7 +61,9 @@ export class CarSelectionComponent implements OnInit {
   selectedCenter: any;
   filteredLocations: any[] = [];
   availableTimeSlots: any[] = [];
-  selectedCenterId: number = 1;
+  selectedCenterId: number | null = null;
+
+  userId: string | null = null; 
 
   private apiUrl = 'http://localhost:8080/api/slot-bookings';
 
@@ -79,7 +78,7 @@ export class CarSelectionComponent implements OnInit {
   //   const today = new Date();
   //   this.todayDate = today.toISOString().split('T')[0];
   // }
-  userId: string | null= null;
+  // userId: string | null= null;
 
   ngOnInit(): void {
     this.http.get<any>('http://localhost:8080/api/brands').subscribe(
@@ -100,11 +99,10 @@ export class CarSelectionComponent implements OnInit {
     } else {
       console.error('User ID not found in localStorage');
     }
-
-    const name = localStorage.getItem('username');
-    const email = localStorage.getItem('useremail');
-    const phone = localStorage.getItem('phone');
-    const address = localStorage.getItem('address');
+    const name = localStorage.getItem("username");
+    const email = localStorage.getItem("useremail");
+    const phone = localStorage.getItem("phone");
+    const address = localStorage.getItem("address");
     if (name) {
       this.formData.name = name;
     }
@@ -118,6 +116,32 @@ export class CarSelectionComponent implements OnInit {
       this.formData.address = address;
     }
   }
+
+  // toggleBooking(carName: String): void {
+  //   this.isBookingClicked = !this.isBookingClicked;
+  //   this.selectedCar = this.cars.find(car => car.name === carName);
+  //   console.log(this.selectedCar);
+  //   if (this.selectedCar) {
+  //     this.getFilteredCenters();
+  //   }
+  // }
+
+    toggleBooking(carName: String): void {
+   
+      const isLoggedIn = localStorage.getItem("login") !== null;
+      if (!isLoggedIn) {
+        alert('Please log in to book a slot');
+        this.router.navigateByUrl("/login")
+      }
+        this.isBookingClicked = !this.isBookingClicked;
+        this.selectedCar = this.cars.find(car => car.name === carName);
+        console.log(this.selectedCar);
+        if (this.selectedCar) {
+          this.getFilteredCenters();
+        }
+      }
+    
+
 
   getFilteredCenters(): void {
     if (this.selectedBrand) {
@@ -174,11 +198,21 @@ export class CarSelectionComponent implements OnInit {
     }
   }
 
+
+
+  // constructor(private http: HttpClient) {
+  //   console.log("working");
+  //   console.log(this.filteredLocations);
+  //   const today = new Date();
+  //   this.todayDate = today.toISOString().split('T')[0];
+  // }
+
   fetchCarsFromBackend(): void {
-    this.http.get<any[]>('http://localhost:8080/api/cars').subscribe((cars) => {
-      this.cars = cars;
-      this.displayedCars = [...this.cars];
-      console.log(this.displayedCars);
+    this.http.get<any[]>('http://localhost:8080/api/cars  ')
+      .subscribe(cars => {
+        this.cars = cars;
+        this.displayedCars = [...this.cars];
+        this.showGif = false;
 
       this.showGif = false;
 
@@ -233,18 +267,8 @@ export class CarSelectionComponent implements OnInit {
     this.isFilterSidebarOpen = !this.isFilterSidebarOpen;
   }
 
-  toggleBooking(carName: String): void {
-    const isLoggedIn = localStorage.getItem('login') !== null;
-    if (!isLoggedIn) {
-      alert('Please log in to book a slot');
-      this.router.navigateByUrl('/login');
-    }
-    this.isBookingClicked = !this.isBookingClicked;
-    this.selectedCar = this.cars.find((car) => car.name === carName);
-    if (this.selectedCar) {
-      this.getFilteredCenters();
-    }
-  }
+
+
 
   // toggleBooking(carName: String): void {
   //   this.isBookingClicked = !this.isBookingClicked;
@@ -497,6 +521,14 @@ export class CarSelectionComponent implements OnInit {
       this.currentStep--;
     }
   }
+
+
+  // userId: number;
+
+
+  // fetchUserIdByEmail(email: string): any {
+  //   return this.http.get<number>(`http://localhost:8080/user/getUserIdByEmail/${email}`);
+  // }
 
   submitForm(): void {
     // Check if preferredDate is a valid date object, and if not, attempt to convert it

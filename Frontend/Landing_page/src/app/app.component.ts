@@ -1,12 +1,7 @@
 import { Component, HostListener } from '@angular/core';
-import {
-  NavigationEnd,
-  Router,
-  RouterModule,
-  RouterOutlet,
-} from '@angular/router';
-import { HeaderComponent } from './Landing Page/header/header.component';
-import { HomeComponent } from './Landing Page/home/home.component';
+import { NavigationEnd, Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
+import { HeaderComponent } from "./header/header.component";
+import { HomeComponent } from "./home/home.component";
 import { CommonModule } from '@angular/common';
 import { ServiceListComponent } from './Landing Page/service-list/service-list.component';
 import { BookingComponent } from './Landing Page/booking/booking.component';
@@ -15,6 +10,7 @@ import { ContactComponent } from './Landing Page/contact/contact.component';
 import { ChatbotComponent } from './Landing Page/chatbot/chatbot.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
+import { CarSelectionComponent } from "./car-selection/car-selection.component";
 
 @Component({
   selector: 'app-root',

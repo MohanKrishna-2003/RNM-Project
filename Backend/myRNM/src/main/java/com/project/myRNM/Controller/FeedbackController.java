@@ -39,6 +39,7 @@ public class FeedbackController {
             feedbackService.postingFeedback(feedback);
             return ResponseEntity.ok(new GeneralResponse("Successfully posting Feedback"));
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
         }
     }
