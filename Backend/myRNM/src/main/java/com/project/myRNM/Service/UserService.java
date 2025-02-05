@@ -25,35 +25,35 @@ public class UserService {
     @Autowired
     UserRepo userRepo;
     
-    PasswordEncoder passwordEncoder;
+//    PasswordEncoder passwordEncoder;
 
-    public Users addUserData(Users users) {
-        // checking if the user is already present if they present throws an error
-        Optional<Users> existingUser = userRepo.findByEmailOrMobile(users.getEmail(), users.getMobile());
-        if (existingUser.isPresent()) {
-            if (existingUser.get().getEmail().equals(users.getEmail())) {
-                throw new RuntimeException("Email has already been registered");
-            }
-            if (existingUser.get().getMobile().equals(users.getMobile())) {
-                throw new RuntimeException("Mobile number has already been registered");
-            }
-            throw new RuntimeException("User already registered");
-        }
-        this.passwordEncoder = new BCryptPasswordEncoder();
-        users.setPassword(passwordEncoder.encode(users.getPassword()));
-        return userRepo.save(users);
-
-    }
-
-    public Users loginByPost(String email, String password) throws Exception {
-        Optional<Users> users = userRepo.findByEmail(email);
-        if (users.isPresent() && passwordEncoder.matches(password, users.get().getPassword())) {
-            return users.get();
-        } else {
-            throw new RuntimeException("Invalid email or password");
-        }
-    }
-
+//    public Users addUserData(Users users) {
+//        // checking if the user is already present if they present throws an error
+//        Optional<Users> existingUser = userRepo.findByEmailOrMobile(users.getEmail(), users.getMobile());
+//        if (existingUser.isPresent()) {
+//            if (existingUser.get().getEmail().equals(users.getEmail())) {
+//                throw new RuntimeException("Email has already been registered");
+//            }
+//            if (existingUser.get().getMobile().equals(users.getMobile())) {
+//                throw new RuntimeException("Mobile number has already been registered");
+//            }
+//            throw new RuntimeException("User already registered");
+//        }
+//        this.passwordEncoder = new BCryptPasswordEncoder();
+//        users.setPassword(passwordEncoder.encode(users.getPassword()));
+//        return userRepo.save(users);
+//
+//    }
+//
+//    public Users loginByPost(String email, String password) throws Exception {
+//        Optional<Users> users = userRepo.findByEmail(email);
+//        if (users.isPresent() && passwordEncoder.matches(password, users.get().getPassword())) {
+//            return users.get();
+//        } else {
+//            throw new RuntimeException("Invalid email or password");
+//        }
+//    }
+//
 
     public List<Users> getUserData() {
         return userRepo.findAll();

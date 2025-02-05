@@ -1,7 +1,7 @@
 package com.project.myRNM.Controller;
 
 import com.project.myRNM.DTOs.OtpDTO;
-import com.project.myRNM.Response.GeneralResponse;
+import com.project.myRNM.Models.Response.GeneralResponse;
 import com.project.myRNM.Service.OtpService;
 import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;

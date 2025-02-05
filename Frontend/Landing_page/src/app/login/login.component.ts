@@ -93,7 +93,7 @@ export class LoginComponent {
     }
   }
 openForgotPasswordModal(){}
-isOpen=false;
+// isOpen=false;
  
   openPop(){
     this.isOpen=true;

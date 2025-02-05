@@ -1,6 +1,6 @@
 package com.project.myRNM.Service;
 
-import com.project.myRNM.Entity.Users;
+import com.project.myRNM.Models.Entity.Users;
 import com.project.myRNM.Repository.UserRepo;
 import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
