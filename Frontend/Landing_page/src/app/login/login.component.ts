@@ -13,16 +13,9 @@ import { HttpClient } from '@angular/common/http';
 
 export class LoginComponent {
   loginForm!: FormGroup;
-  forgotPasswordForm: FormGroup;
-  OtpForm:FormGroup
-  errorMsg = "";
-  formshow = false;
-  isOpen = false;
-  sendOtp: boolean = true; 
-  otpVerified:boolean =false;
-  PasswordForm:FormGroup;
-  constructor(private fb: FormBuilder, private route: Router, private http: HttpClient) {}
-
+ 
+  constructor(private fb: FormBuilder, private route: Router, private http: HttpClient) { }
+ 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -92,73 +85,24 @@ export class LoginComponent {
       );
     }
   }
-openForgotPasswordModal(){}
-// isOpen=false;
- 
-  openPop(){
-    this.isOpen=true;
-    document.body.style.overflow="hidden";
- 
-  }
-closePop() {
-    this.isOpen = false;
-    this.sendOtp = true;
-    document.body.style.overflow = "auto";
-    window.location.reload();
-  }
-  sendOtpToMail() {
-    if (this.forgotPasswordForm.valid) {
-    const recipientEmail = this.forgotPasswordForm.get('recipient')?.value;
-    localStorage.setItem("update",recipientEmail);
-    const otpRequest = {
-        recipient: recipientEmail,
-        subject: "Password Reset OTP",
-        text: "Please use this OTP to reset your password."
-    };
-  this.http.post("http://localhost:8080/sendmail", otpRequest)
-      .subscribe(
-        (res: any) => {
-          this.sendOtp = false;
-        },
-        (err) => {
-          console.log(err);
-          this.errorMsg = err.error['message'];
-          alert(`Error: ${this.errorMsg}`);
-          if (err.status === 400) {  
-            localStorage.setItem("update", recipientEmail);  
-          }
-        }
-      );
-    }
-  }
-
-  resetPassword() {
-    if (this.OtpForm.valid) {
-      const otp = this.OtpForm.get('otp')?.value;
-      const userEmail = localStorage.getItem('update');
-      const verifyotp={ recipient: userEmail, text:otp};
-      console.log("Password reset successful", verifyotp);
-      this.http.post("http://localhost:8080/verifyotp",verifyotp).subscribe((res:any)=>{
-        this.otpVerified=true;
-      },(err)=>{
-        console.log(err);
-        this.errorMsg = err.error['message'];
-    })
-    }
-  }
-  updatePassword(){
-    const password = this.PasswordForm.get('password').value;
-    const userEmail = localStorage.getItem('update');
-    const newPassword = {password : password , email : userEmail};
-    this.http.put("http://localhost:8080/user/updatePassword",newPassword).subscribe((res)=>{
-      alert("The password Updated Successfully")
-      window.location.reload();
-      localStorage.removeItem('update')
-    },(err)=>{
-      this.errorMsg = err.error['message'];
-    })
-  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
