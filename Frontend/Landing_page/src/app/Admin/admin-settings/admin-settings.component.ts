@@ -40,7 +40,7 @@ ngOnInit(): void {
       console.error('Error fetching admin details:', error);
     }
   );
-  localStorage.setItem("admin",this.admin[0].name);
+  localStorage.setItem("adminName",this.admin[0].name);
 }
 
 formshow = false;
