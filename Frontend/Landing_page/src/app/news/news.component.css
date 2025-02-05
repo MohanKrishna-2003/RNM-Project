@@ -6,6 +6,19 @@
   margin-top: 30px;
   padding: 0 15px;
 }
+/* News Heading Styling */
+.news-heading {
+  font-family: 'Montserrat', sans-serif; /* Modern font for the heading */
+  font-size: 40px; /* Larger size for better emphasis */
+  font-weight: 700; /* Bold for prominence */
+  color: #2c3e50; /* Dark color for readability */
+  text-align: center;
+  text-transform: uppercase; /* Uppercase for clean look */
+  letter-spacing: 2px; /* Slightly increased letter-spacing */
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 4px solid #3498db; /* Add a blue underline to separate from the content */
+}
 
 /* Individual news card styling */
 .news-card {
