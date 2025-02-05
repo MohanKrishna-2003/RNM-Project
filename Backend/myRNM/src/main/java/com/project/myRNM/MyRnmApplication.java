@@ -10,7 +10,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class MyRnmApplication {
 
 	public static void main(String[] args) {
-		System.out.println("Backend Started!");
+		System.out.println("Backend Started!x");
 		SpringApplication.run(MyRnmApplication.class, args);
 	}
 }

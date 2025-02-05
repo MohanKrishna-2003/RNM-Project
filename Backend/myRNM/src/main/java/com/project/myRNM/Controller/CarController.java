@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/cars")
+@CrossOrigin(origins = "http://localhost:4200")
 public class CarController {
 
     @Autowired
@@ -22,10 +23,13 @@ public class CarController {
         return new ResponseEntity<>(createdCar, HttpStatus.CREATED);
     }
 
+
     @GetMapping
-    public List<Car> getAllCars() {
-        return carService.getAllCars();
+    public ResponseEntity<List<Car>> getAllCars() {
+        List<Car> cars = carService.getAllCars();
+        return new ResponseEntity<>(cars, HttpStatus.OK);
     }
+
 
     @PostMapping("/bulk")
     public ResponseEntity<List<Car>> addMultipleCars(@RequestBody List<Car> cars) {
