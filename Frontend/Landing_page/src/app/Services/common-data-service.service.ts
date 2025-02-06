@@ -14,12 +14,15 @@ interface Center {
   eveningSlots: number;
   latitude: number;
   longitude: number;
+
   icon: String;
+
 }
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class CommonDataServiceService {
 
   CenterDetails: Center[] = [];
@@ -33,25 +36,56 @@ export class CommonDataServiceService {
   feedbacks: any = [];
   bookings: any[] = [];
 
+=======
+export class CommonDataServiceService  {
+
+  CenterDetails: Center[] = [];
+  maindata: any=[];
+  constructor(private http: HttpClient) {}
+  totalcentres: number;
+  totalusers: number;
+  userdata: any;
+  userwithfeedbacks : any=[];
+  users: any[] = [];
+  feedbacks : any=[];
+  bookings : any[]=[];
+  
+
   loadData(): Observable<any> {
     if (this.maindata.length == 0 || this.userwithfeedbacks.length == 0) {
       console.log('NO DATA EXISTS');
       return new Observable((subscriber) => {
         // this.getCenterDetails()
-        forkJoin([
-          this.http.get('http://localhost:8080/api/slot-bookings'),
-          this.http.get('http://localhost:8080/user/with-feedback')
-        ])
-          .subscribe((d) => {
-            console.log("DATA IS PRESENT");
 
-            console.log(this.maindata);
+//         forkJoin([
+//           this.http.get('http://localhost:8080/api/slot-bookings'),
+//           this.http.get('http://localhost:8080/user/with-feedback')
+//         ])
+//           .subscribe((d) => {
+//             console.log("DATA IS PRESENT");
 
-            this.maindata = d[0];
-            this.userwithfeedbacks = d[1];
-            subscriber.next();
-            subscriber.complete();
-          }
+//             console.log(this.maindata);
+
+//             this.maindata = d[0];
+//             this.userwithfeedbacks = d[1];
+//             subscriber.next();
+//             subscriber.complete();
+//           }
+// =======
+       forkJoin([
+        this.http.get('http://localhost:8080/api/slot-bookings') ,
+        this.http.get('http://localhost:8080/user/with-feedback')
+             ])
+          .subscribe((d)=>{
+              console.log("DATA IS PRESENT");
+              
+              console.log(this.maindata);
+              
+              this.maindata = d[0];
+              this.userwithfeedbacks = d[1];
+              subscriber.next();
+              subscriber.complete();
+            }
           );
       });
     } else {
@@ -129,27 +163,48 @@ export class CommonDataServiceService {
     const result: any = {};
 
     feedbackData.forEach(user => {
+
       // Process each feedback for the user
-      user.feedbacks.forEach((feedback: any) => {
-        // Get the feedback month-year (e.g. "January 2024", "February 2024")
-        const feedbackMonth = formatDate(feedback.feedbackDate, 'MMMM yyyy', 'en-US');
+//       user.feedbacks.forEach((feedback: any) => {
+//         // Get the feedback month-year (e.g. "January 2024", "February 2024")
+//         const feedbackMonth = formatDate(feedback.feedbackDate, 'MMMM yyyy', 'en-US');
 
-        // Initialize the result object for this month if not already
-        if (!result[feedbackMonth]) {
-          result[feedbackMonth] = { positive: 0, negative: 0 };
-        }
+//         // Initialize the result object for this month if not already
+//         if (!result[feedbackMonth]) {
+//           result[feedbackMonth] = { positive: 0, negative: 0 };
+//         }
 
-        // Categorize the feedback based on userRatings
-        if (feedback.userRatings > 2) {
-          result[feedbackMonth].positive++;
-        } else {
-          result[feedbackMonth].negative++;
-        }
-      });
+//         // Categorize the feedback based on userRatings
+//         if (feedback.userRatings > 2) {
+//           result[feedbackMonth].positive++;
+//         } else {
+//           result[feedbackMonth].negative++;
+//         }
+//       });
+
+        // Process each feedback for the user
+        user.feedbacks.forEach((feedback: any) => {
+            // Get the feedback month-year (e.g. "January 2024", "February 2024")
+            const feedbackMonth = formatDate(feedback.feedbackDate, 'MMMM yyyy', 'en-US');
+
+            // Initialize the result object for this month if not already
+            if (!result[feedbackMonth]) {
+                result[feedbackMonth] = { positive: 0, negative: 0 };
+            }
+
+            // Categorize the feedback based on userRatings
+            if (feedback.userRatings > 2) {
+                result[feedbackMonth].positive++;
+            } else {
+                result[feedbackMonth].negative++;
+            }
+        });
+
     });
 
     console.log(result);
     return result;
+
   }
 
   getTotalUniqueUsers(feedbackData: any[]): number {
@@ -288,6 +343,146 @@ export class CommonDataServiceService {
 
     return result;
   }
+=======
+}
+
+getTotalUniqueUsers(feedbackData: any[]): number {
+  const uniqueUserIds = new Set(feedbackData.map(user => user.userId));
+  return uniqueUserIds.size;
+}
+
+getUsersRegisteredCountInLast30Days(feedbackData: any[]): number {
+  const today = new Date();  // Get the current date
+  const thirtyDaysAgo = new Date(today);  // Clone the current date
+  thirtyDaysAgo.setDate(today.getDate() - 30);  // Subtract 30 days
+
+  // Filter and count users whose registrationDate is within the last 30 days
+  const usersRegisteredInLast30Days = feedbackData.filter((user: any) => {
+    const registrationDate = new Date(user.registrationDate);  // Convert registrationDate to Date object
+    return registrationDate >= thirtyDaysAgo && registrationDate <= today;  // Check if within last 30 days
+  });
+
+  // Return the count of users
+  return usersRegisteredInLast30Days.length;
+}
+
+getUsersCountByMonth(feedbackData: any[]): any[] {
+  const monthCount: any = {};
+
+  feedbackData.forEach((user: any) => {
+    // Get the registration month and year from registrationDate
+    const registrationDate = new Date(user.registrationDate);
+    const month = registrationDate.toLocaleString('default', { month: 'long' });  // Get the full month name (e.g. "January")
+    
+    // Initialize the month if it doesn't exist
+    if (!monthCount[month]) {
+      monthCount[month] = 0;
+    }
+
+    // Increment the user count for the respective month
+    monthCount[month]++;
+  });
+
+  // Convert the monthCount object into the desired format
+  const result = Object.keys(monthCount).map(month => ({
+    month: month,
+    count: monthCount[month]
+  }));
+
+  // Sort by month name (optional)
+  const monthNames = [
+    'January', 'February', 'March', 'April', 'May', 'June', 'July', 
+    'August', 'September', 'October', 'November', 'December'
+  ];
+
+  return result.sort((a, b) => monthNames.indexOf(a.month) - monthNames.indexOf(b.month));
+}
+
+getUsersSlotCountByMonth(feedbackData: any[]): any[] {
+  const monthCount: any = {};
+
+  feedbackData.forEach((user: any) => {
+    // Extract month and year from the registration date
+    const registrationDate = new Date(user.bookingTimeStamp);
+    const month = registrationDate.toLocaleString('default', { month: 'long' }); // Get the full month name (e.g. "January")
+    
+    // Initialize the month if it doesn't exist
+    if (!monthCount[month]) {
+      monthCount[month] = 0;
+    }
+
+    // Increment the user count for the respective month
+    monthCount[month]++;
+  });
+
+  // Convert the monthCount object into the desired format
+  const result = Object.keys(monthCount).map(month => ({
+    month: month,
+    count: monthCount[month]
+  }));
+
+  // Sort the result by month
+  const monthNames = [
+    'January', 'February', 'March', 'April', 'May', 'June', 'July', 
+    'August', 'September', 'October', 'November', 'December'
+  ];
+
+  return result.sort((a, b) => monthNames.indexOf(a.month) - monthNames.indexOf(b.month));
+}
+
+getCenterAnalysis(data: any[]): any[] {
+  const centerCounts: any = {};
+
+  // Iterate through the data to extract the center name and count
+  data.forEach(item => {
+    const centerName = item.center.name;
+
+    // Increment the center count or initialize it if not already in the object
+    if (centerCounts[centerName]) {
+      centerCounts[centerName]++;
+    } else {
+      centerCounts[centerName] = 1;
+    }
+  });
+
+  // Convert the centerCounts object into an array of objects
+  const result = Object.keys(centerCounts).map(center => ({
+    centerName: center,
+    totalBookings: centerCounts[center]
+  }));
+
+  return result;
+}
+getUniqueCenterCount(data: any[]): number {
+  const centerNames = new Set();
+
+  // Iterate through the data and add each center's name to the Set
+  data.forEach(item => {
+    const centerName = item.center.name;
+    centerNames.add(centerName);
+  });
+
+  // The size of the Set will give us the unique count of centers
+  return centerNames.size;
+}
+
+extractUserData(data: any[]): any[] {
+  let result: any[] = [];
+
+  data.forEach((user: any) => {
+    user.feedbacks.forEach((feedback: any) => {
+      result.push({
+        userId: user.userId,
+        userName : user.userName,
+        userEmail: user.userEmail,
+        feedback: feedback.feedback
+      });
+    });
+  });
+
+  return result;
+}
+
 
 }
 
