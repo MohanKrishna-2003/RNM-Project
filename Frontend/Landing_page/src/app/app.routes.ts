@@ -31,7 +31,7 @@ export const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'feedback', component: FeedbackComponent },
   { path: 'booking', component: BookingComponent },
-  { path: 'cardetails', component: CarSelectionComponent },
+  { path: 'cardetails', component: CarSelectionComponent},
   { path: 'home', component: HomeComponent },
   { path: 'userbookings', component: BookingsComponent, canActivate:[AuthorisationServiceService] },
   { path: 'users', component: UsersComponent, canActivate:[AuthorisationServiceService] },
