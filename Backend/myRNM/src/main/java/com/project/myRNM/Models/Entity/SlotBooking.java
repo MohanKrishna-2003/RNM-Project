@@ -19,7 +19,6 @@ import java.time.LocalDateTime;
 @Table(name = "slot_booking")
 public class SlotBooking {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

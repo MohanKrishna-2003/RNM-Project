@@ -75,6 +75,8 @@
     <h2 style="color: black">Choose Your CAR!</h2>
     <div class="filters">
 
+      
+
       <label for="carType">Car Type:</label>
 <select id="carType" (change)="filterByCarType($event)" class="baloo">
   <option value="">All</option>
@@ -84,7 +86,6 @@
   <option value="Truck">Truck</option>
 </select>
 
-      <!-- <label>
         Price Range:
         <select (click)="filterCarsByPrice($event)" class="baloo">
           <option value="">All</option>
@@ -93,6 +94,7 @@
           <option value="high">Above ₹20 Lakhs</option>
         </select>
       </label> -->
+
       <label class="baloo">
         Price Range: ₹{{ minPrice }} - ₹{{ maxPrice }}
         <input 
@@ -103,7 +105,9 @@
           (input)="filterCarsByPrice($event)"
           step="10000"
         />
-      </label>
+
+      </label> -->
+
       
       
       <!-- <label>
@@ -115,6 +119,16 @@
           <option value="booking">Availability</option>
         </select>
       </label> -->
+
+      <label for="carType">Car Type:</label>
+      <select id="carType" (change)="filterByCarType($event)" class="baloo">
+        <option value="">All</option>
+        <option value="SUV">SUV</option>
+        <option value="Hatchback">Hatchback</option>
+        <option value="Sedan">Sedan</option>
+        <option value="Truck">Truck</option>
+      </select>
+
 
       <label>
         Rating:
@@ -209,7 +223,6 @@
           <option value="3">Up to 3 Years</option>
           <option value="5">Up to 5 Years</option>
           <option value="7">Up to 7 Years</option>
-          <option value="lifetime">Lifetime</option>
         </select>
       </label>
     </div>
@@ -229,7 +242,7 @@
 <div *ngIf="brands.length > 0" class="container-fluid mt-5">
   <!-- Interactive Heading -->
   <div class="text-center mb-5">
-    <h2 class="display-4 showroom">
+    <h2 class="display-4 showroom size">
       <img src="/assets/images/thun.gif" class="smallthun" alt=""> Test-Drive Slots Available Today!
     </h2>
 
@@ -306,7 +319,7 @@
 <br><br>
 
 <div class="question-wrapper">
-  <h2 class="question-text two">
+  <h2 class="question-text two size1">
     <a id="q2" href="#brand-section" role="button">Click a brand to select your car....</a>
   </h2>
 </div>
@@ -542,7 +555,6 @@
     </div> -->
 
 
-
     <div class="formbold-form-wrapper" id="rightform">
       <br /><br />
       <h2>Book Your Test Drive Slot</h2>
@@ -645,20 +657,20 @@
             <small *ngIf="preferredDate.errors?.['required']">Preferred date is required.</small>
           </div>
 
+
           <label for="showroom" class="formbold-form-label">Preferred Showroom Location</label>
           <select id="showroom" class="formbold-form-input" [(ngModel)]="selectedCenterId"
             (change)="updateAvailableTimeSlots(selectedCenterId)" name="showroomLocation" required>
             <option [value]="" disabled>Select a Location</option>
             <option *ngFor="let center of filteredLocations" [value]="center.id">
-              {{ center.name }} - {{ center.location }} (Available Test Drive Slots: {{ center.availableSlots }})
+              {{ center.name }} - {{ center.location }} (Available  Test Drive Slots: {{ center.availableSlots }})
             </option>
           </select>
 
+          <div *ngIf="showroomLocation.invalid && (showroomLocation.dirty || showroomLocation.touched)" class="error">
 
-
-          <!-- <div *ngIf="showroomLocation.invalid && (showroomLocation.dirty || showroomLocation.touched)" class="error">
             <small *ngIf="showroomLocation.errors?.['required']">Showroom location is required.</small>
-          </div> -->
+          </div>
 
           <!-- Time Slot Dropdown -->
           <label for="time-slot" class="formbold-form-label">Preferred Time Slot</label>
@@ -701,7 +713,7 @@
           </div>
         </div>
       </div>
-
+      
       <div class="formbold-form-btn-wrapper" *ngIf="currentStep < 3">
         <button class="formbold-btn proper" type="button" (click)="goBack()" *ngIf="currentStep > 1">
           Back
@@ -712,12 +724,10 @@
       </div>
       <!-- </form> -->
     </div>
-
-
-
-  </div>
 </div>
 
 <br /><br />
+
+</div>
 
 <app-footer></app-footer>

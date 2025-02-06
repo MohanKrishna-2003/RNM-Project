@@ -1,5 +1,6 @@
 package com.project.myRNM.Service;
 
+
 import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

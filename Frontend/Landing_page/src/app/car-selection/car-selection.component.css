@@ -10,6 +10,12 @@
   color: white;
   animation: bounceIn 2s ease-in-out;
   background-color: white;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.header-title {
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
 }
 
 .header-title {
@@ -42,6 +48,8 @@
   height: 40px;
   cursor: pointer;
 }
+
+
 
 .main-body {
   display: flex;
@@ -91,6 +99,7 @@
 .question-wrapper {
   display: flex;
   align-items: center;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
   margin-bottom: 1rem;
 }
 
@@ -102,8 +111,12 @@
 }
 
 .question-text {
+
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+
   font-family: "Quintessential", serif;
     font-weight: 800;
+
   font-style: bold;
   /* text-transform: uppercase; */
   animation: slideLeft 1s ease-in-out;
@@ -1676,6 +1689,26 @@ button:disabled {
 .showroom{
   font-weight: bold;
 }
+
+.size{
+  font-size: 40px;
+  /* background: #000; */
+}
+
+.size1{
+  font-size: 40px;
+  position: relative;
+  left: 25%;
+  font-variant: small-caps;
+  font-weight: 500;
+  text-transform: capitalize;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+
+}
+
 .card-body .brand-name {
   font-size: 2rem;
   font-weight: bolder;

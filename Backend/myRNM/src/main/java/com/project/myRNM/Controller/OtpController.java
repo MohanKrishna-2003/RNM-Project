@@ -34,7 +34,9 @@ public ResponseEntity<GeneralResponse> sendEmail(@RequestBody OtpDTO otpDTO) {
         otpService.sendEmail(otpDTO.getRecipient(), otpDTO.getSubject(), otpDTO.getText());
         GeneralResponse response = new GeneralResponse("Email sent successfully!");
         return ResponseEntity.status(HttpStatus.OK).body(response);
-    } catch (MessagingException e) {
+
+    } catch (Exception e) {
+
         GeneralResponse response = new GeneralResponse(e.getMessage());
         e.printStackTrace();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
