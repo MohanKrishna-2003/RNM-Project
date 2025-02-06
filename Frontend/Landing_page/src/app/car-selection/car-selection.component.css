@@ -1682,8 +1682,23 @@ button:disabled {
 
 .size{
   font-size: 40px;
+  /* background: #000; */
+}
+
+.size1{
+  font-size: 40px;
+  position: relative;
+  left: 25%;
+  font-variant: small-caps;
+  font-weight: 500;
+  text-transform: capitalize;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  justify-content: center;
 
 }
+
 .card-body .brand-name {
   font-size: 2rem;
   font-weight: bolder;
