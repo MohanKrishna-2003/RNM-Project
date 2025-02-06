@@ -58,5 +58,8 @@ export class SignupComponent {
         }
       );
     }
+    else{
+      alert("Password should be more than 8 characters")
+    }
   }
 }

@@ -70,8 +70,10 @@
     <div *ngIf="!sendOtp && !otpVerified">
     <form [formGroup]="OtpForm" class="data" (ngSubmit)="resetPassword()">
       <p class="text-muted mb-2">
-        Please enter the OTP sent to your email. The OTP should be a 4-digit number.
+        Please enter the OTP sent to your email.
       </p>
+      <p class="text-danger text-center" style="margin-right: 60px;">OTP will be expired within 2 minutes</p>
+      
       <div class="form-group">
         <input type="text" class="form-control" formControlName="otp" placeholder="Enter OTP" required maxlength="4"/>
         <p *ngIf="OtpForm.get('otp')?.hasError('required') && OtpForm.get('otp')?.touched" class="text-danger">

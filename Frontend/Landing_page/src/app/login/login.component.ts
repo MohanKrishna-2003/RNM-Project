@@ -124,7 +124,8 @@ closePop() {
     }
   }
   updatePassword(){
-    const password = this.PasswordForm.get('password').value;
+    if(this.PasswordForm.valid){
+      const password = this.PasswordForm.get('password').value;
     const userEmail = localStorage.getItem('update');
     const newPassword = {password : password , email : userEmail};
     this.http.put("http://localhost:8080/user/updatePassword",newPassword).subscribe((res)=>{
@@ -134,6 +135,7 @@ closePop() {
     },(err)=>{
       this.errorMsg = err.error['message'];
     })
+  }
   }
 }
 

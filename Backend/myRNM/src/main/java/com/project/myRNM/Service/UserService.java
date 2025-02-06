@@ -23,7 +23,7 @@ public class UserService {
 
     @Autowired
     UserRepo userRepo;
-    
+
     PasswordEncoder passwordEncoder;
 
     public Users addUserData(Users users) {
@@ -46,6 +46,7 @@ public class UserService {
 
     public Users loginByPost(String email, String password) throws Exception {
         Optional<Users> users = userRepo.findByEmail(email);
+        this.passwordEncoder = new BCryptPasswordEncoder();
         if (users.isPresent() && passwordEncoder.matches(password, users.get().getPassword())) {
             return users.get();
         } else {
