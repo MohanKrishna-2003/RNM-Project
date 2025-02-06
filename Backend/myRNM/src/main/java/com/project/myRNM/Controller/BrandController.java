@@ -1,7 +1,7 @@
 package com.project.myRNM.Controller;
 
-import com.project.myRNM.Entity.Brand;
-import com.project.myRNM.Entity.Center;
+import com.project.myRNM.Models.Entity.Brand;
+import com.project.myRNM.Models.Entity.Center;
 import com.project.myRNM.Repository.BrandRepository;
 import com.project.myRNM.Repository.CenterRepository;
 import com.project.myRNM.Service.BrandService;

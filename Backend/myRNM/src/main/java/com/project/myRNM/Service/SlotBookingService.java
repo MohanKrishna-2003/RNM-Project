@@ -1,19 +1,22 @@
 package com.project.myRNM.Service;
 
 
-import com.project.myRNM.DTOs.BrandCountDTO;
-import com.project.myRNM.DTOs.UserSlotCount;
-import com.project.myRNM.Entity.Center;
-import com.project.myRNM.Entity.SlotBooking;
+import com.project.myRNM.Models.DTOs.BrandCountDTO;
+import com.project.myRNM.Models.DTOs.SlotBookingDTO;
+import com.project.myRNM.Models.DTOs.UserSlotCount;
+import com.project.myRNM.Models.Entity.Center;
+import com.project.myRNM.Models.Entity.SlotBooking;
 import com.project.myRNM.Repository.CenterRepository;
 import com.project.myRNM.Repository.SlotBookingRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SlotBookingService {
@@ -61,16 +64,24 @@ public class SlotBookingService {
         }
 
         // so after, here I am updating the center entity in database.
-        centerRepository.save(center);
+        Boolean availability = checkAvailability(slotBooking.getCenter().getId(), slotBooking.getPreferredDate(), slotBooking.getTimeSlot(), slotBooking.getSelectedCarDetails());
 
+        if(availability){
+            centerRepository.save(center);
+            slotBooking.setCenter(center);
+            return slotBookingRepository.save(slotBooking);
+
+        }
+
+        else{
+            throw new IllegalArgumentException("SORRY NO SLOTS AVAILABLE FOR THE GIVEN DETAILS.");
+        }
         // finally saving in the slot booking center data.
-        slotBooking.setCenter(center);
 
         // hence, returning the slot booking data which will be updated in database.x
-        return slotBookingRepository.save(slotBooking);
     }
 
-    public List<SlotBooking> getAllBookings(){
+    public List<SlotBooking> getAllBookings() {
         return slotBookingRepository.findAll();
     }
 
@@ -104,6 +115,41 @@ public class SlotBookingService {
         return result;
     }
 
+    @Transactional
+    public SlotBooking updateStatus(SlotBookingDTO slotBookingDTO) {
+
+        Long id = slotBookingDTO.getId();
+//        System.out.println(id);
+        try {
+            // Directly pass the Integer ID to findById
+
+            Optional<SlotBooking> selectedSlot = slotBookingRepository.findById(id);
+
+            if (selectedSlot.isPresent()) {
+                SlotBooking slotBooking = selectedSlot.get();
+
+
+                // Update the status based on DTO
+                if ("confirmed".equalsIgnoreCase(slotBookingDTO.getStatus())) {
+                    slotBooking.setStatus("Confirmed");
+                } else if ("cancelled".equalsIgnoreCase(slotBookingDTO.getStatus())) {
+                    slotBooking.setStatus("Cancelled");
+                }
+
+                // Log the status change
+//                System.out.println("Updated status: " + slotBooking.getStatus());
+
+                // Save and flush the updated entity
+                return slotBookingRepository.saveAndFlush(slotBooking);
+            } else {
+                return null; // SlotBooking not found
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException("Error updating status", e);
+        }
+    }
+
     public boolean checkIfUserHasBooked(Long userId, Long brandId) {
         LocalDateTime oneMonthAgo = LocalDateTime.now().minusMonths(1);
         List<SlotBooking> bookings = slotBookingRepository.findByUserIdAndCenterBrandIdAndBookingTimeStampAfter(userId, brandId, oneMonthAgo);
@@ -121,4 +167,18 @@ public class SlotBookingService {
         LocalDateTime endOfDay = bookingDate.withHour(23).withMinute(59).withSecond(59).withNano(999999999);
         return slotBookingRepository.findByCenterIdAndBookingTimeStamp(centerId, startOfDay, endOfDay);
     }
+
+
+    @Transactional
+    public Boolean checkAvailability(Long centerId, LocalDate preferredDate, String timeSlot, String selectedCarDetails) {
+
+        List<SlotBooking> existingBookings = slotBookingRepository.findByCenterIdAndPreferredDateAndTimeSlotAndSelectedCarDetails(centerId, preferredDate, timeSlot, selectedCarDetails);
+
+        if (existingBookings.size() >= 3) {
+            return false;
+        }
+
+        return true;
+    }
 }
+

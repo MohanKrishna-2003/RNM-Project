@@ -1,12 +1,14 @@
 package com.project.myRNM.Controller;
 
-import com.project.myRNM.Entity.Users;
+import com.project.myRNM.Models.DTOs.UserWithFeedbackDTO;
+import com.project.myRNM.Models.Entity.Users;
 
 import com.project.myRNM.Repository.UserRepo;
 
 import com.project.myRNM.Exception.UserNotFoundException;
 
-import com.project.myRNM.Response.GeneralResponse;
+import com.project.myRNM.Models.Response.GeneralResponse;
+import com.project.myRNM.Service.EncryptionService;
 import com.project.myRNM.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,12 +16,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.List;
+
 
 @RequestMapping(path = "user")
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin("*")
 public class UserController {
 
     @Autowired
@@ -27,6 +29,9 @@ public class UserController {
 
     @Autowired
     UserRepo userRepo;
+
+    @Autowired
+    EncryptionService encryptionService;
 
     @PostMapping("/loginByPost")
     public ResponseEntity<?> loginByPost(@RequestBody HashMap<String, String> login) throws Exception {
@@ -73,18 +78,6 @@ public class UserController {
         }
     }
 
-//    @GetMapping("/getUserIdByEmail/{email}")
-//    public ResponseEntity<?> getUserIdByEmail(@PathVariable String email) {
-//        System.out.println("Fetching user by email: " + email);  // Log the email
-//        Optional<Users> user = userRepo.findByEmail(email);
-//        if (user.isPresent()) {
-//            System.out.println("User found: " + user.get().getId());  // Log the found user ID
-//            return ResponseEntity.ok(user.get().getId());
-//        } else {
-//            System.out.println("User not found for email: " + email);  // Log when user is not found
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-//        }
-//    }
 
 
 
@@ -105,7 +98,6 @@ public class UserController {
             return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
         }
     }
-
     @PutMapping("/updateProfile/{id}")
     public ResponseEntity<?> updateProfile(@PathVariable("id") Long id, @RequestBody Users users) {
         try {
@@ -120,6 +112,14 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new GeneralResponse(e.getMessage()));
         }
     }
+
+    @GetMapping("/with-feedback")
+    public List<UserWithFeedbackDTO> getAllUsersAndFeedbacks() {
+        return userService.getAllUsersAndFeedbacks();
+    }
+
+
+
     @PutMapping("/updatePassword")
     public ResponseEntity<?> updatePassword(@RequestBody Users users) {
         try {
@@ -140,12 +140,6 @@ public class UserController {
 
 
 
-
-
-
-//            else {
-//                return ResponseEntity.status(HttpStatus.NOT_MODIFIED).body(new GeneralResponse("No changes were made"));
-//            }
 
 
 

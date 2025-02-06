@@ -1,0 +1,17 @@
+<div class="container py-5">
+  <h2 class="text-center mb-5">What Our Customers Say</h2>
+
+  <!-- ngx-owl-carousel-o Component -->
+  <owl-carousel-o [options]="carouselOptions">
+    <ng-container *ngFor="let testimonial of testimonials">
+      <ng-template carouselSlide>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ testimonial.user_name }}</h5>
+            <p class="card-text mt-5">{{ testimonial.feedback }}</p>
+          </div>
+        </div>
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
+</div>

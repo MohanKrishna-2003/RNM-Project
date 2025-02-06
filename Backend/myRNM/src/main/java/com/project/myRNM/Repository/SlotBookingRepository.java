@@ -1,18 +1,32 @@
 package com.project.myRNM.Repository;
 
 
-import com.project.myRNM.DTOs.BrandCountDTO;
-import com.project.myRNM.Entity.SlotBooking;
+import com.project.myRNM.Models.Entity.SlotBooking;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
 public interface SlotBookingRepository extends JpaRepository<SlotBooking, Long> {
+
+//    @Query("SELECT CONCAT(YEAR(s.bookingTimeStamp), '-', LPAD(CAST(MONTH(s.bookingTimeStamp) AS string), 2, '0')) AS month, COUNT(s) AS totalBookings " +
+//            "FROM SlotBooking s " +
+//            "GROUP BY YEAR(s.bookingTimeStamp), MONTH(s.bookingTimeStamp) " +
+//            "ORDER BY YEAR(s.bookingTimeStamp), MONTH(s.bookingTimeStamp)")
+//    List<Object[]> findMonthlyBookingCounts();
+//
+//    @Query("SELECT CONCAT(YEAR(s.bookingTimeStamp), '-', LPAD(CAST(MONTH(s.bookingTimeStamp) AS string), 2, '0')) AS month, " +
+//            "s.center.brand AS brand, COUNT(s) AS totalBookings " +
+//            "FROM SlotBooking s " +
+//            "GROUP BY YEAR(s.bookingTimeStamp), MONTH(s.bookingTimeStamp), s.center.brand " +
+//            "ORDER BY YEAR(s.bookingTimeStamp), MONTH(s.bookingTimeStamp), s.center.brand")
+//    List<Object[]> findMonthlyBookingCountsByBrand();
+
 
     // This method checks if a user has already booked for the same brand within the last month
     public List<SlotBooking> findByUserIdAndCenterBrandIdAndBookingTimeStampAfter(Long userId, Long centerBrandId, LocalDateTime bookingTimeStamp);
@@ -38,14 +52,45 @@ public interface SlotBookingRepository extends JpaRepository<SlotBooking, Long> 
             "        WHEN 12 THEN 'December' " +
             "    END AS month, " +
             "    COUNT(s) AS totalBookings " +
-            "FROM slot_bookings s " +
+            "FROM slot_booking s " +
             "GROUP BY EXTRACT(MONTH FROM s.booking_timestamp) " +
             "ORDER BY EXTRACT(MONTH FROM s.booking_timestamp)", nativeQuery = true)
     List<Object[]> findMonthlyBookingCountsByMonthName();
 
-    @Query(value = "SELECT s.brand, COUNT(s) " +
-            "FROM slot_bookings s " +
-            "WHERE s.brand IN ('Renault', 'Nissan', 'Mitsubishi') " +
-            "GROUP BY s.brand", nativeQuery = true)
+    @Query(value = "SELECT b.name, COUNT(s) " +
+            "FROM slot_booking s " +
+            "JOIN center c ON s.center_id = c.id " +
+            "JOIN brand b ON c.brand_id = b.id " +
+            "WHERE b.name IN ('Renault', 'Nissan', 'Mitsubishi') " +
+            "GROUP BY b.name", nativeQuery = true)
     List<Object[]> findCountByBrand();
+
+
+//@Query("select s from SlotBooking s order by user_id")
+//    List<SlotBooking> findALlBookings();
+
+//@Query("select s from SlotBooking s order by id desc")
+//    List<SlotBooking> getAllSlots();
+
+
+    @Query("select s from SlotBooking s order by s.user.id")
+    List<SlotBooking> findALlBookings();
+
+    @Query("select s from SlotBooking s order by s.id desc")
+    List<SlotBooking> getAllSlots();
+
+    @Query("SELECT CONCAT(EXTRACT(YEAR FROM s.bookingTimeStamp), '-', LPAD(CAST(EXTRACT(MONTH FROM s.bookingTimeStamp) AS string), 2, '0')) AS month, COUNT(s) AS totalBookings " +
+            "FROM SlotBooking s " +
+            "GROUP BY EXTRACT(YEAR FROM s.bookingTimeStamp), EXTRACT(MONTH FROM s.bookingTimeStamp) " +
+            "ORDER BY EXTRACT(YEAR FROM s.bookingTimeStamp), EXTRACT(MONTH FROM s.bookingTimeStamp)")
+    List<Object[]> findMonthlyBookingCounts();
+
+    @Query("SELECT CONCAT(EXTRACT(YEAR FROM s.bookingTimeStamp), '-', LPAD(CAST(EXTRACT(MONTH FROM s.bookingTimeStamp) AS string), 2, '0')) AS month, " +
+            "s.center.brand AS brand, COUNT(s) AS totalBookings " +
+            "FROM SlotBooking s " +
+            "GROUP BY EXTRACT(YEAR FROM s.bookingTimeStamp), EXTRACT(MONTH FROM s.bookingTimeStamp), s.center.brand " +
+            "ORDER BY EXTRACT(YEAR FROM s.bookingTimeStamp), EXTRACT(MONTH FROM s.bookingTimeStamp), s.center.brand")
+    List<Object[]> findMonthlyBookingCountsByBrand();
+
+    List<SlotBooking> findByCenterIdAndPreferredDateAndTimeSlotAndSelectedCarDetails(Long centerId, LocalDate preferredDate, String timeSlot, String selectedCarDetails);
 }

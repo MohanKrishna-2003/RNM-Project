@@ -1,6 +1,6 @@
 package com.project.myRNM.Service;
 
-import com.project.myRNM.Entity.Brand;
+import com.project.myRNM.Models.Entity.Brand;
 import com.project.myRNM.Repository.BrandRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;

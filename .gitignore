@@ -133,6 +133,7 @@ dist
 # Ignore Angular Cache
 Frontend/Admin/.angular/cache/
 Frontend/Landing_page/.angular/cache/
+Frontend/Landing_page/public
 
 **/.angular/cache/
 

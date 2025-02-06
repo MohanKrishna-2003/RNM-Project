@@ -1,7 +1,7 @@
 package com.project.myRNM.Controller;
 
-import com.project.myRNM.Entity.Feedback;
-import com.project.myRNM.Response.GeneralResponse;
+import com.project.myRNM.Models.Entity.Feedback;
+import com.project.myRNM.Models.Response.GeneralResponse;
 import com.project.myRNM.Service.FeedbackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

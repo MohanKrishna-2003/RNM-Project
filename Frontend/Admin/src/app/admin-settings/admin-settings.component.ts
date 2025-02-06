@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import swal from 'sweetalert';
+import { log } from 'node:console';
 
 
 @Component({
@@ -31,14 +32,14 @@ ngOnInit(): void {
         email: [this.admin[0]?.mail || '', [Validators.required, Validators.email]],
         company: [this.admin[0]?.company || '', [Validators.required]],
         address: [this.admin[0]?.address || '', [Validators.required]],
-        bio: [this.admin[0]?.bio || '', [Validators.required, Validators.minLength(10)]]
+        bio: [this.admin[0]?.bio || '', [Validators.required, Validators.minLength(10)]],
+        password:[this.admin[0]?.password || '', [Validators.required]]
       });
     },
     (error) => {
       console.error('Error fetching admin details:', error);
     }
   );
-  localStorage.setItem("admin",this.admin[0].name);
 }
 
 formshow = false;
@@ -48,50 +49,66 @@ showform() {
   this.formshow = !this.formshow;
 }
 
-onSubmit() {
-  if (this.profileForm.invalid) {
-    return;
-  }
+// onSubmit() {
+//   if (this.profileForm.invalid) {
+//     return;
+//   }
 
-  const profileData = this.profileForm.value;
+//   const profileData = this.profileForm.value;
 
-  this.updateProfile(profileData).subscribe(
-    (response) => {
-      console.log('Profile updated successfully', response);
-      // SweetAlert1 Success
-      swal({
-        title: "Success!",
-        text: "Admin details have been successfully updated.",
-        icon: "success",
-      }).then(() => {
-        window.location.reload();
-      });
-    },
-    (error) => {
-      console.error('There was an error updating the profile', error);
-      swal({
-        title: "Error!",
-        text: "There was an error updating the profile.",
-        icon: "error",
-      });
-    }
-  );
+//   // this.updateProfile(profileData).subscribe(
+//   //   (response) => {
+//   //     console.log('Profile updated successfully', response);
+
+//   //     // SweetAlert1 Success
+//   //     swal({
+//   //       title: "Success!",
+//   //       text: "Admin details have been successfully updated.",
+//   //       icon: "success",
+//   //     }).then(() => {
+//   //       window.location.reload();
+//   //     });
+//   //   },
+//   //   (error) => {
+//   //     console.error('There was an error updating the profile', error);
+//   //     swal({
+//   //       title: "Error!",
+//   //       text: "There was an error updating the profile.",
+//   //       icon: "error",
+//   //     });
+//   //   }
+//   // );
   
-}
+// }
 
-reloadPage(): void {
-  window.location.reload();  
-}
+// reloadPage(): void {
+//   window.location.reload();  
+// }
 
-updateProfile(profileData: any): Observable<any> {
-  const apiUrl = 'http://localhost:8080/admin/update'; // Replace with your API URL
-  // console.log(profileData);
+// onSubmit()(profileData: any){
+//   // const apiUrl = 'http://localhost:8080/admin/update'; // Replace with your API URL
+//   // console.log("THE DATA ISSS");
   
-  return this.http.post(apiUrl, profileData);
-}
+//   // console.log(profileData);
+  
+//   // return this.http.post(apiUrl, profileData).subscribe;
+//   // const data = this.profileForm.value; 
+//   // console.log(data);
+  
+//   this.http.post("http://localhost:8080/admin/update",profileData).subscribe((res)=>{
+//     console.log("+++");
+    
+//   })
+// }
 
-get f() {
-  return this.profileForm.controls;
+// get f() {
+//   return this.profileForm.controls;
+// }
+onSubmit(){
+  const data = this.profileForm.value;
+  this.http.post("http://localhost:8080/admin/update",data).subscribe((res)=>{
+    console.log("+++=");
+    
+  })
 }
-
 }

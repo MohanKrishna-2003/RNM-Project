@@ -1,6 +1,6 @@
 package com.project.myRNM.Controller;
 
-import com.project.myRNM.Entity.Car;
+import com.project.myRNM.Models.Entity.Car;
 import com.project.myRNM.Service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -1,6 +1,6 @@
 package com.project.myRNM.Repository;
 
-import com.project.myRNM.Entity.Center;
+import com.project.myRNM.Models.Entity.Center;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

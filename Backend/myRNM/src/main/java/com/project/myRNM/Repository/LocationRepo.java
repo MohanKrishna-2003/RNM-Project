@@ -1,6 +1,6 @@
 package com.project.myRNM.Repository;
 
-import com.project.myRNM.Entity.Locations;
+import com.project.myRNM.Models.Entity.Locations;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

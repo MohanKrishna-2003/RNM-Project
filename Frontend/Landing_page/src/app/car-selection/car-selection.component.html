@@ -1,5 +1,4 @@
 <app-header></app-header>
-
 <div class="page-container" [class.shifted]="isFilterSidebarOpen">
   <header class="header-section">
     <h1 class="header-title">Online Test Drive Booking</h1>
@@ -21,7 +20,7 @@
                 </div> -->
         <div class="question-wrapper">
           <h2 class="question-text one" style="font-size: xx-large">
-            Welcome to myRNM – Your Personalized Car Shopping Experience!
+            Welcome to MyRNM – Your Personalized Car Shopping Experience!
           </h2>
         </div>
 
@@ -84,9 +83,21 @@
           <option value="mid">₹10-₹20 Lakhs</option>
           <option value="high">Above ₹20 Lakhs</option>
         </select>
-      </label>
-
-      <label>
+      </label> -->
+      <!-- <label class="baloo">
+        Price Range: ₹{{ minPrice }} - ₹{{ maxPrice }}
+        <input 
+          type="range" 
+          min="{{ minPrice }}" 
+          [max]="maxPrice" 
+          [(ngModel)]="selectedPrice"
+          (input)="filterCarsByPrice($event)"
+          step="10000"
+        />
+      </label> -->
+      
+      
+      <!-- <label>
         Order By:
         <select (change)="sortByOrder($event)" class="baloo">
           <option value="">None</option>
@@ -94,7 +105,7 @@
           <option value="minPrice">Min Price</option>
           <option value="booking">Availability</option>
         </select>
-      </label>
+      </label> -->
 
       <label for="carType">Car Type:</label>
       <select id="carType" (change)="filterByCarType($event)" class="baloo">
@@ -217,7 +228,7 @@
 <div *ngIf="brands.length > 0" class="container-fluid mt-5">
   <!-- Interactive Heading -->
   <div class="text-center mb-5">
-    <h2 class="display-4 showroom">
+    <h2 class="display-4 showroom size">
       <img src="/assets/images/thun.gif" class="smallthun" alt=""> Test-Drive Slots Available Today!
     </h2>
 
@@ -294,7 +305,7 @@
 <br><br>
 
 <div class="question-wrapper">
-  <h2 class="question-text two">
+  <h2 class="question-text two size">
     <a id="q2" href="#brand-section" role="button">Click a brand to select your car....</a>
   </h2>
 </div>
@@ -419,8 +430,8 @@
 </div>
 
 <!-- Sidebar for test slot -->
-@if (isBookingClicked){
-<div class="test-drive-dialog show">
+
+<div class="test-drive-dialog show" *ngIf="isBookingClicked">
   <div class="dialog-content">
     <!-- Left Side: Car Info -->
     <div class="car-info">
@@ -530,7 +541,6 @@
     </div> -->
 
 
-
     <div class="formbold-form-wrapper" id="rightform">
       <br /><br />
       <h2>Book Your Test Drive Slot</h2>
@@ -597,41 +607,38 @@
         <div>
           <label for="preferred-date" class="formbold-form-label">Preferred Date</label>
           <input type="date" id="preferred-date" class="formbold-form-input" [(ngModel)]="formData.preferredDate"
-            #preferredDate="ngModel" required [min]="todayDate"  placeholder="Select your location"/>
+            #preferredDate="ngModel" required [min]="todayDate" />
           <div *ngIf="preferredDate.invalid && (preferredDate.dirty || preferredDate.touched)" class="error">
             <small *ngIf="preferredDate.errors?.['required']">Preferred date is required.</small>
           </div>
 
-          
+
+          <!-- Showroom Dropdown -->
           <label for="showroom" class="formbold-form-label">Preferred Showroom Location</label>
           <select id="showroom" class="formbold-form-input" [(ngModel)]="selectedCenterId"
-            (click)="updateAvailableTimeSlots(selectedCenterId)" name="showroomLocation" required>
-            <option [value]="null" disabled>Select a Location</option>
+            (change)="updateAvailableTimeSlots(selectedCenterId)" name="showroomLocation" #showroomLocation="ngModel"
+            required>
+            <option [value]="" disabled>Select a Location</option>
             <option *ngFor="let center of filteredLocations" [value]="center.id">
-              {{ center.name }} - {{ center.location }} (Available Test Drive Slots: {{ center.availableSlots }})
+              {{ center.name }} - {{ center.location }} (Available  Test Drive Slots: {{ center.availableSlots }})
             </option>
           </select>
-          
-
-
-          <!-- <h1></h1> -->
-
-          <!-- <div *ngIf="showroomLocation.invalid && (showroomLocation.dirty || showroomLocation.touched)" class="error">
+          <div *ngIf="showroomLocation.invalid && (showroomLocation.dirty || showroomLocation.touched)" class="error">
             <small *ngIf="showroomLocation.errors?.['required']">Showroom location is required.</small>
-          </div> -->
+          </div>
 
           <!-- Time Slot Dropdown -->
           <label for="time-slot" class="formbold-form-label">Preferred Time Slot</label>
           <select id="time-slot" class="formbold-form-input" [(ngModel)]="formData.timeSlot" name="timeSlot"
             #timeSlot="ngModel" required>
-            <option [value]="null" disabled>Select a time slot</option>
+            <option [value]="" disabled>Select a time slot</option>
             <option *ngFor="let slot of availableTimeSlots" [value]="slot.key">
               {{ slot.label }} (Available Slots: {{ slot.count }})
             </option>
           </select>
           <div *ngIf="timeSlot.invalid && (timeSlot.dirty || timeSlot.touched)" class="error">
             <small *ngIf="timeSlot.errors?.['required']">Time slot is required.</small>
-          </div>          
+          </div>
 
         </div>
       </div>
@@ -661,7 +668,7 @@
           </div>
         </div>
       </div>
-
+      
       <div class="formbold-form-btn-wrapper" *ngIf="currentStep < 3">
         <button class="formbold-btn proper" type="button" (click)="goBack()" *ngIf="currentStep > 1">
           Back
@@ -672,12 +679,8 @@
       </div>
       <!-- </form> -->
     </div>
-
-
-
-  </div>
 </div>
 
 <br /><br />
-}
+</div>
 <app-footer></app-footer>
