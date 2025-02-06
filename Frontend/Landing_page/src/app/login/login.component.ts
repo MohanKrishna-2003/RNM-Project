@@ -7,7 +7,7 @@ import { error } from 'jquery';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule ,  ReactiveFormsModule, RouterLink],
+  imports: [CommonModule ,  ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })

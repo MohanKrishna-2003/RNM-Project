@@ -1,3 +1,4 @@
+// import { log } from 'node:console';
 import { Component, OnInit, HostListener } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -258,7 +259,7 @@ export class CarSelectionComponent implements OnInit {
   filterCarsByPrice(event: Event): void {
     const selectedPrice = (event?.target as HTMLSelectElement).value;
     this.displayedCars = this.cars.filter(car => {
-      const rawPrice = car.price?.INR;
+      const rawPrice = car.price;
       if (!rawPrice) return false;
       const normalizedPrice = this.normalizePrice(rawPrice);
       switch (selectedPrice) {
@@ -295,14 +296,28 @@ export class CarSelectionComponent implements OnInit {
   sortByOrder(event: Event): void {
     const sortBy = (event.target as HTMLSelectElement).value;
     if (sortBy === 'maxPrice') {
-      this.displayedCars = this.cars.sort((a, b) => this.normalizePrice(b.price.INR) - this.normalizePrice(a.price.INR));
+      this.displayedCars = this.cars.sort((a, b) => this.normalizePrice(b.price) - this.normalizePrice(a.price));
     } else if (sortBy === 'minPrice') {
-      this.displayedCars = this.cars.sort((a, b) => this.normalizePrice(a.price.INR) - this.normalizePrice(b.price.INR));
+      this.displayedCars = this.cars.sort((a, b) => this.normalizePrice(a.price) - this.normalizePrice(b.price));
     } else {
       this.displayedCars = [...this.cars];
     }
     this.showGif = false;
   }
+
+  filterByCarType(event: Event): void {
+    const target = event.target as HTMLSelectElement;
+    const selectedType = target.value;
+    if (selectedType) {
+      this.displayedCars = this.cars.filter((car) =>
+        car.details?.toLowerCase().includes(selectedType.toLowerCase())
+      );
+    } else {
+      this.displayedCars = [...this.cars];
+    }
+    this.showGif = false;
+  }
+
 
   // Filter functions for other attributes
   filterByRating(event: Event): void {
@@ -328,7 +343,7 @@ export class CarSelectionComponent implements OnInit {
   filterBySeater(event: Event): void {
     const selectedSeater = (event.target as HTMLSelectElement).value;
     if (selectedSeater) {
-      this.displayedCars = this.cars.filter(car => car.seats === parseInt(selectedSeater, 10));
+      this.displayedCars = this.cars.filter(car => car.seater === parseInt(selectedSeater, 10));
     } else {
       this.displayedCars = [...this.cars];
     }
@@ -386,9 +401,12 @@ export class CarSelectionComponent implements OnInit {
   }
 
   filterByWarranty(event: Event): void {
-    const selectedWarranty = (event.target as HTMLSelectElement).value;
+    const selectedWarranty = parseInt((event.target as HTMLSelectElement).value, 10);
     if (selectedWarranty) {
+      console.log(selectedWarranty);
       this.displayedCars = this.cars.filter(car => car.warranty === selectedWarranty);
+      console.log(this.displayedCars);
+      
     } else {
       this.displayedCars = [...this.cars];
     }
@@ -408,14 +426,6 @@ export class CarSelectionComponent implements OnInit {
       this.currentStep--;
     }
   }
-
-
-  // userId: number;
-
-
-  // fetchUserIdByEmail(email: string): any {
-  //   return this.http.get<number>(`http://localhost:8080/user/getUserIdByEmail/${email}`);
-  // }
 
   submitForm(): void {
     // Check if preferredDate is a valid date object, and if not, attempt to convert it

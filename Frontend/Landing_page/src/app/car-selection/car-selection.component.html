@@ -75,6 +75,7 @@
     </button>
     <h2 style="color: black">Choose Your CAR!</h2>
     <div class="filters">
+      
       <label>
         Price Range:
         <select (click)="filterCarsByPrice($event)" class="baloo">
@@ -94,6 +95,15 @@
           <option value="booking">Availability</option>
         </select>
       </label>
+
+      <label for="carType">Car Type:</label>
+      <select id="carType" (change)="filterByCarType($event)" class="baloo">
+        <option value="">All</option>
+        <option value="SUV">SUV</option>
+        <option value="Hatchback">Hatchback</option>
+        <option value="Sedan">Sedan</option>
+        <option value="Truck">Truck</option>
+      </select>
 
       <label>
         Rating:
@@ -188,7 +198,6 @@
           <option value="3">Up to 3 Years</option>
           <option value="5">Up to 5 Years</option>
           <option value="7">Up to 7 Years</option>
-          <option value="lifetime">Lifetime</option>
         </select>
       </label>
     </div>
