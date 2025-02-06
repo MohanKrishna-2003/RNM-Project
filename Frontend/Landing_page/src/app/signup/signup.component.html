@@ -35,7 +35,7 @@
                 <div *ngIf="signupForm.controls['password'].touched && signupForm.controls['password'].invalid"
                   class="text-danger">
                   <div *ngIf="signupForm.controls['password'].errors?.['required']">Password is required</div>
-                  <div *ngIf="signupForm.controls['password'].errors?.['maxlength']">Should be more than 8 characters</div>
+                  <div *ngIf="signupForm.controls['password'].errors?.['minlength']">Should be more than 8 characters</div>
                 </div>
               </div>
               <div class="form-group">
@@ -80,10 +80,3 @@
   
   
   
-  <!-- <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" formControlName="acceptPolicy" />
-                <label class="form-check-label" for="acceptPolicy">I accept the Terms & Conditions</label>
-                <div *ngIf="signupForm.controls['acceptPolicy'].touched && signupForm.controls['acceptPolicy'].invalid" class="text-danger">
-                  You must accept the terms and conditions to proceed.
-                </div>
-              </div> -->

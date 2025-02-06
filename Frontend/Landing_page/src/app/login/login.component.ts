@@ -151,7 +151,8 @@ closePop() {
     }
   }
   updatePassword(){
-    const password = this.PasswordForm.get('password').value;
+    if(this.PasswordForm.valid){
+      const password = this.PasswordForm.get('password').value;
     const userEmail = localStorage.getItem('update');
     const newPassword = {password : password , email : userEmail};
     this.http.put("http://localhost:8080/user/updatePassword",newPassword).subscribe((res)=>{
@@ -162,4 +163,89 @@ closePop() {
       this.errorMsg = err.error['message'];
     })
   }
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ //     this.service.loginDetails(data).subscribe({
+  //       next: (response: any) => {
+  //         console.log('Login successful:', response);
+  //         this.route.navigateByUrl("signup");
+          
+  //       },
+  //       error: (err: any) => {
+  //         console.log('Login failed:', err);
+         
+  //       }
+  //     });
+  //   } else {
+  //     console.log('Form is invalid');
+  //   }
