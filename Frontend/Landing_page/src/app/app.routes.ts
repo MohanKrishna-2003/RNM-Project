@@ -19,24 +19,27 @@ import { NotificationsComponent } from './Admin/notifications/notifications.comp
 import { QueryComponent } from './Admin/query/query.component';
 import { BookingsComponent } from './Admin/bookings/bookings.component';
 import { NewsComponent } from './Landing Page/news/news.component';
+import { HomeLocationComponent } from './Landing Page/home-location/home-location.component';
+import { AuthorisationServiceService } from './Services/authorisation-service.service';
 
 export const routes: Routes = [
   { path: 'contact', component: ContactComponent }, // This will display the Contact component for '/contact'
   { path: 'location', component: LocationComponent },
-  { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: 'homelocation', component: HomeLocationComponent },
+  { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'feedback', component: FeedbackComponent },
   { path: 'booking', component: BookingComponent },
-  { path: 'car-selection-page', component: CarSelectionComponent },
+  { path: 'cardetails', component: CarSelectionComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'userbookings', component: BookingsComponent },
-  { path: 'users', component: UsersComponent },
-  { path: 'userfeedback', component: UserFeedbackComponent },
-  { path: 'showrooms', component: ShowroomsComponent },
-  { path: 'settings', component: AdminSettingsComponent },
-  { path: 'notifications', component: NotificationsComponent },
-  { path: 'dashboard', component: AdminDashbaordComponent },
-  { path: 'contact-query', component: QueryComponent },
+  { path: 'userbookings', component: BookingsComponent, canActivate:[AuthorisationServiceService] },
+  { path: 'users', component: UsersComponent, canActivate:[AuthorisationServiceService] },
+  { path: 'userfeedback', component: UserFeedbackComponent, canActivate:[AuthorisationServiceService] },
+  { path: 'showrooms', component: ShowroomsComponent , canActivate:[AuthorisationServiceService]},
+  { path: 'settings', component: AdminSettingsComponent , canActivate:[AuthorisationServiceService]},
+  { path: 'notifications', component: NotificationsComponent, canActivate:[AuthorisationServiceService] },
+  { path: 'dashboard', component: AdminDashbaordComponent , canActivate:[AuthorisationServiceService]},
+  { path: 'contact-query', component: QueryComponent , canActivate:[AuthorisationServiceService]},
   { path: 'news', component: NewsComponent },
 ];

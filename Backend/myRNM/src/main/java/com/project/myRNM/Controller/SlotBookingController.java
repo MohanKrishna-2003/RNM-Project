@@ -1,18 +1,14 @@
 package com.project.myRNM.Controller;
 
-import com.project.myRNM.Models.DTOs.BrandCountDTO;
 import com.project.myRNM.Models.DTOs.SlotBookingDTO;
-import com.project.myRNM.Models.Entity.Center;
 import com.project.myRNM.Models.Entity.SlotBooking;
 import com.project.myRNM.Repository.CenterRepository;
 import com.project.myRNM.Repository.SlotBookingRepository;
 import com.project.myRNM.Models.Response.GeneralResponse;
-import com.project.myRNM.Service.CenterService;
 import com.project.myRNM.Service.SlotBookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

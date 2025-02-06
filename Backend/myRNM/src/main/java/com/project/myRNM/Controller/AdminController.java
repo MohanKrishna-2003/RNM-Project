@@ -4,7 +4,6 @@ import com.project.myRNM.Models.DTOs.AdminDTO;
 import com.project.myRNM.Models.DTOs.AdminValidateDTO;
 import com.project.myRNM.Models.DTOs.UserBookingDTO;
 import com.project.myRNM.Models.Entity.Admin;
-import com.project.myRNM.Models.Entity.Users;
 import com.project.myRNM.Models.Response.GeneralResponse;
 import com.project.myRNM.Service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;

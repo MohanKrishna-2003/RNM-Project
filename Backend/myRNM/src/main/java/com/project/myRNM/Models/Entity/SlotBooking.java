@@ -4,12 +4,10 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.antlr.v4.runtime.misc.NotNull;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -50,10 +48,6 @@ public class SlotBooking {
     @Column(name = "time_slot")
     private String timeSlot;
 
-//    @Column(name = "showroom_location")
-//    private String showroomLocation;
-
-//    private Long user_id;
 
     private Boolean confirmation;
 
@@ -64,7 +58,5 @@ public class SlotBooking {
 //    @JsonProperty("selectedCarDetails")
     private String selectedCarDetails;
 
-//    @Column(name = "brand")
-//    private String brand;
 
 }

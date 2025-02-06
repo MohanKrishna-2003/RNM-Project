@@ -50,7 +50,8 @@ export class LoginComponent {
   }
   submit(): void {
     if (this.loginForm.valid) {
-      const email = this.loginForm.get('email')?.value;
+      const email = this.loginForm.get('email')?.value;console.log(this.loginForm.get('email'));
+      
       const password = this.loginForm.get('password')?.value;
       const data = { email, password };
  
@@ -77,7 +78,13 @@ export class LoginComponent {
           // Redirect based on the type of user
           if (isAdmin) {
             console.log("Admin login success");
+            console.log(res);
+            
             const name = localStorage.setItem("adminName",res.name);
+            localStorage.setItem("address", res.address);
+            localStorage.setItem("id", "1");
+            localStorage.setItem("useremail", email);
+            localStorage.setItem("login", "true");
             this.route.navigateByUrl('/dashboard');
             localStorage.setItem("admin",email) ; // Redirect to admin dashboard
           } else {

@@ -22,6 +22,7 @@ export class AdminSettingsComponent implements OnInit{
   constructor(private fb: FormBuilder, private http:HttpClient){}
 
 ngOnInit(): void {
+  
   this.http.get("http://localhost:8080/admin/details").subscribe(
     (res: any) => {
       console.log(res);
@@ -35,12 +36,17 @@ ngOnInit(): void {
         bio: [this.admin[0]?.bio || '', [Validators.required, Validators.minLength(10)]],
         password:[this.admin[0]?.password || '', [Validators.required]] 
       });
+      
+      localStorage.setItem("address", this.admin[0].address);
+      localStorage.setItem("id", "1");
+      localStorage.setItem("useremail", this.admin[0].email);
+      localStorage.setItem("login", "true");
+  
     },
     (error) => {
       console.error('Error fetching admin details:', error);
     }
   );
-  localStorage.setItem("adminName",this.admin[0].name);
 }
 
 formshow = false;
@@ -87,8 +93,8 @@ reloadPage(): void {
 
 updateProfile(profileData: any): Observable<any> {
   const apiUrl = 'http://localhost:8080/admin/update'; // Replace with your API URL
-  // console.log(profileData);
-  
+  // console.log(profileData.name);
+  localStorage.setItem("adminName", profileData.name)
   return this.http.post(apiUrl, profileData);
 }
 

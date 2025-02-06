@@ -26,16 +26,6 @@ public class OtpService {
     @Value("${spring.mail.username}")
     private String fromMailId;
 
-//    public void sendEmail(String recipient, String subject, String text) throws MessagingException {
-//        SimpleMailMessage simpleMailMessage= new SimpleMailMessage();
-//        simpleMailMessage.setFrom(fromMailId);
-//        simpleMailMessage.setTo(recipient);
-//        simpleMailMessage.setText(text);
-//        simpleMailMessage.setSubject(subject);
-//
-//        javaMailSender.send(simpleMailMessage);
-//        System.out.println("EMAIL SEND SUCCESFULLYY !!!");
-//    }
     // In-memory store for OTPs and expiration times (can be replaced with a database)
     private Map<String, OtpDetails> otpStore = new HashMap<>();
 
@@ -87,14 +77,14 @@ public class OtpService {
         if (otpDetails != null) {
             // Check if OTP has expired
             if (otpDetails.expirationTime.isBefore(LocalDateTime.now())) {
-                System.out.println("OTP expired");
+//                System.out.println("OTP expired");
                 otpStore.remove(recipient); // Remove expired OTP
                 return false;
             }
 
             // Check if the OTP matches
             if (otpDetails.otp.equals(otp)) {
-                System.out.println("OTP verified successfully");
+//                System.out.println("OTP verified successfully");
                 otpStore.remove(recipient); // Remove OTP after successful verification
                 return true;
             }

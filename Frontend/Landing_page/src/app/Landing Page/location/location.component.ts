@@ -20,7 +20,7 @@ interface Shop {
   standalone: true,
   templateUrl: './location.component.html',
   styleUrls: ['./location.component.css'],
-  imports: [HeaderComponent, FooterComponent, HttpClientModule, CommonModule, FormsModule],
+  imports: [ HttpClientModule, CommonModule, FormsModule],
 })
 export class LocationComponent implements AfterViewInit {
   shops: Shop[] = [];

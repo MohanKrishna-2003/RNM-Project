@@ -4,12 +4,10 @@ import com.project.myRNM.Models.DTOs.AdminDTO;
 import com.project.myRNM.Models.DTOs.AdminValidateDTO;
 import com.project.myRNM.Models.DTOs.UserBookingDTO;
 import com.project.myRNM.Models.Entity.Admin;
-import com.project.myRNM.Models.Entity.Users;
 import com.project.myRNM.Repository.AdminRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,8 +21,8 @@ public class AdminService {
 
     public List<Admin> getAdminDetails() throws Exception {
         try {
-            List<Admin> adminDetails = adminRepo.findAll();
-            return adminDetails;
+            return adminRepo.findAll();
+
         } catch (Exception e) {
             throw new RuntimeException(e);
 

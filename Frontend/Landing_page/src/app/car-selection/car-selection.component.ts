@@ -10,12 +10,14 @@ import Swal from 'sweetalert2';
 import { Router, RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HeaderComponent } from '../Landing Page/header/header.component';
+import { FooterComponent } from '../Landing Page/footer/footer.component';
 
 
 @Component({
   selector: 'app-car-selection',
   standalone: true,
-  imports: [FormsModule, CommonModule, HttpClientModule],
+  imports: [FormsModule, CommonModule, HttpClientModule, HeaderComponent, FooterComponent],
   templateUrl: './car-selection.component.html',
   styleUrls: ['./car-selection.component.css'],
 })

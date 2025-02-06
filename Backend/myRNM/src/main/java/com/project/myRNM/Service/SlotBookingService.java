@@ -119,7 +119,7 @@ public class SlotBookingService {
     public SlotBooking updateStatus(SlotBookingDTO slotBookingDTO) {
 
         Long id = slotBookingDTO.getId();
-        System.out.println(id);
+//        System.out.println(id);
         try {
             // Directly pass the Integer ID to findById
 
@@ -137,7 +137,7 @@ public class SlotBookingService {
                 }
 
                 // Log the status change
-                System.out.println("Updated status: " + slotBooking.getStatus());
+//                System.out.println("Updated status: " + slotBooking.getStatus());
 
                 // Save and flush the updated entity
                 return slotBookingRepository.saveAndFlush(slotBooking);

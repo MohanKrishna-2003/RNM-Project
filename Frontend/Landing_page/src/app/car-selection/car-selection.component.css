@@ -13,7 +13,7 @@
 }
 
 .header-title {
-  font-family: "Agu Display", serif;
+  font-family: "Metal Mania", serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
@@ -102,10 +102,10 @@
 }
 
 .question-text {
-  font-family: "Carter One", serif;
-  font-weight: 800;
+  font-family: "Quintessential", serif;
+    font-weight: 800;
   font-style: bold;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   animation: slideLeft 1s ease-in-out;
   text-align: center;
   align-items: center;
