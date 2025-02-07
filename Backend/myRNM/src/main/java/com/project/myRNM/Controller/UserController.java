@@ -59,6 +59,12 @@ public class UserController {
         }
     }
 
+    @GetMapping("/updatePasswords")
+    public String updatePasswords() {
+        userService.updateAllPasswordsToEncrypted();
+        return "Passwords updated successfully!";
+    }
+
 
     @GetMapping("/userdata")
     public ResponseEntity<?> getUserData() {

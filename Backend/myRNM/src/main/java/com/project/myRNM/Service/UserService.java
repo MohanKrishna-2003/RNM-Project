@@ -25,6 +25,22 @@ public class UserService {
     @Autowired
     UserRepo userRepo;
 
+    private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+    public void updateAllPasswordsToEncrypted() {
+        List<Users> allUsers = userRepo.findAll(); // Fetch all users from the database
+
+        // Loop through each user to encrypt their password
+        for (Users user : allUsers) {
+            if (user.getPassword() != null && !user.getPassword().startsWith("$2a$")) { // Check if password is in plain text
+                // Encrypt the plain text password
+                String encryptedPassword = passwordEncoder.encode(user.getPassword());
+                user.setPassword(encryptedPassword); // Set the encrypted password
+                userRepo.save(user); // Save the updated user with encrypted password
+            }
+        }
+    }
+
 
     public List<Users> getUserData() {
         return userRepo.findAll();
@@ -108,7 +124,7 @@ public class UserService {
         return userWithFeedbackDTOList;
     }
 
-    PasswordEncoder passwordEncoder;
+//    PasswordEncoder passwordEncoder;
 
     public Users addUserData(Users users) {
 
@@ -128,6 +144,8 @@ public class UserService {
         return userRepo.save(users);
 
     }
+
+
     public Users loginByPost(String email, String password) throws Exception
     {
 

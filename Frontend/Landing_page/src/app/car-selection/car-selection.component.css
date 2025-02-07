@@ -6,7 +6,7 @@
 
 .header-section {
   /* background: linear-gradient(45deg, #000000, #3f3f3f); */
-  padding: 1rem;
+  padding: 2rem;
   color: white;
   animation: bounceIn 2s ease-in-out;
   background-color: white;
@@ -51,7 +51,7 @@
   padding: 0;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 77vh;
   overflow: hidden;
   box-shadow: none;
 }
