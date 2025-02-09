@@ -7,6 +7,14 @@
 
 }
 
+.privacy-policy-link {
+  color: #ffffffde; /* Custom color */
+  text-decoration: none; /* Remove underline */
+}
+.privacy-policy-link:hover{
+  text-decoration-line: underline;
+}
+
 /* Styling for the top section with logo and company name */
 .header-top {
   display: flex;

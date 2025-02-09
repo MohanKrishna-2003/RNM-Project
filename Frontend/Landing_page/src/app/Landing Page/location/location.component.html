@@ -11,8 +11,7 @@
     <ul>
       <li *ngFor="let shop of shops; let i = index" (click)="goToShopLocation(shop)">
         <img [src]="shop.icon" alt="Shop Icon" width="30" height="30"/>
-        <span class="shop-name">{{ shop.name }}</span> -
-        <span class="shop-address">{{ shop.address }}</span>
+        <span class="shop-name">{{ shop.name }}</span> <span class="shop-address">{{ shop.address }}</span>
       </li>
     </ul>
 

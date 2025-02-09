@@ -3,14 +3,23 @@
     <img src="chatbot.svg" alt="Chatbot Icon" width="40" height="40">
   </button>
 </div>
-
-<!-- Chat Container -->
+ 
+ 
 <div class="chat-container" [ngClass]="{ 'open': isChatOpen }">
   <div class="chat-header">
-    <button class="close-btn" (click)="toggleChat()">✖</button>
-    <h3>MyRnm Chatbot</h3>
+    <div class="col">
+      <button class="close-btn" (click)="toggleChat()">✖</button>
+    </div>
+    <!-- Close Button -->
+   
+ 
+    <button *ngIf="isOnPage" class="home-btn btn ms-2" (click)="goBack()">
+      <i class="fa fa-home"></i> <!-- Font Awesome Home Icon -->
+  </button>
+ 
+    <h3 style="text-align: center; font-weight: bold;font-size: large;">MyRnm Chatbot</h3>
   </div>
-
+ 
   <div class="chat-window">
     <!-- Messages Section -->
     <div *ngFor="let message of messages" class="message" [ngClass]="{
@@ -20,26 +29,21 @@
     }">
       <div class="message-text">{{ message.text }}</div>
     </div>
-
+ 
     <!-- Loading Indicator -->
     <div *ngIf="isLoading" class="loading">Loading...</div>
-
-    <!-- Predefined Options as Buttons -->
+ 
     <div *ngIf="isChatOpen && !isLoading && options.length > 0" class="button-container">
       <button *ngFor="let option of options" (click)="onOptionSelected(option)" id="btn-style">
         {{ option }}
       </button>
     </div>
-
+ 
+ 
     <!-- User Input Form -->
     <form [formGroup]="form" (ngSubmit)="sendMessage()" class="user-input-form" *ngIf="isChatOpen && !isLoading && !isOnPage">
       <input formControlName="message" placeholder="Type your message..." />
       <button type="submit">Send</button>
     </form>
-
-    <!-- Go Back Button (when user navigates to another page) -->
-    <button *ngIf="isOnPage" (click)="goBack()" class="go-back-btn">
-      Go Back
-    </button>
   </div>
 </div>

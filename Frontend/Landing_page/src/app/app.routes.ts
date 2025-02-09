@@ -21,6 +21,7 @@ import { BookingsComponent } from './Admin/bookings/bookings.component';
 import { NewsComponent } from './Landing Page/news/news.component';
 import { HomeLocationComponent } from './Landing Page/home-location/home-location.component';
 import { AuthorisationServiceService } from './Services/authorisation-service.service';
+import { PrivacyComponent } from './Landing Page/privacy/privacy.component';
 
 export const routes: Routes = [
   { path: 'contact', component: ContactComponent }, // This will display the Contact component for '/contact'
@@ -41,5 +42,6 @@ export const routes: Routes = [
   { path: 'notifications', component: NotificationsComponent, canActivate:[AuthorisationServiceService] },
   { path: 'dashboard', component: AdminDashbaordComponent , canActivate:[AuthorisationServiceService]},
   { path: 'contact-query', component: QueryComponent , canActivate:[AuthorisationServiceService]},
+  { path: 'privacy', component: PrivacyComponent },
   { path: 'news', component: NewsComponent },
 ];
