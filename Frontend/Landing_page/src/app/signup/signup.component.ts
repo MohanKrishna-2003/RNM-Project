@@ -21,7 +21,7 @@ export class SignupComponent {
       name: ['', [Validators.required, Validators.maxLength(20), Validators.minLength(3), Validators.pattern('^[A-Za-z\\s-]+$')]],
       email: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(8)]],
-      mobile: ['', [Validators.required, Validators.maxLength(10)]],
+      mobile: ['', [Validators.required, Validators.maxLength(10), Validators.minLength(10)]],
       address: ['', [Validators.required, Validators.maxLength(50)]],
       confirmPassword: ['', [Validators.required]]
      },{ validators: this.passwordMatchValidator });
@@ -54,6 +54,7 @@ export class SignupComponent {
             } else {
               this.errorMsg = 'An error occurred, please try again';
             }
+            alert(this.errorMsg);
           }
         }
       );

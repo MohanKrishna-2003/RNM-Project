@@ -80,9 +80,15 @@ export class QueryComponent {
     let data={
       "recipient": this.selectedmail,
       "text":this.message,
-      "subject":this.subject
+      "subject":this.subject,
+      "status": false
     }
 
+    if(this.subject==" " || this.message==""){
+      alert("PLEASE ENTER A VALID SUBJECT AND MESSAGE BEFORE SUBMITTING !")
+    }
+
+    else{
       console.log(this.message_id);
       this.http.post("http://localhost:8080/contact/changestatus",this.message_id).subscribe({
         next: (res) => {
@@ -99,6 +105,9 @@ export class QueryComponent {
 
       alert("EMAIL SUCCESFULLY SEND !!")
 window.location.reload();
+    }
+
+   
     }
     
 }

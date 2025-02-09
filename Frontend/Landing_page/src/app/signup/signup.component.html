@@ -50,7 +50,9 @@
                 <div *ngIf="signupForm.controls['mobile'].touched && signupForm.controls['mobile'].invalid"
                   class="text-danger">
                   <div *ngIf="signupForm.controls['mobile'].errors?.['required']">Mobile number is required</div>
-                  <div *ngIf="signupForm.controls['mobile'].errors?.['maxlength']">Should be 10 digits</div>
+                  <div *ngIf="signupForm.controls['mobile'].errors?.['maxlength']">Provided number is greater than 10 digits</div>
+                  <div *ngIf="signupForm.controls['mobile'].errors?.['minlength']">Provided number is less than 10 digits</div>
+
                   <div *ngIf="signupForm.controls['mobile'].errors?.['alreadyRegistered']">This mobile number is already registered</div>
 
                 </div>

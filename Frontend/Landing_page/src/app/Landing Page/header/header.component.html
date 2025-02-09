@@ -140,7 +140,7 @@
             <label for="name" class="form-label">Name</label>
           </div> -->
           <div class="col-12">
-            <input type="text" id="name" class="form-control form-control-lg" formControlName="name" placeholder="Enter your name" required>
+            <input type="text" id="name" class="form-control form-control-lg" formControlName="name" placeholder="Enter your name" required readonly>
             <div *ngIf="edit.get('name')?.touched && edit.get('name')?.invalid" class="text-danger">
               <div *ngIf="edit.get('name')?.hasError('required')">Name is required</div>
             </div>
@@ -153,7 +153,7 @@
             <label for="email" class="form-label">Email</label>
           </div> -->
           <div class="col-12">
-            <input type="email" id="email" class="form-control form-control-lg" formControlName="email" placeholder="Enter your email" required>
+            <input type="email" id="email" class="form-control form-control-lg" formControlName="email" placeholder="Enter your email" required readonly>
             <div *ngIf="edit.get('email')?.touched && edit.get('email')?.invalid" class="text-danger">
               <div *ngIf="edit.get('email')?.hasError('required')">Email is required</div>
               <div *ngIf="edit.get('email')?.hasError('email')">Please enter a valid email address</div>

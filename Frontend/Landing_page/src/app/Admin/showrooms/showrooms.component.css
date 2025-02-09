@@ -23,4 +23,7 @@
     box-sizing: border-box;
   }
 
-  
+  .h2{
+    font-size: xx-large;
+    font-weight: bolder;
+  }

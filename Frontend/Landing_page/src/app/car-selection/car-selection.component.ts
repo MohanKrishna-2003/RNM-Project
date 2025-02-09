@@ -292,74 +292,36 @@ export class CarSelectionComponent implements OnInit {
   maxPrice: number = 30000000;
   selectedPrice: number = this.maxPrice;
 
-
-  // filterCarsByPrice(event: Event): void {
-  //   const selectedPrice = (event?.target as HTMLSelectElement).value;
-  //   this.displayedCars = this.cars.filter((car) => {
-  //     const rawPrice = car.price?.INR;
-  //     if (!rawPrice) return false;
-  //     const normalizedPrice = this.normalizePrice(rawPrice);
-  //     switch (selectedPrice) {
-  //       case 'low':
-  //         return normalizedPrice < 1000000;
-  //       case 'mid':
-  //         return normalizedPrice >= 1000000 && normalizedPrice <= 2000000;
-  //       case 'high':
-  //         return normalizedPrice > 2000000;
-  //       default:
-  //         return true;
-  //     }
-  //   });
-  //   this.showGif = false;
-  // }
-
-  // normalizePrice(rawPrice: string): number {
-  //   let numericPrice = rawPrice.replace(/[₹$,]/g, '').trim();
-  //   if (numericPrice.includes('Crore')) {
-  //     numericPrice = numericPrice.replace('Crore', '').trim();
-  //     return parseFloat(numericPrice) * 10000000;
-  //   }
-  //   if (numericPrice.includes('Lakhs')) {
-  //     numericPrice = numericPrice.replace('Lakhs', '').trim();
-  //     return parseFloat(numericPrice) * 100000;
-  //   }
-  //   return parseFloat(numericPrice) || 0;
-  // }
-
   filterCarsByPrice(event: Event): void {
-    const target = event.target as HTMLInputElement;
-    const selectedPrice = parseFloat(target.value);
-    console.log('Selected Price: ', selectedPrice);
-
+    const selectedPrice = (event?.target as HTMLSelectElement).value;
     this.displayedCars = this.cars.filter((car) => {
       const rawPrice = car.price?.INR;
-
       if (!rawPrice) return false;
-
       const normalizedPrice = this.normalizePrice(rawPrice);
-
-      console.log('Normalized Price: ', normalizedPrice);
-
-      return normalizedPrice <= selectedPrice;
+      switch (selectedPrice) {
+        case 'low':
+          return normalizedPrice < 1000000;
+        case 'mid':
+          return normalizedPrice >= 1000000 && normalizedPrice <= 2000000;
+        case 'high':
+          return normalizedPrice > 2000000;
+        default:
+          return true;
+      }
     });
-
     this.showGif = false;
   }
 
   normalizePrice(rawPrice: string): number {
     let numericPrice = rawPrice.replace(/[₹$,]/g, '').trim();
-
     if (numericPrice.includes('Crore')) {
       numericPrice = numericPrice.replace('Crore', '').trim();
       return parseFloat(numericPrice) * 10000000;
     }
-
     if (numericPrice.includes('Lakhs')) {
       numericPrice = numericPrice.replace('Lakhs', '').trim();
       return parseFloat(numericPrice) * 100000;
     }
-    console.log('raw Price: ', numericPrice);
-
     return parseFloat(numericPrice) || 0;
   }
 
@@ -372,19 +334,9 @@ export class CarSelectionComponent implements OnInit {
   sortByOrder(event: Event): void {
     const sortBy = (event.target as HTMLSelectElement).value;
     if (sortBy === 'maxPrice') {
-
       this.displayedCars = this.cars.sort((a, b) => this.normalizePrice(b.price) - this.normalizePrice(a.price));
     } else if (sortBy === 'minPrice') {
       this.displayedCars = this.cars.sort((a, b) => this.normalizePrice(a.price) - this.normalizePrice(b.price));
-      this.displayedCars = this.cars.sort(
-        (a, b) =>
-          this.normalizePrice(b.price.INR) - this.normalizePrice(a.price.INR)
-      );
-    } else if (sortBy === 'minPrice') {
-      this.displayedCars = this.cars.sort(
-        (a, b) =>
-          this.normalizePrice(a.price.INR) - this.normalizePrice(b.price.INR)
-      );
     } else {
       this.displayedCars = [...this.cars];
     }
@@ -405,19 +357,7 @@ export class CarSelectionComponent implements OnInit {
   }
 
 
-  filterByCarType(event: Event): void {
-    const target = event.target as HTMLSelectElement;
-    const selectedType = target.value;
-    if (selectedType) {
-      this.displayedCars = this.cars.filter((car) =>
-        car.details?.toLowerCase().includes(selectedType.toLowerCase())
-      );
-    } else {
-      this.displayedCars = [...this.cars];
-    }
-    this.showGif = false;
-  }
-
+  // Filter functions for other attributes
   filterByRating(event: Event): void {
     const selectedRating = (event.target as HTMLSelectElement).value;
     if (selectedRating) {
@@ -517,7 +457,6 @@ export class CarSelectionComponent implements OnInit {
   filterByWarranty(event: Event): void {
     const selectedWarranty = parseInt((event.target as HTMLSelectElement).value, 10);
     if (selectedWarranty) {
-
       console.log(selectedWarranty);
       this.displayedCars = this.cars.filter(car => car.warranty === selectedWarranty);
       console.log(this.displayedCars);
