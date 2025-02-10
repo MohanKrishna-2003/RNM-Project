@@ -17,5 +17,4 @@ import { NewsComponent } from '../news/news.component';
   imports: [HeaderComponent, FeedbackComponent, BookingComponent, TestimonialComponent, ServiceListComponent, FooterComponent, ContactComponent, LogoComponent, NewsComponent]
 })
 export class HomeComponent {
-  // No need for AfterViewInit or ViewChild anymore, as no interactivity is needed
 }

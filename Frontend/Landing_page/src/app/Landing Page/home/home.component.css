@@ -1,38 +1,9 @@
-/* .home {
-  padding: 0;
-  background-color: #f7f7f7;
-  text-align: center;
-}
-
-.carousel-item img {
-  height: 85vh;
-  object-fit: cover;
-  transition: transform 0.5s ease-in-out;
-}
-
-@keyframes slideLeft {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
-.carousel-item-next, .carousel-item-prev, .carousel-item.active {
-  animation: slideLeft 1s ease-out forwards;
-}
-
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  background-color: black;
-} */
 /* Style the home section */
 .home {
   position: relative;
   background-color: black;
   width: 100%;
-  height: 100vh; 
+  height: 100vh;
   margin: 0; /* Remove any margin that might add white space */
   padding: 0; /* Remove any padding */
   overflow: hidden; /* Hide overflow to ensure the video fits */
@@ -51,7 +22,6 @@
   align-items: center;
   overflow: hidden; /* Hide overflow to ensure the video fills the container */
 }
-
 
 .video-container video {
   object-fit: cover; /* Ensures the video fills the container without distortion */

@@ -66,62 +66,6 @@
   </nav>
 </header>
 
-<!-- <div *ngIf="isOpen" class="popup-overlay">
-    <div class="popup-content p-4 shadow-lg rounded">
-      <form [formGroup]="edit" (ngSubmit)="submit()">
-         Heading 
-        <h2 class="update text-center mb-4 text">Update your details</h2>
-  
-         Name Input
-        <div class="form-group mb-3">
-          <input type="text" class="form-control form-control-lg" formControlName="name" placeholder="Enter your name" required>
-          <div *ngIf="edit.get('name')?.touched && edit.get('name')?.invalid" class="text-danger">
-            <div *ngIf="edit.get('name')?.hasError('required')">Name is required</div>
-          </div>
-        </div>
-  
-        Email Input --
-        <div class="form-group mb-3">
-          <input type="email" class="form-control form-control-lg" formControlName="email" placeholder="Enter your email" required>
-          <div *ngIf="edit.get('email')?.touched && edit.get('email')?.invalid" class="text-danger">
-            <div *ngIf="edit.get('email')?.hasError('required')">Email is required</div>
-            <div *ngIf="edit.get('email')?.hasError('email')">Please enter a valid email address</div>
-          </div>
-        </div>
-  
-        -- Mobile Input --
-        <div class="form-group mb-3">
-          <input type="tel" class="form-control form-control-lg" formControlName="mobile" placeholder="Enter your mobile number" required>
-          <div *ngIf="edit.get('mobile')?.touched && edit.get('mobile')?.invalid" class="text-danger">
-            <div *ngIf="edit.get('mobile')?.hasError('required')">Mobile number is required</div>
-            <div *ngIf="edit.get('mobile')?.hasError('phone')">Please enter a valid phone number</div>
-          </div>
-        </div>
-  
-        < Address Input --
-        <div class="form-group mb-3">
-          <input type="text" class="form-control form-control-lg" formControlName="address" placeholder="Enter your address" required>
-          <div *ngIf="edit.get('address')?.touched && edit.get('address')?.invalid" class="text-danger">
-            <div *ngIf="edit.get('address')?.hasError('required')">Address is required</div>
-            <div *ngIf="edit.get('address')?.hasError('address')">Please enter a valid address</div>
-          </div>
-        </div>
-  <div class="row">
-    <div class="col">
-      <button type="submit" class="btn btn-primary btn-lg w-100 mb-3">Submit</button>
-
-    </div>
-    <div class="col">
-      <button type="button" class="btn btn-secondary btn-lg w-100" (click)="closePop()">Close</button>
-
-    </div>
-  </div>
-        <- Submit Button --
-  
-        <!- Close Button --
-      </form>
-    </div>
-  </div> -->
 <div
   *ngIf="isOpen"
   class="popup-overlay d-flex justify-content-center align-items-center position-fixed top-0 start-0 end-0 bottom-0 bg-dark bg-opacity-50 z-index-1050"
@@ -141,9 +85,7 @@
 
       <!-- Name Input -->
       <div class="row mb-3">
-        <!-- <div class="col-3">
-            <label for="name" class="form-label">Name</label>
-          </div> -->
+    
         <div class="col-12">
           <input
             type="text"
@@ -167,9 +109,7 @@
 
       <!-- Email Input -->
       <div class="row mb-3">
-        <!-- <div class="col-3">
-            <label for="email" class="form-label">Email</label>
-          </div> -->
+     
         <div class="col-12">
           <input
             type="email"
@@ -196,9 +136,7 @@
 
       <!-- Mobile Input -->
       <div class="row mb-3">
-        <!-- <div class="col-3">
-            <label for="mobile" class="form-label">Mobile Number</label>
-          </div> -->
+       
         <div class="col-12">
           <input
             type="tel"
@@ -224,9 +162,7 @@
 
       <!-- Address Input -->
       <div class="row mb-3">
-        <!-- <div class="col-3">
-            <label for="address" class="form-label">Address</label>
-          </div> -->
+    
         <div class="col-12">
           <input
             type="text"
@@ -271,4 +207,3 @@
   </div>
 </div>
 
-<!-- <button (click)="openPop()">open</button> -->

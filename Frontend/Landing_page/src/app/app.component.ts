@@ -41,15 +41,4 @@ export class AppComponent {
       }
     }
   }
-  // isOpen=false;
-
-  // openPop(){
-  //   this.isOpen=true;
-  //   document.body.style.overflow="hidden";
-
-  // }
-  // closePop(){
-  //   this.isOpen=false;
-  //   document.body.style.overflow="auto";
-  // }
 }

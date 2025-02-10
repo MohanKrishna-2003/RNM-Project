@@ -107,19 +107,7 @@ export class CommonDataServiceService {
     return uniqueCentersArray;
   }
 
-
-  // 
-  // getUserDetails(maindata: any): any {
-  //   this.users = maindata.map((item: any) => item.user);
-  //   this.totalusers= this.users.length;
-  //   console.log(this.totalusers);
-  //   return this.users;
-  // }
-
   getfeedbacks(maindata: any): any {
-    // maindata.forEach((item: any) => {
-    //   this.feedbacks = this.feedbacks.concat(item.user.feedbacks);
-    // });
     this.feedbacks = maindata.map((item: any) => item.feedbacks);
     console.log(this.feedbacks);
     return this.feedbacks;
