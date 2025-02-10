@@ -86,7 +86,7 @@ export class LoginComponent {
             localStorage.setItem("useremail", email);
             localStorage.setItem("login", "true");
             this.route.navigateByUrl('/dashboard');
-            localStorage.setItem("admin",email) ; // Redirect to admin dashboard
+            localStorage.setItem("admin",email) ; 
           } else {
             console.log("User login success");
             this.route.navigateByUrl('/');  // Redirect to user dashboard

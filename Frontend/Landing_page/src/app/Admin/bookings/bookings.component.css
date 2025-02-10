@@ -3,7 +3,11 @@
   border-radius: 0.5rem;
   border: 1px solid #c7d9e7;
 }
-
+.font {
+  font-size: 28px;
+  text-transform: capitalize;
+  font-weight: bold;
+}
 .btn-lg {
   font-size: 1rem;
   padding: 10px 20px;
