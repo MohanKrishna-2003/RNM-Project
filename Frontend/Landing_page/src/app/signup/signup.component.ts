@@ -54,7 +54,6 @@ export class SignupComponent {
             } else {
               this.errorMsg = 'An error occurred, please try again';
             }
-            alert(this.errorMsg);
           }
         }
       );
