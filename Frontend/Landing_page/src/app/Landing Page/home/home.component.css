@@ -68,3 +68,20 @@ app-contact {
   margin-top: 0; /* Make sure there's no space above the components */
   padding-top: 0; /* Remove any padding that could cause space */
 }
+
+
+.pos{
+  position: absolute;
+  bottom: 100px;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  /* font-size: 23px; */
+}
+/* 
+.vertical-bar{
+    left: 270px;
+    position: relative;
+    top: 38px;
+    width: 5px;
+    height: 2.6rem;
+    background-color: rgb(251, 221, 221);
+} */

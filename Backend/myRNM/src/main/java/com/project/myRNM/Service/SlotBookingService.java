@@ -63,6 +63,25 @@ public class SlotBookingService {
                 throw new IllegalArgumentException("Invalid time slot selected.");
         }
 
+        LocalDate preferredDate = slotBooking.getPreferredDate();
+
+        // Calculate the range (7 days before and 7 days after the preferred date)
+        LocalDate startDate = preferredDate.minusDays(7);
+        LocalDate endDate = preferredDate.plusDays(7);
+
+        // Check if there are any existing bookings for the same car, user, and date range
+        List<SlotBooking> existingBookings = slotBookingRepository.findByUserIdAndCarIdAndPreferredDateWithinRange(
+                slotBooking.getUser().getId(),
+                slotBooking.getSelectedCarDetails(),
+                preferredDate,
+                startDate,
+                endDate
+        );
+
+        if (!existingBookings.isEmpty()) {
+            // If an existing booking is found, reject the booking
+            throw new IllegalArgumentException("You cannot book the same car on the same day or within 7 days of your previous booking. Please try after 7 days.");
+        }
         // so after, here I am updating the center entity in database.
         Boolean availability = checkAvailability(slotBooking.getCenter().getId(), slotBooking.getPreferredDate(), slotBooking.getTimeSlot(), slotBooking.getSelectedCarDetails());
 

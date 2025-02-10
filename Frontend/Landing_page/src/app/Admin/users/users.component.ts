@@ -49,7 +49,7 @@ export class UsersComponent implements OnInit {
     } else {
       // If there is a search term, filter based on that
       const filtered = this.users.filter((user) =>
-        user.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+        user.userName.toLowerCase().includes(this.searchTerm.toLowerCase())
       );
       this.filteredUsers = filtered.slice(0, (this.page + 1) * this.pageSize);
     }

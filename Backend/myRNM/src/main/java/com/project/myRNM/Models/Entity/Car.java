@@ -32,7 +32,7 @@ public class Car {
     private String image;
     private String price;
     private int releaseYear;
-    private int bookings;
+    private int booking;
     private String details;
     private int rating;
     private String engineType;
