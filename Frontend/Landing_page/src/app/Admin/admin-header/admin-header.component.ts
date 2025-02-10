@@ -10,15 +10,14 @@ import { Router, RouterModule } from '@angular/router';
   styleUrl: './admin-header.component.css',
 })
 export class AdminHeaderComponent {
-
-  constructor(private router:Router){} 
-   adminname:String="";
+  constructor(private router: Router) {}
+  adminname: String = '';
   ngOnInit(): void {
-this.adminname=localStorage.getItem("adminName") ?? " ";  
+    this.adminname = localStorage.getItem('adminName') ?? ' ';
   }
 
-  logout(){
-    this.router.navigateByUrl("home");
+  logout() {
+    this.router.navigateByUrl('home');
     localStorage.clear();
   }
 }

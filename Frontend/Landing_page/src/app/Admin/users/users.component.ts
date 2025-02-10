@@ -31,17 +31,9 @@ export class UsersComponent implements OnInit {
       this.users = this.commondata.userwithfeedbacks;
       this.filteredUsers = this.users.slice(0, this.pageSize); // Initially load the first 10 users
     });
-    // this.commondata.getCenterDetails().subscribe((data: any) => {
-    //     this.users = this.commondata.getUserDetails(data);
-    //     this.filteredUsers = this.users.slice(0, this.pageSize); // Initially load the first 10 users
-    //   });
+
   }
 
-  // getAllTheUserList(): Observable<any> {
-  //   return this.http.get('http://localhost:8080/user/userdata');
-  // }
-
-  // Filter users based on the search term
   filterUsers() {
     if (this.searchTerm.trim() === '') {
       // If no search term, reset filtered users to all users

@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [AdminHeaderComponent, CommonModule, AdminHeaderComponent],
   templateUrl: './notifications.component.html',
-  styleUrl: './notifications.component.css'
+  styleUrl: './notifications.component.css',
 })
 export class NotificationsComponent implements OnInit {
   articles: any[] = [];
@@ -25,7 +25,8 @@ export class NotificationsComponent implements OnInit {
   ngOnInit(): void {
     this.fetchNews();
   }
-  private API_URL = 'https://newsapi.org/v2/everything?q=Renault+Nissan+Mitsubishi&language=en&sortBy=publishedAt&apiKey=03236fd20cc54cabac03280adfa33aaa';
+  private API_URL =
+    'https://newsapi.org/v2/everything?q=Renault+Nissan+Mitsubishi&language=en&sortBy=publishedAt&apiKey=03236fd20cc54cabac03280adfa33aaa';
   fetchAPI(): Observable<any> {
     return this.http.get<any>(this.API_URL);
   }
@@ -44,8 +45,13 @@ export class NotificationsComponent implements OnInit {
 
   // Display news articles
   displayNews(isInitialLoad: boolean = false): void {
-    const numArticles = isInitialLoad ? this.INITIAL_LOAD : this.ARTICLES_PER_LOAD;
-    const nextArticles = this.articles.slice(this.currentIndex, this.currentIndex + numArticles);
+    const numArticles = isInitialLoad
+      ? this.INITIAL_LOAD
+      : this.ARTICLES_PER_LOAD;
+    const nextArticles = this.articles.slice(
+      this.currentIndex,
+      this.currentIndex + numArticles
+    );
 
     // Update the displayed news
     this.currentIndex += numArticles;

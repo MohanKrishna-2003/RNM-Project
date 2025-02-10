@@ -40,17 +40,7 @@ export class UserFeedbackComponent implements OnInit {
         console.error('Error fetching feedback:', err);
       }
     });
-    
-    // this.http.get<Feedback[]>("http://localhost:8080/feedback/feedbackchart").subscribe({
-    //   next: (res) => {
-    //     console.log(res);
-    //     this.feedbackList = res;
-    //     this.displayFeedback(); // Display initial set of feedbacks
-    //   },
-    //   error: (err) => {
-    //     console.error('Error fetching feedback:', err);
-    //   }
-    // });
+
   }
 
   // Display feedback for the current page

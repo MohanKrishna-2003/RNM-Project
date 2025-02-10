@@ -35,7 +35,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let booking of filteredBookings;">
+        <tr *ngFor="let booking of filteredBookings">
           <td>{{ booking.id }}</td>
           <td>{{ booking.selectedCarDetails }}</td>
           <td>{{ booking.name }}</td>
@@ -45,9 +45,14 @@
             <span
               class="badge"
               [ngClass]="{
-                'bg-success': booking.status === 'confirmed'|| booking.status==='Confirmed',
-                'bg-secondary': booking.status === 'cancelled' || booking.status==='Cancelled',
-                'bg-primary': booking.status === 'Pending'|| booking.status==='pending'
+                'bg-success':
+                  booking.status === 'confirmed' ||
+                  booking.status === 'Confirmed',
+                'bg-secondary':
+                  booking.status === 'cancelled' ||
+                  booking.status === 'Cancelled',
+                'bg-primary':
+                  booking.status === 'Pending' || booking.status === 'pending'
               }"
             >
               {{ booking.status }}
@@ -91,7 +96,6 @@
                 </li>
               </ul>
             </div>
-            
           </td>
         </tr>
       </tbody>
@@ -100,6 +104,12 @@
 
   <!-- Load More Button -->
   <div class="d-flex justify-content-center mt-4">
-    <button *ngIf="filteredBookings.length < bookings.length" class="btn btn-primary" (click)="loadMore()">Load More</button>
+    <button
+      *ngIf="filteredBookings.length < bookings.length"
+      class="btn btn-primary"
+      (click)="loadMore()"
+    >
+      Load More
+    </button>
   </div>
 </div>
