@@ -13,14 +13,14 @@ public class EmailController {
     @Autowired
     EmailService emailService;
 
-@PostMapping("/sendmail")
-public String sendEmail(@RequestBody EmailDTO emailDTO) {
-    try {
-        emailService.sendEmail(emailDTO.getRecipient(), emailDTO.getSubject(), emailDTO.getText());
-    } catch (Exception e) {
-        return e.getMessage();
+    @PostMapping("/sendmail")
+    public String sendEmail(@RequestBody EmailDTO emailDTO) {
+        try {
+            emailService.sendEmail(emailDTO.getRecipient(), emailDTO.getSubject(), emailDTO.getText());
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+        return "Email sent successfully!";
     }
-    return "Email sent successfully!";
-}
 
 }

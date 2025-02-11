@@ -93,4 +93,17 @@ public interface SlotBookingRepository extends JpaRepository<SlotBooking, Long> 
     List<Object[]> findMonthlyBookingCountsByBrand();
 
     List<SlotBooking> findByCenterIdAndPreferredDateAndTimeSlotAndSelectedCarDetails(Long centerId, LocalDate preferredDate, String timeSlot, String selectedCarDetails);
+
+
+    // Query for bookings by user, car, and date
+        @Query("SELECT s FROM SlotBooking s WHERE s.user.id = :userId " +
+                "AND s.selectedCarDetails = :selectedCarDetails " +
+                "AND (s.preferredDate = :preferredDate OR " +
+                "(s.preferredDate BETWEEN :startDate AND :endDate))")
+    List<SlotBooking> findByUserIdAndCarIdAndPreferredDateWithinRange(@Param("userId") Long userId,
+                                                                      @Param("selectedCarDetails") String selectedCarDetails,
+                                                                      @Param("preferredDate") LocalDate preferredDate,
+                                                                      @Param("startDate") LocalDate startDate,
+                                                                      @Param("endDate") LocalDate endDate);
+
 }

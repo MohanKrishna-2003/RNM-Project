@@ -23,21 +23,9 @@ public class CarController {
         return new ResponseEntity<>(createdCar, HttpStatus.CREATED);
     }
 
-
     @GetMapping
     public ResponseEntity<List<Car>> getAllCars() {
         List<Car> cars = carService.getAllCars();
         return new ResponseEntity<>(cars, HttpStatus.OK);
-    }
-
-
-    @PostMapping("/bulk")
-    public ResponseEntity<List<Car>> addMultipleCars(@RequestBody List<Car> cars) {
-        try {
-            List<Car> savedCars = carService.saveAllCars(cars);
-            return new ResponseEntity<>(savedCars, HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
     }
 }
