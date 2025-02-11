@@ -14,32 +14,18 @@ public class OtpController {
     @Autowired
     OtpService otpService;
 
-//    @PostMapping("/sendmail")
-//    public String sendEmail(@RequestBody OtpDTO otpDTO) {
-//        try {
-//            otpService.sendEmail(otpDTO.getRecipient(), otpDTO.getSubject(), otpDTO.getText());
-//        } catch (MessagingException e) {
-//            return e.getMessage();
-//        }
-//        return "Email sent successfully!";
-//    }
-//    @PostMapping("/verifyotp")
-//    public String verifyOtp(@RequestBody OtpDTO otpDTO) {
-//        boolean isVerified = otpService.verifyOtp(otpDTO.getRecipient(), otpDTO.getText());  // otpDTO.getText() is the OTP here;
-//        return isVerified ? "OTP verified successfully" : "Invalid OTP or OTP expired";
-//    }
-@PostMapping("/sendmail")
-public ResponseEntity<GeneralResponse> sendEmail(@RequestBody OtpDTO otpDTO) {
-    try {
-        otpService.sendEmail(otpDTO.getRecipient(), otpDTO.getSubject(), otpDTO.getText());
-        GeneralResponse response = new GeneralResponse("Email sent successfully!");
-        return ResponseEntity.status(HttpStatus.OK).body(response);
-    } catch (Exception e) {
-        GeneralResponse response = new GeneralResponse(e.getMessage());
-        e.printStackTrace();
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    @PostMapping("/sendmail")
+    public ResponseEntity<GeneralResponse> sendEmail(@RequestBody OtpDTO otpDTO) {
+        try {
+            otpService.sendEmail(otpDTO.getRecipient(), otpDTO.getSubject(), otpDTO.getText());
+            GeneralResponse response = new GeneralResponse("Email sent successfully!");
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        } catch (Exception e) {
+            GeneralResponse response = new GeneralResponse(e.getMessage());
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+        }
     }
-}
 
     @PostMapping("/verifyotp")
     public ResponseEntity<GeneralResponse> verifyOtp(@RequestBody OtpDTO otpDTO) {

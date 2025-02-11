@@ -295,7 +295,7 @@ export class CarSelectionComponent implements OnInit {
   filterCarsByPrice(event: Event): void {
     const selectedPrice = (event?.target as HTMLSelectElement).value;
     this.displayedCars = this.cars.filter((car) => {
-      const rawPrice = car.price?.INR;
+      const rawPrice = car.price;
       if (!rawPrice) return false;
       const normalizedPrice = this.normalizePrice(rawPrice);
       switch (selectedPrice) {

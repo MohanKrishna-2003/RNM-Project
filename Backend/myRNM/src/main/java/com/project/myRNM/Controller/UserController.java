@@ -44,28 +44,6 @@ public class UserController {
         }
     }
 
-
-    @PostMapping("/addUserData")
-    public ResponseEntity<?> addUserData(@RequestBody Users users) {
-        try {
-            Users savedUser = userService.addUserData(users); // Ensure this returns the saved entity
-            HashMap<String, Object> response = new HashMap<>();
-            response.put("message", "User added successfully");
-            response.put("userId", savedUser.getId()); // Return the userId in the response
-            return ResponseEntity.ok(response);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
-        }
-    }
-
-    @GetMapping("/updatePasswords")
-    public String updatePasswords() {
-        userService.updateAllPasswordsToEncrypted();
-        return "Passwords updated successfully!";
-    }
-
-
     @GetMapping("/userdata")
     public ResponseEntity<?> getUserData() {
         try {
@@ -84,9 +62,6 @@ public class UserController {
         }
     }
 
-
-
-
     @GetMapping("/last30")
     public ResponseEntity<?> last30() {
         try {
@@ -104,6 +79,7 @@ public class UserController {
             return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
         }
     }
+
     @PutMapping("/updateProfile/{id}")
     public ResponseEntity<?> updateProfile(@PathVariable("id") Long id, @RequestBody Users users) {
         try {

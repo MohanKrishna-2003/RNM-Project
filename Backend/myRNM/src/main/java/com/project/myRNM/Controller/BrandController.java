@@ -50,28 +50,4 @@ public class BrandController {
 
         return new ResponseEntity<>(brands, HttpStatus.OK);
     }
-
-
-
-    // Get Brand by ID.
-    @GetMapping("/{id}")
-    public ResponseEntity<Brand> getBrandById(@PathVariable Long id) {
-        Brand brand = brandService.getBrandById(id);
-        if (brand != null) {
-            return new ResponseEntity<>(brand, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @DeleteMapping("/delete-all")
-    public ResponseEntity<?> deleteAllBrands() {
-        try {
-            brandService.deleteAllBrands();
-            return ResponseEntity.ok("All brands have been deleted successfully.");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(500).body("Error occurred while deleting all brands: " + e.getMessage());
-        }
-    }
 }

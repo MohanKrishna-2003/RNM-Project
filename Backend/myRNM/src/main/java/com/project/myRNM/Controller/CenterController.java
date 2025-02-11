@@ -36,22 +36,6 @@ public class CenterController {
         return new ResponseEntity<>(centers, HttpStatus.OK);
     }
 
-    // Get Center by ID
-    @GetMapping("/{id}")
-    public ResponseEntity<Center> getCenterById(@PathVariable Long id) {
-        Center center = centerService.getCenterById(id);
-        if (center != null) {
-            return new ResponseEntity<>(center, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @DeleteMapping("/delete-all")
-    public ResponseEntity<String> deleteAllCenters() {
-        centerRepository.deleteAll();
-        return ResponseEntity.ok("All centers have been deleted successfully.");
-    }
 
     @PutMapping("/{id}")
     public ResponseEntity<Center> updateCenter(@PathVariable Long id, @RequestBody Center updatedCenter) {
