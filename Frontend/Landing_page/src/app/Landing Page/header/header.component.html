@@ -1,207 +1,209 @@
-  <header class="header">
-    <!-- Logo and Company Name Section -->
-    <div class="header-top">
-      <div class="logo-image">
-        <img
-          src="logo3.png"
-          alt="Logo Image"
-        />
-      </div>
-      <div class="company-name">
-        <span>Where Test Drives Meet Dreams!</span>
-      </div>
-      <div class="user-options">
-        <span class="privacy-policy">Privacy Policy</span>
-        <a routerLink="/homelocation" class="user-location">
-          <i class="fas fa-map-marker-alt"></i> Location
-        </a>
+<header class="header">
+  <!-- Logo and Company Name Section -->
+  <div class="header-top">
+    <div class="logo-image">
+      <img src="logo3.png" alt="Logo Image" />
+    </div>
+    <div class="company-name">
+      <span>Where Test Drives Meet Dreams!</span>
+    </div>
+    <div class="user-options">
+      <a routerLink="/privacy" class="privacy-policy-link">Privacy Policy</a>
+      <a routerLink="/homelocation" class="user-location">
+        <i class="fas fa-map-marker-alt"></i> Location
+      </a>
 
-
-        @if (name=="") {
-  <div>
+      @if (name=="") {
+      <div>
         <!-- Profile Button with Click Event to Toggle Box -->
         <span class="user-profile" (click)="toggleProfileBox()">
           <i class="fas fa-user"></i> Profile
-          </span>
+        </span>
 
         <!-- Profile Box (Login/Signup Box) -->
         <div *ngIf="isProfileBoxVisible" class="profile-box">
-          <div class="profile-arrow"></div>  <!--Arrow pointing to profile -->
+          <div class="profile-arrow"></div>
+          <!--Arrow pointing to profile -->
           <h4>Login to your RNM Account</h4>
           <button (click)="onLogin()">Login</button>
           <button (click)="onSignup()">Sign Up</button>
         </div>
       </div>
-    }
-
-      @if (name!="") {
+      } @if (name!="") {
       <div>
         <!-- Profile Button with Click Event to Toggle Box -->
         <span class="user-profile" (click)="toggleProfileBox()">
           <i class="fas fa-user"></i>
-          {{name}}
+          {{ name }}
           <!-- <h1>{{name}}</h1> -->
         </span>
 
         <!-- Profile Box (Logout) -->
         <div *ngIf="isProfileBoxVisible" class="profile-box">
-          <div class="profile-arrow"></div>  <!--Arrow pointing to profile -->
+          <div class="profile-arrow"></div>
+          <!--Arrow pointing to profile -->
           <h4>Login to your RNM Account</h4>
           <button (click)="Onlogout()">Logout</button>
           <button (click)="openPop()">Edit</button>
-          </div>
+        </div>
       </div>
-    }
-  </div>
-  </div>
-
-    <!-- Horizontal Divider Line Below -->
-    <div class="divider"></div>
-
-    <!-- Navigation Bar -->
-    <nav class="nav">
-      
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#booking">Booking</a></li>
-        <li><a href="#service-list">Service</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-
-
-
-  <!-- <div *ngIf="isOpen" class="popup-overlay">
-    <div class="popup-content p-4 shadow-lg rounded">
-      <form [formGroup]="edit" (ngSubmit)="submit()">
-         Heading 
-        <h2 class="update text-center mb-4 text">Update your details</h2>
-  
-         Name Input
-        <div class="form-group mb-3">
-          <input type="text" class="form-control form-control-lg" formControlName="name" placeholder="Enter your name" required>
-          <div *ngIf="edit.get('name')?.touched && edit.get('name')?.invalid" class="text-danger">
-            <div *ngIf="edit.get('name')?.hasError('required')">Name is required</div>
-          </div>
-        </div>
-  
-        Email Input --
-        <div class="form-group mb-3">
-          <input type="email" class="form-control form-control-lg" formControlName="email" placeholder="Enter your email" required>
-          <div *ngIf="edit.get('email')?.touched && edit.get('email')?.invalid" class="text-danger">
-            <div *ngIf="edit.get('email')?.hasError('required')">Email is required</div>
-            <div *ngIf="edit.get('email')?.hasError('email')">Please enter a valid email address</div>
-          </div>
-        </div>
-  
-        -- Mobile Input --
-        <div class="form-group mb-3">
-          <input type="tel" class="form-control form-control-lg" formControlName="mobile" placeholder="Enter your mobile number" required>
-          <div *ngIf="edit.get('mobile')?.touched && edit.get('mobile')?.invalid" class="text-danger">
-            <div *ngIf="edit.get('mobile')?.hasError('required')">Mobile number is required</div>
-            <div *ngIf="edit.get('mobile')?.hasError('phone')">Please enter a valid phone number</div>
-          </div>
-        </div>
-  
-        < Address Input --
-        <div class="form-group mb-3">
-          <input type="text" class="form-control form-control-lg" formControlName="address" placeholder="Enter your address" required>
-          <div *ngIf="edit.get('address')?.touched && edit.get('address')?.invalid" class="text-danger">
-            <div *ngIf="edit.get('address')?.hasError('required')">Address is required</div>
-            <div *ngIf="edit.get('address')?.hasError('address')">Please enter a valid address</div>
-          </div>
-        </div>
-  <div class="row">
-    <div class="col">
-      <button type="submit" class="btn btn-primary btn-lg w-100 mb-3">Submit</button>
-
-    </div>
-    <div class="col">
-      <button type="button" class="btn btn-secondary btn-lg w-100" (click)="closePop()">Close</button>
-
+      }
     </div>
   </div>
-        <- Submit Button --
-  
-        <!- Close Button --
-      </form>
-    </div>
-  </div> -->
-  <div *ngIf="isOpen" class="popup-overlay d-flex justify-content-center align-items-center position-fixed top-0 start-0 end-0 bottom-0 bg-dark bg-opacity-50 z-index-1050">
-    <div class="popup-content bg-light p-4 rounded-3 shadow-lg" style="max-width: 600px; width: 100%; animation: popupIn 0.6s ease-out;">
-      <form [formGroup]="edit" (ngSubmit)="submit()">
-        <!-- Heading -->
-        <h2 class="update text-center mb-4 text- fw-bold" style="font-size: 1.5rem;">Update your details</h2>
-  
-        <!-- Name Input -->
-        <div class="row mb-3">
-          <!-- <div class="col-3">
-            <label for="name" class="form-label">Name</label>
-          </div> -->
-          <div class="col-12">
-            <input type="text" id="name" class="form-control form-control-lg" formControlName="name" placeholder="Enter your name" required>
-            <div *ngIf="edit.get('name')?.touched && edit.get('name')?.invalid" class="text-danger">
-              <div *ngIf="edit.get('name')?.hasError('required')">Name is required</div>
+
+  <!-- Horizontal Divider Line Below -->
+  <div class="divider"></div>
+
+  <!-- Navigation Bar -->
+  <nav class="nav">
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#booking">Booking</a></li>
+      <li><a href="#service-list">Service</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#news">News</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div
+  *ngIf="isOpen"
+  class="popup-overlay d-flex justify-content-center align-items-center position-fixed top-0 start-0 end-0 bottom-0 bg-dark bg-opacity-50 z-index-1050"
+>
+  <div
+    class="popup-content bg-light p-4 rounded-3 shadow-lg"
+    style="max-width: 600px; width: 100%; animation: popupIn 0.6s ease-out"
+  >
+    <form [formGroup]="edit" (ngSubmit)="submit()">
+      <!-- Heading -->
+      <h2
+        class="update text-center mb-4 text- fw-bold"
+        style="font-size: 1.5rem"
+      >
+        Update your details
+      </h2>
+
+      <!-- Name Input -->
+      <div class="row mb-3">
+    
+        <div class="col-12">
+          <input
+            type="text"
+            id="name"
+            class="form-control form-control-lg"
+            formControlName="name"
+            placeholder="Enter your name"
+            required
+            readonly
+          />
+          <div
+            *ngIf="edit.get('name')?.touched && edit.get('name')?.invalid"
+            class="text-danger"
+          >
+            <div *ngIf="edit.get('name')?.hasError('required')">
+              Name is required
             </div>
           </div>
         </div>
-  
-        <!-- Email Input -->
-        <div class="row mb-3">
-          <!-- <div class="col-3">
-            <label for="email" class="form-label">Email</label>
-          </div> -->
-          <div class="col-12">
-            <input type="email" id="email" class="form-control form-control-lg" formControlName="email" placeholder="Enter your email" required>
-            <div *ngIf="edit.get('email')?.touched && edit.get('email')?.invalid" class="text-danger">
-              <div *ngIf="edit.get('email')?.hasError('required')">Email is required</div>
-              <div *ngIf="edit.get('email')?.hasError('email')">Please enter a valid email address</div>
-            </div>
-          </div>
-        </div>
-  
-        <!-- Mobile Input -->
-        <div class="row mb-3">
-          <!-- <div class="col-3">
-            <label for="mobile" class="form-label">Mobile Number</label>
-          </div> -->
-          <div class="col-12">
-            <input type="tel" id="mobile" class="form-control form-control-lg" formControlName="mobile" placeholder="Enter your mobile number" required>
-            <div *ngIf="edit.get('mobile')?.touched && edit.get('mobile')?.invalid" class="text-danger">
-              <div *ngIf="edit.get('mobile')?.hasError('required')">Mobile number is required</div>
-              <div *ngIf="edit.get('mobile')?.hasError('phone')">Please enter a valid phone number</div>
-            </div>
-          </div>
-        </div>
-  
-        <!-- Address Input -->
-        <div class="row mb-3">
-          <!-- <div class="col-3">
-            <label for="address" class="form-label">Address</label>
-          </div> -->
-          <div class="col-12">
-            <input type="text" id="address" class="form-control form-control-lg" formControlName="address" placeholder="Enter your address" required>
-            <div *ngIf="edit.get('address')?.touched && edit.get('address')?.invalid" class="text-danger">
-              <div *ngIf="edit.get('address')?.hasError('required')">Address is required</div>
-              <div *ngIf="edit.get('address')?.hasError('address')">Please enter a valid address</div>
-            </div>
-          </div>
-        </div>
-  
-        <!-- Submit and Close Buttons -->
-        <div class="row">
-         
-          <div class="col">
-            <button type="button" class="btn btn-secondary btn-lg w-100" (click)="closePop()">Close</button>
-          </div>
-          <div class="col">
-            <button type="submit" class="btn btn-primary btn-lg w-100 mb-3">Submit</button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-  
+      </div>
 
-  <!-- <button (click)="openPop()">open</button> -->
+      <!-- Email Input -->
+      <div class="row mb-3">
+     
+        <div class="col-12">
+          <input
+            type="email"
+            id="email"
+            class="form-control form-control-lg"
+            formControlName="email"
+            placeholder="Enter your email"
+            required
+            readonly
+          />
+          <div
+            *ngIf="edit.get('email')?.touched && edit.get('email')?.invalid"
+            class="text-danger"
+          >
+            <div *ngIf="edit.get('email')?.hasError('required')">
+              Email is required
+            </div>
+            <div *ngIf="edit.get('email')?.hasError('email')">
+              Please enter a valid email address
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Input -->
+      <div class="row mb-3">
+       
+        <div class="col-12">
+          <input
+            type="tel"
+            id="mobile"
+            class="form-control form-control-lg"
+            formControlName="mobile"
+            placeholder="Enter your mobile number"
+            required
+          />
+          <div
+            *ngIf="edit.get('mobile')?.touched && edit.get('mobile')?.invalid"
+            class="text-danger"
+          >
+            <div *ngIf="edit.get('mobile')?.hasError('required')">
+              Mobile number is required
+            </div>
+            <div *ngIf="edit.get('mobile')?.hasError('phone')">
+              Please enter a valid phone number
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Address Input -->
+      <div class="row mb-3">
+    
+        <div class="col-12">
+          <input
+            type="text"
+            id="address"
+            class="form-control form-control-lg"
+            formControlName="address"
+            placeholder="Enter your address"
+            required
+          />
+          <div
+            *ngIf="edit.get('address')?.touched && edit.get('address')?.invalid"
+            class="text-danger"
+          >
+            <div *ngIf="edit.get('address')?.hasError('required')">
+              Address is required
+            </div>
+            <div *ngIf="edit.get('address')?.hasError('address')">
+              Please enter a valid address
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit and Close Buttons -->
+      <div class="row">
+        <div class="col">
+          <button
+            type="button"
+            class="btn btn-secondary btn-lg w-100"
+            (click)="closePop()"
+          >
+            Close
+          </button>
+        </div>
+        <div class="col">
+          <button type="submit" class="btn btn-primary btn-lg w-100 mb-3">
+            Submit
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+

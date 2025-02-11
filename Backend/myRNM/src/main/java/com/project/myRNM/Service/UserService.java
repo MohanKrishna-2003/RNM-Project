@@ -133,10 +133,11 @@ public class UserService {
         Optional<Users> existingUser = userRepo.findByEmailOrMobile(users.getEmail(),users.getMobile());
 
         if (existingUser.isPresent()) {
-
-
-            throw new RuntimeException("User has been already resigtered");
-
+            if (existingUser.get().getEmail().equals(users.getEmail())) {
+                throw new RuntimeException("Email has already been registered"); }
+            if (existingUser.get().getMobile().equals(users.getMobile())) {
+                throw new RuntimeException("Mobile number has already been registered"); }
+            throw new RuntimeException("User already registered");
         }
 
         this.passwordEncoder  = new BCryptPasswordEncoder();

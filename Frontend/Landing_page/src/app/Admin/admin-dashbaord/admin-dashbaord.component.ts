@@ -1,5 +1,3 @@
-
-
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AdminHeaderComponent } from '../admin-header/admin-header.component';
 import { Chart, registerables } from 'chart.js';
@@ -51,12 +49,14 @@ export class AdminDashbaordComponent implements OnInit {
 
   ngOnInit(): void {
 
+
     this.commondata.loadData().subscribe((res) => {
       console.log('FEEDBACK ' + this.feedbackData);
       this.feedbackData = this.commondata.categorizeFeedbacks(this.commondata.userwithfeedbacks);
       this.totalusers = this.commondata.getTotalUniqueUsers(this.commondata.userwithfeedbacks);
       this.last30 = this.commondata.getUsersRegisteredCountInLast30Days(this.commondata.userwithfeedbacks);
       this.usermonthly = this.commondata.getUsersCountByMonth(this.commondata.userwithfeedbacks);
+
 
       this.processFeedbackData();
       this.calculateSum();
@@ -125,8 +125,10 @@ export class AdminDashbaordComponent implements OnInit {
       this.chart = new Chart('Chart1', this.config);
 
 
+
       this.showroomcount = this.commondata.getUniqueCenterCount(this.commondata.maindata);
       this.slotusermonthly = this.commondata.getUsersSlotCountByMonth(this.commondata.maindata);
+
       console.log(this.slotusermonthly);
 
       for (let i = 0; i < this.slotusermonthly.length; i++) {
@@ -151,7 +153,9 @@ export class AdminDashbaordComponent implements OnInit {
       };
       this.chart2 = new Chart('Chart2', this.config2);
 
+
       this.brandsdata = this.commondata.getCenterAnalysis(this.commondata.maindata);
+
       for (let i = 0; i < this.brandsdata.length; i++) {
         this.brands.push(this.brandsdata[i].centerName); // Push the month to the months array
         this.bcounts.push(this.brandsdata[i].totalBookings);
@@ -168,8 +172,10 @@ export class AdminDashbaordComponent implements OnInit {
             {
               label: 'Car Bookings',
               data: this.bcounts, // Sample data
+
               backgroundColor: ['#365CF5', '#9b51e0', '#365CF5', '#9b51e0', '#4CAF50'],
               hoverBackgroundColor: ['#2A46B1', '#7F37A8', '#2A46B1', '#7F37A8', '#388E3C'],
+
               borderWidth: 5,
               borderColor: '#ffffff',
             },
@@ -182,6 +188,7 @@ export class AdminDashbaordComponent implements OnInit {
       };
       this.chart3 = new Chart('Chart3', this.config3);
     });
+
     // this.http
     //   .get('http://localhost:8080/feedback/feedbackcount')
     //   .subscribe((res) => {
@@ -410,6 +417,7 @@ export class AdminDashbaordComponent implements OnInit {
     //   });
     // this.processFeedbackData();
     // this.changeFeedbackYear();
+
     this.calculateSum();
     console.log(this.selectedYear);
   }
@@ -460,6 +468,7 @@ export class AdminDashbaordComponent implements OnInit {
       'positive and negative ' + this.positiveCounts[0] + this.negativeCounts[0]
     );
   }
+
  
   // changeFeedbackYear() {
   //    let year1 = this.selectedYear === "y2024" ? 2024 : 2025;
@@ -468,7 +477,7 @@ export class AdminDashbaordComponent implements OnInit {
   //   console.log("CHART UPDATION"+year1);
   //   this.chart4.update();
   // }
- 
+
   calculateSum() {
     this.totalpositive = this.positiveCounts.reduce(
       (sum, current) => sum + current,
@@ -493,10 +502,3 @@ export class AdminDashbaordComponent implements OnInit {
   chardata1: any = this.counts;
   usersatisfaction: any;
 }
-
-
-
-
-
-
-

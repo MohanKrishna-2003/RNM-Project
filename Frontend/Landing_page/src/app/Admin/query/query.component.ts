@@ -14,12 +14,16 @@ interface Contact {
 
 @Component({
   selector: 'app-query',
-  imports: [CommonModule,AdminHeaderComponent,AdminHeaderComponent, FormsModule],
+  imports: [
+    CommonModule,
+    AdminHeaderComponent,
+    AdminHeaderComponent,
+    FormsModule,
+  ],
   templateUrl: './query.component.html',
-  styleUrl: './query.component.css'
+  styleUrl: './query.component.css',
 })
 export class QueryComponent {
-
   contactList: Contact[] = []; // Holds all feedback
   displayedQuery: Contact[] = []; // Holds only the currently displayed feedback
   pageSize: number = 10; // Number of feedbacks to show initially
@@ -28,23 +32,25 @@ export class QueryComponent {
   email: string = '';
   subject: string = 'Resolving your Query';
   message: string = '';
-  selectedmail: String='';
-  message_id : number ;
+  selectedmail: String = '';
+  message_id: number;
   constructor(private http: HttpClient) {}
   ngOnInit(): void {
-    this.http.get<Contact[]>("http://localhost:8080/contact/contact").subscribe({
-      next: (res) => {
-        console.log(res);
+    this.http
+      .get<Contact[]>('http://localhost:8080/contact/contact')
+      .subscribe({
+        next: (res) => {
+          console.log(res);
 
-        this.contactList = res;
+          this.contactList = res;
           this.displayQuery();
-        
-         // Display initial set of feedbacks
-      },
-      error: (err) => {
-        console.error('Error fetching feedback:', err);
-      }
-    });
+
+          // Display initial set of feedbacks
+        },
+        error: (err) => {
+          console.error('Error fetching feedback:', err);
+        },
+      });
   }
 
   // Display feedback for the current page
@@ -60,59 +66,49 @@ export class QueryComponent {
     this.displayQuery();
   }
 
-
   // Get background class for notifications
   getBackgroundClass(index: number): string {
     const classes = ['orange-bg', 'green-bg', 'blue-bg', 'yellow-bg'];
     return classes[index % classes.length];
   }
 
-  openForm(email:String, messageid: number) {
+  openForm(email: String, messageid: number) {
     this.isFormVisible = true;
-    this.selectedmail=email;
-    this.message_id= messageid;
+    this.selectedmail = email;
+    this.message_id = messageid;
   }
 
   closeForm() {
     this.isFormVisible = false;
   }
   onSubmit() {
-    let data={
-      "recipient": this.selectedmail,
-      "text":this.message,
-      "subject":this.subject
-    }
+    let data = {
+      recipient: this.selectedmail,
+      text: this.message,
+      subject: this.subject,
+      status: false,
+    };
 
+    if (this.subject == ' ' || this.message == '') {
+      alert('PLEASE ENTER A VALID SUBJECT AND MESSAGE BEFORE SUBMITTING !');
+    } else {
       console.log(this.message_id);
-      this.http.post("http://localhost:8080/contact/changestatus",this.message_id).subscribe({
+      this.http
+        .post('http://localhost:8080/contact/changestatus', this.message_id)
+        .subscribe({
+          next: (res) => {
+            console.log(res);
+          },
+        });
+
+      this.http.post('http://localhost:8080/mail/sendmail', data).subscribe({
         next: (res) => {
           console.log(res);
-        }
+        },
       });
 
-
-      this.http.post("http://localhost:8080/mail/sendmail",data).subscribe({
-        next: (res) => {
-          console.log(res);
-        }
-      });
-
-      alert("EMAIL SUCCESFULLY SEND !!")
-window.location.reload();
+      alert('EMAIL SUCCESFULLY SEND !!');
+      window.location.reload();
     }
-    
+  }
 }
-
-
-
-
-
-
-
-
-
-
- 
-
-
-

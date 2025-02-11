@@ -1,26 +1,36 @@
 .card {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    transition: transform 0.3s ease-in;
-  }
-  
-  .card:hover {
-    transform: scale(1.05);
-  }
-  
-  .card-title {
-    color: #5c94d5;
-  }
-  
-  .card-text {
-    font-size: 14px;
-    color: #555;
-  }
-  #showroom {
-    margin-left: 250px; /* Adjust based on the width of the navbar */
-    width: calc(100% - 250px); /* Make the dashboard take the rest of the available space */
-    padding: 20px;
-    box-sizing: border-box;
-  }
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  transition: transform 0.3s ease-in;
+}
 
-  
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-title {
+  color: #5c94d5;
+}
+
+.card-text {
+  font-size: 14px;
+  color: #555;
+}
+#showroom {
+  margin-left: 250px; /* Adjust based on the width of the navbar */
+  width: calc(
+    100% - 250px
+  ); /* Make the dashboard take the rest of the available space */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.h2 {
+  font-size: xx-large;
+  font-weight: bolder;
+}
+
+.font {
+  font-size: 34px;
+  text-transform: capitalize;
+}

@@ -10,11 +10,17 @@
   color: white;
   animation: bounceIn 2s ease-in-out;
   background-color: white;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
 .header-title {
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+.header-title {
+  font-family: "Metal Mania", serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
@@ -29,7 +35,6 @@
   color: whitesmoke;
   margin-top: 0.5rem;
   color: black;
-
 }
 
 .home-icon {
@@ -43,8 +48,6 @@
   height: 40px;
   cursor: pointer;
 }
-
-
 
 .main-body {
   display: flex;
@@ -94,7 +97,8 @@
 .question-wrapper {
   display: flex;
   align-items: center;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
   margin-bottom: 1rem;
 }
 
@@ -106,7 +110,11 @@
 }
 
 .question-text {
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+  font-family: "Quintessential", serif;
+  font-weight: 800;
+
   font-style: bold;
   /* text-transform: uppercase; */
   animation: slideLeft 1s ease-in-out;
@@ -425,28 +433,6 @@
   margin-bottom: 2rem;
 }
 
-/* @keyframes liveShading {
-    0% {
-      box-shadow: 0 4px 20px rgba(255, 0, 0, 0.5);
-    }
-    25% {
-      box-shadow: 0 4px 20px rgba(255, 165, 0, 0.5);
-    }
-    50% {
-      box-shadow: 0 4px 20px rgba(0, 255, 0, 0.5);
-    }
-    75% {
-      box-shadow: 0 4px 20px rgba(0, 0, 255, 0.5);
-    }
-    100% {
-      box-shadow: 0 4px 20px rgba(255, 0, 255, 0.5);
-    }
-  }
-
-  .car-card:hover {
-    animation: liveShading 2s infinite;
-  } */
-
 .car-card:hover {
   box-shadow: 0 4px 20px rgba(219, 21, 21, 0.2);
 }
@@ -454,7 +440,6 @@
 .car-image-container {
   width: 100%;
   height: 500px;
-  /* overflow: hidden; */
 }
 
 .car-image {
@@ -632,7 +617,6 @@
   }
 }
 
-
 .stars {
   display: inline-block;
 }
@@ -652,9 +636,7 @@
   /* top: 7px; */
   width: 32px;
   height: 29px;
-
 }
-
 
 .cycling-image {
   width: 60%;
@@ -1030,7 +1012,6 @@
   }
 }
 
-
 .form-check input {
   display: none;
 }
@@ -1106,7 +1087,6 @@ button.submit-btn:hover {
     width: 100%;
     animation: fadeIn 0.3s ease-out;
   } */
-
 
 /* Basic reset */
 * {
@@ -1203,7 +1183,6 @@ button.submit-btn:hover {
   padding: 10px;
 } */
 
-
 .test-drive-dialog {
   position: fixed;
   top: -10px;
@@ -1295,7 +1274,6 @@ button.submit-btn:hover {
   }
 }
 
-
 .test-drive-form {
   display: flex;
   flex-direction: column;
@@ -1358,7 +1336,8 @@ button.submit-btn:hover {
     height: auto;
   }
 
-  .car-info, .test-drive-form {
+  .car-info,
+  .test-drive-form {
     width: 100%;
   }
 }
@@ -1379,7 +1358,7 @@ button.submit-btn:hover {
 .formbold-steps {
   padding-bottom: 18px;
   margin-bottom: 35px;
-  border-bottom: 1px solid #DDE3EC;
+  border-bottom: 1px solid #dde3ec;
 }
 
 .formbold-steps ul {
@@ -1404,7 +1383,7 @@ button.submit-btn:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #DDE3EC;
+  background: #dde3ec;
   border-radius: 50%;
   width: 36px;
   height: 36px;
@@ -1420,7 +1399,7 @@ button.submit-btn:hover {
 
 .formbold-steps li.active span {
   background: #46cd15;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .formbold-input-flex {
@@ -1437,8 +1416,8 @@ button.submit-btn:hover {
   width: 100%;
   padding: 13px 22px;
   border-radius: 5px;
-  border: 1px solid #DDE3EC;
-  background: #FFFFFF;
+  border: 1px solid #dde3ec;
+  background: #ffffff;
   font-weight: 500;
   font-size: 16px;
   color: #536387;
@@ -1452,7 +1431,7 @@ button.submit-btn:hover {
 }
 
 .formbold-form-label {
-  color: #07074D;
+  color: #07074d;
   font-weight: 500;
   font-size: 14px;
   line-height: 24px;
@@ -1461,7 +1440,7 @@ button.submit-btn:hover {
 }
 
 .formbold-form-confirm {
-  border-bottom: 1px solid #DDE3EC;
+  border-bottom: 1px solid #dde3ec;
   padding-bottom: 35px;
 }
 
@@ -1482,15 +1461,15 @@ button.submit-btn:hover {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: #FFFFFF;
-  border: 0.5px solid #DDE3EC;
+  background: #ffffff;
+  border: 0.5px solid #dde3ec;
   border-radius: 5px;
   font-size: 16px;
   line-height: 24px;
   color: #536387;
   cursor: pointer;
   padding: 10px 20px;
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .formbold-confirm-btn {
@@ -1498,8 +1477,8 @@ button.submit-btn:hover {
 }
 
 .formbold-confirm-btn.active {
-  background: #6A64F1;
-  color: #FFFFFF;
+  background: #6a64f1;
+  color: #ffffff;
 }
 
 .formbold-form-step-1,
@@ -1524,9 +1503,9 @@ button.submit-btn:hover {
 
 .formbold-back-btn {
   cursor: pointer;
-  background: #FFFFFF;
+  background: #ffffff;
   border: none;
-  color: #07074D;
+  color: #07074d;
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
@@ -1547,11 +1526,10 @@ button.submit-btn:hover {
 
   border: none;
   font-weight: 500;
-  background-color: #6A64F1;
+  background-color: #6a64f1;
   color: white;
   cursor: pointer;
 }
-
 
 .formbold-btn:hover {
   box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
@@ -1623,7 +1601,6 @@ button:disabled {
   animation: slideUp 1s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-
 .container-fluid {
   padding-left: 0;
   padding-right: 0;
@@ -1675,17 +1652,16 @@ button:disabled {
   margin-right: 20px;
 }
 
-
-.showroom{
+.showroom {
   font-weight: bold;
 }
 
-.size{
+.size {
   font-size: 40px;
   /* background: #000; */
 }
 
-.size1{
+.size1 {
   font-size: 40px;
   position: relative;
   left: 25%;
@@ -1696,7 +1672,6 @@ button:disabled {
   text-align: center;
   display: flex;
   justify-content: center;
-
 }
 
 .card-body .brand-name {
@@ -1770,11 +1745,16 @@ button:disabled {
 }
 
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
-.smallthun{
+.smallthun {
   width: 45px;
   height: 48px;
 }

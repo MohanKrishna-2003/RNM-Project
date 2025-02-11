@@ -3,21 +3,12 @@
   <header class="header-section">
     <h1 class="header-title">Online Test Drive Booking</h1>
     <p class="header-subtitle">Driving your dreams forward</p>
-    <!-- <a href="/home" class="btn btn-primary btn-lg home-icon">Back to Home</a> -->
   </header>
 
   <div class="main-body" [class.shifted]="isFilterSidebarOpen">
     <div class="left-section">
       <div class="left-section-content">
-        <!-- <div class="question-wrapper">
-                    <img src="/assets/images/newq.avif" alt="Steering Icon" class="question-icon" />
-                    <h2 class="question-text one">What Makes a Car Handle Well?</h2>
-                </div>
-                <div class="answer-wrapper">
-                    <img src="/assets/images/steer1.png" alt="Steering Icon" class="answer-icon" />
-                    <p class="answer-text onea">The steering system is the most crucial component for smooth handling
-                        and turning precision.</p>
-                </div> -->
+
         <div class="question-wrapper">
           <h2 class="question-text one" style="font-size: xx-large">
             Welcome to MyRNM – Your Personalized Car Shopping Experience!
@@ -38,24 +29,7 @@
         </div>
       </div>
       <div class="left-section-content">
-
-        <!--  
-                <div class="answer-wrapper">
-                    <img src="/assets/images/newt.webp" alt="Tyre Icon" class="answer-icon" />
-                    <p class="answer-text twoa">Tires provide the necessary grip for traction, ensuring safety and
-                        stability during the drive.</p> -->
       </div>
-      <!-- <div class="left-section-content"> -->
-      <!-- <div class="question-wrapper">
-                    <img src="/assets/images/newq.avif" alt="Engine Icon" class="question-icon" />
-                    <h2 class="question-text three">What Makes a Car Powerful?</h2>
-                </div>
-                <div class="answer-wrapper">
-                    <img src="/assets/images/steer3.png" alt="Engine Icon" class="answer-icon" />
-                    <p class="answer-text threea">The engine’s horsepower and torque deliver the speed and performance
-                        that define power in a car.</p>
-                </div> -->
-      <!-- </div> -->
     </div>
     <div class="right-section">
       <div class="image-container">
@@ -64,7 +38,6 @@
     </div>
   </div>
 </div>
-<!-- <img src="http://localhost:4200/assets/staticPics/img1.avif" alt="Static Image" class="animated-image"> -->
 
 <!-- Sidebar for Filters -->
 <div class="container">
@@ -83,29 +56,8 @@
           <option value="mid">₹10-₹20 Lakhs</option>
           <option value="high">Above ₹20 Lakhs</option>
         </select>
-      </label> -->
-      <!-- <label class="baloo">
-        Price Range: ₹{{ minPrice }} - ₹{{ maxPrice }}
-        <input 
-          type="range" 
-          min="{{ minPrice }}" 
-          [max]="maxPrice" 
-          [(ngModel)]="selectedPrice"
-          (input)="filterCarsByPrice($event)"
-          step="10000"
-        />
-      </label> -->
-      
-      
-      <!-- <label>
-        Order By:
-        <select (change)="sortByOrder($event)" class="baloo">
-          <option value="">None</option>
-          <option value="maxPrice">Max Price</option>
-          <option value="minPrice">Min Price</option>
-          <option value="booking">Availability</option>
-        </select>
-      </label> -->
+      </label> 
+  
 
       <label for="carType">Car Type:</label>
       <select id="carType" (change)="filterByCarType($event)" class="baloo">
@@ -178,19 +130,6 @@
         </select>
       </label>
 
-
-      <!-- <       
-        Color:
-        <select (change)="filterByColor($event)" class="baloo">
-          <option value="">All</option>
-          <option value="red">Red</option>
-          <option value="blue">Blue</option>
-          <option value="black">Black</option>
-          <option value="white">White</option>
-          <option value="grey">Grey</option>
-        </select>
-      </label> -->
-
       <label>
         Drive Type:
         <select (change)="filterByDriveType($event)" class="baloo">
@@ -213,7 +152,6 @@
       </label>
     </div>
 
-    <!-- <button class="apply-filters baloo" (click)="applyFilters()">Apply!</button> -->
   </div>
 </div>
 
@@ -512,41 +450,11 @@
       </div>
     </div>
 
-    <!-- Right Side: Test Drive Form -->
-    <!-- <div class="test-drive-form">
-      <h2>Book Your Test Drive Slot</h2>
-      <form id="slot-booking-form" (submit)="confirm()">
-        <label for="name">Full Name</label>
-        <input type="text" id="name" placeholder="Enter your name" required />
-
-        <label for="phone">Phone Number</label>
-        <input type="tel" id="phone" placeholder="Enter your phone number" required />
-
-        <label for="email">Email Address</label>
-        <input type="email" id="email" placeholder="Enter your email" required />
-
-        <label for="preferred-date">Preferred Date</label>
-        <input type="date" id="preferred-date" required />
-
-        <label for="time-slot">Preferred Time Slot</label>
-        <select id="time-slot" required>
-          <option value="" disabled selected>Select a time slot</option>
-          <option value="morning">Morning (9:00 AM - 12:00 PM)</option>
-          <option value="afternoon">Afternoon (12:00 PM - 3:00 PM)</option>
-          <option value="evening">Evening (3:00 PM - 6:00 PM)</option>
-        </select>
-
-        <button type="submit" class="submit-btn">Book Slot!</button>
-      </form>
-    </div> -->
-
-
     <div class="formbold-form-wrapper" id="rightform">
       <br /><br />
       <h2>Book Your Test Drive Slot</h2>
       <br /><br />
 
-      <!-- <form id="slot-booking-form"> -->
       <div class="formbold-steps">
         <ul>
           <li class="formbold-step-menu1" [ngClass]="{ active: currentStep === 1 }">
@@ -565,10 +473,9 @@
       <div class="formbold-form-step-1" [ngClass]="{ active: currentStep === 1 }">
         <div>
           <label for="name" class="formbold-form-label">User name</label>
-          <input type="text" name="name" id="firstname" placeholder="Enter your name" class="formbold-form-input"
+          <input type="text" name="name" id="firstname" readonly placeholder="Enter your name" class="formbold-form-input"
             [(ngModel)]="formData.name" #name="ngModel" required />
           <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error">
-            <!-- <small *ngIf="name.errors?.['required']">Name is required.</small> -->
           </div>
         </div>
 
@@ -576,20 +483,18 @@
           <div>
             <label for="phone" class="formbold-form-label">Phone Number</label>
             <input type="text" name="phone" id="phone" class="formbold-form-input" placeholder="Enter your phone number"
-              [(ngModel)]="formData.phone" #phone="ngModel" required pattern="^\d{10}$" maxlength="10" minlength="10"
+              [(ngModel)]="formData.phone" #phone="ngModel" readonly required pattern="^\d{10}$" maxlength="10" minlength="10"
               [ngClass]="{'is-invalid': phone.invalid && (phone.dirty || phone.touched)}" />
             <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="error">
-              <!-- <small *ngIf="phone.errors?.['required']">Phone number is required.</small>
-                <small *ngIf="phone.errors?.['pattern']">Phone number must be exactly 10 digits.</small> -->
+            
             </div>
           </div>
 
           <div>
             <label for="email" class="formbold-form-label">Email Address</label>
             <input type="email" name="email" id="email" placeholder="Enter your email" class="formbold-form-input"
-              [(ngModel)]="formData.email" #email="ngModel" required />
+              [(ngModel)]="formData.email" #email="ngModel" required readonly/>
             <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error">
-              <!-- <small *ngIf="email.errors?.['required']">Email is required.</small> -->
               <small *ngIf="email.errors?.['email']">Invalid email format.</small>
             </div>
           </div>
@@ -677,7 +582,6 @@
           {{ currentStep === 3 ? "Submit" : "Next Step" }}
         </button>
       </div>
-      <!-- </form> -->
     </div>
 </div>
 

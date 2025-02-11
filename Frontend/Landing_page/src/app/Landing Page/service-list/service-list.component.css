@@ -5,7 +5,7 @@
   padding-top: 40px;
   padding-bottom: 40px;
 }
-
+ 
 /* Specific styling for the h2 heading */
 .service-container h2 {
   font-family: 'Montserrat', sans-serif; /* Change font family */
@@ -17,9 +17,9 @@
   letter-spacing: 3px;
   margin-bottom: 30px;
   padding-bottom: 10px;
-  border-bottom: 4px solid rgb(10, 10, 10); /* Underline with blue border */
+  border-bottom: 2px solid #34495e; /* Underline with blue border */
 }
-
+ 
 /* Service Title */
 .service-title {
   font-size: 32px;
@@ -30,7 +30,7 @@
   letter-spacing: 1px;
   text-align: center;
 }
-
+ 
 /* Service Content */
 .service-content p {
   font-size: 18px;
@@ -41,7 +41,7 @@
   padding: 0 20px;
   text-align: center;
 }
-
+ 
 /* Service Image */
 .service-image img {
   border-radius: 12px;
@@ -51,18 +51,18 @@
   object-fit: cover;
   transition: transform 0.4s ease-in-out;
 }
-
+ 
 /* Larger Image for the second service */
 .larger-image {
   max-height: 280px;
   transition: transform 0.4s ease-in-out;
 }
-
+ 
 /* Hover effect for the image */
 .service-image img:hover {
   transform: scale(1.1);
 }
-
+ 
 /* Flexbox Layout for alternating sides */
 .row {
   display: flex;
@@ -71,52 +71,52 @@
   margin-bottom: 40px;
   flex-wrap: wrap; /* Ensures responsive design */
 }
-
+ 
 /* Service Content Adjustment (for reversed order) */
 .service-content-right {
   margin-left: 60px;
   text-align: left;
 }
-
+ 
 .service-content-left {
   text-align: right;
 }
-
+ 
 /* Responsive Styling */
 @media (max-width: 768px) {
   .service-title {
     font-size: 26px;
   }
-
+ 
   .service-content p {
     font-size: 16px;
   }
-
+ 
   .service-image img {
     max-height: 300px;
   }
-
+ 
   /* Larger image in mobile view */
   .larger-image {
     max-height: 380px;
   }
-
+ 
   /* Stack the content vertically on small screens */
   .row {
     flex-direction: column;
     text-align: center; /* Center the content on small screens */
   }
-
+ 
   .col-md-5 {
     padding: 0 15px;
     margin-bottom: 20px; /* Add spacing between elements */
   }
-
+ 
   .service-content-right, .service-content-left {
     text-align: center;
     margin-left: 0; /* Remove left margin for center alignment */
   }
-
+ 
   .service-image img {
     max-height: 250px; /* Make images smaller on mobile */
   }

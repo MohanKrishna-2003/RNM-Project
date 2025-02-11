@@ -3,11 +3,9 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-booking',
-  imports:[RouterLink],
-  standalone:true,
+  imports: [RouterLink],
+  standalone: true,
   templateUrl: './booking.component.html',
-  styleUrl: './booking.component.css'
+  styleUrl: './booking.component.css',
 })
-export class BookingComponent {
-
-}
+export class BookingComponent {}

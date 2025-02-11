@@ -14,7 +14,21 @@
   align-items: center;
   border-radius: 10px;
 }
-
+.go-back-btn {
+  background-color: transparent;
+  border: none;
+  color: #007bff;
+  font-size: 20px; /* Adjust size as needed */
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+}
+ 
+.go-back-btn:hover {
+  background-color: #f0f0f0; /* Hover effect */
+  color: #0056b3;
+}
+ 
 /* Icon Button Styling */
 .css-15q8v64.e13411jb0 {
   background: transparent;
@@ -28,19 +42,19 @@
   height: 100%;
   border-radius: 10px;
 }
-
+ 
 /* Icon Styling */
 .css-15q8v64.e13411jb0 svg {
   width: 24px;
   height: 24px;
   fill: #007bff;
 }
-
+ 
 /* Hover Effect for the Icon */
 .css-15q8v64.e13411jb0:hover svg {
   fill: #0056b3;
 }
-
+ 
 /* Close Button Style */
 .close-btn {
   position: absolute;
@@ -52,7 +66,7 @@
   color: #007bff;
   cursor: pointer;
 }
-
+ 
 /* Chat Container Styling */
 .chat-container {
   position: fixed;
@@ -73,12 +87,12 @@
   overflow: hidden;
   box-sizing: border-box;
 }
-
+ 
 /* Display Chat Container when Open */
 .chat-container.open {
   display: flex;
 }
-
+ 
 /* Chat Window Styling */
 .chat-window {
   flex-grow: 1;
@@ -96,7 +110,7 @@
   clear: both;
   word-wrap: break-word;
 }
-
+ 
 /* User Message Styling */
 .from-user {
   background-color: #e1ffc7;  /* Light green */
@@ -111,21 +125,21 @@
   border-radius: 5px 5px 5px 0; /* Rounded corners for special bot messages */
   color: #007bff; /* Blue text */
 }
-
+ 
 /* Regular Bot Message Styling */
 .from-bot {
   background-color: #f1f1f1;
   align-self: flex-start;
   border-radius: 5px 5px 5px 0;
 }
-
+ 
 /* User Message Styling */
 .from-user {
   background-color: #e1ffc7;
   align-self: flex-end;
   border-radius: 5px 5px 0 5px;
 }
-
+ 
 /* Option Message Styling */
 .from-option {
   background-color: #f7f7f7;
@@ -133,7 +147,7 @@
   align-self: flex-start;
   border-radius: 5px;
 }
-
+ 
 /* Button Container for Options */
 .button-container {
   display: flex;
@@ -142,7 +156,7 @@
   justify-content: center;
   margin-top: 10px;
 }
-
+ 
 /* Button Styling */
 #btn-style {
   padding: 10px 20px;
@@ -154,24 +168,24 @@
   font-size: 14px;
   transition: background-color 0.3s ease;
 }
-
+ 
 /* Hover Effect for Buttons */
 #btn-style:hover {
   background-color: #0056b3;
 }
-
+ 
 /* Remove Focus Outline for Buttons */
 #btn-style:focus {
   outline: none;
 }
-
+ 
 /* User Input Form Styling */
 .user-input-form {
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
 }
-
+ 
 .user-input-form input {
   width: 80%;
   padding: 8px;
@@ -179,7 +193,7 @@
   border: 1px solid #ccc;
   font-size: 14px;
 }
-
+ 
 .user-input-form button {
   padding: 8px 16px;
   background-color: #007bff;
@@ -189,11 +203,11 @@
   cursor: pointer;
   font-size: 14px;
 }
-
+ 
 .user-input-form button:hover {
   background-color: #0056b3;
 }
-
+ 
 .go-back-btn {
   background-color: #ff4081;
   color: white;
@@ -203,7 +217,8 @@
   cursor: pointer;
   margin-top: 10px;
 }
-
+ 
 .go-back-btn:hover {
   background-color: #f50057;
 }
+ 

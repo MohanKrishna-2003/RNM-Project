@@ -19,21 +19,7 @@ export class HeaderComponent implements OnInit {
    adminName:String='';
   edit:FormGroup;
   constructor(private router: Router , private http:HttpClient,private fb:FormBuilder) {}
-  // ngOnInit(): void {
-  //   this.name = localStorage.getItem("useremail") || "";
-  //   const name = localStorage.getItem("username");
-  //   const email = localStorage.getItem("useremail");
-  //   if (name) {
-  //     this.edit.patchValue({
-  //       user_name: name
-  //     });
-  //   }
-  //   if (email) {
-  //     this.edit.patchValue({
-  //       user_email: email
-  //     });
-  //   }
-  // }
+ 
   ngOnInit(): void {
     // Initialize the form group
     this.edit = this.fb.group({

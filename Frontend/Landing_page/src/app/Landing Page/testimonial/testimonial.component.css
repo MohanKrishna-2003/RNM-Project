@@ -1,3 +1,36 @@
+/* Container for Testimonials Section */
+.container.py-5 {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+ 
+/* Heading Style */
+h2.text-center.mb-5 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: black;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid rgb(10, 10, 10);
+}
+ 
+/* Owl Carousel Custom Styles */
+owl-carousel-o {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+ 
+.ng-container {
+  display: flex;
+  justify-content: center;
+}
+ 
+/* Card Styling */
 .card {
   display: flex;
   flex-direction: column;
@@ -14,13 +47,14 @@
   border-radius: 8px;
   transition: all 0.3s ease;
 }
-
+ 
 .card:hover {
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
   transform: translateY(-5px);
   background-color: #f9f9f9;
 }
-
+ 
+/* Card Body Style */
 .card-body {
   display: flex;
   flex-direction: column;
@@ -28,14 +62,16 @@
   text-align: center;
   height: 100%;
 }
-
+ 
+/* Card Title */
 .card-title {
   font-size: 1.25rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
   color: #333;
 }
-
+ 
+/* Card Text */
 .card-text {
   font-size: 1rem;
   color: #555;
@@ -46,3 +82,26 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
+ 
+/* Service Section */
+.service-container {
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f8f8;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+ 
+/* Service Section Heading */
+.service-container h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: black;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+  border-bottom: 4px solid rgb(10, 10, 10);
+}
+ 

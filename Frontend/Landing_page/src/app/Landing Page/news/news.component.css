@@ -17,9 +17,9 @@
   letter-spacing: 2px; /* Slightly increased letter-spacing */
   margin-bottom: 20px;
   padding-bottom: 10px;
-  border-bottom: 4px solid #3498db; /* Add a blue underline to separate from the content */
+  border-bottom: 1px solid #3498db; /* Add a blue underline to separate from the content */
 }
-
+ 
 /* Individual news card styling */
 .news-card {
   background-color: #fff; /* White background for the card */
@@ -31,13 +31,13 @@
   flex-direction: column;
   height: 100%; /* Allow the card to grow depending on its content */
 }
-
+ 
 /* Hover effect on cards */
 .news-card:hover {
   transform: translateY(-5px); /* Slight lift on hover */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Increased shadow on hover */
 }
-
+ 
 /* Image in news card */
 .news-card img {
   width: 100%;
@@ -45,7 +45,7 @@
   object-fit: cover; /* Ensures the image covers the area */
   border-bottom: 1px solid #ddd; /* Border separating image from text */
 }
-
+ 
 /* Title for each news card */
 .news-card-title {
   font-size: 1.1rem; /* Adjust font size for better balance */
@@ -55,7 +55,7 @@
   color: #333;
   padding: 0 10px;
 }
-
+ 
 /* Description styling */
 .news-card-description {
   font-size: 0.95rem;
@@ -68,7 +68,7 @@
   -webkit-box-orient: vertical;
   padding: 0 10px;
 }
-
+ 
 /* Author styling */
 .news-author {
   font-size: 0.85rem;
@@ -76,7 +76,7 @@
   margin-bottom: 8px;
   padding: 0 10px;
 }
-
+ 
 /* Read more button styling */
 .read-more-btn {
   font-size: 0.9rem;
@@ -90,11 +90,11 @@
   transition: background-color 0.3s ease;
   margin: 10px;
 }
-
+ 
 .read-more-btn:hover {
   background-color: #0056b3; /* Darker shade on hover */
 }
-
+ 
 /* Center the loading spinner */
 #loadingSpinner {
   position: absolute;
@@ -103,7 +103,7 @@
   transform: translate(-50%, -50%); /* Adjust the spinner position so it is truly centered */
   display: initial; /* Initially hidden */
 }
-
+ 
 /* Load More Button */
 #loadMoreBtn {
   padding: 10px 20px;
@@ -118,37 +118,38 @@
   margin-left: auto;
   margin-right: auto;
 }
-
+ 
 #loadMoreBtn:hover {
   background-color: #218838; /* Darker shade on hover */
 }
-
+ 
 #loadMoreBtn:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }
-
-
+ 
+ 
 /* Responsive Design for News Cards */
 @media (max-width: 768px) {
   .news-card {
     width: 100%; /* Full width for each card on small screens */
     aspect-ratio: unset; /* Remove aspect ratio for smaller screens */
   }
-
+ 
   .news-card img {
     height: 150px; /* Adjust image height for smaller screens */
   }
-
+ 
   .news-card-title {
     font-size: 1.1rem; /* Slightly smaller font for titles */
   }
-
+ 
   .news-card-description {
     font-size: 0.9rem; /* Smaller font for description */
   }
-
+ 
   .read-more-btn {
     width: 100%; /* Make the button full-width on small screens */
   }
 }
+ 

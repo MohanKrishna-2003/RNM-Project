@@ -25,6 +25,7 @@ public class OtpController {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
         }
+
     }
 
     @PostMapping("/verifyotp")
