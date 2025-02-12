@@ -96,6 +96,7 @@ export class FeedbackComponent {
         },
         error: (err) => {
           console.log(err);
+          alert("Some Problem Occured! Please try again later!!")
           this.feedbackForm.reset();
         }
       });

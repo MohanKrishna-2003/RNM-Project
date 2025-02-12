@@ -52,8 +52,9 @@ public class AdminController {
 
     }
 
-    @GetMapping("/user_bookings")
-    public List<UserBookingDTO> getUserBookings() {
-        return adminService.getAllUserBookingsWithDetails();
-    }
+//    @GetMapping("/user_bookings")
+//    public List<UserBookingDTO> getUserBookings() {
+//        return adminService.getAllUserBookingsWithDetails();
+//    }
+
 }

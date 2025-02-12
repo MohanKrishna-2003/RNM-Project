@@ -23,6 +23,7 @@ export class ContactComponent {
       name: ['', [Validators.maxLength(20), Validators.minLength(4)]],
       email: ['', [Validators.email]],
       message: ['', [Validators.maxLength(100), Validators.required]],
+      status:false,
     });
   }
 

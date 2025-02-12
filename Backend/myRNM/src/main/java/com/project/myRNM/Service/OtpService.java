@@ -48,7 +48,7 @@ public class OtpService {
         String otp = generateOtp();
 
         // Store OTP and its expiration time in memory
-        otpStore.put(recipient, new OtpDetails(otp, LocalDateTime.now().plusMinutes(1)));
+        otpStore.put(recipient, new OtpDetails(otp, LocalDateTime.now().plusMinutes(2)));
 
         // Send the OTP to the recipient's email
         sendOtpEmail(recipient, otp);

@@ -1,4 +1,4 @@
-package com.project.myRNM.DTOs;
+package com.project.myRNM.Models.DTOs;
 
 import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;

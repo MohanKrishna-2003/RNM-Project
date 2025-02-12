@@ -14,6 +14,18 @@ body {
   animation: fadeInUp 1s ease-out;
 }
 
+.display-4{
+  font-size: 40px;
+  position: relative;
+  bottom: 23px;
+}
+.display-3{
+  font-size: 27px;
+  position: relative;
+  bottom: 10px;
+  top: 2px;
+}
+
 .contact-container {
   position: relative;
   padding: 40px;
@@ -29,6 +41,11 @@ body {
 
 .contact-container:hover {
   transform: scale(1.02); /* Slight zoom effect on hover */
+}
+
+
+.card-title{
+  font-family: 35px;
 }
 
 /* Heading Styling */

@@ -5,14 +5,20 @@ import { FooterComponent } from "../footer/footer.component";
 import L from 'leaflet';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { CommonDataServiceService } from '../../Services/common-data-service.service';
  
 // Define an interface for a shop
-interface Shop {
+interface Center {
+  id: string;
   name: string;
   address: string;
+  availableSlots: number;
+  morningSlots: number;
+  afternoonSlots: number;
+  eveningSlots: number;
   lat: number;
   lng: number;
-  icon: string; // The URL for the shop's icon
+  icon: string;
 }
  
 @Component({
@@ -23,10 +29,10 @@ interface Shop {
   imports: [ HttpClientModule, CommonModule, FormsModule],
 })
 export class LocationComponent implements AfterViewInit {
-  shops: Shop[] = [];
+  shops: Center[] = [];
   private map: any;
  
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private commonservice : CommonDataServiceService) {}
  
   ngAfterViewInit(): void {
     this.initMap();
@@ -36,17 +42,26 @@ export class LocationComponent implements AfterViewInit {
   }
  
   private loadShops(): void {
-    const apiUrl = 'http://localhost:8080/showrooms/locations';
-    this.http.get<Shop[]>(apiUrl).subscribe(
-      (data) => {
-        console.log('Fetched shops data:', data);
-        this.shops = data;
-        this.addMarkers();
-      },
-      (error) => {
-        console.error('Error fetching shops:', error);
-      }
-    );
+    this.commonservice.getCenterDetails().subscribe( (data) => {
+          console.log('Fetched shops data:', data);
+          this.shops = this.commonservice.getFilteredCenterDetails(data);
+          this.addMarkers();
+        },
+        (error) => {
+          console.error('Error fetching shops:', error);
+        }
+      );
+    // const apiUrl = 'http://localhost:8080/showrooms/locations';
+    // this.http.get<Shop[]>(apiUrl).subscribe(
+    //   (data) => {
+    //     console.log('Fetched shops data:', data);
+    //     this.shops = data;
+    //     this.addMarkers();
+    //   },
+    //   (error) => {
+    //     console.error('Error fetching shops:', error);
+    //   }
+    // );
   }
  
   private initMap(): void {
@@ -88,7 +103,7 @@ export class LocationComponent implements AfterViewInit {
   }
  
   // New method to handle the shop click event
-  goToShopLocation(shop: Shop): void {
+  goToShopLocation(shop: Center): void {
     // Center the map at the clicked shop's coordinates and zoom in
     this.map.setView([shop.lat, shop.lng], 16); // Adjust zoom level (14) as needed
   }

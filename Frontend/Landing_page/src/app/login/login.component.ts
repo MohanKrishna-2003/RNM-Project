@@ -165,6 +165,7 @@ export class LoginComponent {
         },
         (err) => {
           console.log(err);
+          alert("INVALID OTP OR OTP EXPIRED!! PLEASE TRY AGAIN !!!");
           this.errorMsg = err.error['message'];
         }
       );

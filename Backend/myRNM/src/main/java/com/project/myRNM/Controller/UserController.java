@@ -33,6 +33,20 @@ public class UserController {
     @Autowired
     EncryptionService encryptionService;
 
+    @PostMapping("/addUserData")
+    public ResponseEntity<?> addUserData(@RequestBody Users users) {
+        try {
+            Users savedUser = userService.addUserData(users); // Ensure this returns the saved entity
+            HashMap<String, Object> response = new HashMap<>();
+            response.put("message", "User added successfully");
+            response.put("userId", savedUser.getId()); // Return the userId in the response
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
+        }
+    }
+
     @PostMapping("/loginByPost")
     public ResponseEntity<?> loginByPost(@RequestBody HashMap<String, String> login) throws Exception {
         try {
@@ -44,41 +58,6 @@ public class UserController {
         }
     }
 
-    @GetMapping("/userdata")
-    public ResponseEntity<?> getUserData() {
-        try {
-            return ResponseEntity.ok(userService.getAllUsers());
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
-        }
-    }
-
-    @GetMapping("/totaluser")
-    public ResponseEntity<?> getTotalUser() {
-        try {
-            return ResponseEntity.ok(userService.totalUsers());
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
-        }
-    }
-
-    @GetMapping("/last30")
-    public ResponseEntity<?> last30() {
-        try {
-            return ResponseEntity.ok(userService.last30users());
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
-        }
-    }
-
-    @GetMapping("/userMonthlyCount")
-    public ResponseEntity<?> getMonthlyUserCount() {
-        try {
-            return ResponseEntity.ok(userService.getMonthlyUserCounts());
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(new GeneralResponse(e.getMessage()));
-        }
-    }
 
     @PutMapping("/updateProfile/{id}")
     public ResponseEntity<?> updateProfile(@PathVariable("id") Long id, @RequestBody Users users) {
