@@ -32,7 +32,7 @@ export class ChatbotComponent implements OnInit {
     this.options = [
       'What is your name?',
       'What can you do?',
-      'Learn About Cars',
+      // 'Learn About Cars',
       'Book a Test Drive',
       'Feedback',
       'Locations',
@@ -74,7 +74,7 @@ export class ChatbotComponent implements OnInit {
       this.messages.push({ sender: 'bot', text: 'I can help you with booking a test drive, provide information about cars, and more!', isSpecial: true });
     } else if (option === 'Learn About Cars' || option === 'Book a Test Drive') {
       // Navigate to booking page
-      this.router.navigate(['/booking']);
+      this.router.navigate(['/cardetails']);
       this.isOnPage = true;
       this.messages.push({ sender: 'bot', text: 'Redirecting to the booking page.', isSpecial: true });
     } else if (option === 'Feedback') {
@@ -128,7 +128,7 @@ export class ChatbotComponent implements OnInit {
     if (userMessage.toLowerCase().includes('test drive')) {
       this.isLoading = false;
       this.messages.push({ sender: 'bot', text: 'Redirecting to the test drive booking page.', isSpecial: true });
-      this.router.navigate(['/booking']); // Navigate to booking page
+      this.router.navigate(['/cardetails']); // Navigate to booking page
       this.isOnPage = true;
       return;  // Prevent further API call if this is a "test drive" related request
     }
